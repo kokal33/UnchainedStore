@@ -9,9 +9,9 @@ import { MenuItem } from '../../interfaces/menu-item';
 export class ResponsiveToolbarComponent implements OnInit {
 
   navLinks = [
-    { location: 'nft-listings', label: 'Home', icon: 'menu' },
-    { location: '/shared', label: 'Music', icon: 'account_circle' },
-    { location: '/shared/sub', label: 'Artists', icon: 'work' }
+    { location: 'home', label: 'Home', icon: 'menu' },
+    { location: 'music', label: 'Music', icon: 'account_circle' },
+    { location: 'artists', label: 'Artists', icon: 'work' }
   ];
   menuItems: MenuItem[] = [
     {

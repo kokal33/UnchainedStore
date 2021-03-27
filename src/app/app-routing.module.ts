@@ -1,11 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [{
 
-    path: 'card-view',
-    loadChildren: () => import('./card-view/card-view.module').then(m => m.CardViewModule)
-}
+  path: 'music',
+  loadChildren: () => import('./music/music.module').then(m => m.MusicModule)
+},
+{
+  path: 'home',
+  component: HomeComponent
+},
+  {
+
+    path: 'artists',
+    loadChildren: () => import('./artists/artist.module').then(m => m.ArtistModule)
+  }
 ];
 
 @NgModule({

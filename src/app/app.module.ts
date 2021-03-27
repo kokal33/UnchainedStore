@@ -5,20 +5,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { SharedModule } from './shared/shared.module';
-import { CardViewModule } from './card-view/card-view.module';
+import { MusicModule } from './music/music.module';
+import { HomeComponent } from './home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ArtistModule } from './artists/artist.module';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     LayoutModule,
-    CardViewModule,
-    SharedModule
+    MusicModule,
+    SharedModule,
+    ArtistModule
   ],
   providers: [],
   bootstrap: [AppComponent]

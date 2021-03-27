@@ -1,5 +1,7 @@
 <mat-toolbar fxLayout="row" color="dark">
-  <span fxFlex>Unchained Music</span>
+  <img class="img-logo" src="../../../../assets/images/logo.png">
+  <span fxFlex></span>
+
   <button mat-button *ngFor="let item of menuItems" [fxShow]="item.showOnDesktop" [fxShow.xs]="item.showOnMobile"
     [fxShow.sm]="item.showOnTablet">
     <mat-icon class="mr">{{item.icon}}</mat-icon>
@@ -24,7 +26,7 @@
 </mat-toolbar>
 
 
-<div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutWrap>
+<div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
   <div class="article_card">
     <mat-card class="example-card">
       <mat-card-content>

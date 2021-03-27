@@ -29,4 +29,4 @@ const routes: Routes = [
   exports: [RouterModule],
   declarations: [CardViewDetailsComponent, CardViewComponent]
 })
-export class CardViewModule { }
+export class MusicModule { }

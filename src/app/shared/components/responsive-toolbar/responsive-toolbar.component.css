@@ -3,3 +3,17 @@
   font-weight: bolder;
   color: black;
 }
+
+.img-logo {
+  padding: 2px, 2px, 2px, 2px;
+  height: 40px;
+}
+mat-toolbar {
+  background-color: black;
+  border-bottom-width: thin;
+  border-bottom-style: solid;
+  border-bottom-color: gold;
+}
+button.mat-focus-indicator.mat-button.mat-button-base.ng-star-inserted {
+  color: white !important;
+}
