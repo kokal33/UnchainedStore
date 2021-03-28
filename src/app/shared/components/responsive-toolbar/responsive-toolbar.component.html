@@ -8,9 +8,9 @@
     {{item.label}}
   </button>
   <ng-container>
-    <!-- <button mat-icon-button [matMenuTriggerFor]="dropMenu">
+    <button mat-icon-button [matMenuTriggerFor]="dropMenu">
       <mat-icon>more_vert</mat-icon>
-    </button> -->
+    </button>
     <mat-menu #dropMenu="matMenu">
       <ng-container *ngFor="let item of menuItems">
         <div [fxShow]="!item.showOnDesktop" [fxShow.sm]="!item.showOnTablet" [fxShow.xs]="!item.showOnMobile">

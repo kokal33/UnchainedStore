@@ -15,33 +15,27 @@ export class ResponsiveToolbarComponent implements OnInit {
   ];
   menuItems: MenuItem[] = [
     {
-      label: 'Connect Wallet',
-      icon: 'login',
+      label: 'Explore music',
+      icon: 'equalizer',
       showOnMobile: true,
       showOnTablet: true,
       showOnDesktop: true
     },
-    // {
-    //   label: 'About',
-    //   icon: 'help',
-    //   showOnMobile: false,
-    //   showOnTablet: true,
-    //   showOnDesktop: true
-    // },
-    // {
-    //   label: 'Pricing',
-    //   icon: 'attach_money',
-    //   showOnMobile: false,
-    //   showOnTablet: false,
-    //   showOnDesktop: true
-    // },
-    // {
-    //   label: 'Docs',
-    //   icon: 'notes',
-    //   showOnMobile: false,
-    //   showOnTablet: true,
-    //   showOnDesktop: true
-    // },
+    {
+      label: 'Artists',
+      icon: 'library_music',
+      showOnMobile: false,
+      showOnTablet: true,
+      showOnDesktop: true
+    },
+
+    {
+      label: 'Connect Wallet',
+      icon: 'login',
+      showOnMobile: false,
+      showOnTablet: true,
+      showOnDesktop: true
+    },
     // {
     //   label: 'Showcase',
     //   icon: 'slideshow',
