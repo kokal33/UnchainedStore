@@ -1,5 +1,5 @@
 <mat-toolbar fxLayout="row" color="dark">
-  <img class="img-logo" src="../../../../assets/images/logo.png">
+  <img [routerLink]="['home']" class="img-logo" src="../../../../assets/images/logo.png">
   <span fxFlex></span>
 
   <button [routerLink]="[item.location]" [routerLinkActive]="[item.class]" mat-button *ngFor="let item of menuItems"

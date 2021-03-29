@@ -7,7 +7,10 @@
 .img-logo {
   padding: 2px, 2px, 2px, 2px;
   height: 40px;
+  outline: none;
+
 }
+
 mat-toolbar {
   background-color: #12161c;
   /* border-bottom-width: thin;
@@ -18,8 +21,6 @@ button.mat-focus-indicator.mat-button.mat-button-base.ng-star-inserted {
   color: white !important;
 }
 
-
-
 .active {
-  background-color: orange  !important;
+  background-color: orange !important;
 }
