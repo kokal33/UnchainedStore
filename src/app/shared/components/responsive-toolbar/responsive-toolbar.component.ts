@@ -17,6 +17,8 @@ export class ResponsiveToolbarComponent implements OnInit {
     {
       label: 'Explore music',
       icon: 'equalizer',
+      location: 'music',
+      class: 'active',
       showOnMobile: true,
       showOnTablet: true,
       showOnDesktop: true
@@ -24,6 +26,9 @@ export class ResponsiveToolbarComponent implements OnInit {
     {
       label: 'Artists',
       icon: 'library_music',
+      location: 'artists',
+      class: 'active',
+
       showOnMobile: false,
       showOnTablet: true,
       showOnDesktop: true
@@ -32,6 +37,9 @@ export class ResponsiveToolbarComponent implements OnInit {
     {
       label: 'Connect Wallet',
       icon: 'login',
+      location: 'wallet',
+      class: 'active',
+
       showOnMobile: false,
       showOnTablet: true,
       showOnDesktop: true
