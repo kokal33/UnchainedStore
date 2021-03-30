@@ -3,3 +3,57 @@
   height: 400px;
   background-color: #12161c;
 }
+.header-img {
+  background-image: url(../../assets/images/header.jpg);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border: 0;
+  border-radius: inherit;
+  background-size: cover;
+  background-color: rgba(120, 120, 120, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}
+
+.header-img:after {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  display: block;
+  content: "";
+  background: linear-gradient(to top, #12161c 10%, rgba(0, 0, 0, 0) 100%);
+}
+.welcome-text {
+  color: #fff !important;
+  font-weight: 700 !important;
+  /* margin-bottom: 25% !important; */
+  font-size: 4.5rem;
+  line-height: 1.2;
+  z-index: 1;
+  margin-left: 20%;
+  margin-right: 20%;
+  text-align: center;
+  margin-top: 5%;
+}
+.explore-music-button {
+  border-color: #c02afe;
+  position: relative;
+  color: #fff;
+  border-style: solid;
+  border-radius: 10px;
+  font-size: large;
+  border-width: 1px;
+  margin: 10px;
+}

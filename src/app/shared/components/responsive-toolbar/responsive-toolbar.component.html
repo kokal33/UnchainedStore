@@ -3,7 +3,7 @@
   <span fxFlex></span>
 
   <button [routerLink]="[item.location]" [routerLinkActive]="[item.class]" mat-button *ngFor="let item of menuItems"
-    [fxShow]="item.showOnDesktop" [fxShow.xs]="item.showOnMobile" [fxShow.sm]="item.showOnTablet">
+    [fxShow]="item.showOnDesktop" [fxShow.xs]="item.showOnMobile" [fxShow.sm]="item.showOnTablet" >
     <mat-icon class="mr">{{item.icon}}</mat-icon>
     {{item.label}}
   </button>

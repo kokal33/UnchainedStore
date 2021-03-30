@@ -12,7 +12,21 @@
 }
 
 mat-toolbar {
-  background-color: #12161c;
+  background-color: #1F1F1F;
+  min-height: 3.75rem;
+  padding: .625rem 1 rem;
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  z-index: 1;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(0,0,0,.65);
+  background: linear-gradient(0,transparent 5%,rgba(0,0,0,.65));
+  transition-property: background;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
   /* border-bottom-width: thin;
   border-bottom-style: solid;
   border-bottom-color: gold; */
@@ -22,5 +36,7 @@ button.mat-focus-indicator.mat-button.mat-button-base.ng-star-inserted {
 }
 
 .active {
-  background-color: orange !important;
+ border-style: solid;
+ border-width: 1px;
+ border-color: white;
 }
