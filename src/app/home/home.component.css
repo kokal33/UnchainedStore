@@ -1,7 +1,9 @@
 .content {
   padding: 16px;
-  height: 400px;
+  height: 100%;
   background-color: #12161c;
+  position: fixed;
+
 }
 .header-img {
   background-image: url(../../assets/images/header.jpg);
