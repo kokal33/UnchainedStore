@@ -1,4 +1,19 @@
 <app-responsive-toolbar>
 
 </app-responsive-toolbar>
-<router-outlet></router-outlet>
+<div fxLayout="column" fxFlexFill>
+
+  <router-outlet></router-outlet>
+
+  <div style="z-index: 1; background-color: #12161c; margin-top: 50px; height: 100%;">
+    <mat-divider style="background-color: grey;"></mat-divider>
+    <div fxlayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
+      <label> Contact Us</label>
+      <label> Buy NFT Tutorial</label>
+      <label> Buy Bondly Tutorial</label>
+      <label> Collaboration Form</label>
+
+    </div>
+  </div>
+
+</div>

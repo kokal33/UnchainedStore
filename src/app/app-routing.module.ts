@@ -11,11 +11,16 @@ const routes: Routes = [{
   path: 'home',
   component: HomeComponent
 },
-  {
+{
+  path: '',
+  redirectTo: 'home',
+  pathMatch: 'full'
+},
+{
 
-    path: 'artists',
-    loadChildren: () => import('./artists/artist.module').then(m => m.ArtistModule)
-  }
+  path: 'artists',
+  loadChildren: () => import('./artists/artist.module').then(m => m.ArtistModule)
+}
 ];
 
 @NgModule({

@@ -3,7 +3,6 @@
   height: 100%;
   background-color: #12161c;
   position: fixed;
-
 }
 .header-img {
   background-image: url(../../assets/images/header.jpg);
@@ -49,6 +48,19 @@
   text-align: center;
   margin-top: 5%;
 }
+.guide-text {
+  color: #fff !important;
+  font-weight: 700 !important;
+  /* margin-bottom: 25% !important; */
+  font-size: 4.5rem;
+  line-height: 1.2;
+  z-index: 1;
+  margin-left: 20%;
+  margin-right: 20%;
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: 50px;
+}
 .explore-music-button {
   border-color: #c02afe;
   position: relative;
@@ -58,4 +70,25 @@
   font-size: large;
   border-width: 1px;
   margin: 10px;
+}
+
+h2 {
+  z-index: 1;
+  color: white;
+  width: 500px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+label {
+  z-index: 1;
+  width: 500px;
+  color: grey;
+}
+span {
+  color: white;
+  z-index: 1;
+  font-size: 3rem;
+  padding-top: 40px;
+  font-weight: bold;
 }
