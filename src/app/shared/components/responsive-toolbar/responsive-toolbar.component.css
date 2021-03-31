@@ -8,22 +8,25 @@
   padding: 2px, 2px, 2px, 2px;
   height: 40px;
   outline: none;
+}
 
+.wallet-button {
+  color: white;
 }
 
 mat-toolbar {
-  background-color: #1F1F1F;
+  background-color: #1f1f1f;
   min-height: 3.75rem;
-  padding: .625rem 1 rem;
+  padding: 0.625rem 1 rem;
   display: flex;
   position: fixed;
   flex-wrap: wrap;
   z-index: 1;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(0,0,0,.65);
-  background: linear-gradient(0,transparent 5%,rgba(0,0,0,.65));
-  transition-property:all;
+  background-color: rgba(0, 0, 0, 0.65);
+  background: linear-gradient(0, transparent 5%, rgba(0, 0, 0, 0.65));
+  transition-property: all;
   transition-duration: 0.5s;
   transition-timing-function: ease;
   transition-delay: 0s;
@@ -33,7 +36,7 @@ button.mat-focus-indicator.mat-button.mat-button-base.ng-star-inserted {
 }
 
 .active {
- border-style: solid;
- border-width: 1px;
- border-color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-color: white;
 }

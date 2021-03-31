@@ -7,6 +7,11 @@
     <mat-icon class="mr">{{item.icon}}</mat-icon>
     {{item.label}}
   </button>
+  <button (click)="openWalletsModal()" class="wallet-button" mat-button
+    [fxShow]="menuItem.showOnDesktop" [fxShow.xs]="menuItem.showOnMobile" [fxShow.sm]="menuItem.showOnTablet" >
+    <mat-icon class="mr">{{menuItem.icon}}</mat-icon>
+    {{menuItem.label}}
+  </button>
   <ng-container>
     <button mat-icon-button [matMenuTriggerFor]="dropMenu">
       <mat-icon>more_vert</mat-icon>

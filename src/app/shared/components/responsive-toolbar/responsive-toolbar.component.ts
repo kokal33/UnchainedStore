@@ -34,35 +34,26 @@ export class ResponsiveToolbarComponent implements OnInit {
       showOnDesktop: true
     },
 
-    {
-      label: 'Connect Wallet',
-      icon: 'login',
-      location: 'wallet',
-      class: 'active',
-
-      showOnMobile: false,
-      showOnTablet: true,
-      showOnDesktop: true
-    },
-    // {
-    //   label: 'Showcase',
-    //   icon: 'slideshow',
-    //   showOnMobile: false,
-    //   showOnTablet: false,
-    //   showOnDesktop: true
-    // },
-    // {
-    //   label: 'Blog',
-    //   icon: 'rss_feed',
-    //   showOnMobile: false,
-    //   showOnTablet: false,
-    //   showOnDesktop: false
-    // },
   ];
+
+  menuItem: MenuItem = {
+    label: 'Connect Wallet',
+    icon: 'login',
+    location: 'wallet',
+    class: 'active',
+    showOnMobile: false,
+    showOnTablet: true,
+    showOnDesktop: true
+  }
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openWalletsModal () {
+    console.log("asdasd")
+
   }
 
 
