@@ -1,40 +1,62 @@
 <div class="header-img"></div>
 
 <!-- TITLE -->
-<div  fxLayout="row" fxLayoutAlign="center" fxLayoutGap="50px">
+<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="50px">
   <h1 fx class="welcome-text">Join the Community</h1>
 </div>
 
 <mat-divider vertical style="height:60px"></mat-divider>
 <!-- ABOUT US -->
 <div fxLayout="row" fxLayoutAlign="center">
-  <h2 fx class="join-text" style="z-index: 1; color: white;">We want to assure only the best quality music and verified artists
+  <h2 fx class="join-text" style="z-index: 1; color: white;">We want to assure only the best quality music and verified
+    artists
     on our platform. That's why Unchained music is <strong>invite-only</strong> for now.
   </h2>
 </div>
 <div fxLayout="row" fxLayoutAlign="center">
   <h2 fx class="join-text" style="z-index: 1; color: white;">
-     Join our community and get a chance to become a seller.
+    Join our community and get a chance to become a seller.
   </h2>
 </div>
 <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="50px">
-<!-- Begin Mailchimp Signup Form -->
-<style type="text/css">
-    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width: 400px;}
+  <!-- Begin Mailchimp Signup Form -->
 
-</style>
-<div id="mc_embed_signup">
-<form action="https://unchained-music.us1.list-manage.com/subscribe/post?u=143d9e5ae6e2c989106ad5af7&amp;id=866a037eff" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-    <div id="mc_embed_signup_scroll">
+  <!-- <div id="mc_embed_signup">
+    <form
+      action="https://unchained-music.us1.list-manage.com/subscribe/post?u=143d9e5ae6e2c989106ad5af7&amp;id=866a037eff"
+      method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank"
+      novalidate>
+      <div id="mc_embed_signup_scroll">
 
-    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_143d9e5ae6e2c989106ad5af7_866a037eff" tabindex="-1" value=""></div>
-    <div class="clear"><input type="submit" value="Join" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required> -->
+  <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+  <!-- <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
+            name="b_143d9e5ae6e2c989106ad5af7_866a037eff" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Join" name="subscribe" id="mc-embedded-subscribe" class="button">
+        </div>
+      </div>
+    </form>
+
+  </div> -->
+  <form [formGroup]="subscribeForm" class="example-form"
+    action="https://unchained-music.us1.list-manage.com/subscribe/post?u=143d9e5ae6e2c989106ad5af7&amp;id=866a037eff"
+    method="post">
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+
+      <mat-error
+        *ngIf="subscribeForm.controls.email.hasError('email') && !subscribeForm.controls.email.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <button class="subscibe-button" mat-raised-button type="submit" [disabled]="!subscribeForm.valid">
+        Subscribe
+      </button>
     </div>
-</form>
-</div>
+
+  </form>
 </div>
 
 <!--End mc_embed_signup-->
-

@@ -9,12 +9,12 @@
 <!-- ABOUT US -->
 <div fxLayout="row" fxLayoutAlign="center">
   <h2 class="about-us-text">Buy and sell unique, unreleased music records, rare samples
-      and sounds.
+    and sounds.
   </h2>
 </div>
 
 <div fxLayout="row" fxLayoutAlign="center" style="margin-top:50px;">
-  <button mat-button class="explore-music-button">Explore music</button>
+  <button (click)="openWallets()" mat-button class="explore-music-button">Explore music</button>
   <button mat-button class="explore-music-button">Explore artists</button>
 </div>
 
@@ -22,11 +22,9 @@
   <h1 fx class="guide-text">What makes us unique?</h1>
 </div>
 <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <span>1</span>
   <h2>
     High Performance
   </h2>
-  <span>2</span>
   <h2>
     Cheap Transactions
   </h2>
@@ -45,12 +43,10 @@
 
 
 <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <span>3</span>
 
   <h2>
     Secure file storage, built for music
   </h2>
-  <span>4</span>
 
   <h2>
     Simple and easy to use
@@ -63,16 +59,17 @@
     the process of minting NFTs, while securely storing the data to IPFS. Unlike other NFT platforms that
     leave the original file exposed and freely available, our files are 100% secure and only accessible by the owner.
   </label>
-  <label>We aim to give you a simple to use, seamless experience. Check our <a style="color: purple;">  NFT TOUR GUIDE</a> </label>
+  <label>We aim to give you a simple to use, seamless experience. Check our <a> NFT TOUR
+      GUIDE</a> </label>
 </div>
 
 <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
   <m-web3-modal style="z-index: 1;" title="Modal Title" description="Modal description" descriptionGray="Modal subtitle"
     dismissText="Text that will dismiss modal on click"></m-web3-modal>
 </div>
-
+<!--
 <div style="z-index: 1;" class="content">
 
 
 
-</div>
+</div> -->
