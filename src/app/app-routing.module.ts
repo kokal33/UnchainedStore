@@ -17,7 +17,6 @@ const routes: Routes = [{
   pathMatch: 'full'
 },
 {
-
   path: 'artists',
   loadChildren: () => import('./artists/artist.module').then(m => m.ArtistModule)
 }

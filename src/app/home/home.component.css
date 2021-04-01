@@ -48,6 +48,9 @@
   text-align: center;
   margin-top: 5%;
 }
+.about-us-text {
+  width: 800px !important;
+}
 .guide-text {
   color: #fff !important;
   font-weight: 700 !important;
@@ -70,6 +73,8 @@
   font-size: large;
   border-width: 1px;
   margin: 10px;
+  width: 15%;
+  height: 60px;
 }
 
 h2 {
