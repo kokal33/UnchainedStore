@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Web3ModalService } from '@mindsorg/web3modal-angular';
+
+// TypeScript
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private web3ModalService: Web3ModalService) { }
 
   ngOnInit(): void {
+
+
   }
 
+
+  async openWallets() {
+    const provider = await this.web3ModalService.open();
+    console.log(provider);
+
+  }
 }
+

@@ -3,7 +3,7 @@
 
 
 <div fxLayout="row" fxLayoutAlign="center">
-  <h1 fx class="welcome-text">Music platform for artists, music lovers.</h1>
+  <h1 (click)="openWallets()" fx class="welcome-text">Music platform for artists, music lovers.</h1>
 </div>
 
 <div fxLayout="row" fxLayoutAlign="center">
@@ -62,8 +62,13 @@
     other features to customize the site.</label>
 </div>
 
+<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
+  <m-web3-modal style="z-index: 1;" title="Modal Title" description="Modal description" descriptionGray="Modal subtitle"
+    dismissText="Text that will dismiss modal on click"></m-web3-modal>
+</div>
 
-<div class="content">
+<div style="z-index: 1;" class="content">
+
 
 
 </div>

@@ -9,7 +9,20 @@ import { MusicModule } from './music/music.module';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ArtistModule } from './artists/artist.module';
+import { Web3ModalModule, Web3ModalService } from '@mindsorg/web3modal-angular';
+import WalletLink from "walletlink";
 
+const providerOptions = {
+  walletlink: {
+    package: WalletLink,
+    options: {
+      infuraUrl: 'https://mainnet.infura.io/v3/PROJECT_ID',
+      appName: "My Awesome DApp",
+      appLogoUrl: "https://example.com/logo.png",
+      darkMode: false
+    },
+  },
+};
 
 
 @NgModule({
@@ -24,9 +37,23 @@ import { ArtistModule } from './artists/artist.module';
     LayoutModule,
     MusicModule,
     SharedModule,
-    ArtistModule
+    ArtistModule,
+    Web3ModalModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: Web3ModalService,
+      useFactory: () => {
+        return new Web3ModalService({
+          network: "mainnet", // optional
+          cacheProvider: true, // optional
+          providerOptions, // required
+          disableInjectedProvider: true
+        });
+      },
+    },
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
