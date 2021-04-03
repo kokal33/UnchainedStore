@@ -9,17 +9,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./artists.component.css']
 })
 export class ArtistsComponent implements OnInit {
-  subscribeForm!: FormGroup;
 
-
-
-  constructor(private fb: FormBuilder
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.subscribeForm = this.fb.group({
-      email: ['', Validators.email],
-    });
   }
 
 }

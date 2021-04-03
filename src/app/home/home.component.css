@@ -5,7 +5,7 @@
   position: fixed;
 }
 .header-img {
-  background-image: url(../../assets/images/header.jpg);
+  background-image: url(../../assets/images/bg1.jpg);
   position: absolute;
   width: 100%;
   height: 100%;
@@ -46,7 +46,7 @@
   margin-left: 20%;
   margin-right: 20%;
   text-align: center;
-  margin-top: 5%;
+  margin-top: 120px;
 }
 .about-us-text {
   width: 800px !important;
@@ -75,6 +75,7 @@
   margin: 10px;
   width: 15%;
   height: 60px;
+  min-width: 160px;
 }
 
 h2 {

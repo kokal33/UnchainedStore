@@ -40,7 +40,7 @@
   margin-left: 20%;
   margin-right: 20%;
   text-align: center;
-  margin-top: 5%;
+  margin-top: 120px;
 }
 .join-text {
   margin-left: 30%;
@@ -116,4 +116,8 @@
 /* input color class */
 ::ng-deep input.mat-input-element {
   color: white;
+}
+.img-discord {
+  width: 250px;
+  height: 150px;
 }

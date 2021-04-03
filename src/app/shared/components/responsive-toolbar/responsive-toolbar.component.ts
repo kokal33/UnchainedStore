@@ -14,37 +14,37 @@ export class ResponsiveToolbarComponent implements OnInit {
     { location: 'artists', label: 'Artists', icon: 'work' }
   ];
   menuItems: MenuItem[] = [
-    {
-      label: 'Explore music',
-      icon: 'equalizer',
-      location: 'music',
-      class: 'active',
-      showOnMobile: true,
-      showOnTablet: true,
-      showOnDesktop: true
-    },
+    // {
+    //   label: 'Explore music',
+    //   icon: 'equalizer',
+    //   location: 'music',
+    //   class: 'active',
+    //   showOnMobile: true,
+    //   showOnTablet: true,
+    //   showOnDesktop: true
+    // },
     {
       label: 'Artists',
       icon: 'library_music',
       location: 'artists',
       class: 'active',
 
-      showOnMobile: false,
+      showOnMobile: true,
       showOnTablet: true,
       showOnDesktop: true
     },
 
   ];
 
-  menuItem: MenuItem = {
-    label: 'Connect Wallet',
-    icon: 'login',
-    location: 'wallet',
-    class: 'active',
-    showOnMobile: false,
-    showOnTablet: true,
-    showOnDesktop: true
-  }
+  // menuItem: MenuItem = {
+  //   label: 'Connect Wallet',
+  //   icon: 'login',
+  //   location: 'wallet',
+  //   class: 'active',
+  //   showOnMobile: false,
+  //   showOnTablet: true,
+  //   showOnDesktop: true
+  // }
 
   constructor() { }
 
