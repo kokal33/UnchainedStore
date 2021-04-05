@@ -9,7 +9,6 @@ import { MusicModule } from './music/music.module';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ArtistModule } from './artists/artist.module';
-import { Web3ModalModule, Web3ModalService } from '@mindsorg/web3modal-angular';
 import WalletLink from "walletlink";
 
 const providerOptions = {
@@ -38,20 +37,19 @@ const providerOptions = {
     MusicModule,
     SharedModule,
     ArtistModule,
-    Web3ModalModule
   ],
   providers: [
-    {
-      provide: Web3ModalService,
-      useFactory: () => {
-        return new Web3ModalService({
-          network: "mainnet", // optional
-          cacheProvider: true, // optional
-          providerOptions, // required
-          disableInjectedProvider: true
-        });
-      },
-    },
+    // {
+    //   provide: Web3ModalService,
+    //   useFactory: () => {
+    //     return new Web3ModalService({
+    //       network: "mainnet", // optional
+    //       cacheProvider: true, // optional
+    //       providerOptions, // required
+    //       disableInjectedProvider: true
+    //     });
+    //   },
+    // },
 
   ],
   bootstrap: [AppComponent]
