@@ -1,0 +1,24 @@
+<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
+<h1 mat-dialog-title>Choose your wallet</h1>
+</div>
+
+<div mat-dialog-content>
+  <div fxLayout="row" fxLayoutAlign="center">
+
+  <div>
+    <button *ngIf="!this.data.providers.binanceEnabled" (click)="onWalletChoose('binance')">
+    <img [className]="this.data.providers.binanceEnabled ? '' : 'greyed-out'" width="250px" height="200px" src="../../../../assets/images/bsc-logo.png" alt="Binance Chain">
+  </button>
+  </div>
+
+  <div>
+    <button [disabled]="!this.data.providers.metaMaskEnabled" (click)="onWalletChoose('metamask')">
+    <img [className]="this.data.providers.metaMaskEnabled ? '' : 'greyed-out'" width="250px" height="200px" src="../../../../assets/images/metamask-logo.png" alt="Metamask">
+  </button>
+  </div>
+
+</div>
+</div>
+
+
+
