@@ -5,13 +5,9 @@ import { ArtistsComponent } from './artists.component';
 import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
+
   {
     path: '',
-    redirectTo: 'artists',
-    pathMatch: 'full'
-  },
-  {
-    path: 'artists',
     component: ArtistsComponent,
     // children: [
     //   {

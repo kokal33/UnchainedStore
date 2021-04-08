@@ -10,13 +10,20 @@ import { getWalletProviders } from '../services/providerService';
 })
 export class HomeComponent implements OnInit {
 
+  musicTitle!: string;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.musicTitle = "Music";
   }
 
-  checkProviders(){
+  checkProviders() {
     const providers = getWalletProviders();
+  }
+
+  changeLabel() {
+    this.musicTitle = "Coming Soon";
   }
 
 }

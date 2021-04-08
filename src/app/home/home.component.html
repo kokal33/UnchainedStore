@@ -14,9 +14,11 @@
 </div>
 
 <div fxLayout="row" fxLayoutAlign="center" style="margin-top:50px;">
-  <button mat-button class="explore-music-button">Explore music</button>
-  <button mat-button class="explore-music-button">Explore artists</button>
+  <button (click)="changeLabel()" mat-button class="explore-music-button">{{musicTitle}}</button>
+  <button [routerLink]="['../artists']" routerLinkActive="router-link-active" mat-button
+    class="explore-music-button">Artists</button>
 </div>
+
 
 <div fxLayout="row" fxLayoutAlign="center">
   <h1 fx class="guide-text">What makes us unique?</h1>
