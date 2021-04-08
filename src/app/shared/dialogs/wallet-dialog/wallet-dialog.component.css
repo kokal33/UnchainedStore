@@ -1,0 +1,9 @@
+.greyed-out {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.wallet-img {
+  width:"250px";
+  height:"200px";
+}

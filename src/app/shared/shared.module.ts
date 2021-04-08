@@ -5,11 +5,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResponsiveToolbarComponent } from './components/responsive-toolbar/responsive-toolbar.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { WalletDialogComponent } from './dialogs/wallet-dialog/wallet-dialog.component';
 
 
 
 @NgModule({
-  declarations: [ResponsiveToolbarComponent],
+  declarations: [ResponsiveToolbarComponent, WalletDialogComponent],
   imports: [FlexLayoutModule, MaterialModule, ReactiveFormsModule, FormsModule, CommonModule, RouterModule],
   exports: [FlexLayoutModule, MaterialModule, ReactiveFormsModule, FormsModule, ResponsiveToolbarComponent]
 })

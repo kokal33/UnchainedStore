@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { connectWallet } from 'src/app/services/providerService';
+import { WalletDialogComponent } from '../../dialogs/wallet-dialog/wallet-dialog.component';
 import { MenuItem } from '../../interfaces/menu-item';
 
 @Component({
@@ -36,25 +39,32 @@ export class ResponsiveToolbarComponent implements OnInit {
 
   ];
 
-  // menuItem: MenuItem = {
-  //   label: 'Connect Wallet',
-  //   icon: 'login',
-  //   location: 'wallet',
-  //   class: 'active',
-  //   showOnMobile: false,
-  //   showOnTablet: true,
-  //   showOnDesktop: true
-  // }
+  menuItem: MenuItem = {
+    label: 'Connect Wallet',
+    icon: 'login',
+    location: 'wallet',
+    class: 'active',
+    showOnMobile: false,
+    showOnTablet: true,
+    showOnDesktop: true
+  }
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   openWalletsModal () {
-    console.log("asdasd")
+    const dialogRef = this.dialog.open(WalletDialogComponent, {
+      width: '600px',
+      height: '350px',
+      panelClass: 'wallet-dialog',
+      data: { }
+    });
 
+    dialogRef.afterClosed().subscribe(async res => {
+      if (res){ await connectWallet(res); }
+      return;
+    });
   }
-
-
 }
