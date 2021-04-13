@@ -9,12 +9,14 @@ import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ArtistModule } from './artists/artist.module';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-  ],
+    HomeComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,7 +25,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     MusicModule,
     SharedModule,
     ArtistModule,
-    MatDialogModule
+    MatDialogModule,
+    MatAutocompleteModule,
+    MatStepperModule
   ],
   bootstrap: [AppComponent]
 })

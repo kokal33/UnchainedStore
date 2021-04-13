@@ -75,10 +75,9 @@ async function connectWallet(wallet: string) {
 async function walletSignMetamask(provider:any, account:any){
   const chainId = parseInt(provider.chainId, 16);
       const signData = prepareSignDataV3(chainId);
-      const from = account;
       const signRequest: RequestArguments = {
         method: "eth_signTypedData_v4",
-        params: [from, signData]
+        params: [account, signData]
       }
       const signedMessage = await provider.request(signRequest);
       console.log("SIGNED: ", signedMessage);

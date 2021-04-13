@@ -29,3 +29,7 @@ export function prepareSignDataV3(chainId:number){
 export function prepareSignBinance() {
   return "Hello, Guest! Please sign this message in order to login"
 }
+
+export function prepareSignMetamask() {
+  return "Hello, Guest! Please sign this message in order to login"
+}
