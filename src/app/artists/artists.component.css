@@ -121,3 +121,19 @@
   width: 250px;
   height: 150px;
 }
+
+@media (max-width: 500px) {
+  .example-full-width {
+    width: 50%;
+  }
+  .align-form-center {
+    text-align: center;
+  }
+  .welcome-text {
+    font-size: 3rem;
+  }
+  .join-text {
+    margin: 0;
+    margin-bottom: 20px;
+  }
+}

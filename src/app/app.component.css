@@ -8,3 +8,18 @@ label {
 .img-social {
   height: 40px;
 }
+
+.img-fixed-size {
+  width: 300px;
+  height: 100px;
+}
+
+@media (max-width: 500px) {
+  .img-fixed-size {
+    width: 170px;
+    height: auto;
+  }
+  .align-center {
+    text-align: center;
+  }
+}

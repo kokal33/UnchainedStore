@@ -8,15 +8,15 @@ import { MusicModule } from './music/music.module';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ArtistModule } from './artists/artist.module';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ArtistsMainModule } from './artists-list/artists-main.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
-    ],
+    HomeComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,8 +26,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     SharedModule,
     ArtistModule,
     MatDialogModule,
-    MatAutocompleteModule,
-    MatStepperModule
+    ArtistsMainModule
+
   ],
   bootstrap: [AppComponent]
 })

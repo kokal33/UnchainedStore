@@ -26,6 +26,15 @@ export class ResponsiveToolbarComponent implements OnInit {
     //   showOnTablet: true,
     //   showOnDesktop: true
     // },
+    //    {
+    //   label: 'Explore artists',
+    //   icon: 'equalizer',
+    //   location: 'all-artists',
+    //   class: 'active',
+    //   showOnMobile: true,
+    //   showOnTablet: true,
+    //   showOnDesktop: true
+    // },
     {
       label: 'Artists',
       icon: 'library_music',
