@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { getWalletProviders } from '../services/providerService';
+import { SubscribeDialogComponent } from '../shared/dialogs/subscribe-dialog/subscribe-dialog.component';
 
 // TypeScript
 
@@ -12,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   musicTitle!: string;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.musicTitle = "Music";
@@ -23,7 +25,17 @@ export class HomeComponent implements OnInit {
   }
 
   changeLabel() {
-    this.musicTitle = "Coming Soon";
+    //this.musicTitle = "Coming Soon";
+    const dialogRef = this.dialog.open(SubscribeDialogComponent, {
+      width: '900px',
+      height: '850px',
+      panelClass: 'subscribe-dialog',
+      data: { }
+    });
+
+    dialogRef.afterClosed().subscribe(async (res: string) => {
+      return;
+    });
   }
 
 }

@@ -11,6 +11,8 @@ import { ArtistModule } from './artists/artist.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ArtistsMainModule } from './artists-list/artists-main.module';
 
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { NgxAudioPlayerModule } from 'ngx-audio-player';
 
 @NgModule({
   declarations: [
@@ -26,8 +28,9 @@ import { ArtistsMainModule } from './artists-list/artists-main.module';
     SharedModule,
     ArtistModule,
     MatDialogModule,
-    ArtistsMainModule
+    ArtistsMainModule,
 
+    MatAutocompleteModule,
   ],
   bootstrap: [AppComponent]
 })
