@@ -57,12 +57,12 @@ export class ResponsiveToolbarComponent implements OnInit {
   openWalletsModal () {
     const dialogRef = this.dialog.open(WalletDialogComponent, {
       width: '600px',
-      height: '350px',
+      height: '300px',
       panelClass: 'wallet-dialog',
       data: { }
     });
 
-    dialogRef.afterClosed().subscribe(async res => {
+    dialogRef.afterClosed().subscribe(async (res: string) => {
       if (res){ await connectWallet(res); }
       return;
     });

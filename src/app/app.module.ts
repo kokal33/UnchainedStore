@@ -9,8 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ArtistModule } from './artists/artist.module';
 import {MatDialogModule} from '@angular/material/dialog';
-import {MatStepperModule} from '@angular/material/stepper';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { NgxAudioPlayerModule } from 'ngx-audio-player';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,6 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     ArtistModule,
     MatDialogModule,
     MatAutocompleteModule,
-    MatStepperModule
   ],
   bootstrap: [AppComponent]
 })
