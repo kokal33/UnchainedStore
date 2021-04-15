@@ -7,10 +7,10 @@
     <mat-icon class="mr">{{item.icon}}</mat-icon>
     {{item.label}}
   </button>
-  <button (click)="openWalletsModal()" class="wallet-button" mat-button
-    [fxShow]="menuItem.showOnDesktop" [fxShow.xs]="menuItem.showOnMobile" [fxShow.sm]="menuItem.showOnTablet" >
-    <mat-icon class="mr">{{menuItem.icon}}</mat-icon>
-    {{menuItem.label}}
+  <button (click)="handleWalletButton()" class="wallet-button" mat-button
+    [fxShow]="walletButton.showOnDesktop" [fxShow.xs]="walletButton.showOnMobile" [fxShow.sm]="walletButton.showOnTablet" >
+    <mat-icon class="mr">{{walletButton.icon}}</mat-icon>
+    {{walletButton.label}}
   </button>
   <ng-container>
     <!-- <button mat-icon-button [matMenuTriggerFor]="dropMenu">

@@ -54,11 +54,13 @@ async function connectWallet(wallet: string) {
         provider = window.BinanceChain;
         const accounts = await provider.request({ method: 'eth_requestAccounts' });
         const signedMessage = await walletSignBinance(provider,accounts[0]);
+        return {accounts,signedMessage};
       }
       if (wallet ==='metamask'){
         provider = window.ethereum;
         const accounts = await provider.request({ method: 'eth_requestAccounts' });
         const signedMessage = await walletSignMetamask(provider,accounts[0]);
+        return {accounts,signedMessage};
       }
   }
   catch (err){
@@ -70,6 +72,7 @@ async function connectWallet(wallet: string) {
       console.error(err);
     }
   };
+  return null;
 }
 
 async function walletSignMetamask(provider:any, account:any){
