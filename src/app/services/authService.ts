@@ -8,7 +8,7 @@
       return localStorage.getItem("publicAddress");
     }
 
-    export function clearCache() {
+    export function clearCacheTimed() {
       let hours = 1
       let saved = localStorage.getItem('expires_in')
       if (saved) {
@@ -16,5 +16,9 @@
       if ((new Date().getTime() - publicAddress > hours * 60 * 60))
         localStorage.clear()
       }
+    }
+
+    export function clearCache() {
+      localStorage.clear();
     }
 

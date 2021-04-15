@@ -1,21 +1,25 @@
 <p-menubar (click)="onClickMenuItem($event)" [model]="items">
+  <!-- TODO: All buttons should be the same size, bigger music and artists buttons -->
   <ng-template pTemplate="start">
-    <img [routerLink]="['home']" routerLinkActive="router-link-active"  src="../../../../assets/images/UnchaunedLogo.png" height="40" class="p-mr-2">
+    <img [routerLink]="['home']" routerLinkActive="router-link-active"  src="../../../../assets/images/logo.png" height="50" class="p-mr-2">
   </ng-template>
+
   <ng-template pTemplate="end">
     <button *ngIf="!isWalletConnected" (click)="openWalletsModal()" style="border-radius: 20px;" pButton type="button"
       label="Connect wallet" class="p-button-outlined"></button>
-
     <button (click)="op.toggle($event)" style="border-radius: 20px;" *ngIf="isWalletConnected" pButton type="button"
       class="p-button-outlined">
       <p-avatar *ngIf="isWalletConnected" icon="pi pi-user" styleClass="p-mr-2" size="medium" shape="circle"></p-avatar>
+      <!-- TODO: On hover show publicAddress -->
       {{address}}
     </button>
   </ng-template>
+
 </p-menubar>
-<p-overlayPanel #op>
+<!-- TODO: overlaypanel padding is now 1rem, make it 0,2rem -->
+<p-overlayPanel (mouseleave)="op.hide()" #op>
   <ng-template pTemplate>
-    <button pButton pRipple type="button" label="Disconnect" icon="pi pi-fw pi-power-off"
+    <button (click)="logout()" pButton pRipple type="button" label="Disconnect" icon="pi pi-fw pi-power-off"
       class="p-button-secondary p-button-text"></button>
   </ng-template>
 </p-overlayPanel>
