@@ -15,8 +15,8 @@
 </div>
 
 <div fxLayout="row" fxLayoutAlign="center" style="margin-top:50px;">
-  <button (click)="changeLabel()" mat-button class="explore-music-button">{{musicTitle}}</button>
-  <button [routerLink]="['../artists']" routerLinkActive="router-link-active" mat-button
+  <button (click)="doTheThingWithTheTypeForm()" mat-button class="explore-music-button">Music</button>
+  <button (click)="doTheThingWithTheTypeForm()" routerLinkActive="router-link-active" mat-button
     class="explore-music-button">Artists</button>
 </div>
 

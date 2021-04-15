@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { getWalletProviders } from '../services/providerService';
 import { SubscribeDialogComponent } from '../shared/dialogs/subscribe-dialog/subscribe-dialog.component';
 
-// TypeScript
 
 @Component({
   selector: 'app-home',
@@ -12,20 +10,12 @@ import { SubscribeDialogComponent } from '../shared/dialogs/subscribe-dialog/sub
 })
 export class HomeComponent implements OnInit {
 
-  musicTitle!: string;
 
   constructor(public dialog: MatDialog) { }
 
-  ngOnInit(): void {
-    this.musicTitle = "Music";
-  }
+  ngOnInit(): void {}
 
-  checkProviders() {
-    const providers = getWalletProviders();
-  }
-
-  changeLabel() {
-    //this.musicTitle = "Coming Soon";
+  doTheThingWithTheTypeForm() {
     const dialogRef = this.dialog.open(SubscribeDialogComponent, {
       width: '900px',
       height: '850px',
