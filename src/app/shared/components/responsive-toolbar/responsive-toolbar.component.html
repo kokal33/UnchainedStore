@@ -1,44 +1,8 @@
-<mat-toolbar fxLayout="row" color="dark">
-  <img [routerLink]="['home']" class="img-logo" src="../../../../assets/images/logo.png">
-  <span fxFlex></span>
-
-  <button [routerLink]="[item.location]" [routerLinkActive]="[item.class]" mat-button *ngFor="let item of menuItems"
-    [fxShow]="item.showOnDesktop" [fxShow.xs]="item.showOnMobile" [fxShow.sm]="item.showOnTablet" >
-    <mat-icon class="mr">{{item.icon}}</mat-icon>
-    {{item.label}}
-  </button>
-  <button (click)="openWalletsModal()" class="wallet-button" mat-button
-    [fxShow]="menuItem.showOnDesktop" [fxShow.xs]="menuItem.showOnMobile" [fxShow.sm]="menuItem.showOnTablet" >
-    <mat-icon class="mr">{{menuItem.icon}}</mat-icon>
-    {{menuItem.label}}
-  </button>
-  <ng-container>
-    <!-- <button mat-icon-button [matMenuTriggerFor]="dropMenu">
-      <mat-icon>more_vert</mat-icon>
-    </button> -->
-    <mat-menu #dropMenu="matMenu">
-      <ng-container *ngFor="let item of menuItems">
-        <div [fxShow]="!item.showOnDesktop" [fxShow.sm]="!item.showOnTablet" [fxShow.xs]="!item.showOnMobile">
-          <button mat-menu-item>
-            <mat-icon class="mr">{{item.icon}}</mat-icon>
-            {{item.label}}
-          </button>
-          <mat-divider></mat-divider>
-        </div>
-      </ng-container>
-    </mat-menu>
-  </ng-container>
-</mat-toolbar>
-
-
-<!-- <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
-  <div class="article_card">
-    <mat-card class="example-card">
-      <mat-card-content>
-        <span *ngFor="let item of navLinks">
-          <button class="menu-item" [routerLink]="[item.location]" mat-button>{{item.label}}</button>
-        </span>
-      </mat-card-content>
-    </mat-card>
-  </div>
-</div> -->
+<p-menubar [model]="items">
+  <ng-template pTemplate="start">
+      <img src="../../../../assets/images/UnchaunedLogo.png" height="40" class="p-mr-2">
+  </ng-template>
+  <ng-template pTemplate="end">
+      <button pButton type="button" label="Connect wallet" class="p-button-outlined"></button>
+  </ng-template>
+</p-menubar>

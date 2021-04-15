@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { connectWallet } from 'src/app/services/providerService';
 import { WalletDialogComponent } from '../../dialogs/wallet-dialog/wallet-dialog.component';
-import { MenuItem } from '../../interfaces/menu-item';
+import { MenuItem } from 'primeng/api';
+
 
 @Component({
   selector: 'app-responsive-toolbar',
@@ -11,68 +12,39 @@ import { MenuItem } from '../../interfaces/menu-item';
 })
 export class ResponsiveToolbarComponent implements OnInit {
 
-  navLinks = [
-    { location: 'home', label: 'Home', icon: 'menu' },
-    { location: 'music', label: 'Music', icon: 'account_circle' },
-    { location: 'artists', label: 'Artists', icon: 'work' }
-  ];
-  menuItems: MenuItem[] = [
-    // {
-    //   label: 'Explore music',
-    //   icon: 'equalizer',
-    //   location: 'music',
-    //   class: 'active',
-    //   showOnMobile: true,
-    //   showOnTablet: true,
-    //   showOnDesktop: true
-    // },
-    //    {
-    //   label: 'Explore artists',
-    //   icon: 'equalizer',
-    //   location: 'all-artists',
-    //   class: 'active',
-    //   showOnMobile: true,
-    //   showOnTablet: true,
-    //   showOnDesktop: true
-    // },
-    {
-      label: 'Artists',
-      icon: 'library_music',
-      location: 'artists',
-      class: 'active',
 
-      showOnMobile: true,
-      showOnTablet: true,
-      showOnDesktop: true
-    },
+  items!: MenuItem[];
 
-  ];
 
-  menuItem: MenuItem = {
-    label: 'Connect Wallet',
-    icon: 'login',
-    location: 'wallet',
-    class: 'active',
-    showOnMobile: false,
-    showOnTablet: true,
-    showOnDesktop: true
+  ngOnInit() {
+
+    this.items = [
+
+      {
+        label: 'Music',
+        icon: 'pi pi-fw pi-play'
+      },
+      {
+        label: 'Artists',
+        icon: 'pi pi-fw pi-user'
+      }
+
+    ];
   }
-
   constructor(public dialog: MatDialog) { }
 
-  ngOnInit(): void {
-  }
 
-  openWalletsModal () {
+
+  openWalletsModal() {
     const dialogRef = this.dialog.open(WalletDialogComponent, {
       width: '600px',
       height: '300px',
       panelClass: 'wallet-dialog',
-      data: { }
+      data: {}
     });
 
     dialogRef.afterClosed().subscribe(async (res: string) => {
-      if (res){ await connectWallet(res); }
+      if (res) { await connectWallet(res); }
       return;
     });
   }

@@ -12,7 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ArtistsMainModule } from './artists-list/artists-main.module';
 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import { NgxAudioPlayerModule } from 'ngx-audio-player';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +29,7 @@ import { NgxAudioPlayerModule } from 'ngx-audio-player';
     ArtistModule,
     MatDialogModule,
     ArtistsMainModule,
+
 
     MatAutocompleteModule,
   ],
