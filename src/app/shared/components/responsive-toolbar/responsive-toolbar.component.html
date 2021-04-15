@@ -1,8 +1,21 @@
-<p-menubar [model]="items">
+<p-menubar (click)="onClickMenuItem($event)" [model]="items">
   <ng-template pTemplate="start">
-      <img src="../../../../assets/images/UnchaunedLogo.png" height="40" class="p-mr-2">
+    <img [routerLink]="['home']" routerLinkActive="router-link-active"  src="../../../../assets/images/UnchaunedLogo.png" height="40" class="p-mr-2">
   </ng-template>
   <ng-template pTemplate="end">
-      <button pButton type="button" label="Connect wallet" class="p-button-outlined"></button>
+    <button *ngIf="!isWalletConnected" (click)="openWalletsModal()" style="border-radius: 20px;" pButton type="button"
+      label="Connect wallet" class="p-button-outlined"></button>
+
+    <button (click)="op.toggle($event)" style="border-radius: 20px;" *ngIf="isWalletConnected" pButton type="button"
+      class="p-button-outlined">
+      <p-avatar *ngIf="isWalletConnected" icon="pi pi-user" styleClass="p-mr-2" size="medium" shape="circle"></p-avatar>
+      {{address}}
+    </button>
   </ng-template>
 </p-menubar>
+<p-overlayPanel #op>
+  <ng-template pTemplate>
+    <button pButton pRipple type="button" label="Disconnect" icon="pi pi-fw pi-power-off"
+      class="p-button-secondary p-button-text"></button>
+  </ng-template>
+</p-overlayPanel>

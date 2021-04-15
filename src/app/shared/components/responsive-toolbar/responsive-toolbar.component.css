@@ -40,3 +40,8 @@ button.mat-focus-indicator.mat-button.mat-button-base.ng-star-inserted {
   border-width: 1px;
   border-color: white;
 }
+
+:host ::ng-deep .p-menubar {
+  background: inherit !important;
+  border-style: none !important;
+}

@@ -1,52 +1,74 @@
-<div fxLayout="row" fxLayoutAlign="center">
-  <h1 class="welcome-text">Meet the artists</h1>
-</div>
-<div class="header-img"></div>
-
-
-<div class="content">
-  <div fxLayout="row wrap" fxLayoutGap="20px grid">
-    <div [fxFlex]="(100/4) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1,2,3,4,5,6,7,8]">
-      <div class="card darth">
-        <div class="face front">
-          <img class="logo" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/261096/Star_Wars_Logo.svg" />
-          <h2><small>Darth</small><br />Vader</h2>
-
-        </div>
-        <div class="face back">
-          <img src="http://img.lum.dolimg.com/v1/images/Darth-Vader_6bda9114.jpeg?region=0%2C23%2C1400%2C785&width=768"
-            alt="Image of Darth Vader" />
-          <div class="description">Once a heroic Jedi Knight, <b>Darth Vader</b> was seduced by the dark side of the
-            Force,
-            became a Sith Lord, and led the Empire’s eradication of the Jedi Order. He remained in service of the
-            Emperor --
-            the evil Darth Sidious -- for decades, enforcing
-            his Master’s will and seeking to crush the fledgling Rebel Alliance. But there was still good in him…</div>
-          <img class="logo" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/261096/Star_Wars_Logo.svg" />
-        </div>
-      </div>
-      <div class="card luke">
-        <div class="face front">
-          <img class="logo" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/261096/Star_Wars_Logo.svg" />
-          <h2><small>Luke</small><br />Skywalker</h2>
-
-        </div>
-        <div class="face back">
-          <img
-            src="http://img.lum.dolimg.com/v1/images/Luke-Skywalker_dd9c9f9b.jpeg?region=0%2C0%2C1536%2C864&width=768"
-            alt="Image of luke skywalker" />
-          <div class="description">
-            <b>Luke Skywalker</b> was a Tatooine farmboy who rose from humble beginnings to become one of the greatest
-            Jedi
-            the galaxy has ever known. Along with his friends Princess Leia and Han Solo, Luke battled the evil Empire,
-            discovered the truth of his
-            parentage, and ended the tyranny of the Sith.
-          </div>
-          <img class="logo" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/261096/Star_Wars_Logo.svg" />
-        </div>
-      </div>
+<div style="color: white; text-align: center; " class="p-grid">
+  <div class="p-col-4">
+    <div class="box ">
+      <p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '360px'}">
+        <ng-template pTemplate="header">
+          <img alt="Card" src="../../../../assets/images/daft.jpg">
+        </ng-template>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
+          numquam deserunt
+          quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
+          quas!</p>
+        <ng-template pTemplate="footer">
+          <p-button label="Save" icon="pi pi-check"></p-button>
+          <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}">
+          </p-button>
+        </ng-template>
+      </p-card>
     </div>
   </div>
-
-
+  <div class="p-col-4">
+    <div class="box">
+      <p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '360px'}">
+        <ng-template pTemplate="header">
+          <img alt="Card" src="../../../../assets/images/daft.jpg">
+        </ng-template>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
+          numquam deserunt
+          quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
+          quas!</p>
+        <ng-template pTemplate="footer">
+          <p-button label="Save" icon="pi pi-check"></p-button>
+          <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}">
+          </p-button>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+  <div class="p-col-4">
+    <div class="box">
+      <p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '360px'}">
+        <ng-template pTemplate="header">
+          <img alt="Card" src="../../../../assets/images/daft.jpg">
+        </ng-template>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
+          numquam deserunt
+          quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
+          quas!</p>
+        <ng-template pTemplate="footer">
+          <p-button label="Save" icon="pi pi-check"></p-button>
+          <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}">
+          </p-button>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+  <div class="p-col-4">
+    <div class="box">
+      <p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '360px'}">
+        <ng-template pTemplate="header">
+          <img alt="Card" src="../../../../assets/images/daft.jpg">
+        </ng-template>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
+          numquam deserunt
+          quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
+          quas!</p>
+        <ng-template pTemplate="footer">
+          <p-button label="Save" icon="pi pi-check"></p-button>
+          <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}">
+          </p-button>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
 </div>

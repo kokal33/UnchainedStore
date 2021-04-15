@@ -27,6 +27,12 @@ import { ConfirmationService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenubarModule } from 'primeng/menubar';
 import { DividerModule } from 'primeng/divider';
+import { AvatarModule } from 'primeng/avatar';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { CardModule } from 'primeng/card';
+
+
+
 
 
 
@@ -54,7 +60,10 @@ const mat = [
   ButtonModule,
   DropdownModule,
   MenubarModule,
-  DividerModule
+  DividerModule,
+  AvatarModule,
+  OverlayPanelModule,
+  CardModule
 ];
 
 @NgModule({
