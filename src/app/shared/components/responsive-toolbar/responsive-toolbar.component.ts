@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { truncateMiddle } from 'src/app/helpers/stringHelper';
-import { clearCache, setUser } from 'src/app/services/authService';
 import { connectWallet } from 'src/app/services/providerService';
 import { WalletDialogComponent } from '../../dialogs/wallet-dialog/wallet-dialog.component';
 import { MenuItem } from 'primeng/api';
