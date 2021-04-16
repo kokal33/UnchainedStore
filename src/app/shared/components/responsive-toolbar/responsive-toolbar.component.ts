@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { connectWallet } from 'src/app/services/providerService';
 import { WalletDialogComponent } from '../../dialogs/wallet-dialog/wallet-dialog.component';
 import { MenuItem } from 'primeng/api';
-import { getUser, setUser } from 'src/app/services/authService';
+import { clearCache, getUser, setUser } from 'src/app/services/authService';
 import { truncateMiddle } from 'src/app/helpers/stringHelper';
 
 
@@ -58,9 +58,15 @@ export class ResponsiveToolbarComponent implements OnInit {
         if (result) {
           setUser(result.accounts[0]);
           this.isWalletConnected = true;
-          this.address = truncateMiddle(result.accounts[0], 16);
+          this.address = truncateMiddle(result.accounts[0], 12) + " Connected";
         }
       }
     });
   }
+
+  logout() {
+    clearCache();
+    this.isWalletConnected = false;
+  }
+
 }
