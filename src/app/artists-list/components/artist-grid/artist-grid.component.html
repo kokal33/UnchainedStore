@@ -1,74 +1,61 @@
-<div style="color: white; text-align: center; " class="p-grid">
-  <div class="p-col-4">
-    <div class="box ">
-      <p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '360px'}">
-        <ng-template pTemplate="header">
-          <img alt="Card" src="../../../../assets/images/daft.jpg">
-        </ng-template>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
-          numquam deserunt
-          quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-          quas!</p>
-        <ng-template pTemplate="footer">
-          <p-button label="Save" icon="pi pi-check"></p-button>
-          <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}">
-          </p-button>
-        </ng-template>
-      </p-card>
-    </div>
+<div style=" padding-left: 20px; text-align: center;">
+  <div style="padding: 20px;">
+    <h1 style=" color: white;">Browse by name</h1>
+    <input [style]="{'width': '30%'}" type="text" pInputText placeholder="Search">
   </div>
-  <div class="p-col-4">
-    <div class="box">
-      <p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '360px'}">
-        <ng-template pTemplate="header">
-          <img alt="Card" src="../../../../assets/images/daft.jpg">
-        </ng-template>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
-          numquam deserunt
-          quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-          quas!</p>
-        <ng-template pTemplate="footer">
-          <p-button label="Save" icon="pi pi-check"></p-button>
-          <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}">
-          </p-button>
-        </ng-template>
-      </p-card>
-    </div>
-  </div>
-  <div class="p-col-4">
-    <div class="box">
-      <p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '360px'}">
-        <ng-template pTemplate="header">
-          <img alt="Card" src="../../../../assets/images/daft.jpg">
-        </ng-template>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
-          numquam deserunt
-          quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-          quas!</p>
-        <ng-template pTemplate="footer">
-          <p-button label="Save" icon="pi pi-check"></p-button>
-          <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}">
-          </p-button>
-        </ng-template>
-      </p-card>
-    </div>
-  </div>
-  <div class="p-col-4">
-    <div class="box">
-      <p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '360px'}">
-        <ng-template pTemplate="header">
-          <img alt="Card" src="../../../../assets/images/daft.jpg">
-        </ng-template>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
-          numquam deserunt
-          quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-          quas!</p>
-        <ng-template pTemplate="footer">
-          <p-button label="Save" icon="pi pi-check"></p-button>
-          <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}">
-          </p-button>
-        </ng-template>
-      </p-card>
+  <h1 style=" color: white;">Browse by genre
+  </h1>
+  <p-toggleButton onLabel="Techno" offLabel="Techno" onIcon="pi pi-check" offIcon="pi pi-times"
+    [style]="{'width': '10em','margin':'10px'}"></p-toggleButton>
+  <p-toggleButton onLabel="House" offLabel="House" onIcon="pi pi-check" offIcon="pi pi-times"
+    [style]="{'width': '10em','margin':'10px'}"></p-toggleButton>
+  <p-toggleButton onLabel="Rap" offLabel="Rap" onIcon="pi pi-check" offIcon="pi pi-times"
+    [style]="{'width': '10em','margin':'10px'}">
+  </p-toggleButton>
+  <p-toggleButton onLabel="Jazz" offLabel="Jazz" onIcon="pi pi-check" offIcon="pi pi-times"
+    [style]="{'width': '10em','margin':'10px'}">
+  </p-toggleButton>
+  <p-toggleButton onLabel="Rock" offLabel="Rock" onIcon="pi pi-check" offIcon="pi pi-times"
+    [style]="{'width': '10em','margin':'10px'}">
+  </p-toggleButton>
+  <p-toggleButton onLabel="Metal" offLabel="Metal" onIcon="pi pi-check" offIcon="pi pi-times"
+    [style]="{'width': '10em','margin':'10px'}"></p-toggleButton>
+</div>
+<p-divider></p-divider>
+<div style="margin-bottom: 5%;"></div>
+<div style="color: white; text-align: center; margin-left: 10%;margin-right: 10%" class="p-grid">
+  <div class="p-col-4" *ngFor="let item of [].constructor(3)">
+    <div class="grid-7 element-animation">
+      <!--card-1-->
+      <div class="card color-card">
+
+        <img src="https://djrankings.org/tpls/dj/images/djs/RICHIE_HAWTIN.jpg" alt="profile-pic" class="profile">
+        <h1 class="title">Richie Hawtin</h1>
+        <p class="job-title"> DJ, Record Producer, Record Executive</p>
+        <div class="desc top">
+          <p>Minimal Techno, Acid Techno, IDM</p>
+        </div>
+        <button class="btn color-a top"> See collections</button>
+
+        <hr>
+        <div class="container">
+          <div class="content">
+            <div class="grid-2">
+              <button class="color-b circule"><i class="fa fa-facebook"></i> </button>
+
+            </div>
+            <div class="grid-2">
+              <button class="color-c circule"><i class="fa fa-twitter"></i></button>
+              <!-- <h2 class="title">16k</h2>
+                <p class="followers">Followers</p> -->
+            </div>
+            <div class="grid-2">
+              <button class="color-d circule"><i class="fa fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

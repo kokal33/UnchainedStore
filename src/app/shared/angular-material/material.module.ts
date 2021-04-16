@@ -30,6 +30,8 @@ import { DividerModule } from 'primeng/divider';
 import { AvatarModule } from 'primeng/avatar';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { CardModule } from 'primeng/card';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+
 
 
 
@@ -60,6 +62,7 @@ const mat = [
   ButtonModule,
   DropdownModule,
   MenubarModule,
+  ToggleButtonModule,
   DividerModule,
   AvatarModule,
   OverlayPanelModule,

@@ -11,7 +11,8 @@ import { ArtistModule } from './artists/artist.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ArtistsMainModule } from './artists-list/artists-main.module';
 
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -29,7 +30,6 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     ArtistModule,
     MatDialogModule,
     ArtistsMainModule,
-
 
     MatAutocompleteModule,
   ],
