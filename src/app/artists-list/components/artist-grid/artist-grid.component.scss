@@ -253,7 +253,11 @@ body {
   margin: 1rem;
   position: relative;
   width: 375px;
-  box-shadow: 0 12px 13px rgba(0, 0, 0, 0.16), 0 12px 13px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 12px 13px rgb(222 179 179 / 10%), 0 12px 13px rgb(222 179 179 / 10%);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.card:hover{
+  box-shadow: 0 12px 13px rgb(222 179 179 / 20%), 0 12px 13px rgb(222 179 179 / 20%);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
@@ -305,6 +309,11 @@ body {
   margin-top: 60px;
   width: 132px;
   height: 128px;
+}
+.profile:hover{
+  -moz-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.25);
+  -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.25);
+  box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.25);
 }
 
 .center {

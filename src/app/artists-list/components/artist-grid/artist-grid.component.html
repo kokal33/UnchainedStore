@@ -24,16 +24,16 @@
 <p-divider></p-divider>
 <div style="margin-bottom: 5%;"></div>
 <div style="color: white; text-align: center; margin-left: 10%;margin-right: 10%" class="p-grid">
-  <div class="p-col-4" *ngFor="let item of [].constructor(3)">
+  <div class="p-col-12 p-md-6 p-lg-4" *ngFor="let artist of artists">
     <div class="grid-7 element-animation">
       <!--card-1-->
       <div class="card color-card">
 
-        <img src="https://djrankings.org/tpls/dj/images/djs/RICHIE_HAWTIN.jpg" alt="profile-pic" class="profile">
-        <h1 class="title">Richie Hawtin</h1>
-        <p class="job-title"> DJ, Record Producer, Record Executive</p>
+        <img [src]="artist.image" alt="profile-pic" class="profile">
+        <h1 class="title">{{artist.FullName}}</h1>
+        <p class="job-title"> {{artist.Occupations}}</p>
         <div class="desc top">
-          <p>Minimal Techno, Acid Techno, IDM</p>
+          <p>{{artist.Genres}}</p>
         </div>
         <button class="btn color-a top"> See collections</button>
 
@@ -58,4 +58,5 @@
 
     </div>
   </div>
+
 </div>
