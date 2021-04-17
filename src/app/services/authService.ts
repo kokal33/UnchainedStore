@@ -19,6 +19,6 @@
     }
 
     export function clearCache() {
-      localStorage.clear();
+      localStorage.removeItem("publicAddress");
     }
 
