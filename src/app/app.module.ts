@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ArtistsMainModule } from './artists-list/artists-main.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatDialogModule,
     ArtistsMainModule,
     MatAutocompleteModule,
+    HttpClientModule,
   ],
 
   bootstrap: [AppComponent]

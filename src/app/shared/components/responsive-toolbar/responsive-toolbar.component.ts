@@ -5,12 +5,15 @@ import { WalletDialogComponent } from '../../dialogs/wallet-dialog/wallet-dialog
 import { MenuItem } from 'primeng/api';
 import { clearCache, getUser, setUser } from 'src/app/services/authService';
 import { truncateMiddle } from 'src/app/helpers/stringHelper';
+import { BackendService } from 'src/app/services/backendService';
+import { HttpResponse } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-responsive-toolbar',
   templateUrl: './responsive-toolbar.component.html',
-  styleUrls: ['./responsive-toolbar.component.css']
+  styleUrls: ['./responsive-toolbar.component.css'],
+  providers: [BackendService]
 })
 export class ResponsiveToolbarComponent implements OnInit {
 
@@ -37,7 +40,7 @@ export class ResponsiveToolbarComponent implements OnInit {
       }
     ];
   }
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public backendService: BackendService) { }
 
   onClickMenuItem(event: any) {
     console.log(event);
@@ -52,21 +55,29 @@ export class ResponsiveToolbarComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async (res: string) => {
-      if (res) {
-        const result = await connectWallet(res);
-        // If user signed the message we set the user data in localstorage and show on the toolbar
-        if (result) {
-          setUser(result.accounts[0]);
-          this.isWalletConnected = true;
-          this.address = truncateMiddle(result.accounts[0], 12);
+        // Check for wallet connection and get signature
+        const walletConnect = await connectWallet(res);
+        if (!walletConnect){
+          console.log("Wallet connection unsuccessful");
+          return;
         }
-      }
+        // Login user with the signature provided
+        try{
+          const result = await this.backendService.login(walletConnect);
+          console.log("Login successful");
+          this.isWalletConnected = true;
+          this.address = truncateMiddle(walletConnect.publicAddress, 12) + " Connected";
+        }
+        catch (err){
+          console.log("Login unsuccessful: ", err)
+          return;
+        }
+
     });
-  }
+  };
 
   logout() {
     clearCache();
     this.isWalletConnected = false;
   }
-
 }

@@ -1,4 +1,5 @@
 import { prepareSignBinance, prepareSignDataV3, prepareSignMetamask } from "../helpers/providerHelper";
+import { LoginModel } from "../models/backendModels";
 
 export {getWalletProviders,connectWallet};
 
@@ -53,15 +54,17 @@ async function connectWallet(wallet: string) {
       if (wallet ==='binance'){
         provider = window.BinanceChain;
         const accounts = await provider.request({ method: 'eth_requestAccounts' });
-        const signedMessage = await walletSignBinance(provider,accounts[0]);
-        return {accounts,signedMessage};
+        const signature = await walletSignBinance(provider,accounts[0]);
+        const publicAddress = accounts[0]
+        return {publicAddress,signature};
       }
       if (wallet ==='metamask'){
         provider = window.ethereum;
         const accounts = await provider.request({ method: 'eth_requestAccounts' });
-        const signedMessage = await walletSignMetamask(provider,accounts[0]);
-        return {accounts,signedMessage};
-      }
+        const signature = await walletSignMetamask(provider,accounts[0]);
+        const publicAddress = accounts[0]
+        return {publicAddress,signature};
+      } else { return undefined;}
   }
   catch (err){
     if (err.code === 4001) {
