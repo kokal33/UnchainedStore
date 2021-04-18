@@ -1,24 +1,17 @@
+import { User } from "../models/backendModels";
 
-    export function setUser(publicAddress: string) {
-        localStorage.setItem('publicAddress', publicAddress);
-        localStorage.setItem("expires_in", "3600");
+    export function setUser(user: User) {
+        localStorage.setItem('loggedInUser', JSON.stringify(user));
     }
 
     export function getUser() {
-      return localStorage.getItem("publicAddress");
-    }
-
-    export function clearCacheTimed() {
-      let hours = 1
-      let saved = localStorage.getItem('expires_in')
-      if (saved) {
-      const publicAddress = parseInt(saved);
-      if ((new Date().getTime() - publicAddress > hours * 60 * 60))
-        localStorage.clear()
-      }
+      const userString = localStorage.getItem("loggedInUser");
+      if (userString)
+          return JSON.parse(userString) as User;
+      return undefined;
     }
 
     export function clearCache() {
-      localStorage.removeItem("publicAddress");
+      localStorage.removeItem("loggedInUser");
     }
 

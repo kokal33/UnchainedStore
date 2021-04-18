@@ -6,7 +6,8 @@ import { MenuItem } from 'primeng/api';
 import { clearCache, getUser, setUser } from 'src/app/services/authService';
 import { truncateMiddle } from 'src/app/helpers/stringHelper';
 import { BackendService } from 'src/app/services/backendService';
-import { HttpResponse } from '@angular/common/http';
+import { User } from 'src/app/models/backendModels';
+import { EditUserDialogComponent } from '../../dialogs/edit-user-dialog/edit-user-dialog.component';
 
 
 @Component({
@@ -22,10 +23,10 @@ export class ResponsiveToolbarComponent implements OnInit {
   address!: string;
 
   ngOnInit() {
-    const address = getUser();
-    if (address) {
+    const user = getUser();
+    if (user) {
       this.isWalletConnected = true;
-      this.address = truncateMiddle(address, 16);
+      this.address = truncateMiddle(user.publicAddress, 16);
     }
     this.items = [
       {
@@ -64,6 +65,7 @@ export class ResponsiveToolbarComponent implements OnInit {
         // Login user with the signature provided
         try{
           const result = await this.backendService.login(walletConnect);
+          setUser(result.body as User);
           console.log("Login successful");
           this.isWalletConnected = true;
           this.address = truncateMiddle(walletConnect.publicAddress, 12) + " Connected";
@@ -72,10 +74,12 @@ export class ResponsiveToolbarComponent implements OnInit {
           console.log("Login unsuccessful: ", err)
           return;
         }
-
     });
   };
 
+  viewProfile(){
+
+  }
   logout() {
     clearCache();
     this.isWalletConnected = false;

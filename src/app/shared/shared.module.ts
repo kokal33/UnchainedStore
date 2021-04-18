@@ -8,11 +8,12 @@ import { RouterModule } from '@angular/router';
 import { WalletDialogComponent } from './dialogs/wallet-dialog/wallet-dialog.component';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { SubscribeDialogComponent } from './dialogs/subscribe-dialog/subscribe-dialog.component';
+import { EditUserDialogComponent } from './dialogs/edit-user-dialog/edit-user-dialog.component';
 
 
 
 @NgModule({
-  declarations: [ResponsiveToolbarComponent, WalletDialogComponent, SubscribeDialogComponent],
+  declarations: [ResponsiveToolbarComponent, WalletDialogComponent, SubscribeDialogComponent, EditUserDialogComponent],
   imports: [FlexLayoutModule, MaterialModule, ReactiveFormsModule, FormsModule, CommonModule, RouterModule, NgxAudioPlayerModule],
   exports: [FlexLayoutModule, MaterialModule, ReactiveFormsModule, FormsModule, ResponsiveToolbarComponent]
 })

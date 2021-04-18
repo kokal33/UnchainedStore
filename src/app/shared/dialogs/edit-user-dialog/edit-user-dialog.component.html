@@ -1,0 +1,46 @@
+<p-dialog header="Add new artist" [(visible)]="displayResponsive" [style]="{width: '50vw'}" [baseZIndex]="10000"
+  [draggable]="false" [resizable]="false">
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12 p-md-12">
+      <label for="firstname">Artist Name</label>
+      <input id="firstname" type="text" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="city">Occupations</label>
+
+      <p-multiSelect [options]="occupations" [(ngModel)]="selectedOccupations" optionLabel="name"></p-multiSelect>
+
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="city">Genres</label>
+
+      <p-multiSelect [options]="genres" [(ngModel)]="selectedGenres" optionLabel="name"></p-multiSelect>
+
+    </div>
+
+    <div class="p-field p-col-12 p-md-12">
+      <label for="city">Twitter</label>
+      <input id="city" type="text" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-12">
+      <label for="city">Facebook</label>
+      <input id="city" type="text" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-12">
+      <label for="city">Instagram</label>
+      <input id="city" type="text" pInputText>
+    </div>
+
+
+    <div class="p-field p-col-12 p-md-12">
+      <label>Upload profile picture</label>
+      <p-fileUpload #fubauto mode="basic" name="demo[]" customUpload="true" accept="image/*" maxFileSize="1000000"
+        (uploadHandler)="myUploader($event)" [auto]="true" chooseLabel="Browse"></p-fileUpload>
+    </div>
+
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button (click)="displayResponsive=false" label="Cancel" styleClass="p-button-text"></p-button>
+    <p-button (click)="displayResponsive=false" label="Confirm" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

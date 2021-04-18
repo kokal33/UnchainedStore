@@ -10,8 +10,8 @@ export class BackendService {
   private readonly base: string = "https://localhost:44327/"
 
 
-  async login(model: LoginModel):Promise<HttpResponse<any>> {
-   return await this.http.post(this.base + "users/login", model, options).toPromise();
+  async login(model: LoginModel):Promise<HttpResponse<User>> {
+   return await this.http.post<User>(this.base + "users/login", model, options).toPromise();
   }
 
   async updateUser(user: User):Promise<HttpResponse<any>> {

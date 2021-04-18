@@ -12,15 +12,17 @@
     <p-button *ngIf="isWalletConnected" (click)="op.toggle($event)" icon="pi pi-user" label={{address}}>
     </p-button>
 
-    <!-- TODO: On hover show publicAddress -->
+    <!-- TODO: On hover show publicAddress if user has a name, if not show publicAddress instead of name -->
 
   </ng-template>
 
 </p-menubar>
 <!-- TODO: overlaypanel padding is now 1rem, make it 0,2rem -->
-<p-overlayPanel (mouseleave)="op.hide()" #op>
+<p-overlayPanel #op>
   <ng-template pTemplate>
-    <button (click)="logout()" pButton pRipple type="button" label="Disconnect" icon="pi pi-fw pi-power-off"
-      class="p-button-secondary p-button-text"></button>
+        <button (click)="op.hide()" pButton pRipple type="button" label="View Profile" icon="pi pi-fw pi-user"
+          class="p-button-secondary p-button-text"></button>
+        <button (click)="logout(); op.hide()" pButton pRipple type="button" label="Disconnect" icon="pi pi-fw pi-power-off"
+          class="p-button-secondary p-button-text"></button>
   </ng-template>
 </p-overlayPanel>
