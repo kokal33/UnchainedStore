@@ -1,8 +1,6 @@
 import { LoginModel, User } from "../models/backendModels";
-import { Observable, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { catchError, retry } from 'rxjs/operators';
 const options = {
   observe: 'response' as const,
 };
