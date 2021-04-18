@@ -1,4 +1,4 @@
-import { prepareSignBinance, prepareSignDataV3 } from "../helpers/providerHelper";
+import { prepareSignBinance, prepareSignDataV3, prepareSignMetamask } from "../helpers/providerHelper";
 
 export {getWalletProviders,connectWallet};
 
@@ -77,9 +77,9 @@ async function connectWallet(wallet: string) {
 
 async function walletSignMetamask(provider:any, account:any){
   const chainId = parseInt(provider.chainId, 16);
-      const signData = prepareSignDataV3(chainId);
+      const signData = prepareSignMetamask();
       const signRequest: RequestArguments = {
-        method: "eth_signTypedData_v4",
+        method: "personal_sign",
         params: [account, signData]
       }
       const signedMessage = await provider.request(signRequest);

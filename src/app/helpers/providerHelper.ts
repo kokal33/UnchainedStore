@@ -1,6 +1,8 @@
 export function prepareSignDataV3(chainId:number){
 
-   return JSON.stringify({types:{
+   return JSON.stringify(
+     {
+     types:{
     EIP712Domain:[
       {name:"name",type:"string"},
       {name:"version",type:"string"},
