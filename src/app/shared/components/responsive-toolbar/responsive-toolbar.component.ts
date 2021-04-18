@@ -58,7 +58,7 @@ export class ResponsiveToolbarComponent implements OnInit {
         if (result) {
           setUser(result.accounts[0]);
           this.isWalletConnected = true;
-          this.address = truncateMiddle(result.accounts[0], 12) + " Connected";
+          this.address = truncateMiddle(result.accounts[0], 12);
         }
       }
     });

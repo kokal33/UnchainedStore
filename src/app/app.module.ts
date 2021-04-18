@@ -10,8 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ArtistModule } from './artists/artist.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ArtistsMainModule } from './artists-list/artists-main.module';
-
-
+import { HttpClientModule } from '@angular/common/http';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
@@ -23,6 +22,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     LayoutModule,
     MusicModule,
@@ -30,9 +30,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     ArtistModule,
     MatDialogModule,
     ArtistsMainModule,
-
     MatAutocompleteModule,
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

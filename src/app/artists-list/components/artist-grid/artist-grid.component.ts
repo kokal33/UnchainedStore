@@ -1,14 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-artist-grid',
   templateUrl: './artist-grid.component.html',
-  styleUrls: ['./artist-grid.component.scss']
+  styleUrls: ['./artist-grid.component.scss'],
+  providers: [MessageService]
+
 })
 export class ArtistGridComponent implements OnInit {
-
+  occupations!: any[];
+  selectedOccupations!: any[];
+  genres!: any[];
+  selectedGenres!: any[];
+  displayResponsive: boolean = false;
+  customUpload = true;
+  uploadedFile!: File;
   artists!: any[];
-  constructor() { }
+  constructor(private messageService: MessageService) {
+    this.genres = [
+      {name: 'Rock', code: 'NY'},
+      {name: 'Techno', code: 'RM'},
+      {name: 'Trance', code: 'LDN'},
+      {name: 'Metal', code: 'IST'},
+      {name: 'Jazz', code: 'PRS'}
+  ];
+  this.occupations = [
+    {name: 'Disc Jockey', code: 'NY'},
+    {name: 'Producer', code: 'RM'},
+    {name: 'Executive', code: 'LDN'},
+    {name: 'Remixer', code: 'IST'},
+    {name: 'Paris', code: 'PRS'}
+];
+   }
 
   ngOnInit(): void {
     this.artists = [
@@ -19,6 +42,20 @@ export class ArtistGridComponent implements OnInit {
       { Id: 1, FullName: "Solomun", Occupations: "DJ, Producer, Remixer", Genres: "Deep House, Techno, Melodic House & Techno , Indie Dance", image: "https://i1.sndcdn.com/artworks-000455131515-nl75f7-t500x500.jpg" },
       { Id: 1, FullName: "Nina Kraviz", Occupations: "DJ, Record Producer, Record Executive", Genres: "Techno, Tech House, Minimal Electronic, Acid House", image: "https://www.tribalmixes.com/skins/bobross/nina-kraviz.jpg" }
     ]
+  }
+
+  showDialog() {
+    this.displayResponsive = true;
+  }
+
+  showSuccess() {
+  }
+  myUploader(event: any) {
+    this.uploadedFile = event.files[0];
+    this.messageService.add({ key: 'myKey1', severity: 'success', summary: 'Success!', detail: 'Uploaded profile picture', life: 2000 });
+  }
+  clear() {
+    this.messageService.clear();
   }
 
 }

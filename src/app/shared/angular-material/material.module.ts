@@ -31,6 +31,11 @@ import { AvatarModule } from 'primeng/avatar';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { CardModule } from 'primeng/card';
 import { ToggleButtonModule } from 'primeng/togglebutton';
+import { FileUploadModule } from 'primeng/fileupload';
+
+import { ToastModule } from 'primeng/toast';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {TabViewModule} from 'primeng/tabview';
 
 
 
@@ -42,9 +47,11 @@ const mat = [
   MatCardModule,
   MatTabsModule,
   MatButtonModule,
+  ToastModule,
   MatIconModule,
   MatMenuModule,
   MatFormFieldModule,
+  TabViewModule,
   MatInputModule,
   MatSidenavModule,
   MatSlideToggleModule,
@@ -64,6 +71,8 @@ const mat = [
   MenubarModule,
   ToggleButtonModule,
   DividerModule,
+  MultiSelectModule,
+  FileUploadModule,
   AvatarModule,
   OverlayPanelModule,
   CardModule

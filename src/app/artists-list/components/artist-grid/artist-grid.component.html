@@ -22,12 +22,16 @@
     [style]="{'width': '10em','margin':'10px'}"></p-toggleButton>
 </div>
 <p-divider></p-divider>
+<div class="p-grid p-jc-end p-mr-4 p-mt-2 p-mb-2">
+  <p-button (click)="showDialog()" icon="pi pi-plus" styleClass="p-button"></p-button>
+
+</div>
 <div style="margin-bottom: 5%;"></div>
 <div style="color: white; text-align: center; margin-left: 10%;margin-right: 10%" class="p-grid">
   <div class="p-col-12 p-md-6 p-lg-4" *ngFor="let artist of artists">
     <div class="grid-7 element-animation">
       <!--card-1-->
-      <div class="card color-card">
+      <div [routerLink]="['artist-details']" routerLinkActive="router-link-active" class="card color-card">
 
         <img [src]="artist.image" alt="profile-pic" class="profile">
         <h1 class="title">{{artist.FullName}}</h1>
@@ -60,3 +64,51 @@
   </div>
 
 </div>
+<!-- Dialogs , modals and popups go here -->
+<p-dialog header="Add new artist" [(visible)]="displayResponsive" [style]="{width: '50vw'}" [baseZIndex]="10000"
+  [draggable]="false" [resizable]="false">
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12 p-md-12">
+      <label for="firstname">Artist Name</label>
+      <input id="firstname" type="text" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="city">Occupations</label>
+
+      <p-multiSelect [options]="occupations" [(ngModel)]="selectedOccupations" optionLabel="name"></p-multiSelect>
+
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="city">Genres</label>
+
+      <p-multiSelect [options]="genres" [(ngModel)]="selectedGenres" optionLabel="name"></p-multiSelect>
+
+    </div>
+
+    <div class="p-field p-col-12 p-md-12">
+      <label for="city">Twitter</label>
+      <input id="city" type="text" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-12">
+      <label for="city">Facebook</label>
+      <input id="city" type="text" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-12">
+      <label for="city">Instagram</label>
+      <input id="city" type="text" pInputText>
+    </div>
+
+
+    <div class="p-field p-col-12 p-md-12">
+      <label>Upload profile picture</label>
+      <p-fileUpload #fubauto mode="basic" name="demo[]" customUpload="true" accept="image/*" maxFileSize="1000000"
+        (uploadHandler)="myUploader($event)" [auto]="true" chooseLabel="Browse"></p-fileUpload>
+    </div>
+
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button (click)="displayResponsive=false" label="Cancel" styleClass="p-button-text"></p-button>
+    <p-button (click)="displayResponsive=false" label="Confirm" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>
+<p-toast key="myKey1" position="bottom-center"></p-toast>

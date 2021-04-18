@@ -1,0 +1,46 @@
+.title {
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+}
+
+:host ::ng-deep .p-avatar.p-avatar-xl {
+  width: 15rem;
+  height: 14rem;
+}
+.fa-stack {
+  font-size: 0.7em;
+}
+
+.job-title {
+  color: #7c8097;
+  font-size: 20px;
+  font-weight: 100;
+  text-align: center;
+}
+
+.desc {
+  font-size: 20px;
+  color: #b7b8c0;
+  text-align: center;
+}
+
+.color-b {
+  background: linear-gradient(to bottom right, #c90a6d, #ff48a0);
+}
+
+.color-c {
+  background: linear-gradient(to bottom right, #5e5aec, #3f9efc);
+}
+.color-d {
+  background: linear-gradient(to bottom right, #6452e9, #639ff9);
+}
+.circule {
+  border-radius: 50%;
+  border: none;
+  margin: 10px;
+  height: 60px;
+  width: 60px;
+  color: #ffffff;
+  box-shadow: 0 13px 26px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.16);
+}
