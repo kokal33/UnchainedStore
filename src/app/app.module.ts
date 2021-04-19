@@ -7,7 +7,6 @@ import { SharedModule } from './shared/shared.module';
 import { MusicModule } from './music/music.module';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ArtistModule } from './artists/artist.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ArtistsMainModule } from './artists-list/artists-main.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -27,7 +26,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     LayoutModule,
     MusicModule,
     SharedModule,
-    ArtistModule,
     MatDialogModule,
     ArtistsMainModule,
     MatAutocompleteModule,

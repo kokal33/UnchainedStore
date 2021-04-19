@@ -15,9 +15,15 @@
 </div>
 
 <div fxLayout="row" fxLayoutAlign="center" style="margin-top:50px;">
-  <button (click)="doTheThingWithTheTypeForm()" mat-button class="explore-music-button">Music</button>
-  <button (click)="doTheThingWithTheTypeForm()" routerLinkActive="router-link-active" mat-button
-    class="explore-music-button">Artists</button>
+  <div class="p-mr-4 p-p-2">
+    <button  (click)="doTheThingWithTheTypeForm()" pButton pRipple type="button" label="Music"
+      class="p-button-outlined p-button-lg"></button>
+  </div>
+  <div class="p-ml-4 p-p-2">
+
+    <button  (click)="doTheThingWithTheTypeForm()" pButton pRipple type="button" label="Artists"
+      class="p-button-outlined p-button-lg"></button>
+  </div>
 </div>
 
 

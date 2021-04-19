@@ -131,4 +131,13 @@ a {
     font-size: 4rem;
     padding-top: 15px;
   }
+
+}
+:host ::ng-deep .p-button-label {
+  color: white;
+}
+
+:host ::ng-deep .p-button.p-button-lg {
+  font-size: 1.5rem;
+  width: 150px;
 }

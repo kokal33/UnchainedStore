@@ -6,13 +6,9 @@ import { CardViewDetailsComponent } from './components/card-view-details/card-vi
 import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
+
   {
     path: '',
-    redirectTo: 'nft-listings',
-    pathMatch: 'full'
-  },
-  {
-    path: 'nft-listings',
     component: CardViewComponent,
     // children: [
     //   {

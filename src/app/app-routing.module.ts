@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [{
 
-  path: 'music',
+  path: 'nft-listings',
   loadChildren: () => import('./music/music.module').then(m => m.MusicModule)
 },
 {
@@ -15,10 +15,6 @@ const routes: Routes = [{
   path: '',
   redirectTo: 'home',
   pathMatch: 'full'
-},
-{
-  path: 'artists',
-  loadChildren: () => import('./artists/artist.module').then(m => m.ArtistModule)
 },
 {
   path: 'all-artists',

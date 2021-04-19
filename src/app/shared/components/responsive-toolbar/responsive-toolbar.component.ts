@@ -30,16 +30,16 @@ export class ResponsiveToolbarComponent implements OnInit {
       this.address = truncateMiddle(this.user.publicAddress, 16);
     }
     this.items = [
-      // {
-      //   label: 'Music',
-      //   icon: 'pi pi-fw pi-play',
-      //   routerLink: 'music'
-      // },
-      // {
-      //   label: 'Artists',
-      //   icon: 'pi pi-fw pi-user',
-      //   routerLink: 'all-artists'
-      // }
+      {
+        label: 'Music',
+        icon: 'pi pi-fw pi-play',
+        routerLink: 'nft-listings'
+      },
+      {
+        label: 'Artists',
+        icon: 'pi pi-fw pi-user',
+        routerLink: 'all-artists'
+      }
     ];
   }
   constructor(public dialog: MatDialog, public dialogService: DialogService, public backendService: BackendService) { }

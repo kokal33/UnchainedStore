@@ -1,17 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { MatButtonModule } from '@angular/material/button';
-import { MatTabsModule } from '@angular/material/tabs';
 
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
@@ -35,6 +24,7 @@ import { ToastModule } from 'primeng/toast';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {TabViewModule} from 'primeng/tabview';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import {DataViewModule} from 'primeng/dataview';
 
 
 
@@ -42,19 +32,12 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
 
 
 const mat = [
-  MatCardModule,
-  MatTabsModule,
-  MatButtonModule,
+
   ToastModule,
-  MatIconModule,
-  MatMenuModule,
-  MatFormFieldModule,
+  DataViewModule,
+
   TabViewModule,
-  MatInputModule,
-  MatSidenavModule,
-  MatSlideToggleModule,
-  MatToolbarModule,
-  MatDividerModule,
+
   NgxAudioPlayerModule,
   InputTextModule,
   DialogModule,
