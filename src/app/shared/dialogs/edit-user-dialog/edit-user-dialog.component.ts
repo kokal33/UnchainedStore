@@ -1,22 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-edit-user-dialog',
   templateUrl: './edit-user-dialog.component.html',
-  styleUrls: ['./edit-user-dialog.component.css']
+  styleUrls: ['./edit-user-dialog.component.css'],
+  providers: [MessageService]
 })
 export class EditUserDialogComponent implements OnInit {
   occupations!: any[];
   selectedOccupations!: any[];
   genres!: any[];
   selectedGenres!: any[];
-  displayResponsive: boolean = false;
   customUpload = true;
   uploadedFile!: File;
   artists!: any[];
 
-  constructor(private messageService: MessageService) {
+  constructor(private messageService: MessageService,public ref: DynamicDialogRef) {
     this.genres = [
       {name: 'Rock', code: 'NY'},
       {name: 'Techno', code: 'RM'},
@@ -35,16 +36,17 @@ export class EditUserDialogComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  showDialog() {
-    this.displayResponsive = true;
-  }
+
   showSuccess() {
   }
   myUploader(event: any) {
     this.uploadedFile = event.files[0];
-    this.messageService.add({ key: 'myKey1', severity: 'success', summary: 'Success!', detail: 'Uploaded profile picture', life: 2000 });
+    this.messageService.add({ key: 'myKey1', severity: 'success', summary: 'Success!', detail: 'Uploaded profile picture', life: 1500 });
   }
   clear() {
     this.messageService.clear();
+  }
+  closeDialog(){
+    this.ref.close();
   }
 }

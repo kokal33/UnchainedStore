@@ -13,10 +13,8 @@ export class ArtistGridComponent implements OnInit {
   genres!: any[];
   selectedGenres!: any[];
   displayResponsive: boolean = false;
-  customUpload = true;
-  uploadedFile!: File;
   artists!: any[];
-  constructor(private messageService: MessageService) {
+  constructor() {
     this.genres = [
       {name: 'Rock', code: 'NY'},
       {name: 'Techno', code: 'RM'},
@@ -44,18 +42,9 @@ export class ArtistGridComponent implements OnInit {
     ]
   }
 
-  showDialog() {
-    this.displayResponsive = true;
-  }
-
   showSuccess() {
   }
-  myUploader(event: any) {
-    this.uploadedFile = event.files[0];
-    this.messageService.add({ key: 'myKey1', severity: 'success', summary: 'Success!', detail: 'Uploaded profile picture', life: 2000 });
-  }
-  clear() {
-    this.messageService.clear();
-  }
+
+
 
 }

@@ -17,13 +17,11 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
-import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
 import { ToolbarModule } from 'primeng/toolbar';
-import { ConfirmationService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenubarModule } from 'primeng/menubar';
 import { DividerModule } from 'primeng/divider';
@@ -36,7 +34,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {TabViewModule} from 'primeng/tabview';
-
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
 
 
 
@@ -75,7 +73,8 @@ const mat = [
   FileUploadModule,
   AvatarModule,
   OverlayPanelModule,
-  CardModule
+  CardModule,
+  DynamicDialogModule
 ];
 
 @NgModule({

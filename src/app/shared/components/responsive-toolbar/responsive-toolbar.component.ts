@@ -8,25 +8,26 @@ import { truncateMiddle } from 'src/app/helpers/stringHelper';
 import { BackendService } from 'src/app/services/backendService';
 import { User } from 'src/app/models/backendModels';
 import { EditUserDialogComponent } from '../../dialogs/edit-user-dialog/edit-user-dialog.component';
+import { DialogService } from 'primeng/dynamicdialog';
 
 
 @Component({
   selector: 'app-responsive-toolbar',
   templateUrl: './responsive-toolbar.component.html',
   styleUrls: ['./responsive-toolbar.component.css'],
-  providers: [BackendService]
+  providers: [BackendService, DialogService]
 })
 export class ResponsiveToolbarComponent implements OnInit {
-
+  user: User | undefined;
   items!: MenuItem[];
   isWalletConnected = false;
   address!: string;
 
   ngOnInit() {
-    const user = getUser();
-    if (user) {
+    this.user = getUser();
+    if (this.user) {
       this.isWalletConnected = true;
-      this.address = truncateMiddle(user.publicAddress, 16);
+      this.address = truncateMiddle(this.user.publicAddress, 16);
     }
     this.items = [
       {
@@ -41,7 +42,7 @@ export class ResponsiveToolbarComponent implements OnInit {
       }
     ];
   }
-  constructor(public dialog: MatDialog, public backendService: BackendService) { }
+  constructor(public dialog: MatDialog, public dialogService: DialogService, public backendService: BackendService) { }
 
   onClickMenuItem(event: any) {
     console.log(event);
@@ -78,10 +79,9 @@ export class ResponsiveToolbarComponent implements OnInit {
   };
 
   viewProfile(){
-    const dialogEdit = this.dialog.open(EditUserDialogComponent, {
-      width: '600px',
-      height: '300px',
-      panelClass: 'wallet-dialog',
+    const dialogEdit = this.dialogService.open(EditUserDialogComponent, {
+      width: "40%",
+      header: this.user?.publicAddress,
       data: {}
     });
   }

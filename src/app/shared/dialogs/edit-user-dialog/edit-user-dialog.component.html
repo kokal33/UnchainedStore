@@ -1,5 +1,3 @@
-<p-dialog header="Add new artist" [(visible)]="displayResponsive" [style]="{width: '50vw'}" [baseZIndex]="10000"
-  [draggable]="false" [resizable]="false">
   <div class="p-fluid p-formgrid p-grid">
     <div class="p-field p-col-12 p-md-12">
       <label for="firstname">Artist Name</label>
@@ -38,9 +36,9 @@
         (uploadHandler)="myUploader($event)" [auto]="true" chooseLabel="Browse"></p-fileUpload>
     </div>
 
+    <p-button (click)="closeDialog()" label="Confirm" styleClass="p-button-text"></p-button>
+    <p-button (click)="closeDialog()" label="Cancel" styleClass="p-button-text"></p-button>
+
   </div>
-  <ng-template pTemplate="footer">
-    <p-button (click)="displayResponsive=false" label="Cancel" styleClass="p-button-text"></p-button>
-    <p-button (click)="displayResponsive=false" label="Confirm" styleClass="p-button-text"></p-button>
-  </ng-template>
-</p-dialog>
+  <p-toast key="myKey1" position="bottom-center"></p-toast>
+
