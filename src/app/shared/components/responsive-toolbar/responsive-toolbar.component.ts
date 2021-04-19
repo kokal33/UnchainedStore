@@ -33,7 +33,7 @@ export class ResponsiveToolbarComponent implements OnInit {
       {
         label: 'Music',
         icon: 'pi pi-fw pi-play',
-        routerLink: 'music'
+        routerLink: 'nft-listings'
       },
       {
         label: 'Artists',
