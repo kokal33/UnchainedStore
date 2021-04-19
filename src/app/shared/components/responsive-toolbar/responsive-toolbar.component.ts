@@ -78,7 +78,12 @@ export class ResponsiveToolbarComponent implements OnInit {
   };
 
   viewProfile(){
-
+    const dialogEdit = this.dialog.open(EditUserDialogComponent, {
+      width: '600px',
+      height: '300px',
+      panelClass: 'wallet-dialog',
+      data: {}
+    });
   }
   logout() {
     clearCache();
