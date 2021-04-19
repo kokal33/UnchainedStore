@@ -45,7 +45,7 @@ export class ResponsiveToolbarComponent implements OnInit {
   constructor(public dialog: MatDialog, public dialogService: DialogService, public backendService: BackendService) { }
 
   onClickMenuItem(event: any) {
-    console.log(event);
+
   }
 
   openWalletsModal() {
