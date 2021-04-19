@@ -43,8 +43,8 @@
   font-size: 4.5rem;
   line-height: 1.2;
   z-index: 1;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 15%;
+  margin-right: 15%;
   text-align: center;
   margin-top: 120px;
 }
@@ -139,5 +139,6 @@ a {
 
 :host ::ng-deep .p-button.p-button-lg {
   font-size: 1.5rem;
-  width: 150px;
+  width: 250px;
+  height: 70px;
 }

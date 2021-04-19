@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { DomSanitizer } from '@angular/platform-browser';
 import { SubscribeDialogComponent } from '../shared/dialogs/subscribe-dialog/subscribe-dialog.component';
 
 
@@ -9,9 +10,11 @@ import { SubscribeDialogComponent } from '../shared/dialogs/subscribe-dialog/sub
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  safeURL: any;
 
-
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public domSanitizer: DomSanitizer) {
+    this.safeURL = this.domSanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/7oLBeMGDOJg");
+   }
 
   ngOnInit(): void {}
 
