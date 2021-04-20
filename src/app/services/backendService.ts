@@ -1,13 +1,14 @@
 import { LoginModel, User } from "../models/backendModels";
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from "@angular/core";
+import { environment } from "src/environments/environment";
 const options = {
   observe: 'response' as const,
 };
 @Injectable()
 export class BackendService {
   constructor(private http: HttpClient) { }
-  private readonly base: string = "https://localhost:44327/"
+  private readonly base = environment.apiUrl;
 
 
   async login(model: LoginModel):Promise<HttpResponse<User>> {
