@@ -32,13 +32,13 @@ body {
 
 .job-title {
   color: #7c8097;
-  font-size: 12px;
+  font-size: 15px;
   weight: 100;
   font-family: roboto;
 }
 
 .desc {
-  font-size: 12px;
+  font-size: 15px;
   margin-left: 65px;
   margin-right: 65px;
   color: #b7b8c0;
@@ -108,20 +108,20 @@ hr {
 
 .btn {
   border: none;
-  height: 40px;
+  height: 60px;
   color: #ffffff;
-  width: 35%;
-  font-size: 16px;
+  width: 50%;
+  font-size: 19px;
   border-radius: 30px;
   box-shadow: 0 13px 26px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.16);
 }
 .btn:hover {
   border: solid 1px #da59b1;
-  height: 40px;
+  height: 60px;
   font-family: Roboto;
   color: #da59b1;
   background: #ffffff;
-  width: 35%;
+  width: 50%;
   border-color: linear-gradient(to top right, #8162ce, #f54ba5);
   border-radius: 30px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.16);
@@ -304,8 +304,8 @@ body {
 .profile {
   border-radius: 100%;
   margin-top: 60px;
-  width: 132px;
-  height: 128px;
+  width: 160px;
+  height: 158px;
 }
 .profile:hover{
   -moz-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.25);
