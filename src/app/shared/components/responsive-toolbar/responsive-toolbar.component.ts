@@ -9,6 +9,7 @@ import { BackendService } from 'src/app/services/backendService';
 import { User } from 'src/app/models/backendModels';
 import { EditUserDialogComponent } from '../../dialogs/edit-user-dialog/edit-user-dialog.component';
 import { DialogService } from 'primeng/dynamicdialog';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -22,25 +23,30 @@ export class ResponsiveToolbarComponent implements OnInit {
   items!: MenuItem[];
   isWalletConnected = false;
   address!: string;
+  isProduction!: boolean;
 
   ngOnInit() {
+    this.isProduction = environment.production;
     this.user = getUser();
     if (this.user) {
       this.isWalletConnected = true;
       this.address = truncateMiddle(this.user.publicAddress, 16);
     }
     this.items = [
-      // {
-      //   label: 'Music',
-      //   icon: 'pi pi-fw pi-play',
-      //   routerLink: 'nft-listings'
-      // },
-      // {
-      //   label: 'Artists',
-      //   icon: 'pi pi-fw pi-user',
-      //   routerLink: 'all-artists'
-      // }
+      {
+        label: 'Music',
+        icon: 'pi pi-fw pi-play',
+        routerLink: 'nft-listings'
+      },
+      {
+        label: 'Artists',
+        icon: 'pi pi-fw pi-user',
+        routerLink: 'all-artists'
+      }
     ];
+    // ENVIRONMENT-CHANGE
+    if (this.isProduction)
+        this.items = [];
   }
   constructor(public dialog: MatDialog, public dialogService: DialogService, public backendService: BackendService) { }
 

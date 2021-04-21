@@ -1,20 +1,21 @@
   <div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12 p-md-6">
+    <p-checkbox label="I am an artist" [(ngModel)]="wantsToBeArtist" [binary]="true"></p-checkbox>
+  </div>
     <div class="p-field p-col-12 p-md-12">
       <label for="firstname">Artist Name</label>
       <input id="firstname" type="text" pInputText>
     </div>
-    <div class="p-field p-col-12 p-md-6">
+
+    <div *ngIf="this.wantsToBeArtist" class="p-field p-col-12 p-md-6">
       <label for="city">Occupations</label>
-
       <p-multiSelect [options]="occupations" [(ngModel)]="selectedOccupations" optionLabel="name"></p-multiSelect>
-
     </div>
-    <div class="p-field p-col-12 p-md-6">
+    <div *ngIf="this.wantsToBeArtist" class="p-field p-col-12 p-md-6">
       <label for="city">Genres</label>
-
       <p-multiSelect [options]="genres" [(ngModel)]="selectedGenres" optionLabel="name"></p-multiSelect>
-
     </div>
+
 
     <div class="p-field p-col-12 p-md-12">
       <label for="city">Twitter</label>

@@ -25,7 +25,7 @@ import {MultiSelectModule} from 'primeng/multiselect';
 import {TabViewModule} from 'primeng/tabview';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {DataViewModule} from 'primeng/dataview';
-
+import {CheckboxModule} from 'primeng/checkbox';
 
 
 
@@ -57,7 +57,8 @@ const mat = [
   AvatarModule,
   OverlayPanelModule,
   CardModule,
-  DynamicDialogModule
+  DynamicDialogModule,
+  CheckboxModule,
 ];
 
 @NgModule({

@@ -122,6 +122,9 @@ a {
   -webkit-text-fill-color: transparent;
   display: inline-block;
 }
+a:hover {
+  cursor: pointer
+}
 
 @media (max-width: 500px) {
   .welcome-text {

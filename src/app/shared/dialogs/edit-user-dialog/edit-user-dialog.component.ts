@@ -16,6 +16,7 @@ export class EditUserDialogComponent implements OnInit {
   customUpload = true;
   uploadedFile!: File;
   artists!: any[];
+  wantsToBeArtist = false;
 
   constructor(private messageService: MessageService,public ref: DynamicDialogRef) {
     this.genres = [
