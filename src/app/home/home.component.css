@@ -123,7 +123,7 @@ a {
   display: inline-block;
 }
 a:hover {
-  cursor: pointer
+  cursor: pointer;
 }
 
 @media (max-width: 500px) {
@@ -134,7 +134,10 @@ a:hover {
     font-size: 4rem;
     padding-top: 15px;
   }
-
+  :host ::ng-deep  .p-button.p-button-lg {
+    width: 150px !important;
+    height: 70px;
+  }
 }
 :host ::ng-deep .p-button-label {
   color: white;

@@ -1,63 +1,47 @@
-<div class="card">
-  <p-dataView #dv [value]="products" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
-    [sortOrder]="sortOrder" layout="grid">
-    <ng-template pTemplate="header">
-      <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
-        <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price"
-          (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
-        <span class="p-input-icon-left p-mb-2 p-mb-md-0">
-          <i class="pi pi-search"></i>
-          <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter('sd','')">
-        </span>
-        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-      </div>
-    </ng-template>
-    <ng-template let-product pTemplate="listItem">
-      <div class="p-col-12">
-        <div class="product-list-item">
-          <img [src]="product.image" [alt]="product.name" />
-          <div class="product-list-detail">
-            <div class="product-name">{{product.name}}</div>
-            <div class="product-description">{{product.description}}</div>
-            <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
-            <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{product.category}}</span>
-          </div>
-          <div class="product-list-action">
-            <span class="product-price">${{product.price}}</span>
-            <p-button icon="pi pi-shopping-cart" label="Add to Cart"
-              [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button>
-            <span
-              [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
-          </div>
-        </div>
-      </div>
-    </ng-template>
-    <ng-template let-product pTemplate="gridItem">
-      <div class="p-col-12 p-md-4">
-        <div class="product-grid-item card">
-          <div class="product-grid-item-top">
-            <div>
-              <i class="pi pi-tag product-category-icon"></i>
-              <span class="product-category">{{product.category}}</span>
-            </div>
-            <span
-              [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
-          </div>
-          <div class="product-grid-item-content">
-            <img [src]="product.image" [alt]="product.name" />
-            <div class="product-name">{{product.name}}</div>
-            <div class="product-description">{{product.description}}</div>
-            <!-- <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating> -->
-          </div>
-          <div class="product-grid-item-bottom">
+<div style=" padding-left: 20px; text-align: center;">
 
-            <span class="product-price">
-              <p> Reserve price</p> ${{product.price}}
-            </span>
-            <p-button icon="pi pi-shopping-cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button>
+
+  <div class="demo-container p-p-4">
+    <h1 style=" color: white;">Browse by name</h1>
+    <input [style]="{'width': '30%'}" type="text" pInputText placeholder="Search by artist name, genre ...">
+  </div>
+</div>
+<p-divider class="rad-border-color"></p-divider>
+
+<div style="margin-bottom: 5%;"></div>
+<div style="color: white; text-align: center; margin-left: 10%;margin-right: 10% " class="p-grid">
+  <div class="p-col-12 p-md-6 p-lg-4 " *ngFor="let item of [].constructor(5)">
+    <div class="grid-7 element-animation">
+      <!--card-1-->
+      <p-card header="Kraftwerk Unreleased Track" styleClass="p-card-shadow">
+        <ng-template pTemplate="header">
+          <img style="border-radius: 20px 20px 0px 0px;" alt="Card"
+            src="https://i.pinimg.com/originals/67/f5/0e/67f50efd8c31d688171ac1e6538b69fb.jpg">
+        </ng-template>
+        <p-divider></p-divider>
+        <h1>@Owner</h1>
+        <ng-template pTemplate="footer">
+          <div class="p-grid">
+            <div class="p-col-6">
+              <div style="text-align: center;" class="box">
+                <h2>Current Bid</h2>
+                <h3>0.33 ETH</h3>
+              </div>
+
+            </div>
+            <div class="p-col-6">
+              <div style="text-align: center;" class="box">
+                <h2>Ending in</h2>
+
+                <h3>12m 33s</h3>
+              </div>
+
+            </div>
+
           </div>
-        </div>
-      </div>
-    </ng-template>
-  </p-dataView>
+
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
 </div>
