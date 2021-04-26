@@ -1,0 +1,11 @@
+.stream-chat {
+  background: #31394d;
+  height: 99%;
+  width: 500px;
+  margin-left: 50px;
+}
+
+:host::ng-deep .p-button {
+  font-size: 30px;
+  font-weight: bold;
+}

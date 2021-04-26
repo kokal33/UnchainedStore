@@ -11,12 +11,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ArtistsMainModule } from './artists-list/artists-main.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { StreamComponent } from './stream/stream.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    StreamComponent,
   ],
   imports: [
     BrowserModule,

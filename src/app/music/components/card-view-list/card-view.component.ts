@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Track } from 'ngx-audio-player';
 import { DialogService } from 'primeng/dynamicdialog';
-import { ProductService } from 'src/app/services/productService';
 import { CardViewDetailsComponent } from '../card-view-details/card-view-details.component';
 
 @Component({
   selector: 'app-card-view',
   templateUrl: './card-view.component.html',
   styleUrls: ['./card-view.component.scss'],
-  providers: [ProductService, DialogService]
+  providers: [DialogService]
 })
 export class CardViewComponent implements OnInit {
 
