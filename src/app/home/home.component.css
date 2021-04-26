@@ -148,3 +148,6 @@ a:hover {
   width: 250px;
   height: 70px;
 }
+.p-mt-6 {
+  margin-top: 7rem !important;
+}
