@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-declare const feather: any;
+import { MessageDto } from './dto/message-dto';
+import { StreamService } from './services/stream.service';
 
 @Component({
   selector: 'app-stream',
@@ -9,66 +8,39 @@ declare const feather: any;
   styleUrls: ['./stream.component.scss']
 })
 export class StreamComponent implements OnInit {
-  hasEnteredUser = false;
   constructor(
-    private http: HttpClient,
-    //  private stateService: StateService,
-    private router: Router
+    private streamService: StreamService,
   ) { }
+
+  hasEnteredUser = false;
   submitDisabled = false;
   username = '';
   buttonText = 'Enter';
 
+  msgDto: MessageDto = new MessageDto();
+  msgInboxArray: MessageDto[] = [];
   async onSubmit() {
     if (this.username) {
       this.submitDisabled = true;
       this.buttonText = 'Submitting...';
-
-      // const user: User = (await this.join(this.username).toPromise()) as User;
-      //  this.stateService.user = user;
-
-      // this.router.navigate(['']);
     }
   }
-  messages: any[] = [];
-  message = '';
-  channel: any;
+  ngOnInit(): void {
+    this.streamService.retrieveMappedObject().subscribe((receivedObj: MessageDto) => { this.addToInbox(receivedObj); });  // calls the service method to get the new messages sent
+  }
 
-  async sendMessage() {
-    if (this.message) {
-      try {
-        await this.channel.sendMessage({
-          text: this.message,
-        });
-        this.message = '';
-      } catch (err) {
-        console.log(err);
-      }
+
+  send(): void {
+    if (this.msgDto) {
+      this.msgDto.userName = JSON.parse(localStorage.getItem("user")!).userName;
+      this.streamService.broadcastMessage(this.msgDto);
     }
   }
 
-  getClasses(userId: string): { outgoing: boolean; incoming: boolean } {
-    return {
-      outgoing: true,
-      incoming: false,
-    };
-  }
-
-  async ngOnInit() {
-    //feather.replace();
-
-    // if (this.stateService.user) {
-    //   this.channel = await this.streamService.initClient(
-    //     this.stateService.user
-    //   );
-   // await this.channel.watch();
-
-    // this.messages = this.channel.state.messages as any;
-    // this.channel.on('message.new', (event: { message: any; }) => {
-    //   this.messages = this.messages.concat(event.message);
-    // });
-    // } else {
-    //   this.router.navigate(['join']);
-    // }
+  addToInbox(obj: MessageDto) {
+    let newObj = new MessageDto();
+    newObj.userName = obj.userName;
+    newObj.msgTxt = obj.msgTxt;
+    this.msgInboxArray.push(newObj);
   }
 }
