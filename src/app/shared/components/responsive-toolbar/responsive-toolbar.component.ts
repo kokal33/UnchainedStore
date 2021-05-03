@@ -51,11 +51,7 @@ export class ResponsiveToolbarComponent implements OnInit {
     ];
     // ENVIRONMENT-CHANGE
     if (this.isProduction)
-        this.items = [{
-          label: 'Stream',
-          icon: 'pi pi-fw pi-video',
-          routerLink: 'stream'
-        }];
+        this.items = [];
   }
   constructor(public dialog: MatDialog, public dialogService: DialogService, public backendService: BackendService) { }
 
