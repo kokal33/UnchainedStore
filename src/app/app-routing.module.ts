@@ -8,14 +8,14 @@ const routes: Routes = [{
   path: 'nft-listings',
   loadChildren: () => import('./music/music.module').then(m => m.MusicModule)
 },
-{
+{ 
   path: 'home',
   component: HomeComponent
 },
-{
-  path: 'stream',
-  component: StreamComponent
-},
+// {
+//   path: 'stream',
+//   component: StreamComponent
+// },
 {
   path: '',
   redirectTo: 'home',
