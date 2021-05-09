@@ -20,9 +20,9 @@
 <!-- TODO: overlaypanel padding is now 1rem, make it 0,2rem -->
 <p-overlayPanel #op>
   <ng-template pTemplate>
-        <button *ngIf="!isProduction" (click)="viewProfile(); op.hide()" pButton pRipple type="button" label="View Profile" icon="pi pi-fw pi-user"
-          class="p-button-secondary p-button-text"></button>
-        <button (click)="logout(); op.hide()" pButton pRipple type="button" label="Disconnect" icon="pi pi-fw pi-power-off"
-          class="p-button-secondary p-button-text"></button>
+    <button *ngIf="!isProduction" (click)="viewProfile(); op.hide()" pButton pRipple type="button" label="View Profile"
+      icon="pi pi-fw pi-user" class="p-button-secondary p-button-text"></button>
+    <button (click)="logout(); op.hide()" pButton pRipple type="button" label="Disconnect" icon="pi pi-fw pi-power-off"
+      class="p-button-secondary p-button-text"></button>
   </ng-template>
 </p-overlayPanel>

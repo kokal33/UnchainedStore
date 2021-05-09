@@ -4,8 +4,9 @@
 
 <!-- TITLE -->
 <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="50px">
-  <h1 fx class="welcome-text">The Music NFT Platform that cares for artists</h1>
+  <h1 class="welcome-text">The Music NFT Platform that cares for artists</h1>
 </div>
+
 
 <!-- ABOUT US -->
 <div fxLayout="row" fxLayoutAlign="center center">
@@ -14,13 +15,13 @@
   </h2>
 </div>
 
-<div fxLayout="row" fxLayoutAlign="center" style="margin-top:50px;">
-  <div class="p-mr-4 p-p-2">
+
+<div style="margin-top:40px" class="p-grid">
+  <div style="text-align: end; padding-right: 20px;" class="p-col-6">
     <button (click)="doTheThingWithTheTypeForm()" pButton pRipple type="button" label="Music"
       class="p-button-outlined p-button-lg"></button>
   </div>
-  <div class="p-ml-4 p-p-2">
-
+  <div style="padding-left: 20px;" class="p-col-6">
     <button (click)="doTheThingWithTheTypeForm()" pButton pRipple type="button" label="Artists"
       class="p-button-outlined p-button-lg"></button>
   </div>
@@ -28,7 +29,7 @@
 
 <!-- YOUTUBE VIDEO -->
 <div fxLayout="row" fxLayoutAlign="center" style="position: relative; padding-top: 150px;">
-  <iframe width="900" height="500" [src]='safeURL' frameborder="0" allowfullscreen></iframe>
+  <iframe class="youtube-vid" [src]='safeURL' frameborder="0" allowfullscreen></iframe>
 </div>
 
 
@@ -43,11 +44,12 @@
 </div>
 
 <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <label>Music you wouldn't release usually shows fans who you are from different angles and helps
+  <label class="left-padding">Music you wouldn't release usually shows fans who you are from different angles and helps
     you connect to your fan base even more. Moreover, there's always the added bonus of adding a personal
     touch to your music collectible's metadata, such as your signature, a personalized message or something
     uniquely yours.</label>
-  <label>NFTs offer a new opportunity for you to publish and sell your music peer to peer, without a middleman.
+  <label class="right-padding">NFTs offer a new opportunity for you to publish and sell your music peer to peer, without
+    a middleman.
     Selling music directly to your fans thus becomes a significant new revenue stream for you.
     Bye, bye greedy agencies & labels. </label>
 </div>
@@ -59,11 +61,13 @@
 </div>
 
 <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <label>The control over your music is in your hands. Easily mint and publish your music collectibles, decide on
+  <label class="left-padding">The control over your music is in your hands. Easily mint and publish your music
+    collectibles, decide on
     royalties,
     track your sales and current ownership and more.
   </label>
-  <label>Music quality is our priority. We support only the best of formats (WAV, FLAC, IAFF, etc.)
+  <label class="right-padding">Music quality is our priority. We support only the best of formats (WAV, FLAC, IAFF,
+    etc.)
     and all musical contributors are thoroughly checked and personally verified by our dedicated crew.
     You can simply <a (click)="doTheThingWithTheTypeForm()">APPLY HERE</a> to become an artist on Unchained Music.
   </label>
@@ -84,10 +88,12 @@
 </div>
 
 <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <label>Before blockchain & NFTs, you could only collect music in physical formats, such as cassettes, CDs and vinyls.
+  <label class="left-padding">Before blockchain & NFTs, you could only collect music in physical formats, such as
+    cassettes, CDs and vinyls.
     We have built a bridge from physical to digital, allowing you to buy and own true music digital collectibles.
   </label>
-  <label>Upon purchase, you can write a personalized message to your favourite musician. Tell them why you love them and
+  <label class="right-padding">Upon purchase, you can write a personalized message to your favourite musician. Tell them
+    why you love them and
     how
     they changed your life.</label>
 </div>
@@ -99,11 +105,15 @@
 </div>
 
 <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <label>Access your files in the most secure manner possible. We understand that if you buy a record,
+  <label class="left-padding">Access your files in the most secure manner possible. We understand that if you buy a
+    record,
     you want it to be safe with you. After purchase, your files are 100% secure and only accessible by you.
   </label>
-  <label>We made purchasing a music NFT through Unchained Music a smooth & straightforward process.
-    Collecting the tunes you love has never been easier. Check out our <a target="_blank" href="https://www.notion.so/Help-Center-1f0ae87e70ae4f6a919aba3b0829efd6">HOW TO BUY A MUSIC NFT GUIDE</a> for help.
+  <label class="right-padding">We made purchasing a music NFT through Unchained Music a smooth & straightforward
+    process.
+    Collecting the tunes you love has never been easier. Check out our <a target="_blank"
+      href="https://www.notion.so/Help-Center-1f0ae87e70ae4f6a919aba3b0829efd6">HOW TO BUY A MUSIC NFT GUIDE</a> for
+    help.
   </label>
 </div>
 <div style="margin-top: 20px;" class="p-mt-6">
@@ -122,10 +132,12 @@
 </div>
 
 <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <label>The biggest obstacle in the current Ethereum blockchain based solutions are the ridiculous fees around
+  <label class="left-padding">The biggest obstacle in the current Ethereum blockchain based solutions are the ridiculous
+    fees around
     transactions.
     In our effort to save your money, the decision to mount the BSC has lowered our overall fees up to 100x. </label>
-  <label>Our platform is built with a focus on optimization, using next to none third-party integrations and code.
+  <label class="right-padding">Our platform is built with a focus on optimization, using next to none third-party
+    integrations and code.
     The consensus mechanism behind Binance Smart Chain can produce a block every 3 seconds, which greatly improves
     the on-chain protocols, as opposed to the Ethereum blockchain that can produce a block in approximately 20
     seconds.</label>
@@ -138,10 +150,10 @@
 </div>
 
 <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <label>Aside from having data on the blockchain, our server application uses caching methods
+  <label class="left-padding">Aside from having data on the blockchain, our server application uses caching methods
     which speed-up the process of minting NFTs, while securely storing the data on IPFS.
   </label>
-  <label>Minting and selling your music NFTs should be easy. As a musical contributor,
+  <label class="right-padding">Minting and selling your music NFTs should be easy. As a musical contributor,
     you are only a few clicks away from minting and selling your own musical NFT.
     On the other hand, you're litreally 2 clicks away from buying one. </label>
 </div>

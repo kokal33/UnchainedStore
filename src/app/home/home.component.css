@@ -126,12 +126,20 @@ a:hover {
   cursor: pointer;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
   .welcome-text {
     font-size: 4rem;
   }
+  .youtube-vid{
+    width:350px  !important;
+    height: 300px !important;
+  }
+  h2 {
+font-size: 1rem;
+  }
+
   .guide-text {
-    font-size: 4rem;
+    font-size: 3rem;
     padding-top: 15px;
   }
   :host ::ng-deep  .p-button.p-button-lg {
@@ -150,4 +158,15 @@ a:hover {
 }
 .p-mt-6 {
   margin-top: 7rem !important;
+}
+
+.left-padding {
+  margin-left: 10px;
+}
+.right-padding {
+  margin-right: 10px;
+}
+.youtube-vid{
+  width:900px ;
+  height: 500px;
 }
