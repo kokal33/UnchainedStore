@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { InputTextModule } from 'primeng/inputtext';
+
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
@@ -19,27 +20,28 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { CardModule } from 'primeng/card';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { FileUploadModule } from 'primeng/fileupload';
+import {TabMenuModule} from 'primeng/tabmenu';
+import {FieldsetModule} from 'primeng/fieldset';
+
+import { TableModule } from 'primeng/table';
 
 import { ToastModule } from 'primeng/toast';
-import {MultiSelectModule} from 'primeng/multiselect';
-import {TabViewModule} from 'primeng/tabview';
-import {DynamicDialogModule} from 'primeng/dynamicdialog';
-import {DataViewModule} from 'primeng/dataview';
-import {CheckboxModule} from 'primeng/checkbox';
-
-
-
-
+import { MultiSelectModule } from 'primeng/multiselect';
+import { TabViewModule } from 'primeng/tabview';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DataViewModule } from 'primeng/dataview';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ChipModule } from 'primeng/chip';
 
 const mat = [
 
   ToastModule,
+  TableModule,
   DataViewModule,
-
   TabViewModule,
-
   NgxAudioPlayerModule,
   InputTextModule,
+  TabMenuModule,
   DialogModule,
   ToolbarModule,
   ConfirmDialogModule,
@@ -59,6 +61,9 @@ const mat = [
   CardModule,
   DynamicDialogModule,
   CheckboxModule,
+  FieldsetModule,
+  ChipModule
+
 ];
 
 @NgModule({

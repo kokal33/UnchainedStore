@@ -1,0 +1,15 @@
+<p-table [value]="bidders">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Public Address</th>
+      <th>Bid</th>
+
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-bidder>
+    <tr>
+      <td>{{bidder.address}}</td>
+      <td>{{bidder.bid}}</td>
+    </tr>
+  </ng-template>
+</p-table>

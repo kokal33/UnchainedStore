@@ -1,4 +1,6 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Track } from 'ngx-audio-player';
 import { DialogService } from 'primeng/dynamicdialog';
 import { CardViewDetailsComponent } from '../card-view-details/card-view-details.component';
@@ -11,19 +13,17 @@ import { CardViewDetailsComponent } from '../card-view-details/card-view-details
 })
 export class CardViewComponent implements OnInit {
 
+  fileSource = "https://filesamples.com/samples/audio/mp3/sample3.mp3";
 
-  fileSource = "https://rildi.sunproxy.net/file/MGpUNWxKVjVCVWE2SDB0My9EU3hlWDdBRVUrQkM0c2pqRHBVbHNZd01FRDRSajRXbmNUTDRpSitTcC91QU40MmtES1g2eUpsOEd6bzJqRnE2cm5KN0NTVnhPcTNoK3RrdGgxMnpLQ09TYkk9/The_Weeknd_-_Save_Your_Tears_(Rilds.com).mp3";
-
-  constructor(private dialogService: DialogService) { }
-  // AUDIO PLAYER CONTROLS
+  constructor(private dialogService: DialogService, private router: Router) { }
   msaapDisplayTitle = false;
   msaapDisplayPlayList = false;
   msaapPageSizeOptions = [2, 4, 6];
-  msaapDisplayVolumeControls = true;
+  msaapDisplayVolumeControls = false;
   msaapDisplayRepeatControls = false;
   msaapDisplayArtist = false;
-  msaapDisplayDuration = true;
-  msaapDisablePositionSlider = false;
+  msaapDisplayDuration = false;
+  msaapDisablePositionSlider = true;
 
   // Material Style Advance Audio Player Playlist
   msaapPlaylist: Track[] = [
@@ -31,7 +31,7 @@ export class CardViewComponent implements OnInit {
       title: 'Audio One Title',
       link: this.fileSource,
       artist: 'Audio One Artist',
-      duration: 10
+      duration: 50
     }
   ];
 
@@ -41,12 +41,17 @@ export class CardViewComponent implements OnInit {
 
   }
 
+
   viewDetails() {
     const dialog = this.dialogService.open(CardViewDetailsComponent, {
       width: "70%",
       header: '',
       data: {}
     });
+    dialog.onClose.subscribe(() => {
+      this.router.navigate(['/nft-listings'])
+
+    })
   }
 
   onEnded(event: any) {

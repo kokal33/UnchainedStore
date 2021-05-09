@@ -1,54 +1,79 @@
 <div style=" padding-left: 20px; text-align: center;">
 
-
   <div class="demo-container p-p-4">
-
-    <!-- <input [style]="{'width': '30%'}" type="text" pInputText placeholder=" "> -->
     <span class="p-input-icon-left ">
       <i class="pi pi-search"></i>
       <input class="searchbar-size" type="text" pInputText placeholder="Search by Artist, Genre.." />
     </span>
-
   </div>
 </div>
+
 <p-divider></p-divider>
+
 <div style="margin-bottom: 5%;"></div>
 <div style="color: white; text-align: center; margin-left: 10%;margin-right: 10% " class="p-grid">
   <div class="p-col-12 p-md-6 p-lg-4 " *ngFor="let item of [].constructor(5)">
     <div class="grid-7 element-animation">
       <!--card-1-->
-      <p-card header="Kraftwerk Unreleased Track" styleClass="p-card-shadow">
-        <ng-template pTemplate="header">
-          <img (click)="viewDetails()" style="border-radius: 20px 20px 0px 0px;" alt="Card"
-            src="https://i.pinimg.com/originals/67/f5/0e/67f50efd8c31d688171ac1e6538b69fb.jpg">
-        </ng-template>
-        <p-divider></p-divider>
+      <p-card styleClass="p-card-shadow">
+
         <div class="p-grid">
-          <div style="display: flex;" class="p-col-12">
-            <p-avatar image="../../../assets/images/daft.jpg" styleClass="p-ml-4" size="large" shape="circle">
-            </p-avatar>
-            <h1 style="padding-top: 6px; padding-left: 10px; font-size: medium;">@Owner</h1>
-            <!-- <ngx-audio-player [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false"
-            muted="muted" [displayPlaylist]="msaapDisplayPlayList" [pageSizeOptions]="msaapPageSizeOptions" (trackEnded)="onEnded($event)"
-            [displayVolumeControls]="msaapDisplayVolumeControls" [displayRepeatControls]="msaapDisplayRepeatControls"
-            [disablePositionSlider]="msaapDisablePositionSlider" [displayArtist]="msaapDisplayArtist"
-            [displayDuration]="msaapDisplayDuration" [expanded]="false"></ngx-audio-player> -->
+          <div class="p-col-6">
+            <div style="text-align: start;padding-left: 20px;" class="box">
+              <h3>@Owner</h3>
+            </div>
+          </div>
+          <div class="p-col-6">
+            <div style="text-align: end;padding-right: 20px;" class="box">
+              <h3>@Artist</h3>
+            </div>
+          </div>
+        </div>
+        <div class="p-grid">
+          <div class="p-col-12">
+            <div style="text-align: start;padding-left: 20px;" class="box">
+              <h2>Kraftwerk Unreleased Track</h2>
+            </div>
           </div>
 
+        </div>
+        <ng-template pTemplate="header">
+          <img (click)="viewDetails()" class="img" alt="Card"
+            src="https://i.pinimg.com/originals/67/f5/0e/67f50efd8c31d688171ac1e6538b69fb.jpg">
+        </ng-template>
+        <div class="p-grid">
+          <div class="p-col-12">
+            <ngx-audio-player [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false"
+              muted="muted" [displayPlaylist]="msaapDisplayPlayList" [pageSizeOptions]="msaapPageSizeOptions"
+              (trackEnded)="onEnded($event)" [displayVolumeControls]="msaapDisplayVolumeControls"
+              [displayRepeatControls]="msaapDisplayRepeatControls" [disablePositionSlider]="msaapDisablePositionSlider"
+              [displayArtist]="msaapDisplayArtist" [displayDuration]="msaapDisplayDuration" [expanded]="true">
+            </ngx-audio-player>
+          </div>
+
+        </div>
+        <div style="padding-left: 10%;padding-right: 10%;" class="middle-divider">
+          <p-divider></p-divider>
         </div>
         <ng-template pTemplate="footer">
           <div class="p-grid">
             <div class="p-col-6">
               <div style="text-align: center;" class="box">
-                <h2>$400</h2>
-                <h3>Reserve Price</h3>
+                <h3 style="color: #c950aa">Current Bid</h3>
+                <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
+                  <p-divider></p-divider>
+                </div>
+                <h3>400 *</h3>
               </div>
 
             </div>
             <div class="p-col-6">
               <div style="text-align: center;" class="box">
-                <!-- <h2>Ending in</h2>
-                <h3>12m 33s</h3> -->
+                <h3 style="color: #c950aa">Ending in</h3>
+                <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
+                  <p-divider></p-divider>
+                </div>
+                <h3>2 days</h3>
               </div>
 
             </div>
