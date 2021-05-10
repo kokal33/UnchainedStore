@@ -5,7 +5,7 @@ import { MenuItem } from 'primeng/api';
 @Component({
   selector: 'app-card-view-details',
   templateUrl: './card-view-details.component.html',
-  styleUrls: ['./card-view-details.component.css']
+  styleUrls: ['./card-view-details.component.scss']
 })
 export class CardViewDetailsComponent implements OnInit {
   items!: MenuItem[];

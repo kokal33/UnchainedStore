@@ -44,9 +44,9 @@ export class CardViewComponent implements OnInit {
 
   viewDetails() {
     const dialog = this.dialogService.open(CardViewDetailsComponent, {
-      width: "70%",
       header: '',
-      data: {}
+      data: {},
+
     });
     dialog.onClose.subscribe(() => {
       this.router.navigate(['/nft-listings'])

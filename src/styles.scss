@@ -29,3 +29,18 @@ body::-webkit-scrollbar {
 .subscribe-dialog .mat-dialog-container {
   background-color: var(--background);
 }
+
+body > p-dynamicdialog > div > div {
+  width: 70% !important;
+}
+
+
+@media (max-width: 550px) {
+  body > p-dynamicdialog > div > div {
+    width: 100% !important;
+    max-height: 100% !important;
+  }
+
+}
+
+
