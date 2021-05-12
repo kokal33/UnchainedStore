@@ -1,24 +1,43 @@
-<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-<h1 mat-dialog-title>Choose your wallet</h1>
+<!-- <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
+  <h1 mat-dialog-title>Choose your wallet</h1>
 </div>
 
 <div mat-dialog-content>
   <div fxLayout="row" fxLayoutAlign="center">
 
-  <div>
-    <button [disabled]="!this.data.providers.binanceEnabled" (click)="onWalletChoose('binance')">
-    <img [className]="this.data.providers.binanceEnabled ? '' : 'greyed-out'" width="250px" height="180px" src="../../../../assets/images/bsc.png" alt="Binance Chain">
-  </button>
+    <div>
+      <button [disabled]="!this.data.providers.binanceEnabled" (click)="onWalletChoose('binance')">
+        <img [className]="this.data.providers.binanceEnabled ? '' : 'greyed-out'" width="250px" height="180px"
+          src="../../../../assets/images/bsc.png" alt="Binance Chain">
+      </button>
+    </div>
+
+    <div>
+      <button [disabled]="!this.data.providers.metaMaskEnabled" (click)="onWalletChoose('metamask')">
+        <img [className]="this.data.providers.metaMaskEnabled ? '' : 'greyed-out'" width="250px" height="180px"
+          src="../../../../assets/images/metamask_grey.png" alt="Metamask">
+      </button>
+    </div>
+
+  </div>
+</div> -->
+<h1 style="text-align: center;">Choose your Wallet</h1>
+<div class="p-grid">
+
+  <div style="text-align: end;" class="p-col-6">
+    <button [disabled]="!this.providers.binanceEnabled" (click)="onWalletChoose('binance')">
+      <img class="wallet-img" [className]="this.providers.binanceEnabled ? '' : 'greyed-out'"
+        src="../../../../assets/images/bsc.png" alt="Binance Chain">
+    </button>
+
   </div>
 
-  <div>
-    <button [disabled]="!this.data.providers.metaMaskEnabled" (click)="onWalletChoose('metamask')">
-    <img [className]="this.data.providers.metaMaskEnabled ? '' : 'greyed-out'" width="250px" height="180px" src="../../../../assets/images/metamask_grey.png" alt="Metamask">
-  </button>
+  <div class="p-col-6">
+    <button [disabled]="!this.providers.metaMaskEnabled" (click)="onWalletChoose('metamask')">
+      <img class="wallet-img" [className]="this.providers.metaMaskEnabled ? '' : 'greyed-out'"
+        src="../../../../assets/images/metamask_grey.png" alt="Metamask">
+    </button>
+
   </div>
 
 </div>
-</div>
-
-
-

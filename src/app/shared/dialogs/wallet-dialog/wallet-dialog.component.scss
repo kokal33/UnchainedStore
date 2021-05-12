@@ -3,21 +3,28 @@
   filter: grayscale(100%);
 }
 
-.wallet-img {
-  width:"250px";
-  height:"200px";
+img {
+  width: 250px !important;
+  height: 200px !important;
 }
 
+@media (max-width: 550px) {
+  img {
+    width: 150px !important;
+    height: 100px !important;
+  }
+}
 button {
   border-style: none;
-  background-color: white;
+  background-color: inherit;
   outline: none;
-
 }
+
+
 img {
   border-radius: 20px;
   border-style: solid;
+  border-color: #8c52ff;
   border-width: 1px;
   outline: none;
 }
-

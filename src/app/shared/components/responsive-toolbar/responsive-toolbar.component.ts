@@ -51,7 +51,7 @@ export class ResponsiveToolbarComponent implements OnInit {
     ];
     // ENVIRONMENT-CHANGE
     if (this.isProduction)
-        this.items = [];
+      this.items = [];
   }
   constructor(public dialog: MatDialog, public dialogService: DialogService, public backendService: BackendService) { }
 
@@ -60,36 +60,35 @@ export class ResponsiveToolbarComponent implements OnInit {
   }
 
   openWalletsModal() {
-    const dialogRef = this.dialog.open(WalletDialogComponent, {
-      width: '600px',
-      height: '300px',
-      panelClass: 'wallet-dialog',
-      data: {}
+    const dialogRef = this.dialogService.open(WalletDialogComponent, {
+      data: {},
+      styleClass:'wallet-dialog2'
+
     });
 
-    dialogRef.afterClosed().subscribe(async (res: string) => {
-        // Check for wallet connection and get signature
-        const walletConnect = await connectWallet(res);
-        if (!walletConnect){
-          console.log("Wallet connection unsuccessful");
-          return;
-        }
-        // Login user with the signature provided
-        try{
-          const result = await this.backendService.login(walletConnect);
-          setUser(result.body as User);
-          console.log("Login successful");
-          this.isWalletConnected = true;
-          this.address = truncateMiddle(walletConnect.publicAddress, 12) + " Connected";
-        }
-        catch (err){
-          console.log("Login unsuccessful: ", err)
-          return;
-        }
+    dialogRef.onClose.subscribe(async (res: string) => {
+      // Check for wallet connection and get signature
+      const walletConnect = await connectWallet(res);
+      if (!walletConnect) {
+        console.log("Wallet connection unsuccessful");
+        return;
+      }
+      // Login user with the signature provided
+      try {
+        const result = await this.backendService.login(walletConnect);
+        setUser(result.body as User);
+        console.log("Login successful");
+        this.isWalletConnected = true;
+        this.address = truncateMiddle(walletConnect.publicAddress, 12) + " Connected";
+      }
+      catch (err) {
+        console.log("Login unsuccessful: ", err)
+        return;
+      }
     });
   };
 
-  viewProfile(){
+  viewProfile() {
     const dialogEdit = this.dialogService.open(EditUserDialogComponent, {
       width: "40%",
       header: this.user?.publicAddress,

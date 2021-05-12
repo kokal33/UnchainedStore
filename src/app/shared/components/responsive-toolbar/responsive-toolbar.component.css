@@ -46,8 +46,9 @@ button.mat-focus-indicator.mat-button.mat-button-base.ng-star-inserted {
   border-style: none !important;
 }
 :host ::ng-deep .p-button {
-  background: inherit !important;
+  background-color: inherit;
+  color: white;
 }
-:host ::ng-deep .p-button-label {
-  padding-bottom: 3px !important;
+:host ::ng-deep .p-button:hover {
+  color: white !important;
 }
