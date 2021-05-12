@@ -10,6 +10,7 @@ import { User } from 'src/app/models/backendModels';
 import { EditUserDialogComponent } from '../../dialogs/edit-user-dialog/edit-user-dialog.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { environment } from 'src/environments/environment';
+import { isMobileDevice } from 'src/app/helpers/globalHelper';
 
 
 @Component({
