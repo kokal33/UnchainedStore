@@ -17,8 +17,6 @@ export class CardViewDetailsComponent implements OnInit {
       { label: 'Details', routerLink: ['nft-tab-details'] },
       { label: 'Bid History', routerLink: ['bid-history'] }
     ];
-    this.router.navigate(['nft-tab-details']);
-    this.router.navigate(['nft-tab-details'], { relativeTo: this.route });
 
     this.activeItem = this.items[0];
 

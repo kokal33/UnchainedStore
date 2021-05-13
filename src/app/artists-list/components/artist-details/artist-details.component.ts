@@ -4,7 +4,7 @@ import { MenuItem } from 'primeng/api';
 @Component({
   selector: 'app-artist-details',
   templateUrl: './artist-details.component.html',
-  styleUrls: ['./artist-details.component.css']
+  styleUrls: ['./artist-details.component.scss']
 })
 export class ArtistDetailsComponent implements OnInit {
 
@@ -16,7 +16,7 @@ export class ArtistDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      { label: 'Collections' },
+      { label: 'Collections', routerLink: ['nft-listings'] },
       { label: 'Created' },
     ];
 

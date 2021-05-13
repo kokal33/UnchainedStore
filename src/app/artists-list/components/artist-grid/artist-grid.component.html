@@ -1,7 +1,7 @@
 <div style=" padding-left: 20px; text-align: center;">
   <div style="padding: 20px;">
     <h1 style=" color: white;">Browse by name</h1>
-    <input [style]="{'width': '30%'}" type="text" pInputText placeholder="Search">
+    <input type="text" pInputText placeholder="Search">
   </div>
   <h1 style=" color: white;">Browse by genre
   </h1>
@@ -24,8 +24,8 @@
 <p-divider></p-divider>
 
 <div style="margin-bottom: 5%;"></div>
-<div style="color: white; text-align: center; margin-left: 10%;margin-right: 10%" class="p-grid">
-  <div class="p-col-12 p-md-6 p-lg-4" *ngFor="let artist of artists">
+<div class="p-grid side-margins">
+  <div class="p-col-12 p-md-6 p-lg-4 bottom-margin" *ngFor="let artist of artists">
     <div class="grid-7 element-animation">
       <!--card-1-->
       <div [routerLink]="['artist-details']" routerLinkActive="router-link-active" class="card color-card">

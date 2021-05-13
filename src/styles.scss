@@ -31,15 +31,15 @@ body::-webkit-scrollbar {
 }
 
 body > p-dynamicdialog > div > div {
-  width: 70% ;
+  width: 80%;
 }
 .wallet-dialog2 {
   max-width: 35% !important;
 }
 
-:host::ng-deep .p-dialog .p-dialog-content  {
+:host::ng-deep .p-dialog .p-dialog-content {
   width: 400px !important;
- }
+}
 
 @media (max-width: 550px) {
   body > p-dynamicdialog > div > div {
@@ -49,4 +49,11 @@ body > p-dynamicdialog > div > div {
   .wallet-dialog2 {
     max-width: 100% !important;
   }
+}
+
+
+body,
+body .p-component
+{
+  font-family: "Montserrat", sans-serif;
 }

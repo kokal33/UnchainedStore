@@ -10,14 +10,19 @@ import { BidHistoryComponent } from './components/bid-history/bid-history.compon
 const routes: Routes = [
 
   {
-    path:'',
-    redirectTo:'nft-card-view',
-    pathMatch:'full'
+    path: '',
+    redirectTo: 'nft-card-view',
+    pathMatch: 'full'
   },
   {
     path: 'nft-card-view',
     component: CardViewComponent,
     children: [
+      {
+        path: '',
+        redirectTo: 'nft-tab-details',
+        pathMatch: 'full'
+      },
       {
         path: 'nft-tab-details',
         component: NftDetailsComponent,
