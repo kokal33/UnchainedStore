@@ -11,15 +11,26 @@
         {{getValidationMessage(userForm,'artistName')}}</mat-error>
     </div>
 
-    <div *ngIf="this.wantsToBeArtist" class="p-field p-col-12 p-md-6">
-      <label for="city">Occupations</label>
-      <p-multiSelect [options]="occupations" [(ngModel)]="selectedOccupations" optionLabel="name"></p-multiSelect>
-    </div>
-    <div *ngIf="this.wantsToBeArtist" class="p-field p-col-12 p-md-6">
-      <label for="city">Genres</label>
-      <p-multiSelect [options]="genres" [(ngModel)]="selectedGenres" optionLabel="name"></p-multiSelect>
+    <div class="p-field p-col-12 p-md-12">
+      <label for="firstname">Bio</label>
+      <textarea formControlName="bio" rows="5" cols="30" pInputTextarea></textarea>
+      <mat-error *ngIf="userForm.get('bio')?.invalid && userForm.get('bio')?.touched">
+        {{getValidationMessage(userForm,'bio')}}</mat-error>
     </div>
 
+    <div *ngIf="userForm.get('isArtist')?.value" class="p-field p-col-12 p-md-6">
+      <label for="city">Occupations</label>
+      <p-multiSelect [options]="occupations" formControlName="occupations" optionLabel="name"></p-multiSelect>
+      <mat-error *ngIf="userForm.get('artistNoccupationsame')?.invalid && userForm.get('occupations')?.touched">
+        {{getValidationMessage(userForm,'occupations')}}</mat-error>
+
+    </div>
+    <div *ngIf="userForm.get('isArtist')?.value" class="p-field p-col-12 p-md-6">
+      <label for="city">Genres</label>
+      <p-multiSelect [options]="genres" formControlName="genres" optionLabel="name"></p-multiSelect>
+      <mat-error *ngIf="userForm.get('genres')?.invalid && userForm.get('genres')?.touched">
+        {{getValidationMessage(userForm,'genres')}}</mat-error>
+    </div>
 
     <div class="p-field p-col-12 p-md-12">
       <label for="city">Twitter</label>

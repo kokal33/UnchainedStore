@@ -13,9 +13,7 @@ import { ArtistService } from 'src/app/services/artist.service';
 })
 export class EditUserDialogComponent implements OnInit {
   occupations!: any[];
-  selectedOccupations!: any[];
   genres!: any[];
-  selectedGenres!: any[];
   customUpload = true;
   uploadedFile!: any;
   artists!: any[];
@@ -43,12 +41,15 @@ export class EditUserDialogComponent implements OnInit {
   ngOnInit(): void {
     this.userForm = this.fb.group({
       address: [""],
+      bio: [""],
       isArtist: [false],
       artistName: ["", Validators.required],
       instagram: [""],
       twitter: [""],
       facebook: [""],
-      image64: [null, Validators.required]
+      image64: [null, Validators.required],
+      occupations: [null, Validators.required],
+      genres: [null, Validators.required]
     })
   }
 
