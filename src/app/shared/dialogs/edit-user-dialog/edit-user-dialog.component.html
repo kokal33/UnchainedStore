@@ -1,10 +1,14 @@
+<form [formGroup]="userForm">
   <div class="p-fluid p-formgrid p-grid">
-    <div class="p-field p-col-12 p-md-6">
-    <p-checkbox label="I am an artist" [(ngModel)]="wantsToBeArtist" [binary]="true"></p-checkbox>
-  </div>
+    <div class="p-field p-col-12 p-md-6 p-p-4">
+      <p>I am an artist</p>
+      <p-inputSwitch formControlName="isArtist"></p-inputSwitch>
+    </div>
     <div class="p-field p-col-12 p-md-12">
       <label for="firstname">Artist Name</label>
-      <input id="firstname" type="text" pInputText>
+      <input formControlName="artistName" id="artistName" type="text" pInputText>
+      <mat-error *ngIf="userForm.get('artistName')?.invalid && userForm.get('artistName')?.touched">
+        {{getValidationMessage(userForm,'artistName')}}</mat-error>
     </div>
 
     <div *ngIf="this.wantsToBeArtist" class="p-field p-col-12 p-md-6">
@@ -19,27 +23,32 @@
 
     <div class="p-field p-col-12 p-md-12">
       <label for="city">Twitter</label>
-      <input id="city" type="text" pInputText>
+      <input formControlName="twitter" id="city" type="text" pInputText>
     </div>
     <div class="p-field p-col-12 p-md-12">
       <label for="city">Facebook</label>
-      <input id="city" type="text" pInputText>
+      <input formControlName="facebook" id="city" type="text" pInputText>
     </div>
     <div class="p-field p-col-12 p-md-12">
       <label for="city">Instagram</label>
-      <input id="city" type="text" pInputText>
+      <input formControlName="instagram" id="city" type="text" pInputText>
     </div>
 
 
     <div class="p-field p-col-12 p-md-12">
       <label>Upload profile picture</label>
       <p-fileUpload #fubauto mode="basic" name="demo[]" customUpload="true" accept="image/*" maxFileSize="1000000"
-        (uploadHandler)="myUploader($event)" [auto]="true" chooseLabel="Browse"></p-fileUpload>
+        (uploadHandler)="myUploader($event)" [auto]="true" chooseLabel="Browse">
+      </p-fileUpload>
+      <mat-error *ngIf="userForm.get('image64')?.invalid && userForm.get('image64')?.touched">
+        {{getValidationMessage(userForm,'image64')}}</mat-error>
     </div>
 
-    <p-button (click)="closeDialog()" label="Confirm" styleClass="p-button-text"></p-button>
+
+    <p-button (click)="submit()" label="Confirm" styleClass="p-button-text">
+    </p-button>
     <p-button (click)="closeDialog()" label="Cancel" styleClass="p-button-text"></p-button>
 
   </div>
-  <p-toast key="myKey1" position="bottom-center"></p-toast>
-
+</form>
+<p-toast key="myKey1" position="bottom-center"></p-toast>

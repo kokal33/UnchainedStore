@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { InputTextModule } from 'primeng/inputtext';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -20,8 +22,9 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { CardModule } from 'primeng/card';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { FileUploadModule } from 'primeng/fileupload';
-import {TabMenuModule} from 'primeng/tabmenu';
-import {FieldsetModule} from 'primeng/fieldset';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { FieldsetModule } from 'primeng/fieldset';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 import { TableModule } from 'primeng/table';
 
@@ -44,6 +47,7 @@ const mat = [
   TabMenuModule,
   DialogModule,
   ToolbarModule,
+  MatFormFieldModule,
   ConfirmDialogModule,
   RatingModule,
   InputNumberModule,
@@ -62,8 +66,8 @@ const mat = [
   DynamicDialogModule,
   CheckboxModule,
   FieldsetModule,
-  ChipModule
-
+  ChipModule,
+  InputSwitchModule
 ];
 
 @NgModule({
