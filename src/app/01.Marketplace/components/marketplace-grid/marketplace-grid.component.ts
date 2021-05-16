@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Track } from 'ngx-audio-player';
 import { DialogService } from 'primeng/dynamicdialog';
-import { MarketplaceItemDialogComponent } from '../../../01.Marketplace/components/marketplace-item-dialog/marketplace-item-dialog.component';
+import { MarketplaceItemDialogComponent } from '../marketplace-item-dialog/marketplace-item-dialog.component';
 
 @Component({
-  selector: 'app-nft-card',
-  templateUrl: './nft-card.component.html',
-  styleUrls: ['./nft-card.component.scss'],
+  selector: 'app-marketplace-grid',
+  templateUrl: './marketplace-grid.component.html',
+  styleUrls: ['./marketplace-grid.component.scss'],
   providers: [DialogService]
 })
-export class NftCardComponent implements OnInit {
+export class MarketplaceGridComponent implements OnInit {
 
   fileSource = "https://filesamples.com/samples/audio/mp3/sample3.mp3";
 
@@ -34,15 +34,18 @@ export class NftCardComponent implements OnInit {
     }
   ];
 
-  ngOnInit() {
-  }
 
+
+  ngOnInit() {
+
+  }
   viewDetails() {
     const dialog = this.dialogService.open(MarketplaceItemDialogComponent, {
       header: '',
       data: {},
     });
     dialog.onClose.subscribe(() => {
+    //  this.router.navigate(['/marketplace'])
 
     })
   }

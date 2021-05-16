@@ -1,29 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { StreamComponent } from './stream/stream.component';
+import { HomeComponent } from './03.Home/home.component';
 
 const routes: Routes = [{
 
-  path: 'nft-listings',
-  loadChildren: () => import('./music/music.module').then(m => m.MusicModule)
+  path: 'marketplace',
+  loadChildren: () => import('./01.Marketplace/marketplace.module').then(m => m.MarketplaceModule)
 },
-{ 
+{
   path: 'home',
   component: HomeComponent
 },
-// {
-//   path: 'stream',
-//   component: StreamComponent
-// },
 {
   path: '',
   redirectTo: 'home',
   pathMatch: 'full'
 },
 {
-  path: 'all-artists',
-  loadChildren: () => import('./artists-list/artists-main.module').then(m => m.ArtistsMainModule)
+  path: 'artists',
+  loadChildren: () => import('./02.Artists/artists-main.module').then(m => m.ArtistsMainModule)
 }
 ];
 

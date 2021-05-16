@@ -4,11 +4,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { SharedModule } from './shared/shared.module';
-import { MusicModule } from './music/music.module';
-import { HomeComponent } from './home/home.component';
+import { MarketplaceModule } from './01.Marketplace/marketplace.module';
+import { HomeComponent } from './03.Home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ArtistsMainModule } from './artists-list/artists-main.module';
+import { ArtistsMainModule } from './02.Artists/artists-main.module'
 import { HttpClientModule } from '@angular/common/http';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { StreamComponent } from './stream/stream.component';
@@ -26,7 +26,7 @@ import { StreamComponent } from './stream/stream.component';
     HttpClientModule,
     BrowserAnimationsModule,
     LayoutModule,
-    MusicModule,
+    MarketplaceModule,
     SharedModule,
     MatDialogModule,
     ArtistsMainModule,

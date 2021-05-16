@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { connectWallet } from 'src/app/services/providerService';
+import { connectWallet } from 'src/app/07.Services/providerService';
 import { WalletDialogComponent } from '../../dialogs/wallet-dialog/wallet-dialog.component';
 import { MenuItem } from 'primeng/api';
-import { clearCache, getUserLocal, setUserLocal } from 'src/app/services/authService';
-import { truncateMiddle } from 'src/app/helpers/stringHelper';
-import { BackendService } from 'src/app/services/backendService';
-import { User } from 'src/app/models/backendModels';
-import { EditUserDialogComponent } from '../../dialogs/edit-user-dialog/edit-user-dialog.component';
+import { clearCache, getUserLocal, setUserLocal } from 'src/app/07.Services/authService';
+import { truncateMiddle } from 'src/app/04.Helpers/stringHelper';
+import { BackendService } from 'src/app/07.Services/backendService';
+import { User } from 'src/app/06.Models/backendModels';
 import { DialogService } from 'primeng/dynamicdialog';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
@@ -37,12 +36,12 @@ export class ResponsiveToolbarComponent implements OnInit {
       {
         label: 'Music',
         icon: 'pi pi-fw pi-play',
-        routerLink: 'nft-listings'
+        routerLink: 'marketplace'
       },
       {
         label: 'Artists',
         icon: 'pi pi-fw pi-user',
-        routerLink: 'all-artists'
+        routerLink: 'artists'
       },
       {
         label: 'Stream',

@@ -1,16 +1,17 @@
 <form [formGroup]="userForm">
   <div class="p-fluid p-formgrid p-grid">
-    <div class="p-field p-col-12 p-md-6 p-p-4">
-      <p>I am an artist</p>
-      <p-inputSwitch formControlName="isArtist"></p-inputSwitch>
+    <div style="text-align: center;" class="p-field p-col-12 p-md-12 p-p-4">
+      <h2>Are you an artist?</h2>
+      <p-toggleButton formControlName="isArtist" onLabel="Yes" offLabel="No" onIcon="pi pi-check" offIcon="pi pi-times"
+        [style]="{'width': '10em'}"></p-toggleButton>
     </div>
 
-    <div class="p-field p-col-12 p-md-12">
-      <label for="firstname">How can we verify you?</label>
-      <input formControlName="name" id="name" type="text" pInputText>
-      <mat-error *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
-        {{getValidationMessage(userForm,'name')}}</mat-error>
+    <div *ngIf="userForm.get('isArtist')?.value" class="p-field p-col-12 p-md-12">
+      <label style="color: yellow;">*You will be registered as a pending artist. In order to verify yourself as an
+        artist , please contact us
+        on discord or by email after finishing this form.</label>
     </div>
+
 
     <div class="p-field p-col-12 p-md-12">
       <label for="firstname">Name</label>
@@ -43,16 +44,27 @@
 
     <div class="p-field p-col-12 p-md-12">
       <label for="city">Twitter</label>
-      <input formControlName="twitter" id="city" type="text" pInputText>
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">twitter.com/</span>
+        <input formControlName="twitter" id="city" label="Twitter" type="text" pInputText>
+      </div>
     </div>
     <div class="p-field p-col-12 p-md-12">
       <label for="city">Facebook</label>
-      <input formControlName="facebook" id="city" type="text" pInputText>
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">facebook.com/</span>
+        <input formControlName="facebook" id="city" label="Facebook" type="text" pInputText>
+      </div>
     </div>
     <div class="p-field p-col-12 p-md-12">
       <label for="city">Instagram</label>
-      <input formControlName="instagram" id="city" type="text" pInputText>
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">instagram.com/</span>
+        <input formControlName="instagram" id="city" label="Instagram" type="text" pInputText>
+      </div>
     </div>
+
+
 
 
     <div class="p-field p-col-12 p-md-12">
@@ -64,11 +76,13 @@
         {{getValidationMessage(userForm,'image64')}}</mat-error>
     </div>
 
-
-    <p-button (click)="submit()" label="Confirm" styleClass="p-button-text">
-    </p-button>
-    <p-button (click)="closeDialog()" label="Cancel" styleClass="p-button-text"></p-button>
-
+    <div class="p-col-6">
+      <button (click)="submit()" pButton pRipple type="button" label="Confirm" class="p-button-raised"></button>
+    </div>
+    <div class="p-col-6">
+      <button (click)="closeDialog()" pButton pRipple type="button" label="Cancel"
+        class="p-button-raised p-button-secondary"></button>
+    </div>
   </div>
 </form>
 <p-toast key="myKey1" position="bottom-center"></p-toast>

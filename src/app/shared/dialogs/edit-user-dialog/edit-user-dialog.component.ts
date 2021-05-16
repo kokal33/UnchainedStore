@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ErrorHandlingsHelper } from 'src/app/helpers/errorHandlingHelper';
-import { User } from 'src/app/models/backendModels';
-import { getUserLocal, setUserLocal } from 'src/app/services/authService';
-import { BackendService } from 'src/app/services/backendService';
+import { ErrorHandlingsHelper } from 'src/app/04.Helpers/errorHandlingHelper';
+import { User } from 'src/app/06.Models/backendModels';
+import { getUserLocal, setUserLocal } from 'src/app/07.Services/authService';
+import { BackendService } from 'src/app/07.Services/backendService';
 
 @Component({
   selector: 'app-edit-user-dialog',
