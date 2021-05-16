@@ -6,19 +6,18 @@ import { getUserLocal } from 'src/app/services/authService';
 import { EditUserDialogComponent } from 'src/app/shared/dialogs/edit-user-dialog/edit-user-dialog.component';
 
 @Component({
-  selector: 'app-artist-details',
-  templateUrl: './artist-details.component.html',
-  styleUrls: ['./artist-details.component.scss'],
+  selector: 'app-user-details',
+  templateUrl: './user-details.component.html',
+  styleUrls: ['./user-details.component.scss'],
   providers: [DialogService]
 })
-export class ArtistDetailsComponent implements OnInit {
+export class UserDetailsComponent implements OnInit {
 
   constructor(public dialogService: DialogService) { }
 
   items!: MenuItem[];
   user: User | undefined;
   activeItem!: MenuItem;
-  userDetails: any;
 
   ngOnInit() {
     this.user = getUserLocal();
@@ -37,7 +36,7 @@ export class ArtistDetailsComponent implements OnInit {
     dialogEdit.onClose.subscribe(data => {
       //use this data to refresh artist details
       if (data) {
-        this.userDetails = data;
+        this.user = data;
       }
     })
   }

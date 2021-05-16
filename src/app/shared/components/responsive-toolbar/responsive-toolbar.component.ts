@@ -10,6 +10,7 @@ import { User } from 'src/app/models/backendModels';
 import { EditUserDialogComponent } from '../../dialogs/edit-user-dialog/edit-user-dialog.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -53,7 +54,7 @@ export class ResponsiveToolbarComponent implements OnInit {
     if (this.isProduction)
       this.items = [];
   }
-  constructor(public dialog: MatDialog, public dialogService: DialogService, public backendService: BackendService) { }
+  constructor(private dialog: MatDialog, private dialogService: DialogService, private backendService: BackendService, private router: Router) { }
 
   onClickMenuItem(event: any) {
   }
@@ -87,11 +88,7 @@ export class ResponsiveToolbarComponent implements OnInit {
   };
 
   viewProfile() {
-    const dialogEdit = this.dialogService.open(EditUserDialogComponent, {
-      width: "40%",
-      header: this.user?.publicAddress,
-      data: {}
-    });
+    this.router.navigate(['/user-details']);
   }
   logout() {
     clearCache();

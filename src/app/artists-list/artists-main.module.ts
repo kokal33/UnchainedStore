@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ArtistGridComponent } from './components/artist-grid/artist-grid.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-import { ArtistDetailsComponent } from './components/artist-details/artist-details.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { NftCardComponent } from '../shared/components/nft-card/nft-card.component';
 import { NftDetailsComponent } from '../music/components/nft-details/nft-details.component';
 import { BidHistoryComponent } from '../music/components/bid-history/bid-history.component';
@@ -16,8 +16,8 @@ const routes: Routes = [
 
   },
   {
-    path: 'artist-details',
-    component: ArtistDetailsComponent,
+    path: 'user-details',
+    component: UserDetailsComponent,
     children: [{
       path: 'nft-listings',
       component: NftCardComponent,
@@ -47,7 +47,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ArtistGridComponent, ArtistDetailsComponent],
+  declarations: [ArtistGridComponent, UserDetailsComponent],
   imports: [RouterModule.forChild(routes), CommonModule, SharedModule
   ],
   exports: [RouterModule],
