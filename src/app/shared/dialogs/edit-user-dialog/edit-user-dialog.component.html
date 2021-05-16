@@ -4,8 +4,16 @@
       <p>I am an artist</p>
       <p-inputSwitch formControlName="isArtist"></p-inputSwitch>
     </div>
+
     <div class="p-field p-col-12 p-md-12">
-      <label for="firstname">Artist Name</label>
+      <label for="firstname">How can we verify you?</label>
+      <input formControlName="name" id="name" type="text" pInputText>
+      <mat-error *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
+        {{getValidationMessage(userForm,'name')}}</mat-error>
+    </div>
+
+    <div class="p-field p-col-12 p-md-12">
+      <label for="firstname">Name</label>
       <input formControlName="name" id="name" type="text" pInputText>
       <mat-error *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
         {{getValidationMessage(userForm,'name')}}</mat-error>
