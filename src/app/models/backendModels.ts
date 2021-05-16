@@ -10,14 +10,11 @@ export interface User {
   bio: string,
   profilePic: string,
   verified: boolean
+  twitter: string,
+  facebook: string,
+  instagram: string,
+  linkedIn: string,
+  soundCloud: string,
+  bandCamp: string,
+  beatport: string
 }
-
-export interface Artist extends User {
-    twitter: string,
-    facebook: string,
-    instagram: string,
-    linkedIn: string,
-    soundCloud: string,
-    bandCamp: string,
-    beatport: string
-  }

@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { connectWallet } from 'src/app/services/providerService';
 import { WalletDialogComponent } from '../../dialogs/wallet-dialog/wallet-dialog.component';
 import { MenuItem } from 'primeng/api';
-import { clearCache, getUser, setUser } from 'src/app/services/authService';
+import { clearCache, getUserLocal, setUserLocal } from 'src/app/services/authService';
 import { truncateMiddle } from 'src/app/helpers/stringHelper';
 import { BackendService } from 'src/app/services/backendService';
 import { User } from 'src/app/models/backendModels';
@@ -27,7 +27,7 @@ export class ResponsiveToolbarComponent implements OnInit {
 
   ngOnInit() {
     this.isProduction = environment.production;
-    this.user = getUser();
+    this.user = getUserLocal();
     if (this.user) {
       this.isWalletConnected = true;
       this.address = truncateMiddle(this.user.publicAddress, 16);
@@ -62,7 +62,6 @@ export class ResponsiveToolbarComponent implements OnInit {
     const dialogRef = this.dialogService.open(WalletDialogComponent, {
       data: {},
       styleClass:'wallet-dialog2'
-
     });
 
     dialogRef.onClose.subscribe(async (res: string) => {
@@ -75,7 +74,7 @@ export class ResponsiveToolbarComponent implements OnInit {
       // Login user with the signature provided
       try {
         const result = await this.backendService.login(walletConnect);
-        setUser(result.body as User);
+        setUserLocal(result.body as User);
         console.log("Login successful");
         this.isWalletConnected = true;
         this.address = truncateMiddle(walletConnect.publicAddress, 12) + " Connected";

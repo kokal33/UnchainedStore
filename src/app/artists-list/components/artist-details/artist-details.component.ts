@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { User } from 'src/app/models/backendModels';
-import { getUser } from 'src/app/services/authService';
+import { getUserLocal } from 'src/app/services/authService';
 import { EditUserDialogComponent } from 'src/app/shared/dialogs/edit-user-dialog/edit-user-dialog.component';
 
 @Component({
@@ -21,7 +21,7 @@ export class ArtistDetailsComponent implements OnInit {
   userDetails: any;
 
   ngOnInit() {
-    this.user = getUser();
+    this.user = getUserLocal();
     this.items = [
       { label: 'Collections', routerLink: ['nft-listings'] },
       { label: 'Created' },

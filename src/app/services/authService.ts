@@ -1,10 +1,10 @@
 import { User } from "../models/backendModels";
 
-    export function setUser(user: User) {
+    export function setUserLocal(user: User) {
         localStorage.setItem('loggedInUser', JSON.stringify(user));
     }
 
-    export function getUser() {
+    export function getUserLocal() {
       const userString = localStorage.getItem("loggedInUser");
       if (userString)
           return JSON.parse(userString) as User;

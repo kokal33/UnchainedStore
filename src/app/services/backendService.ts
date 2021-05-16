@@ -19,7 +19,6 @@ export class BackendService {
     return await this.http.post(this.base + "users/updateUser", user, options).toPromise();
   }
 
-
 }
 
 
