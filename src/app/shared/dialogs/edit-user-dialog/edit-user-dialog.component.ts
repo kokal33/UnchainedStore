@@ -17,7 +17,7 @@ export class EditUserDialogComponent implements OnInit {
   occupations!: any[];
   genres!: any[];
   customUpload = true;
-  uploadedFile!: any;
+  uploadedFile!: any[];
   artists!: any[];
   wantsToBeArtist = false;
   userForm!: FormGroup;
@@ -69,9 +69,9 @@ export class EditUserDialogComponent implements OnInit {
       // Convert form into user model
       const userForm: User = this.userForm.getRawValue();
       const userUpdate = await this.backendService.updateUser(userForm);
-      if (userUpdate.status == 200){
+      if (userUpdate.status == 200) {
         //TODO: if not 200 show some message, also on success
-      setUserLocal(userForm);
+        setUserLocal(userForm);
       }
 
       this.ref.close(userForm);
@@ -81,8 +81,12 @@ export class EditUserDialogComponent implements OnInit {
   myUploader(event: any) {
     this.uploadedFile = event.files[0];
     this.getBase64(this.uploadedFile);
+    this.uploadedFile = [];
+    event.files = [];
     this.messageService.add({ key: 'myKey1', severity: 'success', summary: 'Success!', detail: 'Uploaded profile picture', life: 1500 });
   }
+
+
 
   getBase64(file: any) {
     let me = this;

@@ -74,7 +74,7 @@
         size="xlarge">
       </p-avatar>
 
-      <p-fileUpload cla #fubauto mode="basic" name="demo[]" customUpload="true" accept="image/*" maxFileSize="1000000"
+      <p-fileUpload [files]="uploadedFile" #fubauto mode="basic" name="demo[]" customUpload="true" accept="image/*" maxFileSize="1000000"
         (uploadHandler)="myUploader($event)" [auto]="true" chooseLabel="Browse">
       </p-fileUpload>
       <mat-error *ngIf="userForm.get('profilePic')?.invalid && userForm.get('profilePic')?.touched">
