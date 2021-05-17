@@ -2,8 +2,8 @@
   <div class="p-fluid p-formgrid p-grid">
     <div style="text-align: center;" class="p-field p-col-12 p-md-12 p-p-4">
       <h2>Are you an artist?</h2>
-      <p-toggleButton formControlName="isArtist" onLabel="Yes" offLabel="No" onIcon="pi pi-check" offIcon="pi pi-times"
-        [style]="{'width': '10em'}"></p-toggleButton>
+      <p-toggleButton formControlName="isArtist" onLabel="Yes" offLabel="No" [onIcon]="'pi pi-check'"
+        offIcon="pi pi-times" [style]="{'width': '10em'}"></p-toggleButton>
     </div>
 
     <div *ngIf="userForm.get('isArtist')?.value" class="p-field p-col-12 p-md-12">
@@ -67,13 +67,18 @@
 
 
 
-    <div class="p-field p-col-12 p-md-12">
-      <label>Upload profile picture</label>
-      <p-fileUpload #fubauto mode="basic" name="demo[]" customUpload="true" accept="image/*" maxFileSize="1000000"
+    <div style="text-align: center;" class="p-field p-col-12 p-md-12">
+      <div style="padding: 10px;"> <label>Upload profile picture</label></div>
+      <p-avatar [style]="{'width':'10rem','height':'10rem'}"
+        [image]="userForm.get('profilePic')?.value || '../../assets/images/testUserProfile.jpg'" styleClass="p-m-4"
+        size="xlarge">
+      </p-avatar>
+
+      <p-fileUpload cla #fubauto mode="basic" name="demo[]" customUpload="true" accept="image/*" maxFileSize="1000000"
         (uploadHandler)="myUploader($event)" [auto]="true" chooseLabel="Browse">
       </p-fileUpload>
-      <mat-error *ngIf="userForm.get('image64')?.invalid && userForm.get('image64')?.touched">
-        {{getValidationMessage(userForm,'image64')}}</mat-error>
+      <mat-error *ngIf="userForm.get('profilePic')?.invalid && userForm.get('profilePic')?.touched">
+        {{getValidationMessage(userForm,'profilePic')}}</mat-error>
     </div>
 
     <div class="p-col-6">

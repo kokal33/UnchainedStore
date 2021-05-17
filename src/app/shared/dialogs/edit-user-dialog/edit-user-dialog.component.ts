@@ -10,7 +10,7 @@ import { BackendService } from 'src/app/07.Services/backendService';
 @Component({
   selector: 'app-edit-user-dialog',
   templateUrl: './edit-user-dialog.component.html',
-  styleUrls: ['./edit-user-dialog.component.css'],
+  styleUrls: ['./edit-user-dialog.component.scss'],
   providers: [MessageService, BackendService]
 })
 export class EditUserDialogComponent implements OnInit {
