@@ -47,7 +47,8 @@
         <h1>Wallet</h1>
         <div style="text-align: center;">
           <p-chip [label]="truncateText(user?.publicAddress || '',22)" styleClass="custom-chip"> <button pButton pRipple
-              type="button" icon="pi pi-copy" (click)="copyToClipboard(user?.publicAddress)" class="p-button-rounded p-button-text"></button></p-chip>
+              type="button" icon="pi pi-copy" pTooltip="Copied!" tooltipPosition="top" life="1000" tooltipEvent="focus"
+              (click)="copyToClipboard(user?.publicAddress)" class="p-button-rounded p-button-text"></button></p-chip>
 
 
         </div>
