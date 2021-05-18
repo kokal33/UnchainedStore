@@ -1,0 +1,28 @@
+label {
+  color: white;
+}
+
+.img-footer {
+  height: 90px;
+}
+.img-social {
+  height: 40px;
+}
+
+.img-fixed-size {
+  width: 300px;
+  height: 100px;
+}
+
+@media (max-width: 500px) {
+  .img-fixed-size {
+    width: 170px;
+    height: auto;
+  }
+  .align-center {
+    text-align: center;
+  }
+}
+a {
+  padding: 5px;
+}

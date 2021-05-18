@@ -45,7 +45,14 @@
       <p-card [style]="{'border-radius':'20px','background-color':'rgb(12 11 11)'}">
 
         <h1>Wallet</h1>
-        <p-chip [label]="user?.publicAddress" styleClass="custom-chip"></p-chip>
+        <div style="text-align: center;">
+          <p-chip [label]="truncateText(user?.publicAddress || '',22)" styleClass="custom-chip"> <button pButton pRipple
+              type="button" icon="pi pi-copy" (click)="copyToClipboard(user?.publicAddress)" class="p-button-rounded p-button-text"></button></p-chip>
+
+
+        </div>
+
+        <p-divider></p-divider>
         <h1>Socials</h1>
         <div style="text-align: center;">
 

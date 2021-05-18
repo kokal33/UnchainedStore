@@ -35,11 +35,15 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { DataViewModule } from 'primeng/dataview';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ChipModule } from 'primeng/chip';
+import { StepsModule } from 'primeng/steps';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 const mat = [
 
   ToastModule,
+  StepsModule,
+  TooltipModule,
   TableModule,
   DataViewModule,
   TabViewModule,

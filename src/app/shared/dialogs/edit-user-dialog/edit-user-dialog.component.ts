@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MessageService } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ErrorHandlingsHelper } from 'src/app/04.Helpers/errorHandlingHelper';
 import { User } from 'src/app/06.Models/backendModels';
@@ -14,46 +14,39 @@ import { BackendService } from 'src/app/07.Services/backendService';
   providers: [MessageService, BackendService]
 })
 export class EditUserDialogComponent implements OnInit {
-  occupations!: any[];
-  genres!: any[];
   customUpload = true;
   uploadedFile!: any[];
-  artists!: any[];
   wantsToBeArtist = false;
+  items!: MenuItem[];
+  activeIndex: number = 0;
   userForm!: FormGroup;
   user: User | undefined;
   getValidationMessage = ErrorHandlingsHelper.getValidationMessage;
 
   constructor(private messageService: MessageService, public ref: DynamicDialogRef, private fb: FormBuilder, private backendService: BackendService) {
-    this.genres = [
-      { name: 'Rock', code: 'NY' },
-      { name: 'Techno', code: 'RM' },
-      { name: 'Trance', code: 'LDN' },
-      { name: 'Metal', code: 'IST' },
-      { name: 'Jazz', code: 'PRS' }
-    ];
-    this.occupations = [
-      { name: 'Disc Jockey', code: 'NY' },
-      { name: 'Producer', code: 'RM' },
-      { name: 'Executive', code: 'LDN' },
-      { name: 'Remixer', code: 'IST' },
-      { name: 'Paris', code: 'PRS' }
-    ];
   }
 
   ngOnInit(): void {
-
+    this.uploadedFile = [];
+    this.items = [{
+      label: 'Profile Picture',
+    },
+    {
+      label: 'Personal',
+    },
+    {
+      label: 'Social Media',
+    }
+    ];
     this.userForm = this.fb.group({
       publicAddress: [""],
-      bio: [""],
+      bio: ["", Validators.required],
       isArtist: [false],
       name: ["", Validators.required],
       instagram: [""],
       twitter: [""],
       facebook: [""],
       profilePic: [null, Validators.required]
-      // occupations: [null, Validators.required],
-      // genres: [null, Validators.required]
     })
     this.user = getUserLocal();
     // If user exists pre-populate form
@@ -61,7 +54,12 @@ export class EditUserDialogComponent implements OnInit {
       this.userForm.patchValue(this.user);
   }
 
-
+  nextPage() {
+    this.activeIndex = this.activeIndex + 1;
+  }
+  prevPage() {
+    this.activeIndex = this.activeIndex - 1;
+  }
   async submit() {
     if (this.userForm.invalid) {
       this.userForm.markAllAsTouched();

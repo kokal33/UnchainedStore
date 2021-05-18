@@ -10,12 +10,13 @@ import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { SubscribeDialogComponent } from './dialogs/subscribe-dialog/subscribe-dialog.component';
 import { EditUserDialogComponent } from './dialogs/edit-user-dialog/edit-user-dialog.component';
 import { NftCardComponent } from './components/nft-card/nft-card.component';
+import { ResponsiveFooterComponent } from './components/responsive-footer/responsive-footer.component';
 
 
 
 @NgModule({
-  declarations: [ResponsiveToolbarComponent, WalletDialogComponent, SubscribeDialogComponent, EditUserDialogComponent, NftCardComponent],
+  declarations: [ResponsiveToolbarComponent, WalletDialogComponent, SubscribeDialogComponent, EditUserDialogComponent, NftCardComponent, ResponsiveFooterComponent],
   imports: [FlexLayoutModule, MaterialModule, ReactiveFormsModule, FormsModule, CommonModule, RouterModule, NgxAudioPlayerModule],
-  exports: [FlexLayoutModule, MaterialModule, ReactiveFormsModule, FormsModule, ResponsiveToolbarComponent]
+  exports: [FlexLayoutModule, MaterialModule, ReactiveFormsModule, FormsModule, ResponsiveToolbarComponent,ResponsiveFooterComponent]
 })
 export class SharedModule { }

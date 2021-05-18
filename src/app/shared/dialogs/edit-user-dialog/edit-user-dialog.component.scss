@@ -1,0 +1,8 @@
+:host::ng-deep .p-avatar img {
+  border-radius: 50%;
+  border-style: solid;
+  border-color: white;
+}
+:host::ng-deep.p-card .p-card-subtitle {
+  padding: 15px;
+}
