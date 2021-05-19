@@ -10,6 +10,7 @@ import { User } from 'src/app/06.Models/backendModels';
 import { DialogService } from 'primeng/dynamicdialog';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { GoogleAnalyticsService } from 'src/app/07.Services/google-analytics.service';
 
 
 @Component({
@@ -53,7 +54,7 @@ export class ResponsiveToolbarComponent implements OnInit {
     if (this.isProduction)
       this.items = [];
   }
-  constructor(private dialog: MatDialog, private dialogService: DialogService, private backendService: BackendService, private router: Router) { }
+  constructor(private dialog: MatDialog, private dialogService: DialogService, private backendService: BackendService, private router: Router, private googleService: GoogleAnalyticsService) { }
 
   onClickMenuItem(event: any) {
   }
@@ -61,8 +62,11 @@ export class ResponsiveToolbarComponent implements OnInit {
   openWalletsModal() {
     const dialogRef = this.dialogService.open(WalletDialogComponent, {
       data: {},
-      styleClass:'wallet-dialog2'
+      styleClass: 'wallet-dialog2'
     });
+    this
+      .googleService
+      .eventEmitter("wallet", "UserIsConnectingWallet", "Wallet", this.address);
 
     dialogRef.onClose.subscribe(async (res: string) => {
       // Check for wallet connection and get signature
@@ -78,6 +82,9 @@ export class ResponsiveToolbarComponent implements OnInit {
         console.log("Login successful");
         this.isWalletConnected = true;
         this.address = truncateMiddle(walletConnect.publicAddress, 12) + " Connected";
+        this
+          .googleService
+          .eventEmitter("wallet", "UserConnectedWallet", "Wallet", this.address);
       }
       catch (err) {
         console.log("Login unsuccessful: ", err)

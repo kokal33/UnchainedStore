@@ -12,6 +12,7 @@ import { ArtistsMainModule } from './02.Artists/artists-main.module'
 import { HttpClientModule } from '@angular/common/http';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { StreamComponent } from './stream/stream.component';
+import { GoogleAnalyticsService } from './07.Services/google-analytics.service';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { StreamComponent } from './stream/stream.component';
     MatAutocompleteModule,
     HttpClientModule,
   ],
+  providers: [GoogleAnalyticsService],
 
   bootstrap: [AppComponent]
 })
