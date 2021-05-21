@@ -18,3 +18,21 @@ export interface User {
   bandCamp: string,
   beatport: string
 }
+
+export interface TrackModel {
+  id: number,
+  title: string,
+  description: string,
+  ownerOfPublicAddress: string,
+  isMinted: boolean,
+  isAuctioned: boolean,
+  isListed: boolean,
+  isSold: boolean,
+  timestamp: Date
+}
+
+export interface MintModel {
+  to: string,
+  trackId: number,
+  password: string
+}

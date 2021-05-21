@@ -8,7 +8,7 @@
   <ng-template pTemplate="end">
 
     <!-- TODO: On hover show publicAddress if user has a name, if not show publicAddress instead of name -->
-    <button *ngIf="isWalletConnected" pButton pRipple type="button" label="Create NFT"
+    <button *ngIf="isWalletConnected && !isProduction" pButton pRipple type="button" label="Create NFT"
       class="p-button-rounded p-button-help"></button>
     <button pButton pRipple type="button" *ngIf="!isWalletConnected" (click)="openWalletsModal()" label="Connect wallet"
       icon="pi pi-sign-in" class="p-button-rounded p-button-danger"></button>
@@ -17,7 +17,6 @@
   </ng-template>
 
 </p-menubar>
-<!-- TODO: overlaypanel padding is now 1rem, make it 0,2rem -->
 <p-overlayPanel #op>
   <ng-template pTemplate>
     <button *ngIf="!isProduction" (click)="viewProfile(); op.hide()" pButton pRipple type="button" label="View Profile"
