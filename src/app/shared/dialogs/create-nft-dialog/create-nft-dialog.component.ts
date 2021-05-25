@@ -106,9 +106,9 @@ export class CreateNftDialogComponent implements OnInit {
       let formData: FormData = new FormData();
       formData.append('Title', nft.title);
       formData.append('Description', nft.description);
-      formData.append('OwnerPublicAddress', this.user ? this.user.publicAddress : "");
-      formData.append('CoverPhoto', nft.coverPhoto);
-      formData.append('Track', nft.track);
+      formData.append('OwnerOfPublicAddress', this.user ? this.user.publicAddress : "");
+      formData.append('CoverImage', nft.coverPhoto);
+      formData.append('File', nft.track);
       const result = await this.backendService.postTrack(formData);
       console.log(result);
     }
