@@ -101,6 +101,8 @@ export class ResponsiveToolbarComponent implements OnInit {
         this
           .googleService
           .eventEmitter("wallet", "UserConnectedWallet", "Wallet", this.address);
+          window.location.reload();
+
       }
       catch (err) {
         console.log("Login unsuccessful: ", err)

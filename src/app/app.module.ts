@@ -32,6 +32,7 @@ import { MessageService } from 'primeng/api';
     SharedModule,
     MatDialogModule,
     ArtistsMainModule,
+
     MatAutocompleteModule,
     HttpClientModule
   ],
