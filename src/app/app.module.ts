@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { StreamComponent } from './stream/stream.component';
 import { GoogleAnalyticsService } from './07.Services/google-analytics.service';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -32,9 +33,9 @@ import { GoogleAnalyticsService } from './07.Services/google-analytics.service';
     MatDialogModule,
     ArtistsMainModule,
     MatAutocompleteModule,
-    HttpClientModule,
+    HttpClientModule
   ],
-  providers: [GoogleAnalyticsService],
+  providers: [GoogleAnalyticsService, MessageService],
 
   bootstrap: [AppComponent]
 })

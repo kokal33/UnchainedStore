@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { connectWallet } from 'src/app/07.Services/providerService';
 import { WalletDialogComponent } from '../../dialogs/wallet-dialog/wallet-dialog.component';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { clearCache, getUserLocal, setUserLocal } from 'src/app/07.Services/authService';
 import { truncateMiddle } from 'src/app/04.Helpers/stringHelper';
 import { BackendService } from 'src/app/07.Services/backendService';
@@ -12,6 +11,9 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { GoogleAnalyticsService } from 'src/app/07.Services/google-analytics.service';
 import { CreateNftDialogComponent } from '../../dialogs/create-nft-dialog/create-nft-dialog.component';
+import { ProviderService } from 'src/app/07.Services/provider.service';
+import { UnchainedTokenService } from 'src/app/08.Contracts/1.UnchainedToken/unchained-token.service';
+import { MarketplaceContractService } from 'src/app/08.Contracts/2.Marketplace/marketplace-contract.service';
 
 
 @Component({
@@ -55,7 +57,10 @@ export class ResponsiveToolbarComponent implements OnInit {
     if (this.isProduction)
       this.items = [];
   }
-  constructor(private dialog: MatDialog, private dialogService: DialogService, private backendService: BackendService, private router: Router, private googleService: GoogleAnalyticsService) { }
+  constructor(private dialog: MatDialog, private dialogService: DialogService,
+    private backendService: BackendService, private router: Router,
+    private googleService: GoogleAnalyticsService, private messageService: MessageService,
+    private providerService: ProviderService, private unchainedTokenService: MarketplaceContractService) { }
 
   onClickMenuItem(event: any) {
   }
@@ -80,11 +85,12 @@ export class ResponsiveToolbarComponent implements OnInit {
 
     dialogRef.onClose.subscribe(async (res: string) => {
       // Check for wallet connection and get signature
-      const walletConnect = await connectWallet(res);
+      const walletConnect = await this.providerService.connectWallet(res);
       if (!walletConnect) {
         console.log("Wallet connection unsuccessful");
         return;
       }
+      this.unchainedTokenService.purchaseProduct(2,0.1);
       // Login user with the signature provided
       try {
         const result = await this.backendService.login(walletConnect);
