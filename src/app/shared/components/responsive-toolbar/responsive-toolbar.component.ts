@@ -11,6 +11,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { GoogleAnalyticsService } from 'src/app/07.Services/google-analytics.service';
+import { CreateNftDialogComponent } from '../../dialogs/create-nft-dialog/create-nft-dialog.component';
 
 
 @Component({
@@ -57,6 +58,15 @@ export class ResponsiveToolbarComponent implements OnInit {
   constructor(private dialog: MatDialog, private dialogService: DialogService, private backendService: BackendService, private router: Router, private googleService: GoogleAnalyticsService) { }
 
   onClickMenuItem(event: any) {
+  }
+
+  openCreateNftModal() {
+    const dialogRef = this.dialogService.open(CreateNftDialogComponent, {
+      data: {},
+      styleClass: '',
+      width:'30%',
+      header:'Create your NFT'
+    });
   }
 
   openWalletsModal() {

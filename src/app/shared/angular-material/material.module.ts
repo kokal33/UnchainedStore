@@ -5,6 +5,7 @@ import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+import {InplaceModule} from 'primeng/inplace';
 
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -48,6 +49,7 @@ const mat = [
   DataViewModule,
   TabViewModule,
   NgxAudioPlayerModule,
+  InplaceModule,
   InputTextModule,
   TabMenuModule,
   DialogModule,

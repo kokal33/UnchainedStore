@@ -1,0 +1,137 @@
+<form [formGroup]="nftForm">
+  <div style="color: white; text-align: center" class="p-grid">
+    <div class="p-col-12">
+      <!--card-1-->
+      <p-card styleClass="p-card-shadow">
+        <div class="p-grid">
+          <div class="p-col-6">
+            <div style="text-align: start; padding-left: 20px" class="box">
+              <h3>@{{ user.name }}</h3>
+            </div>
+          </div>
+        </div>
+        <div class="p-grid">
+          <div class="p-col-12">
+            <div style="text-align: start; padding-left: 20px" class="box">
+              <p-inplace [style]="{ 'min-height': '33px' }" [active]="active">
+                <ng-template pTemplate="display">
+                  <span (click)="inplaceToggle()">
+                    {{ nftForm.get("title")?.value || "Track Name" }}</span
+                  >
+                </ng-template>
+                <ng-template pTemplate="content">
+                  <input
+                    #trackName
+                    (keydown.enter)="active = false"
+                    [style]="{
+                      'border-style': 'none',
+                      background: 'inherit',
+                      'font-size': '2rem',
+                      'font-weight': 'bold'
+                    }"
+                    type="text"
+                    pInputText
+                    formControlName="title"
+                  />
+                </ng-template>
+              </p-inplace>
+            </div>
+          </div>
+        </div>
+        <ng-template pTemplate="header">
+          <div>
+            <img
+              class="img"
+              *ngIf="uploadedFiles.length > 0"
+              [src]="nftForm.get('coverPhoto')?.value"
+            />
+            <p-fileUpload
+              chooseIcon="pi pi-upload"
+              [auto]="true"
+              *ngIf="uploadedFiles.length > 0"
+              mode="basic"
+              styleClass="header-img"
+              [style]="{
+                zoom: '1.5',
+                top: '15%',
+                right: '10%',
+                'border-radius': '50%',
+                position: 'absolute'
+              }"
+              [customUpload]="true"
+              name="demo[]"
+              accept="image/*"
+              maxFileSize="1000000"
+              (uploadHandler)="onUpload($event)"
+            ></p-fileUpload>
+          </div>
+
+          <div
+            *ngIf="uploadedFiles.length == 0"
+            style="width: 500px; height: 350px; padding-top: 20%"
+          >
+            <h2 *ngIf="uploadedFiles.length == 0" class="p-p-2">
+              Track cover photo
+            </h2>
+            <p-fileUpload
+              [auto]="true"
+              *ngIf="uploadedFiles.length == 0"
+              mode="basic"
+              styleClass="header-img"
+              [style]="{ zoom: '2.5', 'border-radius': '50%' }"
+              [customUpload]="true"
+              name="demo[]"
+              accept="image/*"
+              maxFileSize="1000000"
+              (uploadHandler)="onUpload($event)"
+            ></p-fileUpload>
+          </div>
+        </ng-template>
+        <div class="p-grid">
+          <div class="p-col-12">
+            <!-- <ngx-audio-player [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false"
+              muted="muted" [displayPlaylist]="msaapDisplayPlayList" [pageSizeOptions]="msaapPageSizeOptions"
+              (trackEnded)="onEnded($event)" [displayVolumeControls]="msaapDisplayVolumeControls"
+              [displayRepeatControls]="msaapDisplayRepeatControls" [disablePositionSlider]="msaapDisablePositionSlider"
+              [displayArtist]="msaapDisplayArtist" [displayDuration]="msaapDisplayDuration" [expanded]="true">
+            </ngx-audio-player> -->
+          </div>
+        </div>
+        <div
+          style="padding-left: 10%; padding-right: 10%"
+          class="middle-divider"
+        >
+          <p-divider></p-divider>
+        </div>
+        <ng-template pTemplate="footer">
+          <div class="p-grid">
+            <div class="p-col-6">
+              <div style="text-align: center" class="box">
+                <h3 style="color: #c950aa">Current Bid</h3>
+                <div
+                  style="padding-left: 20%; padding-right: 20%"
+                  class="footer-divider"
+                >
+                  <p-divider></p-divider>
+                </div>
+                <h3>400 *</h3>
+              </div>
+            </div>
+            <div class="p-col-6">
+              <div style="text-align: center" class="box">
+                <h3 style="color: #c950aa">Ending in</h3>
+                <div
+                  style="padding-left: 20%; padding-right: 20%"
+                  class="footer-divider"
+                >
+                  <p-divider></p-divider>
+                </div>
+                <h3>2 days</h3>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+</form>

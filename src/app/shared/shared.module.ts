@@ -11,11 +11,12 @@ import { SubscribeDialogComponent } from './dialogs/subscribe-dialog/subscribe-d
 import { EditUserDialogComponent } from './dialogs/edit-user-dialog/edit-user-dialog.component';
 import { NftCardComponent } from './components/nft-card/nft-card.component';
 import { ResponsiveFooterComponent } from './components/responsive-footer/responsive-footer.component';
+import { CreateNftDialogComponent } from './dialogs/create-nft-dialog/create-nft-dialog.component';
 
 
 
 @NgModule({
-  declarations: [ResponsiveToolbarComponent, WalletDialogComponent, SubscribeDialogComponent, EditUserDialogComponent, NftCardComponent, ResponsiveFooterComponent],
+  declarations: [ResponsiveToolbarComponent, WalletDialogComponent, SubscribeDialogComponent, EditUserDialogComponent, NftCardComponent, ResponsiveFooterComponent, CreateNftDialogComponent],
   imports: [FlexLayoutModule, MaterialModule, ReactiveFormsModule, FormsModule, CommonModule, RouterModule, NgxAudioPlayerModule],
   exports: [FlexLayoutModule, MaterialModule, ReactiveFormsModule, FormsModule, ResponsiveToolbarComponent,ResponsiveFooterComponent]
 })

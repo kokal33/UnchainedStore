@@ -8,7 +8,7 @@
   <ng-template pTemplate="end">
 
     <!-- TODO: On hover show publicAddress if user has a name, if not show publicAddress instead of name -->
-    <button *ngIf="isWalletConnected && !isProduction" pButton pRipple type="button" label="Create NFT"
+    <button (click)="openCreateNftModal()" *ngIf="isWalletConnected && !isProduction && user.verified" pButton pRipple type="button" label="Create NFT"
       class="p-button-rounded p-button-help"></button>
     <button pButton pRipple type="button" *ngIf="!isWalletConnected" (click)="openWalletsModal()" label="Connect wallet"
       icon="pi pi-sign-in" class="p-button-rounded p-button-danger"></button>
