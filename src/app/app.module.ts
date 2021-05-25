@@ -31,6 +31,7 @@ import { GoogleAnalyticsService } from './07.Services/google-analytics.service';
     SharedModule,
     MatDialogModule,
     ArtistsMainModule,
+
     MatAutocompleteModule,
     HttpClientModule,
   ],
