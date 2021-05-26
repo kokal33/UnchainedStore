@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 import { GoogleAnalyticsService } from 'src/app/07.Services/google-analytics.service';
 import { CreateNftDialogComponent } from '../../dialogs/create-nft-dialog/create-nft-dialog.component';
 import { ProviderService } from 'src/app/07.Services/provider.service';
-import { UnchainedTokenService } from 'src/app/08.Contracts/1.UnchainedToken/unchained-token.service';
-import { MarketplaceContractService } from 'src/app/08.Contracts/2.Marketplace/marketplace-contract.service';
+import { UnchainedTokenService } from 'src/app/08.Contracts/UnchainedToken/unchained-token.service';
+import { MarketplaceContractService } from 'src/app/08.Contracts/Marketplace/marketplace-contract.service';
 
 
 @Component({
@@ -90,7 +90,6 @@ export class ResponsiveToolbarComponent implements OnInit {
         console.log("Wallet connection unsuccessful");
         return;
       }
-      this.unchainedTokenService.purchaseProduct(2,0.1);
       // Login user with the signature provided
       try {
         const result = await this.backendService.login(walletConnect);
