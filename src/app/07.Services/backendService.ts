@@ -24,7 +24,6 @@ export class BackendService {
     return await this.http.post(this.base + "tracks/postTrack", model, options).toPromise();
   }
 
-
   async updateUser(user: User): Promise<HttpResponse<any>> {
     return await this.http.post(this.base + "users/updateUser", user, options).toPromise();
   }

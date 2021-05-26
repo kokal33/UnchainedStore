@@ -1,8 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DynamicDialogConfig, DynamicDialogInjector, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { WalletDialogData } from 'src/app/06.Models/dialogModels';
-import { EnabledProviders, getWalletProviders } from 'src/app/07.Services/providerService';
+import { Component, OnInit } from '@angular/core';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { getWalletProviders } from 'src/app/04.Helpers/providerHelper';
+import { EnabledProviders } from 'src/app/07.Services/provider.service';
 
 @Component({
   selector: 'app-wallet-dialog',
@@ -24,3 +23,4 @@ export class WalletDialogComponent implements OnInit {
     this.ref.close(wallet);
   }
 }
+

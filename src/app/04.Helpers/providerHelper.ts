@@ -1,3 +1,5 @@
+import { EnabledProviders } from "../07.Services/provider.service";
+
 export function prepareSignDataV3(chainId: number) {
 
   return JSON.stringify(
@@ -35,4 +37,17 @@ export function prepareSignBinance() {
 
 export function prepareSignMetamask() {
   return "Hello, Guest! Please sign this message in order to login"
+}
+
+// Currently this supports only MetaMask or BinanceChain
+export function getWalletProviders() {
+  let metamask = false;
+  let binance = false;
+  if (window.ethereum && window.ethereum.isMetaMask){ metamask = true; }
+  if (window.BinanceChain){ binance = true; }
+  const enabledProviders: EnabledProviders = {
+    metaMaskEnabled: metamask,
+    binanceEnabled: binance
+  }
+  return enabledProviders;
 }
