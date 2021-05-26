@@ -1,8 +1,9 @@
+
 <form [formGroup]="nftForm">
   <div style="color: white; text-align: center" class="p-grid">
     <div class="p-col-12">
       <!--card-1-->
-      <p-card styleClass="p-card-shadow" [style]="{'width': '25rem'}">
+      <p-card styleClass="p-card-shadow" [style]="{'width': 'auto'}">
         <div class="p-grid">
           <div class="p-col-6">
             <div style="text-align: start; padding-left: 20px" class="box">
@@ -82,19 +83,9 @@
           <div class="p-grid">
             <div class="p-col-12">
               <div style="text-align: end" class="box">
-                <p-button (click)="submit()" icon="pi pi-check" label="Finish"></p-button>
-
+                <p-button class="p-m-2" (click)="submit($event)" icon="pi pi-check" label="Finish"></p-button>
               </div>
             </div>
-            <!-- <div class="p-col-6">
-              <div style="text-align: center" class="box">
-                <h3 style="color: #c950aa">Ending in</h3>
-                <div style="padding-left: 20%; padding-right: 20%" class="footer-divider">
-                  <p-divider></p-divider>
-                </div>
-                <h3>2 days</h3>
-              </div>
-            </div> -->
           </div>
         </ng-template>
       </p-card>

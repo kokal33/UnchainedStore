@@ -64,8 +64,8 @@ export class ResponsiveToolbarComponent implements OnInit {
     const dialogRef = this.dialogService.open(CreateNftDialogComponent, {
       data: {},
       styleClass: '',
-      width:'30%',
-      header:'Create your NFT'
+      width: '30%',
+      header: 'Create your NFT'
     });
   }
 
@@ -95,7 +95,7 @@ export class ResponsiveToolbarComponent implements OnInit {
         this
           .googleService
           .eventEmitter("wallet", "UserConnectedWallet", "Wallet", this.address);
-          window.location.reload();
+        window.location.reload();
 
       }
       catch (err) {

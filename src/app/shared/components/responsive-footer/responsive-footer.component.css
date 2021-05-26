@@ -13,6 +13,10 @@ label {
   width: 300px;
   height: 100px;
 }
+.img-fixed-size2 {
+  width: 150px;
+  height: 100px;
+}
 
 @media (max-width: 500px) {
   .img-fixed-size {
