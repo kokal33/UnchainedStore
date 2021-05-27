@@ -6,3 +6,9 @@ export interface CreateProductModel {
   sellersCut: number;
   ownersRoyalty: number;
 }
+
+export interface CreateAuctionModel{
+  startPrice: number,
+  tokenId: number,
+  duration: number
+}

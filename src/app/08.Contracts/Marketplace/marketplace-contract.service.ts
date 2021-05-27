@@ -10,17 +10,18 @@ const MarketplaceContract = require('./Marketplace.json');
 })
 export class MarketplaceContractService {
   constructor() {}
+  web3: Web3 = new Web3(window.ethereum as any);
+
 
   async createProduct(model:CreateProductModel) {
-    let web3 = new Web3(window.ethereum as any);
-    var myContract = new web3.eth.Contract(
+    var myContract = new this.web3.eth.Contract(
       MarketplaceContract.abi,
       '0x6E7069de74b8BA9EF9Fc663D91813FC7386686EC'
     );
     const product = await myContract.methods
       .createProduct(
         model.name,
-        web3.utils.toWei(model.price.toString(), "ether"),
+        this.web3.utils.toWei(model.price.toString(), "ether"),
         model.tokenId,
         model.isLimited,
         model.sellersCut,
