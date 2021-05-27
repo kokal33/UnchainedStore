@@ -15,6 +15,21 @@ export class BackendService {
     return await this.http.post<User>(this.base + "users/login", model, options).toPromise();
   }
 
+  async mint(model: any): Promise<HttpResponse<any>> {
+    return await this.http.post<User>(this.base + "minting/mint", model, options).toPromise();
+  }
+
+  async getArtists(): Promise<HttpResponse<any>> {
+    return await this.http.post(this.base + "users/getArtists", null, options).toPromise();
+  }
+  async getUserById(model : any): Promise<HttpResponse<any>> {
+    return await this.http.post(this.base + "users/getUser", model, options).toPromise();
+  }
+
+  async getTracks(): Promise<HttpResponse<any>> {
+    return await this.http.post(this.base + "tracks/mint", null, options).toPromise();
+  }
+
   async postTrack(model: any): Promise<HttpResponse<any>> {
     return await this.http.post(this.base + "tracks/postTrack", model, options).toPromise();
   }

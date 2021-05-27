@@ -22,7 +22,7 @@
     </div>
   </div>
   <div style="text-align: center;" class="p-col-12 p-md-12 p-lg-9">
-    <div style="padding-top: 50px;" class="box">
+    <div>
       <p-card [style]="{'border-radius':'20px','background-color':'rgb(12 11 11)'}"
         [header]="user?.name || 'Your Name'">
         <div class="footer-divider">
@@ -30,14 +30,9 @@
         </div>
         <h2>@{{user?.name || 'YourName'}}</h2>
       </p-card>
-
     </div>
   </div>
-
-
 </div>
-
-
 
 <div style=" margin-bottom: 15%;" class="p-grid nested-grid">
   <div class="p-col-12 p-md-12 p-lg-3">
@@ -49,21 +44,18 @@
           <p-chip [label]="truncateText(user?.publicAddress || '',22)" styleClass="custom-chip"> <button pButton pRipple
               type="button" icon="pi pi-copy" pTooltip="Copied!" tooltipPosition="top" life="1000" tooltipEvent="focus"
               (click)="copyToClipboard(user?.publicAddress)" class="p-button-rounded p-button-text"></button></p-chip>
-
-
         </div>
-
         <p-divider></p-divider>
         <h1>Socials</h1>
         <div style="text-align: center;">
 
-          <a [href]="'https://www.instagram.com/'+user?.instagram ||'the.unchained.music'" target="_blank">
+          <a *ngIf="user?.instagram" [href]="'https://www.instagram.com/'+user?.instagram" target="_blank">
             <img class="img-social" src="../../../../assets/social/instagram.svg">
           </a>
-          <a [href]="'https://www.facebook.com/'+user?.facebook ||'groups/theunchainedmusic'" target="_blank">
+          <a *ngIf="user?.facebook" [href]="'https://www.facebook.com/'+user?.facebook" target="_blank">
             <img class="img-social" src="../../../../assets/social/facebook.svg">
           </a>
-          <a [href]="'https://twitter.com/'+user?.twitter ||'UnchainedMusic2'" target="_blank">
+          <a *ngIf="user?.twitter" [href]="'https://twitter.com/'+user?.twitter" target="_blank">
             <img class="img-social" src="../../../../assets/social/twitter.svg">
           </a>
         </div>

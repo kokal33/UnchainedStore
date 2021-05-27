@@ -7,38 +7,27 @@
 <p-divider></p-divider>
 
 <div style="margin-bottom: 5%;"></div>
-<div class="p-grid side-margins">
+<div *ngIf="artists.length > 0" class="p-grid side-margins">
   <div class="p-col-12 p-md-6 p-lg-4 bottom-margin" *ngFor="let artist of artists">
     <div class="grid-7 element-animation">
       <!--card-1-->
-      <div (click)="navigateToDetails()" class="card color-card">
+      <div (click)="navigateToDetails(artist.publicAddress)" class="card color-card">
 
-        <img [src]="artist.image" alt="profile-pic" class="profile">
-        <h1 class="title">{{artist.FullName}}</h1>
-        <p class="job-title"> {{artist.Occupations}}</p>
-        <div class="desc top">
+        <img [src]="artist.profilePic" alt="profile-pic" class="profile">
+        <h1 class="title">{{artist.name}}</h1>
+        <!-- <p class="job-title"> {{artist.Occupations}}</p> -->
+        <!-- <div class="desc top">
           <p>{{artist.Genres}}</p>
-        </div>
-        <button class="btn color-a top"> See collections</button>
-
-        <!-- <hr>
-        <div class="container">
-          <div class="content">
-            <div class="grid-2">
-              <button pButton pRipple type="button" icon="pi pi-facebook" class="p-button-rounded p-button-info"></button>
-            </div>
-            <div class="grid-2">
-              <button pButton pRipple type="button" icon="pi pi-twitter" class="p-button-rounded"></button>
-
-            </div>
-            <div class="grid-2">
-              <button pButton pRipple type="button" icon="pi pi-instagram" class="p-button-rounded p-button-danger"></button>
-            </div>
-          </div>
         </div> -->
+        <button class="btn color-a top">See collections</button>
       </div>
     </div>
   </div>
 </div>
-
-<p-toast key="myKey1" position="bottom-center"></p-toast>
+<div *ngIf="loadedArtists && artists.length == 0" class="p-grid">
+  <div style="text-align: center;margin-bottom: 10%;" class="p-col-12">
+    <h2 style="color: white;">No artists found</h2>
+    <p-avatar [style]="{'background':'inherit', 'color':'white'}" icon="pi pi-info-circle" styleClass="p-mr-2"
+      size="xlarge"></p-avatar>
+  </div>
+</div>

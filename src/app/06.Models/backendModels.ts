@@ -2,6 +2,10 @@ export interface LoginModel {
   publicAddress: string,
   signature: string
 }
+export interface MintModel {
+  trackId: string
+}
+
 
 export interface User {
   publicAddress: string,
@@ -29,10 +33,4 @@ export interface TrackModel {
   isListed: boolean,
   isSold: boolean,
   timestamp: Date
-}
-
-export interface MintModel {
-  to: string,
-  trackId: number,
-  password: string
 }

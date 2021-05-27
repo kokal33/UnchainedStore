@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {ConfirmPopupModule} from 'primeng/confirmpopup';
 
 import {InplaceModule} from 'primeng/inplace';
 
@@ -52,6 +53,7 @@ const mat = [
   InplaceModule,
   InputTextModule,
   TabMenuModule,
+  ConfirmPopupModule,
   DialogModule,
   ToolbarModule,
   MatFormFieldModule,
