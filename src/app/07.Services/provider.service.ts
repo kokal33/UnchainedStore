@@ -59,7 +59,7 @@ export class ProviderService {
       if (wallet === 'metamask') {
         provider = window.ethereum;
         const chainId = parseInt(provider.chainId, 16);
-        // if (!this.isMaticChain(chainId)) return undefined;
+        if (!this.isMaticChain(chainId)) return undefined;
         const accounts = await provider.request({
           method: 'eth_requestAccounts',
         });

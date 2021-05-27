@@ -90,7 +90,11 @@ export class ResponsiveToolbarComponent implements OnInit {
       // Check for wallet connection and get signature
       const walletConnect = await this.providerService.connectWallet(res);
       if (!walletConnect) {
-        console.log("Wallet connection unsuccessful");
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Wallet connection failed',
+          detail: '',
+        });
         return;
       }
       // Login user with the signature provided
