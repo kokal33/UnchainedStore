@@ -20,8 +20,6 @@ export class CreateNftDialogComponent implements OnInit {
   nftForm!: FormGroup;
   active = false;
   fileSource = "";
-  mintModel!: MintModel;
-
 
   msaapDisplayTitle = false;
   msaapDisplayPlayList = false;
@@ -116,12 +114,12 @@ export class CreateNftDialogComponent implements OnInit {
       const result = await this.backendService.postTrack(formData);
       if (result) {
         this.confirmationService.confirm({
-          target: new EventTarget(),
+          target: event.target as EventTarget,
           message: 'Your track has been uploaded.Do you want to mint it aswell?',
           icon: 'pi pi-exclamation-triangle',
           accept: async () => {
-            this.mintModel.trackId =result.body;
-            const isSuccess = await this.backendService.mint(this.mintModel);
+            const isSuccess = await this.backendService.mint({ trackId: result.body });
+            console.log(isSuccess);
           },
           reject: () => {
             //reject action
