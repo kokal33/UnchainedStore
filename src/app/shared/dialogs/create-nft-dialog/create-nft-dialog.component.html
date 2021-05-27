@@ -1,96 +1,196 @@
+<p-steps [model]="items" [(activeIndex)]="activeIndex"></p-steps>
 
-<form [formGroup]="nftForm">
-  <div style="color: white; text-align: center" class="p-grid">
-    <div class="p-col-12">
-      <!--card-1-->
-      <p-card styleClass="p-card-shadow" [style]="{'width': 'auto'}">
-        <div class="p-grid">
-          <div class="p-col-6">
-            <div style="text-align: start; padding-left: 20px" class="box">
-              <h3>@{{ user?.name }}</h3>
-            </div>
-          </div>
+
+
+<div [hidden]="activeIndex != 1" class="stepsdemo-content">
+  <p-card [style]="{'padding':'40px'}">
+    <ng-template pTemplate="title">
+      Congratulations
+    </ng-template>
+    <ng-template pTemplate="subtitle">
+      You have uploaded your track , do you want to mint it?
+    </ng-template>
+    <ng-template pTemplate="content">
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <div class="p-grid p-nogutter p-justify-end">
+        <p-button label="Mint" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+      </div>
+    </ng-template>
+  </p-card>
+</div>
+
+<div [hidden]="activeIndex != 2" class="stepsdemo-content">
+  <p-card [style]="{'padding':'40px'}">
+    <ng-template pTemplate="title">
+      Congratulations
+    </ng-template>
+    <ng-template pTemplate="subtitle">
+      Sucessfully minted your track! Choose your desired type of listing
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="firstname">Type of listing</label>
+          <p-dropdown [options]="types" [(ngModel)]="selectedType" placeholder="Select a type" optionLabel="name"
+            [showClear]="true"></p-dropdown>
         </div>
-        <div class="p-grid">
+
+      </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <div class="p-grid p-nogutter p-justify-end">
+        <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+      </div>
+    </ng-template>
+  </p-card>
+</div>
+
+<div [hidden]="activeIndex != 3" class="stepsdemo-content">
+  <p-card [style]="{'padding':'20px'}">
+    <ng-template pTemplate="title">
+      Follow the steps
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="p-fluid">
+        <div class="p-field">
+          <svg *ngIf="uploadedFilesSuccess" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+          </svg>
+          <p-progressSpinner *ngIf="!uploadedFilesSuccess" [style]="{width: '30px', height: '30px'}">
+          </p-progressSpinner>
+          <label class="p-p-2" for="first">Upload track</label>
+          <button (click)="uploadFiles()" pButton pRipple type="button" label="Upload files"
+            class="p-button-rounded"></button>
+        </div>
+        <div class="p-field">
+          <svg *ngIf="mintFilesSuccess" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+          </svg>
+          <p-progressSpinner *ngIf="!mintFilesSuccess" [style]="{width: '30px', height: '30px'}"></p-progressSpinner>
+          <label class="p-p-2" for="second">Mint</label>
+          <button (click)="mintFiles()" pButton pRipple type="button" label="Mint NFT"
+            class="p-button-rounded"></button>
+        </div>
+        <div class="p-field">
+          <svg *ngIf="approveFilesSuccess" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+          </svg>
+          <p-progressSpinner *ngIf="!approveFilesSuccess" [style]="{width: '30px', height: '30px'}"></p-progressSpinner>
+          <label class="p-p-2" for="third">Approve</label>
+          <button (click)="approveFiles()" pButton pRipple type="button" label="Approve NFT"
+            class="p-button-rounded"></button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <div class="p-grid p-nogutter p-justify-end">
+        <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+      </div>
+    </ng-template>
+  </p-card>
+</div>
+
+<div [hidden]="activeIndex != 0" class="stepsdemo-content">
+  <p-card class="nft-card">
+    <ng-template pTemplate="content">
+      <form [formGroup]="nftForm">
+        <div style="color: white; text-align: center" class="p-grid">
           <div class="p-col-12">
-            <div style="text-align: start; padding-left: 20px" class="box">
-              <p-inplace [style]="{ 'min-height': '33px' }" [active]="active">
-                <ng-template pTemplate="display">
-                  <span (click)="inplaceToggle()">
-                    {{ nftForm.get("title")?.value || "Track Name" }}</span>
-                </ng-template>
-                <ng-template pTemplate="content">
-                  <input #trackName (keydown.enter)="active = false" [style]="{
-                      'border-style': 'none',
-                      background: 'inherit',
-                      'font-size': '1rem',
-                      'font-weight': 'bold',
-                      'width':'auto'
-                    }" type="text" pInputText formControlName="title" />
-                </ng-template>
-              </p-inplace>
-            </div>
-          </div>
-        </div>
-        <ng-template pTemplate="header">
-          <div>
-            <img class="img" *ngIf="uploadedFiles.length > 0" [src]="nftForm.get('coverPhoto')?.value" />
-            <p-fileUpload chooseIcon="pi pi-upload" [auto]="true" *ngIf="uploadedFiles.length > 0" mode="basic"
-              styleClass="header-img" [style]="{
-                zoom: '1.5',
-                top: '15%',
-                right: '10%',
-                'border-radius': '50%',
-                position: 'absolute'
-              }" [customUpload]="true" name="demo[]" accept="image/*" maxFileSize="1000000"
-              (uploadHandler)="onUpload($event)"></p-fileUpload>
-          </div>
-
-          <div *ngIf="uploadedFiles.length == 0" style="width: auto; height: auto; padding-top: 20%">
-            <h2 *ngIf="uploadedFiles.length == 0" class="p-p-2">
-              Track cover photo
-            </h2>
-            <p-fileUpload [auto]="true" *ngIf="uploadedFiles.length == 0" mode="basic" styleClass="header-img"
-              [style]="{ zoom: '2.5', 'border-radius': '50%' }" [customUpload]="true" name="demo[]" accept="image/*"
-              maxFileSize="1000000" (uploadHandler)="onUpload($event)"></p-fileUpload>
-          </div>
-        </ng-template>
-        <div class="p-grid">
-          <div style="text-align: center;" class="p-col-12">
-            <h5>Description</h5>
-            <textarea formControlName="description" rows="2" cols="30" pInputTextarea></textarea>
-          </div>
-          <div class="p-col-12">
-            <p-fileUpload *ngIf="!uploadedTrack" chooseLabel="Upload track" [auto]="true" mode="basic"
-              [customUpload]="true" name="demo[]" accept="audio/*" maxFileSize="30000000"
-              (uploadHandler)="onUploadTrack($event)"></p-fileUpload>
-            <ngx-audio-player *ngIf="uploadedTrack" [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle"
-              [autoPlay]="false" muted="muted" [displayPlaylist]="msaapDisplayPlayList"
-              [pageSizeOptions]="msaapPageSizeOptions" (trackEnded)="onEnded($event)"
-              [displayVolumeControls]="msaapDisplayVolumeControls" [displayRepeatControls]="msaapDisplayRepeatControls"
-              [disablePositionSlider]="msaapDisablePositionSlider" [displayArtist]="msaapDisplayArtist"
-              [displayDuration]="msaapDisplayDuration" [expanded]="true">
-            </ngx-audio-player>
-            <div>
-            </div>
-          </div>
-
-        </div>
-        <div style="padding-left: 10%; padding-right: 10%" class="middle-divider">
-          <p-divider></p-divider>
-        </div>
-        <ng-template pTemplate="footer">
-          <div class="p-grid">
-            <div class="p-col-12">
-              <div style="text-align: end" class="box">
-                <p-button class="p-m-2" (click)="submit($event)" icon="pi pi-check" label="Finish"></p-button>
+            <!--card-1-->
+            <p-card styleClass="p-card-shadow" [style]="{'width': 'auto'}">
+              <div class="p-grid">
+                <div class="p-col-6">
+                  <div style="text-align: start; padding-left: 20px" class="box">
+                    <h3>@{{ user?.name }}</h3>
+                  </div>
+                </div>
               </div>
-            </div>
+              <div class="p-grid">
+                <div class="p-col-12">
+                  <div style="text-align: start; padding-left: 20px" class="box">
+                    <p-inplace [style]="{ 'min-height': '33px' }" [active]="active">
+                      <ng-template pTemplate="display">
+                        <span (click)="inplaceToggle()">
+                          {{ nftForm.get("title")?.value || "Track Name" }}</span>
+                      </ng-template>
+                      <ng-template pTemplate="content">
+                        <input #trackName (keydown.enter)="active = false" [style]="{
+                                  'border-style': 'none',
+                                  background: 'inherit',
+                                  'font-size': '1rem',
+                                  'font-weight': 'bold',
+                                  'width':'auto'
+                                }" type="text" pInputText formControlName="title" />
+                      </ng-template>
+                    </p-inplace>
+                  </div>
+                </div>
+              </div>
+              <ng-template pTemplate="header">
+                <div>
+                  <img class="img" *ngIf="uploadedFiles.length > 0" [src]="nftForm.get('coverPhoto')?.value" />
+                  <p-fileUpload chooseIcon="pi pi-upload" [auto]="true" *ngIf="uploadedFiles.length > 0" mode="basic"
+                    styleClass="header-img" [style]="{
+                            zoom: '1.5',
+                            top: '15%',
+                            right: '10%',
+                            'border-radius': '50%',
+                            position: 'absolute'
+                          }" [customUpload]="true" name="demo[]" accept="image/*" maxFileSize="1000000"
+                    (uploadHandler)="onUpload($event)"></p-fileUpload>
+                </div>
+
+                <div *ngIf="uploadedFiles.length == 0" style="width: auto; height: auto; padding-top: 20%">
+                  <h2 *ngIf="uploadedFiles.length == 0" class="p-p-2">
+                    Track cover photo
+                  </h2>
+                  <p-fileUpload [auto]="true" *ngIf="uploadedFiles.length == 0" mode="basic" styleClass="header-img"
+                    [style]="{ zoom: '2.5', 'border-radius': '50%' }" [customUpload]="true" name="demo[]"
+                    accept="image/*" maxFileSize="1000000" (uploadHandler)="onUpload($event)"></p-fileUpload>
+                </div>
+              </ng-template>
+              <div class="p-grid">
+                <div style="text-align: center;" class="p-col-12">
+                  <h5>Description</h5>
+                  <textarea formControlName="description" rows="2" cols="30" pInputTextarea></textarea>
+                </div>
+                <div class="p-col-12">
+                  <p-fileUpload *ngIf="!uploadedTrack" chooseLabel="Upload track" [auto]="true" mode="basic"
+                    [customUpload]="true" name="demo[]" accept="audio/*" maxFileSize="30000000"
+                    (uploadHandler)="onUploadTrack($event)"></p-fileUpload>
+                  <ngx-audio-player *ngIf="uploadedTrack" [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle"
+                    [autoPlay]="false" muted="muted" [displayPlaylist]="msaapDisplayPlayList"
+                    [pageSizeOptions]="msaapPageSizeOptions" (trackEnded)="onEnded($event)"
+                    [displayVolumeControls]="msaapDisplayVolumeControls"
+                    [displayRepeatControls]="msaapDisplayRepeatControls"
+                    [disablePositionSlider]="msaapDisablePositionSlider" [displayArtist]="msaapDisplayArtist"
+                    [displayDuration]="msaapDisplayDuration" [expanded]="true">
+                  </ngx-audio-player>
+                  <div>
+                  </div>
+                </div>
+              </div>
+              <div style="padding-left: 10%; padding-right: 10%" class="middle-divider">
+                <p-divider></p-divider>
+              </div>
+            </p-card>
           </div>
-        </ng-template>
-      </p-card>
-    </div>
-  </div>
-</form>
-<p-toast position="bottom"></p-toast>
+        </div>
+      </form>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <div class="p-grid p-nogutter p-justify-end">
+        <p-button label="Upload" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"
+          [pTooltip]="nftForm.get('title')?.invalid || nftForm.get('description')?.invalid || nftForm.get('coverPhoto')?.invalid || nftForm.get('track')?.invalid ? 'Cover photo,Track,Bio and Title are required': 'Upload your track'">
+        </p-button>
+      </div>
+    </ng-template>
+  </p-card>
+</div>
+
+<p-toast position="top"></p-toast>
 <p-confirmPopup></p-confirmPopup>

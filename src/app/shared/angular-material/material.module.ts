@@ -27,6 +27,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { FieldsetModule } from 'primeng/fieldset';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 import { TableModule } from 'primeng/table';
 
@@ -39,6 +40,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ChipModule } from 'primeng/chip';
 import { StepsModule } from 'primeng/steps';
 import { TooltipModule } from 'primeng/tooltip';
+import { BlockUIModule } from 'ng-block-ui';
 
 
 const mat = [
@@ -62,6 +64,7 @@ const mat = [
   InputNumberModule,
   InputTextareaModule,
   RadioButtonModule,
+  ProgressSpinnerModule,
   ButtonModule,
   DropdownModule,
   MenubarModule,

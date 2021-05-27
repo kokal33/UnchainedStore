@@ -14,6 +14,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { StreamComponent } from './stream/stream.component';
 import { GoogleAnalyticsService } from './07.Services/google-analytics.service';
 import { MessageService } from 'primeng/api';
+import { BlockUIModule } from 'ng-block-ui';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { MessageService } from 'primeng/api';
     SharedModule,
     MatDialogModule,
     ArtistsMainModule,
-
+    BlockUIModule.forRoot(),
     MatAutocompleteModule,
     HttpClientModule
   ],

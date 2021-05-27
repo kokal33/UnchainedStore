@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Track } from 'ngx-audio-player';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
-import { MintModel, User } from 'src/app/06.Models/backendModels';
+import { User } from 'src/app/06.Models/backendModels';
 import { getUserLocal } from 'src/app/07.Services/authService';
 import { BackendService } from 'src/app/07.Services/backendService';
 
@@ -14,8 +15,19 @@ import { BackendService } from 'src/app/07.Services/backendService';
   providers: [MessageService, ConfirmationService],
 })
 export class CreateNftDialogComponent implements OnInit {
+  @BlockUI() blockUI!: NgBlockUI;
+
+
   uploadedFiles: any[] = [];
   uploadedTrack: any;
+  items!: MenuItem[];
+  activeIndex: number = 0;
+  uploadedTrackId: any;
+  uploadedFilesSuccess = false;
+  mintFilesSuccess = false;
+  approveFilesSuccess = false;
+
+
   user!: User | undefined;
   nftForm!: FormGroup;
   active = false;
@@ -29,26 +41,43 @@ export class CreateNftDialogComponent implements OnInit {
   msaapDisplayArtist = false;
   msaapDisplayDuration = false;
   msaapDisablePositionSlider = false;
+  types!: any[];
 
+  selectedType: any;
   // Material Style Advance Audio Player Playlist
   msaapPlaylist: Track[] = [];
   constructor(
     private messageService: MessageService,
     private fb: FormBuilder,
     private sanitize: DomSanitizer,
-    private backendService: BackendService,
-    private confirmationService: ConfirmationService
+    private backendService: BackendService
 
   ) { }
   ngOnInit(): void {
+    this.types = [
+      { name: 'Auction', code: 'NY' },
+      { name: 'Marketplace', code: 'RM' },
+
+    ];
+    this.items = [{
+      label: 'Details',
+    },
+    {
+      label: 'Mint',
+    }, {
+      label: 'Listing',
+    },
+    {
+      label: 'Summary',
+    }]
     this.user = getUserLocal();
     this.nftForm = this.fb.group({
       id: [null],
       title: ['', Validators.required],
       description: ['', Validators.required],
       ownerOfPublicAddress: [this.user?.publicAddress],
-      coverPhoto: [null],
-      track: [null],
+      coverPhoto: [null, Validators.required],
+      track: [null, Validators.required],
     });
 
   }
@@ -61,7 +90,6 @@ export class CreateNftDialogComponent implements OnInit {
     reader.readAsDataURL(file);
     reader.onload = function () {
       me.nftForm.get('coverPhoto')?.setValue(reader.result);
-
     };
     reader.onerror = function (error) {
       console.log('Error: ', error);
@@ -80,6 +108,8 @@ export class CreateNftDialogComponent implements OnInit {
   }
   onUploadTrack(event: { files: any }) {
     this.uploadedTrack = event.files[0];
+    this.nftForm.get('track')?.setValue(this.uploadedTrack);
+
     this.fileSource = this.uploadedTrack;
     const audSrc = URL.createObjectURL(this.uploadedTrack);
     this.msaapPlaylist.push(
@@ -99,12 +129,31 @@ export class CreateNftDialogComponent implements OnInit {
     console.log("ended");
   }
 
-  async submit(event: Event) {
-    if (this.nftForm.valid) {
-      const nft = this.nftForm.value;
-      nft.track = this.uploadedTrack;
-      nft.coverPhoto = this.uploadedFiles[0];
+  nextPage() {
+    this.activeIndex = this.activeIndex + 1;
+  }
+  prevPage() {
+    this.activeIndex = this.activeIndex - 1;
+  }
 
+  async mintFiles() {
+    this.blockUI.start('Minting your track...'); // Start blocking
+    const result = await this.backendService.mint({ trackId: this.uploadedTrackId });
+    if (result) {
+      this.blockUI.stop();
+      this.mintFilesSuccess = true;
+    }
+
+  }
+  approveFiles() {
+    this.approveFilesSuccess = true;
+  }
+
+  async uploadFiles() {
+    if (this.nftForm.valid) {
+      this.blockUI.start('Uploading your track...'); // Start blocking
+      const nft = this.nftForm.value;
+      nft.coverPhoto = this.uploadedFiles[0];
       let formData: FormData = new FormData();
       formData.append('Title', nft.title);
       formData.append('Description', nft.description);
@@ -112,19 +161,11 @@ export class CreateNftDialogComponent implements OnInit {
       formData.append('CoverImage', nft.coverPhoto);
       formData.append('File', nft.track);
       const result = await this.backendService.postTrack(formData);
+      this.uploadedTrackId = result.body;
       if (result) {
-        this.confirmationService.confirm({
-          target: event.target as EventTarget,
-          message: 'Your track has been uploaded.Do you want to mint it aswell?',
-          icon: 'pi pi-exclamation-triangle',
-          accept: async () => {
-            const isSuccess = await this.backendService.mint({ trackId: result.body });
-            console.log(isSuccess);
-          },
-          reject: () => {
-            //reject action
-          }
-        });
+        this.blockUI.stop();
+        this.uploadedFilesSuccess = true;
+
       }
     }
   }
