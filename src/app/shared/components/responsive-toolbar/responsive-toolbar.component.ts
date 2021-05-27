@@ -8,12 +8,14 @@ import { BackendService } from 'src/app/07.Services/backendService';
 import { User } from 'src/app/06.Models/backendModels';
 import { DialogService } from 'primeng/dynamicdialog';
 import { environment } from 'src/environments/environment';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GoogleAnalyticsService } from 'src/app/07.Services/google-analytics.service';
 import { CreateNftDialogComponent } from '../../dialogs/create-nft-dialog/create-nft-dialog.component';
 import { ProviderService } from 'src/app/07.Services/provider.service';
 import { UnchainedTokenService } from 'src/app/08.Contracts/UnchainedToken/unchained-token.service';
 import { MarketplaceContractService } from 'src/app/08.Contracts/Marketplace/marketplace-contract.service';
+import { AuctionContractService } from 'src/app/08.Contracts/Auction/auction-contract.service';
+import { CreateAuctionModel } from 'src/app/06.Models/solidityModels';
 
 
 @Component({
@@ -60,7 +62,8 @@ export class ResponsiveToolbarComponent implements OnInit {
   constructor(private dialog: MatDialog, private dialogService: DialogService,
     private backendService: BackendService, private router: Router,
     private googleService: GoogleAnalyticsService, private messageService: MessageService,
-    private providerService: ProviderService, private unchainedTokenService: MarketplaceContractService) { }
+    private providerService: ProviderService, private unchainedTokenService: AuctionContractService,
+    private activatedRoute: ActivatedRoute) { }
 
   onClickMenuItem(event: any) {
   }
@@ -101,7 +104,6 @@ export class ResponsiveToolbarComponent implements OnInit {
           .googleService
           .eventEmitter("wallet", "UserConnectedWallet", "Wallet", this.address);
         window.location.reload();
-
       }
       catch (err) {
         console.log("Login unsuccessful: ", err)
@@ -111,7 +113,7 @@ export class ResponsiveToolbarComponent implements OnInit {
   };
 
   viewProfile() {
-    this.router.navigate(['/user-details']);
+    this.router.navigate(['/user-details', this.user?.publicAddress], { relativeTo: this.activatedRoute });
   }
   logout() {
     clearCache();
