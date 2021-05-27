@@ -7,12 +7,13 @@ import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { User } from 'src/app/06.Models/backendModels';
 import { getUserLocal } from 'src/app/07.Services/authService';
 import { BackendService } from 'src/app/07.Services/backendService';
+import { AuctionContractService } from 'src/app/08.Contracts/Auction/auction-contract.service';
 
 @Component({
   selector: 'app-create-nft-dialog',
   templateUrl: './create-nft-dialog.component.html',
   styleUrls: ['./create-nft-dialog.component.scss'],
-  providers: [MessageService, ConfirmationService],
+  providers: [MessageService, ConfirmationService, AuctionContractService],
 })
 export class CreateNftDialogComponent implements OnInit {
   @BlockUI() blockUI!: NgBlockUI;
@@ -50,7 +51,8 @@ export class CreateNftDialogComponent implements OnInit {
     private messageService: MessageService,
     private fb: FormBuilder,
     private sanitize: DomSanitizer,
-    private backendService: BackendService
+    private backendService: BackendService,
+    private auctionService: AuctionContractService
 
   ) { }
   ngOnInit(): void {

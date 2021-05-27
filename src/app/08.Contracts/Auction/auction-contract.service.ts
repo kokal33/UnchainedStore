@@ -42,6 +42,6 @@ return expectedAddress;
  async approveAuction(from: string, to: string, tokenId: number) {
   const precalculatedAddress = await this.precalculateAddress(from);
   console.log(precalculatedAddress);
-  await this.unchainedTokenService.approve(from, to, tokenId);
+  await this.unchainedTokenService.approve(from, precalculatedAddress, tokenId);
  }
 }
