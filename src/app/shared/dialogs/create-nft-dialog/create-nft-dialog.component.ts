@@ -27,7 +27,7 @@ export class CreateNftDialogComponent implements OnInit {
   uploadedFilesSuccess = false;
   mintFilesSuccess = false;
   approveFilesSuccess = false;
-
+  tokenId!: number;
 
   user!: User | undefined;
   nftForm!: FormGroup;
@@ -142,13 +142,18 @@ export class CreateNftDialogComponent implements OnInit {
     this.blockUI.start('Minting your track...'); // Start blocking
     const result = await this.backendService.mint({ trackId: this.uploadedTrackId });
     if (result) {
+      console.log(result.body)
+      this.tokenId = result.body.tokenId;
       this.blockUI.stop();
       this.mintFilesSuccess = true;
     }
 
   }
-  approveFiles() {
-    this.approveFilesSuccess = true;
+  async approveFiles() {
+    this.blockUI.start("Your auction is being approved...")
+    const result = await this.auctionService.approveAuction(<string>this.user?.publicAddress, this.tokenId);
+    this.blockUI.stop();
+    this.approveFilesSuccess = result;
   }
 
   async uploadFiles() {
@@ -163,11 +168,10 @@ export class CreateNftDialogComponent implements OnInit {
       formData.append('CoverImage', nft.coverPhoto);
       formData.append('File', nft.track);
       const result = await this.backendService.postTrack(formData);
-      this.uploadedTrackId = result.body;
       if (result) {
+        this.uploadedTrackId = result.body;
         this.blockUI.stop();
         this.uploadedFilesSuccess = true;
-
       }
     }
   }

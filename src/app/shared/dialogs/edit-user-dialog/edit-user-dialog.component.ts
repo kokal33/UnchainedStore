@@ -92,7 +92,6 @@ export class EditUserDialogComponent implements OnInit {
     reader.readAsDataURL(file);
     reader.onload = function () {
       me.userForm.get('profilePic')?.setValue(reader.result);
-      console.log(reader.result);
     };
     reader.onerror = function (error) {
       console.log('Error: ', error);

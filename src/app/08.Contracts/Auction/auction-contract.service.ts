@@ -14,19 +14,19 @@ export class AuctionContractService {
   web3: Web3 = new Web3(window.ethereum as any);
   unchainedAddress = "0x648512523CF1153B63104dd79E65CCb8bD59B179";
 
-  async createAuction(model:CreateAuctionModel) {
+  async createAuction(model: CreateAuctionModel) {
     const auction = await new this.web3.eth.Contract(AuctionContract.abi).deploy({
-        data: AuctionContract.data.bytecode.object,
-        arguments: [this.web3.utils.toWei(model.startPrice.toString(), "ether"), model.tokenId, model.duration]
+      data: AuctionContract.data.bytecode.object,
+      arguments: [this.web3.utils.toWei(model.startPrice.toString(), "ether"), model.tokenId, model.duration]
     }).send({
       from: this.unchainedAddress,
       //gas: 1500000,
     });
     console.log("Existing address: ", auction.options.address)
-      return auction;
+    return auction;
   }
 
-  async precalculateAddress(account: string){
+  async precalculateAddress(account: string) {
     const nonce = await this.web3.eth.getTransactionCount(account);
     const encoded: any = RLP.encode(
       [
@@ -34,14 +34,15 @@ export class AuctionContractService {
         nonce,
       ],
     );
-const nonceHash: string = this.web3.utils.sha3(encoded) as string;
-const expectedAddress = this.web3.utils.toChecksumAddress(`0x${nonceHash.substring(26)}`);
-return expectedAddress;
+    const nonceHash: string = this.web3.utils.sha3(encoded) as string;
+    const expectedAddress = this.web3.utils.toChecksumAddress(`0x${nonceHash.substring(26)}`);
+    return expectedAddress;
   }
 
- async approveAuction(from: string, to: string, tokenId: number) {
-  const precalculatedAddress = await this.precalculateAddress(from);
-  console.log(precalculatedAddress);
-  await this.unchainedTokenService.approve(from, precalculatedAddress, tokenId);
- }
+  async approveAuction(from: string, tokenId: number) {
+    const precalculatedAddress = await this.precalculateAddress(from);
+    console.log(precalculatedAddress);
+    await this.unchainedTokenService.approve(from, precalculatedAddress, tokenId);
+    return true;
+  }
 }
