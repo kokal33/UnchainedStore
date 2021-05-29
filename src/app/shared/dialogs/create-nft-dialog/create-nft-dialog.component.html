@@ -1,32 +1,12 @@
 <p-steps [model]="items" [(activeIndex)]="activeIndex"></p-steps>
 
-
-
 <div [hidden]="activeIndex != 1" class="stepsdemo-content">
   <p-card [style]="{'padding':'40px'}">
     <ng-template pTemplate="title">
-      Congratulations
+      Select listing type
     </ng-template>
     <ng-template pTemplate="subtitle">
-      You have uploaded your track , do you want to mint it?
-    </ng-template>
-    <ng-template pTemplate="content">
-    </ng-template>
-    <ng-template pTemplate="footer">
-      <div class="p-grid p-nogutter p-justify-end">
-        <p-button label="Mint" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
-      </div>
-    </ng-template>
-  </p-card>
-</div>
-
-<div [hidden]="activeIndex != 2" class="stepsdemo-content">
-  <p-card [style]="{'padding':'40px'}">
-    <ng-template pTemplate="title">
-      Congratulations
-    </ng-template>
-    <ng-template pTemplate="subtitle">
-      Sucessfully minted your track! Choose your desired type of listing
+      There are two listing types available: <strong>Fixed price</strong> &nbsp; and <strong>Timed Auction</strong>
     </ng-template>
     <ng-template pTemplate="content">
       <div class="p-fluid">
@@ -46,7 +26,7 @@
   </p-card>
 </div>
 
-<div [hidden]="activeIndex != 3" class="stepsdemo-content">
+<div [hidden]="activeIndex != 2" class="stepsdemo-content">
   <p-card [style]="{'padding':'20px'}">
     <ng-template pTemplate="title">
       Follow the steps
@@ -114,8 +94,8 @@
                   <div style="text-align: start; padding-left: 20px" class="box">
                     <p-inplace [style]="{ 'min-height': '33px' }" [active]="active">
                       <ng-template pTemplate="display">
-                        <span (click)="inplaceToggle()">
-                          {{ nftForm.get("title")?.value || "Track Name" }}</span>
+                        <!-- <span (click)="inplaceToggle()">
+                          {{ nftForm.get("title")?.value || "Track Name" }}</span> -->
                       </ng-template>
                       <ng-template pTemplate="content">
                         <input #trackName (keydown.enter)="active = false" [style]="{
@@ -184,7 +164,7 @@
     </ng-template>
     <ng-template pTemplate="footer">
       <div class="p-grid p-nogutter p-justify-end">
-        <p-button label="Upload" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"
+        <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"
           [pTooltip]="nftForm.get('title')?.invalid || nftForm.get('description')?.invalid || nftForm.get('coverPhoto')?.invalid || nftForm.get('track')?.invalid ? 'Cover photo,Track,Bio and Title are required': 'Upload your track'">
         </p-button>
       </div>

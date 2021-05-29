@@ -8,6 +8,7 @@ import { User } from 'src/app/06.Models/backendModels';
 import { getUserLocal } from 'src/app/07.Services/authService';
 import { BackendService } from 'src/app/07.Services/backendService';
 import { AuctionContractService } from 'src/app/08.Contracts/Auction/auction-contract.service';
+import { CreateAuctionModel } from 'src/app/06.Models/solidityModels';
 
 @Component({
   selector: 'app-create-nft-dialog',
@@ -65,8 +66,6 @@ export class CreateNftDialogComponent implements OnInit {
       label: 'Details',
     },
     {
-      label: 'Mint',
-    }, {
       label: 'Listing',
     },
     {
@@ -141,19 +140,52 @@ export class CreateNftDialogComponent implements OnInit {
   async mintFiles() {
     this.blockUI.start('Minting your track...'); // Start blocking
     const result = await this.backendService.mint({ trackId: this.uploadedTrackId });
-    if (result) {
+    if (!result){
+      this.blockUI.stop();
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Minting Failed!',
+        detail: 'Please contact Unchained team for further details',
+      });
+      return;
+    }
       console.log(result.body)
       this.tokenId = result.body.tokenId;
       this.blockUI.stop();
       this.mintFilesSuccess = true;
-    }
-
   }
   async approveFiles() {
     this.blockUI.start("Your auction is being approved...")
-    const result = await this.auctionService.approveAuction(<string>this.user?.publicAddress, this.tokenId);
+    const model: CreateAuctionModel = {
+      from: this.user?.publicAddress as string,
+      startPrice: 0.01,
+      tokenId: this.tokenId,
+      duration: 120
+    };
+    const approved = await this.auctionService.approveAuction(this.user?.publicAddress as string, this.tokenId)
+    .catch(e => {
+      this.blockUI.stop();
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Your NFT was not approved!',
+        detail: e.message,
+      });
+      return false;
+    });
+    if (!approved) return;
+    this.blockUI.update("Creating auction for your NFT")
+    const auction = await this.auctionService.createAuction(model)
+    .catch(e => {
+      this.blockUI.stop();
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Auction creation failed!',
+        detail: e.message,
+      });
+      return false;
+    });
     this.blockUI.stop();
-    this.approveFilesSuccess = result;
+    this.approveFilesSuccess = approved;
   }
 
   async uploadFiles() {
