@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import Web3 from 'web3';
 const UnchainedContract  = require("./UnchainedToken.json");
 
@@ -11,17 +12,16 @@ export class UnchainedTokenService {
   web3: Web3 = new Web3(window.ethereum as any);
 
   async creatorOf(tokenId:number){
-    var myContract = new this.web3.eth.Contract(UnchainedContract.abi, '0x938D2bc1c8569b1fDa6193Ea3e884B94f9ACe67D');
+    var myContract = new this.web3.eth.Contract(UnchainedContract.abi, environment.contractTestAddress);
   const creatorOf = await myContract.methods.creatorOf(tokenId).call();
   }
 
   async approve(from: string, to: string, tokenId:number){
-    var myContract = new this.web3.eth.Contract(UnchainedContract.abi, '0x938D2bc1c8569b1fDa6193Ea3e884B94f9ACe67D');
-  const approve = await myContract.methods.approve(to, tokenId)
+    var myContract = new this.web3.eth.Contract(UnchainedContract.abi, environment.contractTestAddress);
+  return await myContract.methods.approve(to, tokenId)
   .send({
-    from: '0x648512523CF1153B63104dd79E65CCb8bD59B179',
+    from: from,
     // gas: 200000,
   });
-  console.log(approve);
   }
 }

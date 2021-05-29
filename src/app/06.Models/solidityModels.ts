@@ -8,6 +8,7 @@ export interface CreateProductModel {
 }
 
 export interface CreateAuctionModel{
+  from: string,
   startPrice: number,
   tokenId: number,
   duration: number
