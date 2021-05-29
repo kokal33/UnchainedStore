@@ -27,7 +27,7 @@ export class BackendService {
   }
 
   async getTracks(): Promise<HttpResponse<any>> {
-    return await this.http.post(this.base + "tracks/mint", null, options).toPromise();
+    return await this.http.post(this.base + "tracks/getTracks", null, options).toPromise();
   }
 
   async postTrack(model: any): Promise<HttpResponse<any>> {

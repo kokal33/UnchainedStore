@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Track } from 'ngx-audio-player';
 import { DialogService } from 'primeng/dynamicdialog';
+import { BackendService } from 'src/app/07.Services/backendService';
 import { MarketplaceItemDialogComponent } from '../marketplace-item-dialog/marketplace-item-dialog.component';
 
 @Component({
   selector: 'app-marketplace-grid',
   templateUrl: './marketplace-grid.component.html',
   styleUrls: ['./marketplace-grid.component.scss'],
-  providers: [DialogService]
+  providers: [DialogService,BackendService]
 })
 export class MarketplaceGridComponent implements OnInit {
 
   fileSource = "https://filesamples.com/samples/audio/mp3/sample3.mp3";
-
-  constructor(private dialogService: DialogService, private router: Router) { }
+  marketplaceItems: any[] = [];
+  constructor(private dialogService: DialogService, private backendService : BackendService) { }
   msaapDisplayTitle = false;
   msaapDisplayPlayList = false;
   msaapPageSizeOptions = [2, 4, 6];
@@ -34,20 +34,15 @@ export class MarketplaceGridComponent implements OnInit {
     }
   ];
 
-
-
-  ngOnInit() {
-
+  async ngOnInit() {
+    this.marketplaceItems =  (await this.backendService.getTracks()).body;
   }
   viewDetails() {
     const dialog = this.dialogService.open(MarketplaceItemDialogComponent, {
-      header: '',
+      header: '@Oliver',
       data: {},
     });
-    dialog.onClose.subscribe(() => {
-    //  this.router.navigate(['/marketplace'])
 
-    })
   }
 
   onEnded(event: any) {
