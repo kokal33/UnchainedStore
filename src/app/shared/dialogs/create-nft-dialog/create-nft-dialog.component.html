@@ -41,7 +41,7 @@
           <p-progressSpinner *ngIf="!uploadedFilesSuccess" [style]="{width: '30px', height: '30px'}">
           </p-progressSpinner>
           <label class="p-p-2" for="first">Upload track</label>
-          <button (click)="uploadFiles()" pButton pRipple type="button" label="Upload files"
+          <button [disabled]="uploadedFilesSuccess" (click)="uploadFiles()" pButton pRipple type="button" label="Upload files"
             class="p-button-rounded"></button>
         </div>
         <div class="p-field">
@@ -51,7 +51,7 @@
           </svg>
           <p-progressSpinner *ngIf="!mintFilesSuccess" [style]="{width: '30px', height: '30px'}"></p-progressSpinner>
           <label class="p-p-2" for="second">Mint</label>
-          <button (click)="mintFiles()" pButton pRipple type="button" label="Mint NFT"
+          <button [disabled]="!uploadedFilesSuccess || mintFilesSuccess" (click)="mintFiles()" pButton pRipple type="button" label="Mint NFT"
             class="p-button-rounded"></button>
         </div>
         <div class="p-field">
@@ -61,14 +61,14 @@
           </svg>
           <p-progressSpinner *ngIf="!approveFilesSuccess" [style]="{width: '30px', height: '30px'}"></p-progressSpinner>
           <label class="p-p-2" for="third">Approve</label>
-          <button (click)="approveFiles()" pButton pRipple type="button" label="Approve NFT"
+          <button [disabled]="!mintFilesSuccess || approveFilesSuccess" (click)="approveFiles()" pButton pRipple type="button" label="Approve NFT"
             class="p-button-rounded"></button>
         </div>
       </div>
     </ng-template>
     <ng-template pTemplate="footer">
       <div class="p-grid p-nogutter p-justify-end">
-        <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+        <p-button [disabled]="!uploadedFilesSuccess || !mintFilesSuccess || !approveFilesSuccess" label="Finish" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
       </div>
     </ng-template>
   </p-card>

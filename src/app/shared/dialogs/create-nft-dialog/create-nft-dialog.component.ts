@@ -35,6 +35,7 @@ export class CreateNftDialogComponent implements OnInit {
   active = false;
   fileSource = "";
 
+  // Audio player options
   msaapDisplayTitle = false;
   msaapDisplayPlayList = false;
   msaapPageSizeOptions = [2, 4, 6];
@@ -44,10 +45,9 @@ export class CreateNftDialogComponent implements OnInit {
   msaapDisplayDuration = false;
   msaapDisablePositionSlider = false;
   types!: any[];
-
   selectedType: any;
-  // Material Style Advance Audio Player Playlist
   msaapPlaylist: Track[] = [];
+
   constructor(
     private messageService: MessageService,
     private fb: FormBuilder,
