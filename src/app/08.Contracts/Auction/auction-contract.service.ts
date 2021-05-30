@@ -21,6 +21,7 @@ export class AuctionContractService {
       from: model.from,
       //gas: 1500000,
     });
+    console.log("Existing auction address: ", auction.options.address);
     return auction;
   }
 
@@ -39,7 +40,7 @@ export class AuctionContractService {
 
   async approveAuction(from: string, tokenId: number) {
     const precalculatedAddress = await this.precalculateAddress(from);
-    console.log("Precalculated address: ", precalculatedAddress);
+    console.log("Precalculated address: ", precalculatedAddress)
     await this.unchainedTokenService.approve(from, precalculatedAddress, tokenId);
     return true;
   }

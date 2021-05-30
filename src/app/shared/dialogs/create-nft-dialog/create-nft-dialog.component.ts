@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Track } from 'ngx-audio-player';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
-import { User } from 'src/app/06.Models/backendModels';
+import { Auction, User } from 'src/app/06.Models/backendModels';
 import { getUserLocal } from 'src/app/07.Services/authService';
 import { BackendService } from 'src/app/07.Services/backendService';
 import { AuctionContractService } from 'src/app/08.Contracts/Auction/auction-contract.service';
@@ -30,7 +30,9 @@ export class CreateNftDialogComponent implements OnInit {
   mintFilesSuccess = false;
   approveFilesSuccess = false;
   isAuction = false;
+  createAuctionSuccess = false;
   tokenId!: number;
+  auctionTimeInDays!: number;
 
   user!: User | undefined;
   nftForm!: FormGroup;
@@ -168,29 +170,23 @@ export class CreateNftDialogComponent implements OnInit {
 
   async mintFiles() {
     this.blockUI.start('Minting your track...'); // Start blocking
-    const result = await this.backendService.mint({ trackId: this.uploadedTrackId });
-    if (!result) {
+    const result = await this.backendService.mint({ trackId: this.uploadedTrackId })
+    .catch(e => {
       this.blockUI.stop();
       this.messageService.add({
         severity: 'error',
         summary: 'Minting Failed!',
-        detail: 'Please contact Unchained team for further details',
+        detail: 'Please try again or check your wallet for errors',
       });
-      return;
-    }
-    console.log(result.body)
-    this.tokenId = result.body.tokenId;
-    this.blockUI.stop();
-    this.mintFilesSuccess = true;
+      return undefined;
+    });
+    if (!result) return;
+      this.tokenId = result.body.tokenId;
+      this.blockUI.stop();
+      this.mintFilesSuccess = true;
   }
   async approveFiles() {
     this.blockUI.start("Your auction is being approved...")
-    const model: CreateAuctionModel = {
-      from: this.user?.publicAddress as string,
-      startPrice: 0.01,
-      tokenId: this.tokenId,
-      duration: 120
-    };
     const approved = await this.auctionService.approveAuction(this.user?.publicAddress as string, this.tokenId)
       .catch(e => {
         this.blockUI.stop();
@@ -202,7 +198,19 @@ export class CreateNftDialogComponent implements OnInit {
         return false;
       });
     if (!approved) return;
-    this.blockUI.update("Creating auction for your NFT")
+    this.blockUI.stop();
+    this.approveFilesSuccess = approved;
+  }
+
+  async createAuction(){
+    this.blockUI.start("Creating auction for your NFT...")
+    const model: CreateAuctionModel = {
+      from: this.user?.publicAddress as string,
+      startPrice: 0.01,
+      tokenId: this.tokenId,
+      // duration: this.auctionTimeInDays * 86400, TODO: Add duration in nft creation
+      duration: 120
+    };
     const auction = await this.auctionService.createAuction(model)
       .catch(e => {
         this.blockUI.stop();
@@ -211,15 +219,38 @@ export class CreateNftDialogComponent implements OnInit {
           summary: 'Auction creation failed!',
           detail: e.message,
         });
-        return false;
+      this.approveFilesSuccess = false;
+      return undefined;
+    });
+    if (!auction) return;
+    // Stupid date manipulation in typescript
+    const timestamp = new Date();
+    timestamp.setDate(timestamp.getDate() + 1)
+    console.log("TrackId: ", this.uploadedTrackId)
+    const postAuctionModel: Auction = {
+      started: new Date(),
+      trackId: this.uploadedTrackId,
+      ending: timestamp
+    }
+    const auctionPosting = await this.backendService.postAuction(postAuctionModel)
+    .catch(e => {
+      this.blockUI.stop();
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Auction creation failed!',
+        detail: "The server at unchained did not respond :(, please try again or report this to the administrator",
       });
+      this.approveFilesSuccess = false;
+      return undefined;
+    });
+    if (!auctionPosting) return;
     this.blockUI.stop();
-    this.approveFilesSuccess = approved;
+    this.createAuctionSuccess = true;
   }
 
   async uploadFiles() {
     if (this.nftForm.valid) {
-      this.blockUI.start('Uploading your track...'); // Start blocking
+      this.blockUI.start('Uploading your track...');
       const nft = this.nftForm.value;
       nft.coverPhoto = this.uploadedFiles[0];
       let formData: FormData = new FormData();
