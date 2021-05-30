@@ -9,6 +9,7 @@ import { getUserLocal } from 'src/app/07.Services/authService';
 import { BackendService } from 'src/app/07.Services/backendService';
 import { AuctionContractService } from 'src/app/08.Contracts/Auction/auction-contract.service';
 import { CreateAuctionModel } from 'src/app/06.Models/solidityModels';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-create-nft-dialog',
@@ -28,6 +29,7 @@ export class CreateNftDialogComponent implements OnInit {
   uploadedFilesSuccess = false;
   mintFilesSuccess = false;
   approveFilesSuccess = false;
+  isAuction = false;
   tokenId!: number;
 
   user!: User | undefined;
@@ -45,6 +47,8 @@ export class CreateNftDialogComponent implements OnInit {
   msaapDisplayDuration = false;
   msaapDisablePositionSlider = false;
   types!: any[];
+  durationTypes!: any[];
+
   selectedType: any;
   msaapPlaylist: Track[] = [];
 
@@ -53,14 +57,22 @@ export class CreateNftDialogComponent implements OnInit {
     private fb: FormBuilder,
     private sanitize: DomSanitizer,
     private backendService: BackendService,
-    private auctionService: AuctionContractService
+    private auctionService: AuctionContractService,
+    public ref: DynamicDialogRef
 
   ) { }
   ngOnInit(): void {
     this.types = [
-      { name: 'Auction', code: 'NY' },
-      { name: 'Marketplace', code: 'RM' },
+      { id: 1, name: 'Auction', code: 'NY' },
+      { id: 2, name: 'Marketplace', code: 'RM' },
 
+    ];
+    this.durationTypes = [
+      { id: 1, name: 'One Day', code: 'NY' },
+      { id: 2, name: 'Two Days', code: 'NY' },
+      { id: 3, name: 'Three Days', code: 'NY' },
+      { id: 4, name: 'Four Days', code: 'NY' },
+      { id: 5, name: 'Five Days', code: 'NY' },
     ];
     this.items = [{
       label: 'Details',
@@ -79,6 +91,21 @@ export class CreateNftDialogComponent implements OnInit {
       ownerOfPublicAddress: [this.user?.publicAddress],
       coverPhoto: [null, Validators.required],
       track: [null, Validators.required],
+      typeOfListing: [null, Validators.required],
+      duration: [null],
+      price: [0, [Validators.required , Validators.min(0.1)]],
+    });
+
+    this.nftForm.get('typeOfListing')?.valueChanges.subscribe(val => {
+      console.log(val);
+      if (val.id == 1) {
+        this.nftForm.controls['duration'].setValidators([Validators.required]);
+        this.isAuction = true;
+      } else {
+        this.nftForm.controls['duration'].clearValidators();
+        this.isAuction = false;
+      }
+      this.nftForm.controls['duration'].updateValueAndValidity();
     });
 
   }
@@ -96,11 +123,13 @@ export class CreateNftDialogComponent implements OnInit {
       console.log('Error: ', error);
     };
   }
-  onUpload(event: { files: any }) {
+  onUpload(event: { files: any }, form: any) {
     for (let file of event.files) {
       this.uploadedFiles.push(file);
       this.getBase64(file);
+      form.clear();
     }
+
     this.messageService.add({
       severity: 'info',
       summary: 'File Uploaded',
@@ -140,7 +169,7 @@ export class CreateNftDialogComponent implements OnInit {
   async mintFiles() {
     this.blockUI.start('Minting your track...'); // Start blocking
     const result = await this.backendService.mint({ trackId: this.uploadedTrackId });
-    if (!result){
+    if (!result) {
       this.blockUI.stop();
       this.messageService.add({
         severity: 'error',
@@ -149,10 +178,10 @@ export class CreateNftDialogComponent implements OnInit {
       });
       return;
     }
-      console.log(result.body)
-      this.tokenId = result.body.tokenId;
-      this.blockUI.stop();
-      this.mintFilesSuccess = true;
+    console.log(result.body)
+    this.tokenId = result.body.tokenId;
+    this.blockUI.stop();
+    this.mintFilesSuccess = true;
   }
   async approveFiles() {
     this.blockUI.start("Your auction is being approved...")
@@ -163,27 +192,27 @@ export class CreateNftDialogComponent implements OnInit {
       duration: 120
     };
     const approved = await this.auctionService.approveAuction(this.user?.publicAddress as string, this.tokenId)
-    .catch(e => {
-      this.blockUI.stop();
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Your NFT was not approved!',
-        detail: e.message,
+      .catch(e => {
+        this.blockUI.stop();
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Your NFT was not approved!',
+          detail: e.message,
+        });
+        return false;
       });
-      return false;
-    });
     if (!approved) return;
     this.blockUI.update("Creating auction for your NFT")
     const auction = await this.auctionService.createAuction(model)
-    .catch(e => {
-      this.blockUI.stop();
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Auction creation failed!',
-        detail: e.message,
+      .catch(e => {
+        this.blockUI.stop();
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Auction creation failed!',
+          detail: e.message,
+        });
+        return false;
       });
-      return false;
-    });
     this.blockUI.stop();
     this.approveFilesSuccess = approved;
   }
@@ -206,6 +235,9 @@ export class CreateNftDialogComponent implements OnInit {
         this.uploadedFilesSuccess = true;
       }
     }
+  }
+  closeDialog() {
+    this.ref.close();
   }
 
 }
