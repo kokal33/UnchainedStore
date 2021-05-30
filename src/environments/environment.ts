@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  apiUrl: "https://localhost:44327",
-  //apiUrl: 'https://store.unchained-music.com',
+  //apiUrl: "https://localhost:44327",
+  apiUrl: 'https://store.unchained-music.com',
 
   production: false,
   contractTestAddress: "0x111c06bad93f06e2300104a3c24c51f91be5fce1"
