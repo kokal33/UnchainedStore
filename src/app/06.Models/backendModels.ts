@@ -34,3 +34,9 @@ export interface TrackModel {
   isSold: boolean,
   timestamp: Date
 }
+
+export interface Auction {
+  started: Date,
+  ending: Date,
+  trackId: number
+}
