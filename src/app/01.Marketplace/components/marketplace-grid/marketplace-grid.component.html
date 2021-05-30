@@ -12,7 +12,7 @@
 
 <div style="margin-bottom: 5%;"></div>
 <div style="color: white; text-align: center; margin-left: 10%;margin-right: 10% " class="p-grid">
-  <div class="p-col-12 p-md-6 p-lg-4 " *ngFor="let item of [].constructor(5)">
+  <div class="p-col-12 p-md-6 p-lg-4 " *ngFor="let item  of marketplaceItems">
     <div class="grid-7 element-animation">
       <!--card-1-->
       <p-card styleClass="p-card-shadow">
@@ -32,19 +32,19 @@
         <div class="p-grid">
           <div class="p-col-12">
             <div style="text-align: start;padding-left: 20px;" class="box">
-              <h2>Kraftwerk Unreleased Track</h2>
+              <h2>{{item.title}}</h2>
             </div>
           </div>
 
         </div>
         <ng-template pTemplate="header">
-          <img (click)="viewDetails()" class="img" alt="Card"
-            src="https://i.pinimg.com/originals/67/f5/0e/67f50efd8c31d688171ac1e6538b69fb.jpg">
+          <img (click)="viewDetails()" class="img" alt="Card" [src]="environment + item.imageLocation">
         </ng-template>
         <div class="p-grid">
           <div class="p-col-12">
-            <ngx-audio-player [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false"
-              muted="muted" [displayPlaylist]="msaapDisplayPlayList" [pageSizeOptions]="msaapPageSizeOptions"
+            <ngx-audio-player [playlist]="[{'title': '', 'link': environment+item.fileLocation}]"
+              [displayTitle]="msaapDisplayTitle" [autoPlay]="false" muted="muted"
+              [displayPlaylist]="msaapDisplayPlayList" [pageSizeOptions]="msaapPageSizeOptions"
               (trackEnded)="onEnded($event)" [displayVolumeControls]="msaapDisplayVolumeControls"
               [displayRepeatControls]="msaapDisplayRepeatControls" [disablePositionSlider]="msaapDisablePositionSlider"
               [displayArtist]="msaapDisplayArtist" [displayDuration]="msaapDisplayDuration" [expanded]="true">
