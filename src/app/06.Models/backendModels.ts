@@ -39,4 +39,5 @@ export interface Auction {
   started: Date,
   ending: Date,
   trackId: number
+  price: number
 }

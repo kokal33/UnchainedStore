@@ -93,7 +93,7 @@
     </ng-template>
     <ng-template pTemplate="footer">
       <div class="p-grid p-nogutter p-justify-end">
-        <p-button [disabled]="!uploadedFilesSuccess || !mintFilesSuccess || !approveFilesSuccess" label="Finish"
+        <p-button [disabled]="!uploadedFilesSuccess || !mintFilesSuccess || !approveFilesSuccess || !createAuctionSuccess" label="Finish"
           (onClick)="closeDialog()" icon="pi pi-angle-right" iconPos="right"></p-button>
       </div>
     </ng-template>

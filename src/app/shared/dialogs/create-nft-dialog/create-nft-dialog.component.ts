@@ -32,7 +32,6 @@ export class CreateNftDialogComponent implements OnInit {
   isAuction = false;
   createAuctionSuccess = false;
   tokenId!: number;
-  auctionTimeInDays!: number;
 
   user!: User | undefined;
   nftForm!: FormGroup;
@@ -95,7 +94,7 @@ export class CreateNftDialogComponent implements OnInit {
       track: [null, Validators.required],
       typeOfListing: [null, Validators.required],
       duration: [null],
-      price: [0, [Validators.required , Validators.min(0.1)]],
+      price: [0, [Validators.required, Validators.min(0.1)]],
     });
 
     this.nftForm.get('typeOfListing')?.valueChanges.subscribe(val => {
@@ -171,19 +170,19 @@ export class CreateNftDialogComponent implements OnInit {
   async mintFiles() {
     this.blockUI.start('Minting your track...'); // Start blocking
     const result = await this.backendService.mint({ trackId: this.uploadedTrackId })
-    .catch(e => {
-      this.blockUI.stop();
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Minting Failed!',
-        detail: 'Please try again or check your wallet for errors',
+      .catch(e => {
+        this.blockUI.stop();
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Minting Failed!',
+          detail: 'Please try again or check your wallet for errors',
+        });
+        return undefined;
       });
-      return undefined;
-    });
     if (!result) return;
-      this.tokenId = result.body.tokenId;
-      this.blockUI.stop();
-      this.mintFilesSuccess = true;
+    this.tokenId = result.body.tokenId;
+    this.blockUI.stop();
+    this.mintFilesSuccess = true;
   }
   async approveFiles() {
     this.blockUI.start("Your auction is being approved...")
@@ -202,14 +201,13 @@ export class CreateNftDialogComponent implements OnInit {
     this.approveFilesSuccess = approved;
   }
 
-  async createAuction(){
+  async createAuction() {
     this.blockUI.start("Creating auction for your NFT...")
     const model: CreateAuctionModel = {
       from: this.user?.publicAddress as string,
       startPrice: 0.01,
       tokenId: this.tokenId,
-      // duration: this.auctionTimeInDays * 86400, TODO: Add duration in nft creation
-      duration: 120
+      duration: this.nftForm.get('duration')?.value.id * 86400
     };
     const auction = await this.auctionService.createAuction(model)
       .catch(e => {
@@ -219,30 +217,30 @@ export class CreateNftDialogComponent implements OnInit {
           summary: 'Auction creation failed!',
           detail: e.message,
         });
-      this.approveFilesSuccess = false;
-      return undefined;
-    });
+        this.approveFilesSuccess = false;
+        return undefined;
+      });
     if (!auction) return;
     // Stupid date manipulation in typescript
     const timestamp = new Date();
-    timestamp.setDate(timestamp.getDate() + 1)
-    console.log("TrackId: ", this.uploadedTrackId)
+    timestamp.setDate(timestamp.getDate() + this.nftForm.get('duration')?.value.id)
     const postAuctionModel: Auction = {
       started: new Date(),
       trackId: this.uploadedTrackId,
-      ending: timestamp
+      ending: timestamp,
+      price : this.nftForm.get('price')?.value,
     }
     const auctionPosting = await this.backendService.postAuction(postAuctionModel)
-    .catch(e => {
-      this.blockUI.stop();
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Auction creation failed!',
-        detail: "The server at unchained did not respond :(, please try again or report this to the administrator",
+      .catch(e => {
+        this.blockUI.stop();
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Auction creation failed!',
+          detail: "The server at unchained did not respond :(, please try again or report this to the administrator",
+        });
+        this.approveFilesSuccess = false;
+        return undefined;
       });
-      this.approveFilesSuccess = false;
-      return undefined;
-    });
     if (!auctionPosting) return;
     this.blockUI.stop();
     this.createAuctionSuccess = true;
