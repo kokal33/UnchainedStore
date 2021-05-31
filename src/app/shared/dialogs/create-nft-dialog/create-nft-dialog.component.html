@@ -1,4 +1,5 @@
 <p-steps [model]="items" [(activeIndex)]="activeIndex"></p-steps>
+<form [formGroup]="nftForm">
 
 <div [hidden]="activeIndex != 1" class="stepsdemo-content">
   <p-card [style]="{'padding':'40px'}">
@@ -12,15 +13,29 @@
       <div class="p-fluid">
         <div class="p-field">
           <label for="firstname">Type of listing</label>
-          <p-dropdown [options]="types" [(ngModel)]="selectedType" placeholder="Select a type" optionLabel="name"
+          <p-dropdown [options]="types" formControlName="typeOfListing" placeholder="Select a type" optionLabel="name"
             [showClear]="true"></p-dropdown>
         </div>
+        <div *ngIf="isAuction" class="p-field">
+          <label for="firstname">Duration</label>
+          <p-dropdown [options]="durationTypes" formControlName="duration" placeholder="Select auction duration"
+            optionLabel="name" [showClear]="true"></p-dropdown>
+        </div>
+        <div class="p-field">
+          <label for="horizontal">Price</label>
+          <p-inputNumber formControlName="price" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal"
+            spinnerMode="horizontal" [step]="0.25" decrementButtonClass="p-button-danger"
+            incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"
+            suffix=" matic">
+          </p-inputNumber>
+        </div>
+
 
       </div>
     </ng-template>
     <ng-template pTemplate="footer">
-      <div class="p-grid p-nogutter p-justify-end">
-        <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+      <div  class="p-grid p-nogutter p-justify-end">
+        <p-button [disabled]="nftForm.get('price')?.invalid || nftForm.get('duration')?.invalid || nftForm.get('typeOfListing')?.invalid" label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
       </div>
     </ng-template>
   </p-card>
@@ -41,8 +56,8 @@
           <p-progressSpinner *ngIf="!uploadedFilesSuccess" [style]="{width: '30px', height: '30px'}">
           </p-progressSpinner>
           <label class="p-p-2" for="first">Upload track</label>
-          <button [disabled]="uploadedFilesSuccess" (click)="uploadFiles()" pButton pRipple type="button" label="Upload files"
-            class="p-button-rounded"></button>
+          <button [disabled]="uploadedFilesSuccess" (click)="uploadFiles()" pButton pRipple type="button"
+            label="Upload files" class="p-button-rounded"></button>
         </div>
         <div class="p-field">
           <svg *ngIf="mintFilesSuccess" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
@@ -51,8 +66,8 @@
           </svg>
           <p-progressSpinner *ngIf="!mintFilesSuccess" [style]="{width: '30px', height: '30px'}"></p-progressSpinner>
           <label class="p-p-2" for="second">Mint</label>
-          <button [disabled]="!uploadedFilesSuccess || mintFilesSuccess" (click)="mintFiles()" pButton pRipple type="button" label="Mint NFT"
-            class="p-button-rounded"></button>
+          <button [disabled]="!uploadedFilesSuccess || mintFilesSuccess" (click)="mintFiles()" pButton pRipple
+            type="button" label="Mint NFT" class="p-button-rounded"></button>
         </div>
         <div class="p-field">
           <svg *ngIf="approveFilesSuccess" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
@@ -61,8 +76,8 @@
           </svg>
           <p-progressSpinner *ngIf="!approveFilesSuccess" [style]="{width: '30px', height: '30px'}"></p-progressSpinner>
           <label class="p-p-2" for="third">Approve</label>
-          <button [disabled]="!mintFilesSuccess || approveFilesSuccess" (click)="approveFiles()" pButton pRipple type="button" label="Approve NFT"
-            class="p-button-rounded"></button>
+          <button [disabled]="!mintFilesSuccess || approveFilesSuccess" (click)="approveFiles()" pButton pRipple
+            type="button" label="Approve NFT" class="p-button-rounded"></button>
         </div>
         <div class="p-field">
           <svg *ngIf="createAuctionSuccess" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
@@ -78,7 +93,8 @@
     </ng-template>
     <ng-template pTemplate="footer">
       <div class="p-grid p-nogutter p-justify-end">
-        <p-button [disabled]="!uploadedFilesSuccess || !mintFilesSuccess || !approveFilesSuccess" label="Finish" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+        <p-button [disabled]="!uploadedFilesSuccess || !mintFilesSuccess || !approveFilesSuccess" label="Finish"
+          (onClick)="closeDialog()" icon="pi pi-angle-right" iconPos="right"></p-button>
       </div>
     </ng-template>
   </p-card>
@@ -87,7 +103,6 @@
 <div [hidden]="activeIndex != 0" class="stepsdemo-content">
   <p-card class="nft-card">
     <ng-template pTemplate="content">
-      <form [formGroup]="nftForm">
         <div style="color: white; text-align: center" class="p-grid">
           <div class="p-col-12">
             <!--card-1-->
@@ -102,45 +117,44 @@
               <div class="p-grid">
                 <div class="p-col-12">
                   <div style="text-align: start; padding-left: 20px" class="box">
-                    <p-inplace [style]="{ 'min-height': '33px' }" [active]="active">
-                      <ng-template pTemplate="display">
-                        <!-- <span (click)="inplaceToggle()">
-                          {{ nftForm.get("title")?.value || "Track Name" }}</span> -->
-                      </ng-template>
-                      <ng-template pTemplate="content">
-                        <input #trackName (keydown.enter)="active = false" [style]="{
-                                  'border-style': 'none',
-                                  background: 'inherit',
-                                  'font-size': '1rem',
-                                  'font-weight': 'bold',
-                                  'width':'auto'
-                                }" type="text" pInputText formControlName="title" />
-                      </ng-template>
-                    </p-inplace>
+                    <span class="p-float-label">
+                      <input id="float-input" #trackName (keydown.enter)="active = false" [style]="{
+                                    background: 'inherit',
+                                    'font-size': '1rem',
+                                    'font-weight': 'bold',
+                                    'width':'auto'
+                                  }" type="text" pInputText formControlName="title" />
+                      <label for="float-input">Track name</label>
+                    </span>
                   </div>
                 </div>
               </div>
               <ng-template pTemplate="header">
-                <div>
-                  <img class="img" *ngIf="uploadedFiles.length > 0" [src]="nftForm.get('coverPhoto')?.value" />
-                  <p-fileUpload chooseIcon="pi pi-upload" [auto]="true" *ngIf="uploadedFiles.length > 0" mode="basic"
-                    styleClass="header-img" [style]="{
-                            zoom: '1.5',
-                            top: '15%',
-                            right: '10%',
-                            'border-radius': '50%',
-                            position: 'absolute'
-                          }" [customUpload]="true" name="demo[]" accept="image/*" maxFileSize="1000000"
-                    (uploadHandler)="onUpload($event)"></p-fileUpload>
+                <div class="img-wrapper">
+                  <img class="img-responsive" *ngIf="uploadedFiles.length > 0" [src]="nftForm.get('coverPhoto')?.value">
+                  <div class="img-overlay">
+                    <p-fileUpload #form1 chooseIcon="pi pi-upload" [auto]="true" *ngIf="uploadedFiles.length > 0"
+                      mode="basic" styleClass="header-img" [style]="{
+                              zoom: '1',
+                              'border-radius': '50%',
+                        'top': '-100px',
+                        'bottom': '0',
+                        'left': '0',
+                        'right': '0',
+                        'text-align': 'end'
+                            }" [customUpload]="true" name="demo[]" accept="image/*" maxFileSize="1000000"
+                      (uploadHandler)="onUpload($event , form1)"></p-fileUpload>
+                  </div>
                 </div>
 
-                <div *ngIf="uploadedFiles.length == 0" style="width: auto; height: auto; padding-top: 20%">
+                <div *ngIf="uploadedFiles.length == 0" style="width: auto; height: auto; padding-top: 10%">
                   <h2 *ngIf="uploadedFiles.length == 0" class="p-p-2">
                     Track cover photo
                   </h2>
-                  <p-fileUpload [auto]="true" *ngIf="uploadedFiles.length == 0" mode="basic" styleClass="header-img"
-                    [style]="{ zoom: '2.5', 'border-radius': '50%' }" [customUpload]="true" name="demo[]"
-                    accept="image/*" maxFileSize="1000000" (uploadHandler)="onUpload($event)"></p-fileUpload>
+                  <p-fileUpload #form2 [auto]="true" *ngIf="uploadedFiles.length == 0" mode="basic"
+                    styleClass="header-img" [style]="{ zoom: '2.5', 'border-radius': '50%' }" [customUpload]="true"
+                    name="demo[]" accept="image/*" maxFileSize="1000000" (uploadHandler)="onUpload($event,form2)">
+                  </p-fileUpload>
                 </div>
               </ng-template>
               <div class="p-grid">
@@ -170,17 +184,19 @@
             </p-card>
           </div>
         </div>
-      </form>
     </ng-template>
     <ng-template pTemplate="footer">
       <div class="p-grid p-nogutter p-justify-end">
         <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"
-          [pTooltip]="nftForm.get('title')?.invalid || nftForm.get('description')?.invalid || nftForm.get('coverPhoto')?.invalid || nftForm.get('track')?.invalid ? 'Cover photo,Track,Bio and Title are required': 'Upload your track'">
+          [pTooltip]="nftForm.get('title')?.invalid || nftForm.get('description')?.invalid || nftForm.get('coverPhoto')?.invalid || nftForm.get('track')?.invalid ? 'Cover photo,Track,Bio and Title are required': 'Go to next step'"
+          [disabled]="nftForm.get('title')?.invalid || nftForm.get('description')?.invalid || nftForm.get('coverPhoto')?.invalid || nftForm.get('track')?.invalid ">
+
         </p-button>
       </div>
     </ng-template>
   </p-card>
 </div>
+</form>
 
 <p-toast position="top"></p-toast>
 <p-confirmPopup></p-confirmPopup>

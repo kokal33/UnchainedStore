@@ -40,7 +40,6 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ChipModule } from 'primeng/chip';
 import { StepsModule } from 'primeng/steps';
 import { TooltipModule } from 'primeng/tooltip';
-import { BlockUIModule } from 'ng-block-ui';
 
 
 const mat = [
@@ -57,6 +56,7 @@ const mat = [
   TabMenuModule,
   ConfirmPopupModule,
   DialogModule,
+  InputNumberModule,
   ToolbarModule,
   MatFormFieldModule,
   ConfirmDialogModule,
