@@ -17,7 +17,7 @@
   </ng-template>
 
 </p-menubar>
-<p-messages severity="error">
+<p-messages *ngIf="!isProduction" severity="error">
   <ng-template pTemplate>
     <i class="pi pi-exclamation-triangle"></i>
       <img class="p-ml-2" src="../../../../assets/images/UnchaunedLogo.png" width="32" />

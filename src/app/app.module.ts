@@ -11,7 +11,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ArtistsMainModule } from './02.Artists/artists-main.module'
 import { HttpClientModule } from '@angular/common/http';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { StreamComponent } from './stream/stream.component';
 import { GoogleAnalyticsService } from './07.Services/google-analytics.service';
 import { MessageService } from 'primeng/api';
 import { BlockUIModule } from 'ng-block-ui';
@@ -21,7 +20,6 @@ import { BlockUIModule } from 'ng-block-ui';
   declarations: [
     AppComponent,
     HomeComponent,
-    StreamComponent,
   ],
   imports: [
     BrowserModule,

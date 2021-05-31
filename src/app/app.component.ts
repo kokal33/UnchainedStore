@@ -1,6 +1,6 @@
 import { OnInit } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';

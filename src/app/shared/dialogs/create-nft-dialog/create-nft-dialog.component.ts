@@ -4,12 +4,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Track } from 'ngx-audio-player';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
-import { Auction, User } from 'src/app/06.Models/backendModels';
-import { getUserLocal } from 'src/app/07.Services/authService';
-import { BackendService } from 'src/app/07.Services/backendService';
-import { AuctionContractService } from 'src/app/08.Contracts/Auction/auction-contract.service';
-import { CreateAuctionModel } from 'src/app/06.Models/solidityModels';
-import { MarketplaceContractService } from 'src/app/08.Contracts/Marketplace/marketplace-contract.service';
+import { Auction, User } from '../../../06.Models/backendModels'
+import { getUserLocal } from '../../../07.Services/authService';
+import { BackendService } from '../../../07.Services/backendService';
+import { AuctionContractService } from '../../../08.Contracts/Auction/auction-contract.service';
+import { CreateAuctionModel, CreateProductModel } from '../../../06.Models/solidityModels';
+import { MarketplaceContractService } from '../../../08.Contracts/Marketplace/marketplace-contract.service';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
@@ -31,7 +31,7 @@ export class CreateNftDialogComponent implements OnInit {
   mintFilesSuccess = false;
   approveFilesSuccess = false;
   isAuction = false;
-  createAuctionSuccess = false;
+  createSaleSuccess = false;
   tokenId!: number;
 
   user!: User | undefined;
@@ -186,8 +186,15 @@ export class CreateNftDialogComponent implements OnInit {
     this.blockUI.stop();
     this.mintFilesSuccess = true;
   }
+  async approve(){
+    const type = this.nftForm.get('typeOfListing')?.value.id;
+    if (type === 1)
+      await this.approveAuction();
+    if (type === 2)
+      await this.approveMarketplace();
+  }
   // Approve Auction
-  async approveFiles() {
+  async approveAuction() {
     this.blockUI.start("Your auction is being approved...")
     const approved = await this.auctionService.approveAuction(this.user?.publicAddress as string, this.tokenId)
       .catch(e => {
@@ -203,7 +210,7 @@ export class CreateNftDialogComponent implements OnInit {
     this.blockUI.stop();
     this.approveFilesSuccess = approved;
   }
-
+// Approve Marketplace
   async approveMarketplace() {
     this.blockUI.start("Your NFT is being approved for listing...")
     const approved = await this.marketplaceService.approveMarketplace(this.user?.publicAddress as string, this.tokenId)
@@ -220,12 +227,12 @@ export class CreateNftDialogComponent implements OnInit {
     this.blockUI.stop();
     this.approveFilesSuccess = approved;
   }
-
+// Create Auction
   async createAuction(){
     this.blockUI.start("Creating auction for your NFT...")
     const model: CreateAuctionModel = {
       from: this.user?.publicAddress as string,
-      startPrice: 0.01,
+      startPrice: this.nftForm.get('price')?.value,
       tokenId: this.tokenId,
       duration: this.nftForm.get('duration')?.value.id * 86400
     };
@@ -263,7 +270,35 @@ export class CreateNftDialogComponent implements OnInit {
       });
     if (!auctionPosting) return;
     this.blockUI.stop();
-    this.createAuctionSuccess = true;
+    this.createSaleSuccess = true;
+  }
+
+  // List item in the marketplace
+  async listItem() {
+    this.blockUI.start("Listing your NFT on the Marketplace...")
+    const model: CreateProductModel = {
+      from: this.user?.publicAddress as string,
+      name: this.nftForm.get('title')?.value,
+      price: this.nftForm.get('price')?.value,
+      tokenId: this.tokenId,
+      isLimited: false,
+      sellersCut: 0,
+      ownersRoyalty: 0
+    }
+    console.log(model)
+    const product = this.marketplaceService.createProduct(model)
+    .catch(e => {
+      this.blockUI.stop();
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Listing failed!',
+        detail: e.message,
+      });
+      return undefined;
+    });
+  if (!product) return;
+   //TODO: Save listing on marketplace
+
   }
 
   async uploadFiles() {
