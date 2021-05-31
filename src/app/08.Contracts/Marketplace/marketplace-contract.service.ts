@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
-import { CreateProductModel } from 'src/app/06.Models/solidityModels';
+import { CreateProductModel, PurchaseModel } from '../../06.Models/solidityModels';
 import Web3 from 'web3';
 const MarketplaceContract = require('./Marketplace.json');
-
-
+import {environment} from "../../../environments/environment";
+import { UnchainedTokenService } from '../UnchainedToken/unchained-token.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MarketplaceContractService {
-  constructor() {}
-  web3: Web3 = new Web3(window.ethereum as any);
 
+  constructor(private unchainedTokenService: UnchainedTokenService) {}
+  web3: Web3 = new Web3(window.ethereum as any);
 
   async createProduct(model:CreateProductModel) {
     var myContract = new this.web3.eth.Contract(
       MarketplaceContract.abi,
-      '0x6E7069de74b8BA9EF9Fc663D91813FC7386686EC'
-    );
+      environment.marketplaceTestAddress);
+
     const product = await myContract.methods
       .createProduct(
         model.name,
@@ -28,26 +28,29 @@ export class MarketplaceContractService {
         model.ownersRoyalty
       )
       .send({
-        from: '0x648512523CF1153B63104dd79E65CCb8bD59B179',
+        from: model.from,
         // gas: 200000,
       });
     console.log('PRODUCT: ', product);
   }
 
-
-  async purchaseProduct(productId:number, price:number){
-    let web3 = new Web3(window.ethereum as any);
-    var myContract = new web3.eth.Contract(
+  async purchaseProduct(model: PurchaseModel){
+    var myContract = new this.web3.eth.Contract(
       MarketplaceContract.abi,
-      '0x6E7069de74b8BA9EF9Fc663D91813FC7386686EC'
+      environment.marketplaceTestAddress
     );
-    const priceInWei = web3.utils.toWei(price.toString(), "ether");
+    const priceInWei = this.web3.utils.toWei(model.price.toString(), "ether");
     console.log('Price in Wei: ', priceInWei);
-    const product = await myContract.methods.purchaseProduct(productId)
+    const product = await myContract.methods.purchaseProduct(model.productId)
       .send({
-        from: '0x9D39F69971e919c09e306a152c48A8282d6b780B',
+        from: model.from,
         value: priceInWei
       });
       console.log('PRODUCT PURCHASED: ', product);
+  }
+
+  async approveMarketplace(from: string, tokenId: number) {
+    await this.unchainedTokenService.approve(from, environment.marketplaceTestAddress, tokenId);
+    return true;
   }
 }

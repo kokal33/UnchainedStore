@@ -12,11 +12,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GoogleAnalyticsService } from 'src/app/07.Services/google-analytics.service';
 import { CreateNftDialogComponent } from '../../dialogs/create-nft-dialog/create-nft-dialog.component';
 import { ProviderService } from 'src/app/07.Services/provider.service';
-import { UnchainedTokenService } from 'src/app/08.Contracts/UnchainedToken/unchained-token.service';
-import { MarketplaceContractService } from 'src/app/08.Contracts/Marketplace/marketplace-contract.service';
-import { AuctionContractService } from 'src/app/08.Contracts/Auction/auction-contract.service';
-import { CreateAuctionModel } from 'src/app/06.Models/solidityModels';
-
 
 @Component({
   selector: 'app-responsive-toolbar',
@@ -62,8 +57,7 @@ export class ResponsiveToolbarComponent implements OnInit {
   constructor(private dialog: MatDialog, private dialogService: DialogService,
     private backendService: BackendService, private router: Router,
     private googleService: GoogleAnalyticsService, private messageService: MessageService,
-    private providerService: ProviderService, private unchainedTokenService: AuctionContractService,
-    private activatedRoute: ActivatedRoute) { }
+    private providerService: ProviderService, private activatedRoute: ActivatedRoute) { }
 
   onClickMenuItem(event: any) {
   }
