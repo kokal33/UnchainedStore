@@ -9,6 +9,7 @@ import { getUserLocal } from 'src/app/07.Services/authService';
 import { BackendService } from 'src/app/07.Services/backendService';
 import { AuctionContractService } from 'src/app/08.Contracts/Auction/auction-contract.service';
 import { CreateAuctionModel } from 'src/app/06.Models/solidityModels';
+import { MarketplaceContractService } from 'src/app/08.Contracts/Marketplace/marketplace-contract.service';
 
 @Component({
   selector: 'app-create-nft-dialog',
@@ -55,7 +56,8 @@ export class CreateNftDialogComponent implements OnInit {
     private fb: FormBuilder,
     private sanitize: DomSanitizer,
     private backendService: BackendService,
-    private auctionService: AuctionContractService
+    private auctionService: AuctionContractService,
+    private marketplaceService: MarketplaceContractService,
 
   ) { }
   ngOnInit(): void {
@@ -156,9 +158,27 @@ export class CreateNftDialogComponent implements OnInit {
       this.blockUI.stop();
       this.mintFilesSuccess = true;
   }
+  // Approve Auction
   async approveFiles() {
     this.blockUI.start("Your auction is being approved...")
     const approved = await this.auctionService.approveAuction(this.user?.publicAddress as string, this.tokenId)
+    .catch(e => {
+      this.blockUI.stop();
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Your NFT was not approved!',
+        detail: e.message,
+      });
+      return false;
+    });
+    if (!approved) return;
+    this.blockUI.stop();
+    this.approveFilesSuccess = approved;
+  }
+
+  async approveMarketplace() {
+    this.blockUI.start("Your NFT is being approved for listing...")
+    const approved = await this.marketplaceService.approveMarketplace(this.user?.publicAddress as string, this.tokenId)
     .catch(e => {
       this.blockUI.stop();
       this.messageService.add({

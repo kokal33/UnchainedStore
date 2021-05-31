@@ -7,7 +7,8 @@ export const environment = {
   //apiUrl: 'https://store.unchained-music.com',
 
   production: false,
-  contractTestAddress: "0x111c06bad93f06e2300104a3c24c51f91be5fce1"
+  contractTestAddress: "0x111c06bad93f06e2300104a3c24c51f91be5fce1",
+  marketplaceTestAddress: "0x95c9d0B1492bb99109c12e7014225eb1b83164D5"
 };
 
 /*

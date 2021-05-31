@@ -1,4 +1,5 @@
 export interface CreateProductModel {
+  from: string,
   name: string;
   price: number;
   tokenId: number;
@@ -12,4 +13,10 @@ export interface CreateAuctionModel{
   startPrice: number,
   tokenId: number,
   duration: number
+}
+
+export interface PurchaseModel {
+  from: string,
+  productId:number,
+  price:number
 }
