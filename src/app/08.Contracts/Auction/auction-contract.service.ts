@@ -16,7 +16,7 @@ export class AuctionContractService {
   async createAuction(model: CreateAuctionModel) {
     const auction = await new this.web3.eth.Contract(AuctionContract.abi).deploy({
       data: AuctionContract.data.bytecode.object,
-      arguments: [this.web3.utils.toWei(model.startPrice.toString(), "ether"), model.tokenId, model.duration]
+      arguments: [this.web3.utils.toWei(model.startPrice.toString(), "ether"), model.tokenId, model.duration, model.creatorsRoyalties]
     }).send({
       from: model.from,
       //gas: 1500000,

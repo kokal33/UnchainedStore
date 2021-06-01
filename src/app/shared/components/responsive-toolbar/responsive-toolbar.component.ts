@@ -43,11 +43,6 @@ export class ResponsiveToolbarComponent implements OnInit {
         label: 'Artists',
         icon: 'pi pi-fw pi-user',
         routerLink: 'artists'
-      },
-      {
-        label: 'Stream',
-        icon: 'pi pi-fw pi-video',
-        routerLink: 'stream'
       }
     ];
     // ENVIRONMENT-CHANGE
