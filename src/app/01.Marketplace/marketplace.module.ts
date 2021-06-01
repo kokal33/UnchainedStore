@@ -12,17 +12,6 @@ const routes: Routes = [
   {
     path: '',
     component: MarketplaceGridComponent,
-    children: [
-
-      {
-        path: 'nft-details',
-        component: MarketplaceItemDetailsComponent,
-      },
-      {
-        path: 'bid-history',
-        component: MarketplaceItemBidHistoryComponent,
-      },
-    ]
   },
 ];
 

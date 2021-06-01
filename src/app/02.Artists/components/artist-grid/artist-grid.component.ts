@@ -20,7 +20,7 @@ export class ArtistGridComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.blockUI.start();
+    this.blockUI.start("Loading artists...");
     this.backendService.getArtists().then(result => {
       this.artists = result.body;
       this.loadedArtists = true;

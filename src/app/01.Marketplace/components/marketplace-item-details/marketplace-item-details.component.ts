@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-marketplace-item-details',
@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./marketplace-item-details.component.css']
 })
 export class MarketplaceItemDetailsComponent implements OnInit {
+  @Input() track!: any;
 
-  constructor() { }
+  constructor( ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(){
+
+
   }
 
 }

@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { CreateAuctionModel } from "../06.Models/solidityModels";
+import { IdModel } from "../06.Models/idModel";
 const options = {
   observe: 'response' as const,
 };
@@ -29,6 +30,9 @@ export class BackendService {
 
   async getTracks(): Promise<HttpResponse<any>> {
     return await this.http.post(this.base + "/tracks/getTracks", null, options).toPromise();
+  }
+  async getTrackById(model: IdModel): Promise<HttpResponse<any>> {
+    return await this.http.post(this.base + "/tracks/getTrack", model, options).toPromise();
   }
 
   async postTrack(model: any): Promise<HttpResponse<any>> {

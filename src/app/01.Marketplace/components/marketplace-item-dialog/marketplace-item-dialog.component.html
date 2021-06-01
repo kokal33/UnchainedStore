@@ -1,12 +1,13 @@
 <div class="p-grid">
   <div class="p-col-12 p-md-6 p-lg-6">
-    <div class="box"> <img style="border-radius: 20px 20px 0px 0px;" alt="Card"
-        src="https://i.pinimg.com/originals/67/f5/0e/67f50efd8c31d688171ac1e6538b69fb.jpg"></div>
+    <div style="text-align: center; padding-top: 40px;" class="box"> <img style="border-radius: 20px; height: 400px;width: 450px;" alt="Card"
+        [src]="environment +track?.imageLocation"></div>
   </div>
   <div class="p-col-12 p-md-6 p-lg-6">
     <div class="box">
       <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
-      <router-outlet></router-outlet>
+      <app-marketplace-item-details [track]="track" *ngIf="activeItem.id == '1'"></app-marketplace-item-details>
+      <app-marketplace-item-bid-history [track]="track" *ngIf="activeItem.id == '2'"></app-marketplace-item-bid-history>
     </div>
   </div>
 </div>

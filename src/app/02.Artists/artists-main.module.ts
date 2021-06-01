@@ -28,7 +28,7 @@ const routes: Routes = [
       component: NftCardComponent,
       children: [
         {
-          path: 'nft-details',
+          path: 'nft-details/:id',
           component: MarketplaceItemDetailsComponent,
         },
         {
@@ -42,7 +42,7 @@ const routes: Routes = [
       component: NftCardComponent,
       children: [
         {
-          path: 'nft-details',
+          path: 'nft-details/:id',
           component: MarketplaceItemDetailsComponent,
         },
         {

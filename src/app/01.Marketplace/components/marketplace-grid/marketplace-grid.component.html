@@ -38,7 +38,7 @@
 
         </div>
         <ng-template pTemplate="header">
-          <img (click)="viewDetails()" class="img" alt="Card" [src]="environment + item.imageLocation">
+          <img (click)="viewDetails(item.id)" class="img" alt="Card" [src]="environment + item.imageLocation">
         </ng-template>
         <div class="p-grid">
           <div class="p-col-12">
