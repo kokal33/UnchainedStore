@@ -20,3 +20,9 @@ export interface PurchaseModel {
   productId:number,
   price:number
 }
+
+export interface BidModel {
+  from: string,
+  value: string,
+  auctionContractAddress: string
+}

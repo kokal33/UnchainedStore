@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CreateAuctionModel } from 'src/app/06.Models/solidityModels';
+import { BidModel, CreateAuctionModel } from 'src/app/06.Models/solidityModels';
 import Web3 from 'web3';
 const AuctionContract = require('./UnchainedAuction.json');
 import * as RLP from 'rlp'
@@ -23,6 +23,19 @@ export class AuctionContractService {
     });
     console.log("Existing auction address: ", auction.options.address);
     return auction;
+  }
+
+  async bid(model: BidModel) {
+    var myContract = new this.web3.eth.Contract(
+      AuctionContract.abi,
+      model.auctionContractAddress
+    );
+    const bid = await myContract.methods.bid()
+    .send({
+      from: model.from,
+      //gas: 1500000,
+    });
+    console.log("Bid executed: ", bid);
   }
 
   async precalculateAddress(account: string) {
