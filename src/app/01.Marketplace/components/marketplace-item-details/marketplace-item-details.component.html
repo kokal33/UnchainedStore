@@ -1,19 +1,6 @@
-<h1 style="padding-top:20px ;font-weight: bold; text-align: center;">Kraftwerk Unreleased Track</h1>
-<!-- <div class="p-grid">
-  <div style="text-align: center;" class="p-col-6">
-    <h5>Owner</h5>
-    <p-chip label="Onyama Limba" image="../../assets/images/avatar-372-456324.png" styleClass="p-mr-2"></p-chip>
-  </div>
-  <div style="text-align: center;" class="p-col-6">
-    <h5>Artist</h5>
-    <p-chip label="Onyama Limba" image="../../assets/images/avatar-372-456324.png" styleClass="p-mr-2"></p-chip>
-  </div>
-</div> -->
+<h1 style="padding:20px ;font-weight: bold; text-align: center;">{{track?.title}}</h1>
 <p-fieldset legend="Description">
-  <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-    magna
-    aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4>
+  <h4>{{track?.description}}</h4>
 </p-fieldset>
 
 
@@ -26,7 +13,7 @@
         <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
           <p-divider></p-divider>
         </div>
-        <h3>400 *</h3>
+        <h3>{{track?.auction?.price}} MATIC</h3>
 
       </div>
     </div>
