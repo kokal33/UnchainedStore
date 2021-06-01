@@ -23,13 +23,11 @@ export class MarketplaceContractService {
         model.name,
         this.web3.utils.toWei(model.price.toString(), "ether"),
         model.tokenId,
-        model.isLimited,
-        model.sellersCut,
         model.ownersRoyalty
       )
       .send({
         from: model.from,
-        // gas: 200000,
+        gas: 200000,
       });
     console.log('PRODUCT: ', product);
   }

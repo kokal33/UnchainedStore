@@ -234,7 +234,9 @@ export class CreateNftDialogComponent implements OnInit {
       from: this.user?.publicAddress as string,
       startPrice: this.nftForm.get('price')?.value,
       tokenId: this.tokenId,
-      duration: this.nftForm.get('duration')?.value.id * 86400
+      duration: this.nftForm.get('duration')?.value.id * 86400,
+      // TODO: Get creator royalties from form
+      creatorsRoyalties:10
     };
     const auction = await this.auctionService.createAuction(model)
       .catch(e => {
@@ -263,7 +265,7 @@ export class CreateNftDialogComponent implements OnInit {
         this.messageService.add({
           severity: 'error',
           summary: 'Auction creation failed!',
-          detail: "The server at unchained did not respond :(, please try again or report this to the administrator",
+          detail: "The server at unchained did not respond :( please try again or report this to the administrator",
         });
         this.approveFilesSuccess = false;
         return undefined;
@@ -281,8 +283,6 @@ export class CreateNftDialogComponent implements OnInit {
       name: this.nftForm.get('title')?.value,
       price: this.nftForm.get('price')?.value,
       tokenId: this.tokenId,
-      isLimited: false,
-      sellersCut: 0,
       ownersRoyalty: 0
     }
     console.log(model)
@@ -297,6 +297,7 @@ export class CreateNftDialogComponent implements OnInit {
       return undefined;
     });
   if (!product) return;
+  this.blockUI.stop();
    //TODO: Save listing on marketplace
 
   }
