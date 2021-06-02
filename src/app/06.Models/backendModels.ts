@@ -39,11 +39,18 @@ export interface AuctionModel {
   started: Date,
   ending: Date,
   trackId: number
-  price: number
+  price: number,
+  contractAddress: string
 }
 
 export interface ListingModel {
   id: number,
   trackId: number,
   price: number
+}
+
+export interface PostBidModel {
+  auctionId: number,
+  bidderAddress: string,
+  amount: number
 }

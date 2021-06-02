@@ -258,6 +258,7 @@ export class CreateNftDialogComponent implements OnInit {
       trackId: this.uploadedTrackId,
       ending: timestamp,
       price : this.nftForm.get('price')?.value,
+      contractAddress: auction.options.address
     }
     const auctionPosting = await this.backendService.postAuction(postAuctionModel)
       .catch(e => {

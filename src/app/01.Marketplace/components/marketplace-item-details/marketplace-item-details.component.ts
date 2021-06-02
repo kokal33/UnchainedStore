@@ -13,13 +13,11 @@ export class MarketplaceItemDetailsComponent implements OnInit {
   constructor(private dialogService: DialogService) { }
 
   async ngOnInit() {
-
-
   }
   placeBidOrPurchase(itemid: number, isAuctioned:boolean) {
     const dialog = this.dialogService.open(BidOrPurchaseDialogComponent, {
       header: isAuctioned ? 'Place a Bid' : 'Purchase NFT',
-      data: { id: itemid },
+      data: { id: itemid, auctionContractAddress: this.track.auctionContractAddress },
       width:'30%'
     });
   }
