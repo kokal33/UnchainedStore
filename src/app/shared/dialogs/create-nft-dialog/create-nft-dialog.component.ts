@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Track } from 'ngx-audio-player';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
-import { Auction, User } from '../../../06.Models/backendModels'
+import { AuctionModel, ListingModel, User } from '../../../06.Models/backendModels'
 import { getUserLocal } from '../../../07.Services/authService';
 import { BackendService } from '../../../07.Services/backendService';
 import { AuctionContractService } from '../../../08.Contracts/Auction/auction-contract.service';
@@ -253,7 +253,7 @@ export class CreateNftDialogComponent implements OnInit {
     // Stupid date manipulation in typescript
     const timestamp = new Date();
     timestamp.setDate(timestamp.getDate() + this.nftForm.get('duration')?.value.id)
-    const postAuctionModel: Auction = {
+    const postAuctionModel: AuctionModel = {
       started: new Date(),
       trackId: this.uploadedTrackId,
       ending: timestamp,
@@ -285,8 +285,7 @@ export class CreateNftDialogComponent implements OnInit {
       tokenId: this.tokenId,
       ownersRoyalty: 0
     }
-    console.log(model)
-    const product = this.marketplaceService.createProduct(model)
+    const product = await this.marketplaceService.createProduct(model)
     .catch(e => {
       this.blockUI.stop();
       this.messageService.add({
@@ -297,9 +296,26 @@ export class CreateNftDialogComponent implements OnInit {
       return undefined;
     });
   if (!product) return;
+  const listingId = product.events.ProductCreated.returnValues.id;
+   const listingModel: ListingModel = {
+    id: listingId,
+    trackId: this.uploadedTrackId,
+    price: this.nftForm.get('price')?.value
+   }
+   const listing = await this.backendService.postListing(listingModel)
+   .catch(e => {
+    this.blockUI.stop();
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Marketplace listing failed!',
+      detail: "The server at unchained did not respond :( please try again or report this to the administrator",
+    });
+    this.createSaleSuccess = false;
+    return undefined;
+  });
+  if (!listing) return;
+  this.createSaleSuccess = true;
   this.blockUI.stop();
-   //TODO: Save listing on marketplace
-
   }
 
   async uploadFiles() {

@@ -3,12 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  //apiUrl: "https://localhost:44327",
-  apiUrl: 'https://store.unchained-music.com',
+  apiUrl: "https://localhost:44327",
+  //apiUrl: 'https://store.unchained-music.com',
 
   production: false,
   contractTestAddress: "0x111c06bad93f06e2300104a3c24c51f91be5fce1",
-  marketplaceTestAddress: "0x32B66B022a3825E60e5dF6b83522c1b4A27D5B72"
+  marketplaceTestAddress: "0x79EeC66b4D3922041207b2defa5C618093a2d191"
 };
 
 /*

@@ -30,6 +30,7 @@ export class MarketplaceContractService {
         gas: 200000,
       });
     console.log('PRODUCT: ', product);
+    return product;
   }
 
   async purchaseProduct(model: PurchaseModel){

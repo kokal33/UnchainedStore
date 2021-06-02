@@ -35,9 +35,15 @@ export interface TrackModel {
   timestamp: Date
 }
 
-export interface Auction {
+export interface AuctionModel {
   started: Date,
   ending: Date,
   trackId: number
+  price: number
+}
+
+export interface ListingModel {
+  id: number,
+  trackId: number,
   price: number
 }

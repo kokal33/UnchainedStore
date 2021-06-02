@@ -1,4 +1,4 @@
-import { Auction, LoginModel, User } from "../06.Models/backendModels";
+import { AuctionModel, ListingModel, LoginModel, User } from "../06.Models/backendModels";
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
@@ -43,8 +43,11 @@ export class BackendService {
     return await this.http.post(this.base + "/users/updateUser", user, options).toPromise();
   }
 
-  async postAuction(model: Auction): Promise<HttpResponse<any>> {
+  async postAuction(model: AuctionModel): Promise<HttpResponse<any>> {
     return await this.http.post(this.base + "/auctions/postAuction", model, options).toPromise();
+  }
+  async postListing(model: ListingModel): Promise<HttpResponse<any>> {
+    return await this.http.post(this.base + "/marketplace/postlisting", model, options).toPromise();
   }
 }
 
