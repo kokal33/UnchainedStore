@@ -16,8 +16,6 @@ import { AuctionContractService } from 'src/app/08.Contracts/Auction/auction-con
   providers:[BackendService, AuctionContractService]
 })
 export class BidOrPurchaseDialogComponent implements OnInit {
-  @BlockUI() blockUI!: NgBlockUI;
-
 
   bidSuccess = false;
   bidForm!: FormGroup;
@@ -28,7 +26,7 @@ export class BidOrPurchaseDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.bidForm = this.fb.group({
-      placedBid: [1.25, Validators.required],
+      placedBid: [null, Validators.required],
     });
     this.user = getUserLocal();
   }
@@ -41,10 +39,9 @@ export class BidOrPurchaseDialogComponent implements OnInit {
       amount: this.bidForm.get('placedBid')?.value,
       auctionContractAddress: this.config.data.auctionContractAddress
      }
-     this.blockUI.stop();
      const blockchainBid = await this.auctionContractService.bid(bidModel)
      .catch(e => {
-      this.blockUI.stop();
+       console.log(e.message);
       this.messageService.add({
         severity: 'error',
         summary: 'Auction creation failed!',
@@ -53,13 +50,23 @@ export class BidOrPurchaseDialogComponent implements OnInit {
       return undefined;
     });
   if (!blockchainBid) return;
-console.log("Blockchain bid: ", blockchainBid);
 
     const postBidModel: PostBidModel = {
       amount: this.bidForm.get('placedBid')?.value,
       bidderAddress: this.user?.publicAddress as string,
       auctionId: this.config.data.id
     }
-    const bidResult = await this.backendService.bid(postBidModel);
+    const bidResult = await this.backendService.bid(postBidModel)
+    .catch(e => {
+      console.log(e.message);
+     this.messageService.add({
+       severity: 'error',
+       summary: 'Auction creation failed!',
+       detail: e.message,
+     });
+     return undefined;
+   });
+   if (!bidResult) return;
+
   }
 }

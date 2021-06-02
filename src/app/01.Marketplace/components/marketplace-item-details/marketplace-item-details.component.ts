@@ -17,7 +17,7 @@ export class MarketplaceItemDetailsComponent implements OnInit {
   placeBidOrPurchase(itemid: number, isAuctioned:boolean) {
     const dialog = this.dialogService.open(BidOrPurchaseDialogComponent, {
       header: isAuctioned ? 'Place a Bid' : 'Purchase NFT',
-      data: { id: itemid, auctionContractAddress: this.track.auctionContractAddress },
+      data: { id: itemid, auctionContractAddress: this.track.auction.contractAddress },
       width:'30%'
     });
   }

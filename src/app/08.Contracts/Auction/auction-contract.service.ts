@@ -30,12 +30,19 @@ export class AuctionContractService {
       AuctionContract.abi,
       model.auctionContractAddress
     );
+    const amountInWei = this.web3.utils.toWei(model.amount.toString(), "ether");
+    const estimatedGas = await myContract.methods.bid()
+    .estimateGas({
+      value: amountInWei,
+      from: model.from
+    })
     const bid = await myContract.methods.bid()
     .send({
+      value: amountInWei,
       from: model.from,
-      //gas: 1500000,
+      gas: estimatedGas,
     });
-    console.log("Bid executed: ", bid);
+    return bid;
   }
 
   async precalculateAddress(account: string) {
