@@ -9,7 +9,8 @@
   <div class="p-grid">
     <div class="p-col-5 p-d-flex p-ai-center p-jc-center">
       <div style="text-align: center;" class="box">
-        <h3 style="color: #c950aa">Current Bid</h3>
+        <h3 *ngIf="track?.auction" style="color: #c950aa">Current Bid</h3>
+        <h3 *ngIf="track?.listing" style="color: #c950aa">Reserve price</h3>
         <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
           <p-divider></p-divider>
         </div>
@@ -35,8 +36,10 @@
 <div style="margin-top: 30px;" class="p-grid">
   <div style="text-align: center;" class="p-col-12">
 
-    <button style="width: 60%;" pButton pRipple type="button" label="Place a bid"
-      class="p-button-raised p-button-lg"></button>
+    <button (click)="placeBidOrPurchase(track.auction.id, track.isAuctioned)" *ngIf="track?.isAuctioned" style="width: 60%;"
+      pButton pRipple type="button" label="Place a bid" class="p-button-raised p-button-lg"></button>
+    <button (click)="placeBidOrPurchase(track.listing.id,track.isAuctioned)" *ngIf="track?.isListing" style="width: 60%;"
+      pButton pRipple type="button" label="Purchase" class="p-button-raised p-button-lg"></button>
 
   </div>
 

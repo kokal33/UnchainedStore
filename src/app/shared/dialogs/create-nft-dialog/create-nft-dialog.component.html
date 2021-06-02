@@ -1,113 +1,119 @@
 <p-steps [model]="items" [(activeIndex)]="activeIndex"></p-steps>
 <form [formGroup]="nftForm">
 
-<div [hidden]="activeIndex != 1" class="stepsdemo-content">
-  <p-card [style]="{'padding':'40px'}">
-    <ng-template pTemplate="title">
-      Select listing type
-    </ng-template>
-    <ng-template pTemplate="subtitle">
-      There are two listing types available: <strong>Fixed price</strong> &nbsp; and <strong>Timed Auction</strong>
-    </ng-template>
-    <ng-template pTemplate="content">
-      <div class="p-fluid">
-        <div class="p-field">
-          <label for="firstname">Type of listing</label>
-          <p-dropdown [options]="types" formControlName="typeOfListing" placeholder="Select a type" optionLabel="name"
-            [showClear]="true"></p-dropdown>
-        </div>
-        <div *ngIf="isAuction" class="p-field">
-          <label for="firstname">Duration</label>
-          <p-dropdown [options]="durationTypes" formControlName="duration" placeholder="Select auction duration"
-            optionLabel="name" [showClear]="true"></p-dropdown>
-        </div>
-        <div class="p-field">
-          <label for="horizontal">Price</label>
-          <p-inputNumber formControlName="price" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal"
-            spinnerMode="horizontal" [step]="0.25" decrementButtonClass="p-button-danger"
-            incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"
-            suffix=" matic">
-          </p-inputNumber>
-        </div>
+  <div [hidden]="activeIndex != 1" class="stepsdemo-content">
+    <p-card [style]="{'padding':'40px'}">
+      <ng-template pTemplate="title">
+        Select listing type
+      </ng-template>
+      <ng-template pTemplate="subtitle">
+        There are two listing types available: <strong>Fixed price</strong> &nbsp; and <strong>Timed Auction</strong>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="p-fluid">
+          <div class="p-field">
+            <label for="firstname">Type of listing</label>
+            <p-dropdown [options]="types" formControlName="typeOfListing" placeholder="Select a type" optionLabel="name"
+              [showClear]="true"></p-dropdown>
+          </div>
+          <div *ngIf="isAuction" class="p-field">
+            <label for="firstname">Duration</label>
+            <p-dropdown [options]="durationTypes" formControlName="duration" placeholder="Select auction duration"
+              optionLabel="name" [showClear]="true"></p-dropdown>
+          </div>
+          <div class="p-field">
+            <label for="horizontal">Price</label>
+            <p-inputNumber formControlName="price" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal"
+              spinnerMode="horizontal" [step]="0.25" decrementButtonClass="p-button-danger"
+              incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"
+              suffix=" matic">
+            </p-inputNumber>
+          </div>
 
 
-      </div>
-    </ng-template>
-    <ng-template pTemplate="footer">
-      <div  class="p-grid p-nogutter p-justify-end">
-        <p-button [disabled]="nftForm.get('price')?.invalid || nftForm.get('duration')?.invalid || nftForm.get('typeOfListing')?.invalid" label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
-      </div>
-    </ng-template>
-  </p-card>
-</div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <div class="p-grid p-nogutter p-justify-end">
+          <p-button
+            [disabled]="nftForm.get('price')?.invalid || nftForm.get('duration')?.invalid || nftForm.get('typeOfListing')?.invalid"
+            label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
 
-<div [hidden]="activeIndex != 2" class="stepsdemo-content">
-  <p-card [style]="{'padding':'20px'}">
-    <ng-template pTemplate="title">
-      Follow the steps
-    </ng-template>
-    <ng-template pTemplate="content">
-      <div class="p-fluid">
-        <div class="p-field">
-          <svg *ngIf="uploadedFilesSuccess" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-          </svg>
-          <p-progressSpinner *ngIf="!uploadedFilesSuccess" [style]="{width: '30px', height: '30px'}">
-          </p-progressSpinner>
-          <label class="p-p-2" for="first">Upload track</label>
-          <button [disabled]="uploadedFilesSuccess" (click)="uploadFiles()" pButton pRipple type="button"
-            label="Upload files" class="p-button-rounded"></button>
-        </div>
-        <div class="p-field">
-          <svg *ngIf="mintFilesSuccess" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-          </svg>
-          <p-progressSpinner *ngIf="!mintFilesSuccess" [style]="{width: '30px', height: '30px'}"></p-progressSpinner>
-          <label class="p-p-2" for="second">Mint</label>
-          <button [disabled]="!uploadedFilesSuccess || mintFilesSuccess" (click)="mintFiles()" pButton pRipple
-            type="button" label="Mint NFT" class="p-button-rounded"></button>
-        </div>
-        <div class="p-field">
-          <svg *ngIf="approveFilesSuccess" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-          </svg>
-          <p-progressSpinner *ngIf="!approveFilesSuccess" [style]="{width: '30px', height: '30px'}"></p-progressSpinner>
-          <label class="p-p-2" for="third">Approve</label>
-          <button [disabled]="!mintFilesSuccess || approveFilesSuccess" (click)="approve()" pButton pRipple
-            type="button" label="Approve NFT" class="p-button-rounded"></button>
-        </div>
-        <div class="p-field">
-          <svg *ngIf="createSaleSuccess" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-          </svg>
-          <p-progressSpinner *ngIf="!createSaleSuccess" [style]="{width: '30px', height: '30px'}"></p-progressSpinner>
-          <label class="p-p-2" for="third">Create</label>
-          <!-- Button for AUCTION -->
-          <button  *ngIf="nftForm.get('typeOfListing')?.value?.id === 1 " [disabled]="!approveFilesSuccess || createSaleSuccess" (click)="createAuction()" pButton pRipple type="button" label="Create Auction"
-            class="p-button-rounded"></button>
-          <!-- Button for MARKETPLACE -->
-            <button *ngIf="nftForm.get('typeOfListing')?.value?.id === 2" [disabled]="!approveFilesSuccess || createSaleSuccess" (click)="listItem()" pButton pRipple type="button" label="List on Marketplace"
-            class="p-button-rounded"></button>
-        </div>
+  <div [hidden]="activeIndex != 2" class="stepsdemo-content">
+    <p-card [style]="{'padding':'20px'}">
+      <ng-template pTemplate="title">
+        Follow the steps
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="p-fluid">
+          <div class="p-field">
+            <svg *ngIf="uploadedFilesSuccess" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+              <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+              <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+            </svg>
+            <p-progressSpinner *ngIf="!uploadedFilesSuccess" [style]="{width: '30px', height: '30px'}">
+            </p-progressSpinner>
+            <label class="p-p-2" for="first">Upload track</label>
+            <button [disabled]="uploadedFilesSuccess" (click)="uploadFiles()" pButton pRipple type="button"
+              label="Upload files" class="p-button-rounded"></button>
+          </div>
+          <div class="p-field">
+            <svg *ngIf="mintFilesSuccess" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+              <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+              <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+            </svg>
+            <p-progressSpinner *ngIf="!mintFilesSuccess" [style]="{width: '30px', height: '30px'}"></p-progressSpinner>
+            <label class="p-p-2" for="second">Mint</label>
+            <button [disabled]="!uploadedFilesSuccess || mintFilesSuccess" (click)="mintFiles()" pButton pRipple
+              type="button" label="Mint NFT" class="p-button-rounded"></button>
+          </div>
+          <div class="p-field">
+            <svg *ngIf="approveFilesSuccess" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+              <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+              <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+            </svg>
+            <p-progressSpinner *ngIf="!approveFilesSuccess" [style]="{width: '30px', height: '30px'}">
+            </p-progressSpinner>
+            <label class="p-p-2" for="third">Approve</label>
+            <button [disabled]="!mintFilesSuccess || approveFilesSuccess" (click)="approve()" pButton pRipple
+              type="button" label="Approve NFT" class="p-button-rounded"></button>
+          </div>
+          <div class="p-field">
+            <svg *ngIf="createSaleSuccess" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+              <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+              <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+            </svg>
+            <p-progressSpinner *ngIf="!createSaleSuccess" [style]="{width: '30px', height: '30px'}"></p-progressSpinner>
+            <label class="p-p-2" for="third">Create</label>
+            <!-- Button for AUCTION -->
+            <button *ngIf="nftForm.get('typeOfListing')?.value?.id === 1 "
+              [disabled]="!approveFilesSuccess || createSaleSuccess" (click)="createAuction()" pButton pRipple
+              type="button" label="Create Auction" class="p-button-rounded"></button>
+            <!-- Button for MARKETPLACE -->
+            <button *ngIf="nftForm.get('typeOfListing')?.value?.id === 2"
+              [disabled]="!approveFilesSuccess || createSaleSuccess" (click)="listItem()" pButton pRipple type="button"
+              label="List on Marketplace" class="p-button-rounded"></button>
+          </div>
 
-      </div>
-    </ng-template>
-    <ng-template pTemplate="footer">
-      <div class="p-grid p-nogutter p-justify-end">
-        <p-button [disabled]="!uploadedFilesSuccess || !mintFilesSuccess || !approveFilesSuccess || !createSaleSuccess" label="Finish"
-          (onClick)="closeDialog()" icon="pi pi-angle-right" iconPos="right"></p-button>
-      </div>
-    </ng-template>
-  </p-card>
-</div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <div class="p-grid p-nogutter p-justify-end">
+          <p-button
+            [disabled]="!uploadedFilesSuccess || !mintFilesSuccess || !approveFilesSuccess || !createSaleSuccess"
+            label="Finish" (onClick)="closeDialog()" icon="pi pi-angle-right" iconPos="right"></p-button>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
 
-<div [hidden]="activeIndex != 0" class="stepsdemo-content">
-  <p-card class="nft-card">
-    <ng-template pTemplate="content">
+  <div [hidden]="activeIndex != 0" class="stepsdemo-content">
+    <p-card class="nft-card">
+      <ng-template pTemplate="content">
         <div style="color: white; text-align: center" class="p-grid">
           <div class="p-col-12">
             <!--card-1-->
@@ -189,18 +195,18 @@
             </p-card>
           </div>
         </div>
-    </ng-template>
-    <ng-template pTemplate="footer">
-      <div class="p-grid p-nogutter p-justify-end">
-        <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"
-          [pTooltip]="nftForm.get('title')?.invalid || nftForm.get('description')?.invalid || nftForm.get('coverPhoto')?.invalid || nftForm.get('track')?.invalid ? 'Cover photo,Track,Bio and Title are required': 'Go to next step'"
-          [disabled]="nftForm.get('title')?.invalid || nftForm.get('description')?.invalid || nftForm.get('coverPhoto')?.invalid || nftForm.get('track')?.invalid ">
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <div class="p-grid p-nogutter p-justify-end">
+          <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"
+            [pTooltip]="nftForm.get('title')?.invalid || nftForm.get('description')?.invalid || nftForm.get('coverPhoto')?.invalid || nftForm.get('track')?.invalid ? 'Cover photo,Track,Bio and Title are required': 'Go to next step'"
+            [disabled]="nftForm.get('title')?.invalid || nftForm.get('description')?.invalid || nftForm.get('coverPhoto')?.invalid || nftForm.get('track')?.invalid ">
 
-        </p-button>
-      </div>
-    </ng-template>
-  </p-card>
-</div>
+          </p-button>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
 </form>
 
 <p-toast position="top"></p-toast>
