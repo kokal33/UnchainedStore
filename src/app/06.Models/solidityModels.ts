@@ -23,6 +23,6 @@ export interface PurchaseModel {
 
 export interface BidModel {
   from: string,
-  value: string,
+  amount: string,
   auctionContractAddress: string
 }
