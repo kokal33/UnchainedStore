@@ -16,11 +16,11 @@ export class MarketplaceItemDetailsComponent implements OnInit {
 
 
   }
-  placeBidOrPurchase(itemid: number, isAuctioned:boolean) {
+  placeBidOrPurchase(itemid: number, isAuctioned: boolean) {
     const dialog = this.dialogService.open(BidOrPurchaseDialogComponent, {
       header: isAuctioned ? 'Place a Bid' : 'Purchase NFT',
       data: { id: itemid },
-      width:'30%'
+      width: '30%'
     });
   }
 
