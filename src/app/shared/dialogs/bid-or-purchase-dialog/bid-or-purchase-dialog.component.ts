@@ -17,9 +17,10 @@ import { AuctionContractService } from 'src/app/08.Contracts/Auction/auction-con
 })
 export class BidOrPurchaseDialogComponent implements OnInit {
 
-  bidSuccess = false;
+  showProgress = false;
   bidForm!: FormGroup;
   user!: User | undefined;
+  isAuctioned! : boolean;
 
   constructor(private fb: FormBuilder, private backendService: BackendService, public config: DynamicDialogConfig,
               private auctionContractService: AuctionContractService, private messageService: MessageService) { }
@@ -29,11 +30,19 @@ export class BidOrPurchaseDialogComponent implements OnInit {
       placedBid: [null, Validators.required],
     });
     this.user = getUserLocal();
+    this.isAuctioned = this.config.data.isAuctioned;
+    if (!this.isAuctioned) {
+      this.bidForm.get('placedBid')?.setValue(this.config.data.price);
+      this.bidForm.get('placedBid')?.disable();
+    }
   }
 
+  async purchase(){
+  this.showProgress = true;
+  }
   async bid() {
      if(this.bidForm.invalid) return;
-
+    this.showProgress = true;
      const bidModel: BidModel = {
       from: this.user?.publicAddress as string,
       amount: this.bidForm.get('placedBid')?.value,
@@ -67,6 +76,7 @@ export class BidOrPurchaseDialogComponent implements OnInit {
      return undefined;
    });
    if (!bidResult) return;
-
   }
+
+
 }

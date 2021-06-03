@@ -5,21 +5,24 @@ import { BidOrPurchaseDialogComponent } from 'src/app/shared/dialogs/bid-or-purc
 @Component({
   selector: 'app-marketplace-item-details',
   templateUrl: './marketplace-item-details.component.html',
-  styleUrls: ['./marketplace-item-details.component.css']
+  styleUrls: ['./marketplace-item-details.component.css'],
 })
 export class MarketplaceItemDetailsComponent implements OnInit {
   @Input() track!: any;
 
-  constructor(private dialogService: DialogService) { }
+  constructor(private dialogService: DialogService) {}
 
-  async ngOnInit() {
-  }
+  async ngOnInit() {}
   placeBidOrPurchase(itemid: number, isAuctioned: boolean) {
     const dialog = this.dialogService.open(BidOrPurchaseDialogComponent, {
       header: isAuctioned ? 'Place a Bid' : 'Purchase NFT',
-      data: { id: itemid, auctionContractAddress: this.track.auction.contractAddress },
-      width:'30%'
+      data: {
+        id: itemid,
+        auctionContractAddress: this.track.auction?.contractAddress,
+        isAuctioned: isAuctioned,
+        price: this.track.auction?.price || this.track.listing?.price,
+      },
+      width: '30%',
     });
   }
-
 }
