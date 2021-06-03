@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { MessageService } from 'primeng/api';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PostBidModel, User } from 'src/app/06.Models/backendModels';
 import { BidModel } from 'src/app/06.Models/solidityModels';
 import { getUserLocal } from 'src/app/07.Services/authService';
@@ -23,7 +22,8 @@ export class BidOrPurchaseDialogComponent implements OnInit {
   isAuctioned! : boolean;
 
   constructor(private fb: FormBuilder, private backendService: BackendService, public config: DynamicDialogConfig,
-              private auctionContractService: AuctionContractService, private messageService: MessageService) { }
+              private auctionContractService: AuctionContractService, private messageService: MessageService,
+              private dialogRef: DynamicDialogRef) { }
 
   ngOnInit(): void {
     this.bidForm = this.fb.group({
@@ -76,6 +76,8 @@ export class BidOrPurchaseDialogComponent implements OnInit {
      return undefined;
    });
    if (!bidResult) return;
+   this.showProgress = true;
+   this.dialogRef.close(true);
   }
 
 

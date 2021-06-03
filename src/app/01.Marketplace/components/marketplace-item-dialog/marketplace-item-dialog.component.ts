@@ -33,10 +33,19 @@ export class MarketplaceItemDialogComponent implements OnInit {
       }
     ];
     this.activeItem = this.items[0];
-    const nftId = this.config.data.id;
-    const model = {} as IdModel;
-    model.id = nftId;
+    const model: IdModel = {
+      id: this.config.data.id
+    }
     const result = await this.backendService.getTrackById(model);
+    this.track = result.body;
+  }
+
+  //Event received from bid-or-purchase-dialog Component, through marketplace-item-details
+  //Summary: bid-or-purchase-dialog on close sends success, marketplace-item-details receives and emits event to here
+  // This is so we know if the bid is success and the dialog is closed, we should refresh to get the highest bid
+  async onBidSuccess(success: boolean) {
+    if (!success) return;
+    const result = await this.backendService.getTrackById({id: this.config.data.id});
     this.track = result.body;
   }
 

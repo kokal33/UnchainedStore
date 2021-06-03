@@ -14,7 +14,7 @@
         <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
           <p-divider></p-divider>
         </div>
-        <h3>{{track?.auction?.price || track?.listing?.price}} MATIC</h3>
+        <h3>{{track?.auction?.bids[track?.auction?.bids.length - 1].amount || track?.listing?.price}} MATIC</h3>
 
       </div>
     </div>
