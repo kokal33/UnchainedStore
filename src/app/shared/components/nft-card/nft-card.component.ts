@@ -1,3 +1,4 @@
+import { NumberSymbol } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Track } from 'ngx-audio-player';
@@ -5,6 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { User } from 'src/app/06.Models/backendModels';
 import { getUserLocal } from 'src/app/07.Services/authService';
 import { BackendService } from 'src/app/07.Services/backendService';
+import { environment } from 'src/environments/environment';
 import { MarketplaceItemDialogComponent } from '../../../01.Marketplace/components/marketplace-item-dialog/marketplace-item-dialog.component';
 
 @Component({
@@ -15,9 +17,10 @@ import { MarketplaceItemDialogComponent } from '../../../01.Marketplace/componen
 })
 export class NftCardComponent implements OnInit {
 
-  fileSource = "https://filesamples.com/samples/audio/mp3/sample3.mp3";
   myCollection: any[] = [];
   user: User | undefined;
+  seconds!:number;
+  environment!: any;
 
   constructor(private dialogService: DialogService, private router: Router, private backendService: BackendService) { }
   msaapDisplayTitle = false;
@@ -29,17 +32,8 @@ export class NftCardComponent implements OnInit {
   msaapDisplayDuration = false;
   msaapDisablePositionSlider = true;
 
-  // Material Style Advance Audio Player Playlist
-  msaapPlaylist: Track[] = [
-    {
-      title: 'Audio One Title',
-      link: this.fileSource,
-      artist: 'Audio One Artist',
-      duration: 50
-    }
-  ];
-
   async ngOnInit() {
+    this.environment = environment.apiUrl;
     this.user = getUserLocal()
     this.myCollection = (await this.backendService.getMyCollection({publicAddress: this.user?.publicAddress})).body;
 
@@ -55,6 +49,14 @@ export class NftCardComponent implements OnInit {
     })
   }
 
+  getTimeLeft(auctionEnding: string) {
+
+    const startDate = new Date();
+    // Do your operations
+    const endDate = new Date(auctionEnding);
+    this.seconds = (endDate.getTime() - startDate.getTime()) / 1000;
+    return this.seconds;
+  }
   onEnded(event: any) {
     console.log("ended");
   }

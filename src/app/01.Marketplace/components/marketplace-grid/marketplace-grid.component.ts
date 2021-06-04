@@ -14,7 +14,6 @@ import { MarketplaceItemDialogComponent } from '../marketplace-item-dialog/marke
 })
 export class MarketplaceGridComponent implements OnInit {
   @BlockUI() blockUI!: NgBlockUI;
-  @ViewChild('cd', { static: false }) private countdown!: CountdownComponent;
   seconds!: number;
   marketplaceItems: any[] = [];
   environment!: any;
@@ -27,15 +26,11 @@ export class MarketplaceGridComponent implements OnInit {
   msaapDisplayArtist = false;
   msaapDisplayDuration = false;
   msaapDisablePositionSlider = true;
-  ticks: any;
-
-
 
   async ngOnInit() {
     this.environment = environment.apiUrl;
     this.blockUI.start("Loading Marketplace...");
     this.marketplaceItems = (await this.backendService.getTracks()).body;
-    this.ticks = new Date();
 
     this.blockUI.stop();
   }
