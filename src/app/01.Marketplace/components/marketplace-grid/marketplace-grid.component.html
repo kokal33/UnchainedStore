@@ -19,15 +19,17 @@
 
         <div class="p-grid">
           <div class="p-col-6">
-            <div style="text-align: start;padding-left: 20px;" class="box">
-              <h3>@Owner</h3>
+            <div style="text-align: start;padding-left: 20px; display: flex;" class="box">
+
+              <img style="width: 20px;height: 20px;border-radius: 50%;margin: 3px;" [src]="item.ownerOfProfilePic">
+              <h3 style="white-space: nowrap;">{{item.ownerOfName}}</h3>
             </div>
           </div>
-          <div class="p-col-6">
+          <!-- <div class="p-col-6">
             <div style="text-align: end;padding-right: 20px;" class="box">
               <h3>@Artist</h3>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="p-grid">
           <div class="p-col-12">
@@ -67,15 +69,15 @@
               </div>
 
             </div>
-            <div class="p-col-6">
+            <div *ngIf="item?.auctionEnding" class="p-col-6">
               <div style="text-align: center;" class="box">
                 <h3 style="color: #c950aa">Ending in</h3>
                 <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
                   <p-divider></p-divider>
                 </div>
-                <h3>2 days</h3>
-              </div>
+                <cd-timer  [startTime]="getTimeLeft(item.auctionEnding)"  [countdown]="true"></cd-timer>
 
+              </div>
             </div>
 
           </div>

@@ -40,6 +40,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ChipModule } from 'primeng/chip';
 import { StepsModule } from 'primeng/steps';
 import { TooltipModule } from 'primeng/tooltip';
+import { CdTimerModule } from 'angular-cd-timer';
 
 
 const mat = [
@@ -78,6 +79,8 @@ const mat = [
   DynamicDialogModule,
   CheckboxModule,
   FieldsetModule,
+  CdTimerModule,
+
   ChipModule,
   InputSwitchModule
 ];

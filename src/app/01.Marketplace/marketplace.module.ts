@@ -16,7 +16,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), CommonModule, SharedModule
+  imports: [RouterModule.forChild(routes), CommonModule, SharedModule,
   ],
   exports: [RouterModule],
   declarations: [MarketplaceItemDialogComponent, MarketplaceGridComponent, MarketplaceItemDetailsComponent, MarketplaceItemBidHistoryComponent]

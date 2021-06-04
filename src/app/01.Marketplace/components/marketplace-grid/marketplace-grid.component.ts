@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { CountdownComponent } from 'ngx-countdown';
 import { DialogService } from 'primeng/dynamicdialog';
 import { BackendService } from 'src/app/07.Services/backendService';
 import { environment } from 'src/environments/environment';
@@ -9,14 +10,15 @@ import { MarketplaceItemDialogComponent } from '../marketplace-item-dialog/marke
   selector: 'app-marketplace-grid',
   templateUrl: './marketplace-grid.component.html',
   styleUrls: ['./marketplace-grid.component.scss'],
-  providers: [DialogService,BackendService],
+  providers: [DialogService, BackendService],
 })
 export class MarketplaceGridComponent implements OnInit {
   @BlockUI() blockUI!: NgBlockUI;
-
+  @ViewChild('cd', { static: false }) private countdown!: CountdownComponent;
+  seconds!: number;
   marketplaceItems: any[] = [];
-  environment! : any;
-  constructor(private dialogService: DialogService, private backendService : BackendService) { }
+  environment!: any;
+  constructor(private dialogService: DialogService, private backendService: BackendService) { }
   msaapDisplayTitle = false;
   msaapDisplayPlayList = false;
   msaapPageSizeOptions = [2, 4, 6];
@@ -25,20 +27,32 @@ export class MarketplaceGridComponent implements OnInit {
   msaapDisplayArtist = false;
   msaapDisplayDuration = false;
   msaapDisablePositionSlider = true;
+  ticks: any;
 
 
 
   async ngOnInit() {
     this.environment = environment.apiUrl;
     this.blockUI.start("Loading Marketplace...");
-    this.marketplaceItems =  (await this.backendService.getTracks()).body;
+    this.marketplaceItems = (await this.backendService.getTracks()).body;
+    this.ticks = new Date();
+
     this.blockUI.stop();
   }
   viewDetails(id: number) {
     const dialog = this.dialogService.open(MarketplaceItemDialogComponent, {
       header: '',
-      data: {id:id},
+      data: { id: id },
     });
+  }
+
+  getTimeLeft(auctionEnding: string) {
+
+    const startDate = new Date();
+    // Do your operations
+    const endDate = new Date(auctionEnding);
+    this.seconds = (endDate.getTime() - startDate.getTime()) / 1000;
+    return this.seconds;
   }
 
   onEnded(event: any) {
