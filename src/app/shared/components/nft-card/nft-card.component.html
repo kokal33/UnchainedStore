@@ -1,24 +1,24 @@
 <div style="color: white; text-align: center;" class="p-grid">
-  <div class="p-col-12 p-md-6 p-lg-4">
+  <div class="p-col-12 p-md-6 p-lg-4" *ngFor="let item of myCollection">
     <!--card-1-->
     <p-card styleClass="p-card-shadow">
 
       <div class="p-grid">
         <div class="p-col-6">
           <div style="text-align: start;padding-left: 20px;" class="box">
-            <h3>@Owner</h3>
+            <h3>{{item.ownerOfName}}</h3>
           </div>
         </div>
-        <div class="p-col-6">
+        <!-- <div class="p-col-6">
           <div style="text-align: end;padding-right: 20px;" class="box">
             <h3>@Artist</h3>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="p-grid">
         <div class="p-col-12">
           <div style="text-align: start;padding-left: 20px;" class="box">
-            <h2>Kraftwerk Unreleased Track</h2>
+            <h2>{{item.title}}</h2>
           </div>
         </div>
 
@@ -29,11 +29,12 @@
       </ng-template>
       <div class="p-grid">
         <div class="p-col-12">
-          <ngx-audio-player [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false"
-            muted="muted" [displayPlaylist]="msaapDisplayPlayList" [pageSizeOptions]="msaapPageSizeOptions"
-            (trackEnded)="onEnded($event)" [displayVolumeControls]="msaapDisplayVolumeControls"
-            [displayRepeatControls]="msaapDisplayRepeatControls" [disablePositionSlider]="msaapDisablePositionSlider"
-            [displayArtist]="msaapDisplayArtist" [displayDuration]="msaapDisplayDuration" [expanded]="true">
+          <ngx-audio-player [playlist]="[{'title': '', 'link': environment+item.fileLocation}]"
+            [displayTitle]="msaapDisplayTitle" [autoPlay]="false" muted="muted" [displayPlaylist]="msaapDisplayPlayList"
+            [pageSizeOptions]="msaapPageSizeOptions" (trackEnded)="onEnded($event)"
+            [displayVolumeControls]="msaapDisplayVolumeControls" [displayRepeatControls]="msaapDisplayRepeatControls"
+            [disablePositionSlider]="msaapDisablePositionSlider" [displayArtist]="msaapDisplayArtist"
+            [displayDuration]="msaapDisplayDuration" [expanded]="true">
           </ngx-audio-player>
         </div>
 
@@ -49,17 +50,17 @@
               <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
                 <p-divider></p-divider>
               </div>
-              <h3>400 *</h3>
+              <h3>{{item.price}} MATIC</h3>
             </div>
 
           </div>
-          <div class="p-col-6">
+          <div *ngIf="item?.auctionEnding" class="p-col-6">
             <div style="text-align: center;" class="box">
               <h3 style="color: #c950aa">Ending in</h3>
               <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
                 <p-divider></p-divider>
               </div>
-              <h3>2 days</h3>
+              <cd-timer [startTime]="getTimeLeft(item.auctionEnding)" [countdown]="true"></cd-timer>
             </div>
 
           </div>
