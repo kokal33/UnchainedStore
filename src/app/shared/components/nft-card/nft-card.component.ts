@@ -14,8 +14,6 @@ import { MarketplaceItemDialogComponent } from '../../../01.Marketplace/componen
   templateUrl: './nft-card.component.html',
   styleUrls: ['./nft-card.component.scss'],
   providers: [DialogService],
-  //changeDetection: ChangeDetectionStrategy.OnPush
-
 })
 export class NftCardComponent implements OnInit {
 
@@ -24,8 +22,7 @@ export class NftCardComponent implements OnInit {
   seconds!:number;
   environment!: any;
 
-  constructor(private dialogService: DialogService, private router: Router, private backendService: BackendService,
-    private cdRef : ChangeDetectorRef) { }
+  constructor(private dialogService: DialogService, private router: Router, private backendService: BackendService) { }
 
   msaapDisplayTitle = false;
   msaapDisplayPlayList = false;
@@ -40,26 +37,19 @@ export class NftCardComponent implements OnInit {
     this.environment = environment.apiUrl;
     this.user = getUserLocal()
     this.myCollection = (await this.backendService.getMyCollection({publicAddress: this.user?.publicAddress})).body;
-  // this.cdRef.markForCheck();
   }
 
-  viewDetails() {
+  viewDetails(id: number, auctionEnding: number) {
     const dialog = this.dialogService.open(MarketplaceItemDialogComponent, {
       header: '',
-      data: {},
+      data: {
+        id: id,
+        auctionEnding: auctionEnding
+      },
     });
     dialog.onClose.subscribe(() => {
 
     })
-  }
-
-  getTimeLeft(auctionEnding: string) {
-    const startDate = new Date();
-    // Do your operations
-    const endDate = new Date(auctionEnding);
-
-    this.seconds = (endDate.getTime() - startDate.getTime()) / 1000;
-    return this.seconds;
   }
   onEnded(event: any) {
     console.log("ended");

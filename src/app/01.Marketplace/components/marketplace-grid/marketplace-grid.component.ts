@@ -35,10 +35,11 @@ export class MarketplaceGridComponent implements OnInit {
     this.cdRef.detectChanges();
     this.blockUI.stop();
   }
-  viewDetails(id: number) {
+  viewDetails(id: number, auctionEnding: number) {
     const dialog = this.dialogService.open(MarketplaceItemDialogComponent, {
       header: '',
-      data: { id: id },
+      data: { id: id,
+      auctionEnding: auctionEnding},
     });
   }
 

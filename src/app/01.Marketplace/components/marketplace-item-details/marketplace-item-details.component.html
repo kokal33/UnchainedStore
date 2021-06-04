@@ -14,7 +14,7 @@
         <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
           <p-divider></p-divider>
         </div>
-        <h3>{{track?.auction?.bids[track?.auction?.bids.length - 1].amount || track?.listing?.price}} MATIC</h3>
+        <h3>{{track?.auction?.bids[track?.auction?.bids.length - 1]?.amount || track?.listing?.price || track?.auction?.price}} MATIC</h3>
 
       </div>
     </div>
@@ -22,15 +22,18 @@
       <p-divider layout="vertical">
       </p-divider>
     </div>
-    <div *ngIf="track?.auction" class="p-col-5 p-d-flex p-ai-center p-jc-center">
+
+    <div *ngIf="track?.auctionEnding" class="p-col-5 p-d-flex p-ai-center p-jc-center">
       <div style="text-align: center;" class="box">
-        <h3 style="color: #c950aa">Ending in</h3>
+        <h3 style="color: #c950aa" *ngIf="track?.auctionEnding > 0" >Ending in</h3>
+        <h3 style="color: #c950aa" *ngIf="track?.auctionEnding  < 0" >Finished</h3>
         <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
           <p-divider></p-divider>
         </div>
-        <cd-timer  [startTime]="seconds"  [countdown]="true"></cd-timer>
+        <cd-timer *ngIf="track?.auctionEnding > 0" [startTime]="track?.auctionEnding" [countdown]="true"></cd-timer>
       </div>
     </div>
+
   </div>
 </div>
 <div style="margin-top: 30px;" class="p-grid">

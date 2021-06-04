@@ -9,23 +9,11 @@ import { BidOrPurchaseDialogComponent } from 'src/app/shared/dialogs/bid-or-purc
 })
 export class MarketplaceItemDetailsComponent implements OnInit {
   @Input() track!: any;
-  seconds!: number;
   @Output() bidSuccess = new EventEmitter<boolean>();
 
   constructor(private dialogService: DialogService) { }
 
   async ngOnInit() {
-
-  }
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.track.currentValue && changes.track.currentValue.auction) {
-      const track = changes.track.currentValue;
-      const startDate = new Date();
-      // Do your operations
-      const endDate = new Date(track.auction.ending);
-      this.seconds = (endDate.getTime() - startDate.getTime()) / 1000;
-    }
-
 
   }
 

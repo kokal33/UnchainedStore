@@ -40,7 +40,7 @@
 
         </div>
         <ng-template pTemplate="header">
-          <img (click)="viewDetails(item.id)" class="img" alt="Card" [src]="environment + item.imageLocation">
+          <img (click)="viewDetails(item.id, item?.auctionEnding)" class="img" alt="Card" [src]="environment + item.imageLocation">
         </ng-template>
         <div class="p-grid">
           <div class="p-col-12">
@@ -69,13 +69,15 @@
               </div>
 
             </div>
+
             <div *ngIf="item?.auctionEnding" class="p-col-6">
               <div style="text-align: center;" class="box">
-                <h3 style="color: #c950aa">Ending in</h3>
+                <h3 style="color: #c950aa" *ngIf="item?.auctionEnding > 0" >Ending in</h3>
+                <h3 style="color: #c950aa" *ngIf="item?.auctionEnding < 0" >Finished</h3>
                 <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
                   <p-divider></p-divider>
                 </div>
-                <cd-timer  [startTime]="getTimeLeft(item.auctionEnding)"  [countdown]="true"></cd-timer>
+                <cd-timer *ngIf="item?.auctionEnding > 0" [startTime]="item.auctionEnding" [countdown]="true"></cd-timer>
               </div>
             </div>
 
