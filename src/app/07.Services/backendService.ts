@@ -1,8 +1,7 @@
-import { AuctionModel, ListingModel, LoginModel, PostBidModel, User } from "../06.Models/backendModels";
+import { AuctionModel, ListingModel, LoginModel, PostBidModel, SetAsSoldModel, User } from "../06.Models/backendModels";
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
-import { BidModel, CreateAuctionModel } from "../06.Models/solidityModels";
 import { IdModel } from "../06.Models/idModel";
 const options = {
   observe: 'response' as const,
@@ -31,6 +30,9 @@ export class BackendService {
   async getTracks(): Promise<HttpResponse<any>> {
     return await this.http.post(this.base + "/tracks/getTracks", null, options).toPromise();
   }
+  async getMyCollection(model: any): Promise<HttpResponse<any>> {
+    return await this.http.post(this.base + "/tracks/getMyCollection", null, options).toPromise();
+  }
   async getTrackById(model: IdModel): Promise<HttpResponse<any>> {
     return await this.http.post(this.base + "/tracks/getTrack", model, options).toPromise();
   }
@@ -51,6 +53,9 @@ export class BackendService {
   }
   async bid(model: PostBidModel): Promise<HttpResponse<any>> {
     return await this.http.post(this.base + "/bids/bid", model, options).toPromise();
+  }
+  async setTrackAsSold(model: SetAsSoldModel): Promise<HttpResponse<any>> {
+    return await this.http.post(this.base + "/tracks/setTrackAsSold", model, options).toPromise();
   }
 }
 

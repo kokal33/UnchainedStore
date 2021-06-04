@@ -64,4 +64,15 @@ export class AuctionContractService {
     await this.unchainedTokenService.approve(from, precalculatedAddress, tokenId);
     return true;
   }
+
+   async getHighestBid(auctionContractAddress:string) {
+    var myContract = new this.web3.eth.Contract(
+      AuctionContract.abi,
+      auctionContractAddress
+    );
+    const highestBidinWei = await myContract.methods.highestBid()
+    .call();
+    const highestBid = this.web3.utils.fromWei(highestBidinWei.toString(), "ether");
+    return highestBid;
+  }
 }

@@ -46,6 +46,7 @@ export class MarketplaceContractService {
         value: priceInWei
       });
       console.log('PRODUCT PURCHASED: ', product);
+      return product;
   }
 
   async approveMarketplace(from: string, tokenId: number) {

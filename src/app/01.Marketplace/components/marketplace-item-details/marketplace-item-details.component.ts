@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import {  Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { BidOrPurchaseDialogComponent } from 'src/app/shared/dialogs/bid-or-purchase-dialog/bid-or-purchase-dialog.component';
 
@@ -10,6 +10,7 @@ import { BidOrPurchaseDialogComponent } from 'src/app/shared/dialogs/bid-or-purc
 export class MarketplaceItemDetailsComponent implements OnInit {
   @Input() track!: any;
   seconds!: number;
+  @Output() bidSuccess = new EventEmitter<boolean>();
 
   constructor(private dialogService: DialogService) { }
 
@@ -36,8 +37,15 @@ export class MarketplaceItemDetailsComponent implements OnInit {
         auctionContractAddress: this.track.auction?.contractAddress,
         isAuctioned: isAuctioned,
         price: this.track.auction?.price || this.track.listing?.price,
+        trackId: this.track.id,
       },
       width: '30%',
     });
+    dialog.onClose.subscribe(success => {
+      if (success) {
+        this.bidSuccess.emit(success);
+      }
+    })
   }
+
 }

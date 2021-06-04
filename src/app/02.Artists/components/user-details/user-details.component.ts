@@ -30,8 +30,6 @@ export class UserDetailsComponent implements OnInit {
       this.user = userLocal;
     } else {
       this.user =   (await this.backendService.getUserById({ publicAddress: publicAddress })).body;
-
-
     }
     this.items = [
       { label: 'Collections', routerLink: ['collections'] },
