@@ -1,5 +1,5 @@
 import { NumberSymbol } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Track } from 'ngx-audio-player';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -13,7 +13,9 @@ import { MarketplaceItemDialogComponent } from '../../../01.Marketplace/componen
   selector: 'app-nft-card',
   templateUrl: './nft-card.component.html',
   styleUrls: ['./nft-card.component.scss'],
-  providers: [DialogService]
+  providers: [DialogService],
+  //changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class NftCardComponent implements OnInit {
 
@@ -22,7 +24,9 @@ export class NftCardComponent implements OnInit {
   seconds!:number;
   environment!: any;
 
-  constructor(private dialogService: DialogService, private router: Router, private backendService: BackendService) { }
+  constructor(private dialogService: DialogService, private router: Router, private backendService: BackendService,
+    private cdRef : ChangeDetectorRef) { }
+
   msaapDisplayTitle = false;
   msaapDisplayPlayList = false;
   msaapPageSizeOptions = [2, 4, 6];
@@ -36,7 +40,7 @@ export class NftCardComponent implements OnInit {
     this.environment = environment.apiUrl;
     this.user = getUserLocal()
     this.myCollection = (await this.backendService.getMyCollection({publicAddress: this.user?.publicAddress})).body;
-
+  // this.cdRef.markForCheck();
   }
 
   viewDetails() {
@@ -50,10 +54,10 @@ export class NftCardComponent implements OnInit {
   }
 
   getTimeLeft(auctionEnding: string) {
-
     const startDate = new Date();
     // Do your operations
     const endDate = new Date(auctionEnding);
+
     this.seconds = (endDate.getTime() - startDate.getTime()) / 1000;
     return this.seconds;
   }

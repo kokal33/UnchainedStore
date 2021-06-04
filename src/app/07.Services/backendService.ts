@@ -31,7 +31,7 @@ export class BackendService {
     return await this.http.post(this.base + "/tracks/getTracks", null, options).toPromise();
   }
   async getMyCollection(model: any): Promise<HttpResponse<any>> {
-    return await this.http.post(this.base + "/tracks/getMyCollection", null, options).toPromise();
+    return await this.http.post(this.base + "/tracks/getMyCollection", model, options).toPromise();
   }
   async getTrackById(model: IdModel): Promise<HttpResponse<any>> {
     return await this.http.post(this.base + "/tracks/getTrack", model, options).toPromise();

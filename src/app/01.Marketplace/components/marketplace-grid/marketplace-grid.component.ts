@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { CountdownComponent } from 'ngx-countdown';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -10,14 +10,15 @@ import { MarketplaceItemDialogComponent } from '../marketplace-item-dialog/marke
   selector: 'app-marketplace-grid',
   templateUrl: './marketplace-grid.component.html',
   styleUrls: ['./marketplace-grid.component.scss'],
-  providers: [DialogService, BackendService],
+  providers: [DialogService, BackendService, ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MarketplaceGridComponent implements OnInit {
   @BlockUI() blockUI!: NgBlockUI;
   seconds!: number;
   marketplaceItems: any[] = [];
   environment!: any;
-  constructor(private dialogService: DialogService, private backendService: BackendService) { }
+  constructor(private dialogService: DialogService, private backendService: BackendService, private cdRef : ChangeDetectorRef) { }
   msaapDisplayTitle = false;
   msaapDisplayPlayList = false;
   msaapPageSizeOptions = [2, 4, 6];
@@ -31,7 +32,7 @@ export class MarketplaceGridComponent implements OnInit {
     this.environment = environment.apiUrl;
     this.blockUI.start("Loading Marketplace...");
     this.marketplaceItems = (await this.backendService.getTracks()).body;
-
+    this.cdRef.detectChanges();
     this.blockUI.stop();
   }
   viewDetails(id: number) {

@@ -75,4 +75,21 @@ export class AuctionContractService {
     const highestBid = this.web3.utils.fromWei(highestBidinWei.toString(), "ether");
     return highestBid;
   }
+
+  async auctionEnd(model: BidModel) {
+    var myContract = new this.web3.eth.Contract(
+      AuctionContract.abi,
+      model.auctionContractAddress
+    );
+    const estimatedGas = await myContract.methods.auctionEnd()
+    .estimateGas({
+      from: model.from
+    })
+    const auctionEnd = await myContract.methods.auctionEnd()
+    .send({
+      from: model.from,
+      gas: estimatedGas,
+    });
+    return auctionEnd;
+  }
 }
