@@ -12,9 +12,12 @@ export class MarketplaceItemBidHistoryComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.bidders = [{ address: '1HB5XMLmzFVj8ALj6mfBsbifRoD4miY36v', bid: '0.02 BNB' }
-      , { address: '1HB5XMLmzFVj8ALj6mfBsbifRoD4miY36v', bid: '0.05 BNB' },
-    { address: '1HB5XMLmzFVj8ALj6mfBsbifRoD4miY36v', bid: '0.1 BNB' }]
+    this.bidders = [];
+
+    this.track?.auction?.bids.forEach((element:any) => {
+      this.bidders.push({address: element.ownerOfPublicAddress, bid: element.amount})
+    });
   }
+
 
 }

@@ -54,3 +54,8 @@ export interface PostBidModel {
   bidderAddress: string,
   amount: number
 }
+
+export interface SetAsSoldModel {
+  trackId: number,
+  to: string
+}

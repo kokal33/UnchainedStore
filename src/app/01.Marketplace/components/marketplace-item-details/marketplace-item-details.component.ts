@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { BidOrPurchaseDialogComponent } from 'src/app/shared/dialogs/bid-or-purchase-dialog/bid-or-purchase-dialog.component';
 
@@ -8,12 +8,15 @@ import { BidOrPurchaseDialogComponent } from 'src/app/shared/dialogs/bid-or-purc
   styleUrls: ['./marketplace-item-details.component.css'],
 })
 export class MarketplaceItemDetailsComponent implements OnInit {
-  @Input() track!: any;
+  @Input() track!: any
   @Output() bidSuccess = new EventEmitter<boolean>();
 
   constructor(private dialogService: DialogService) {}
 
-  async ngOnInit() {}
+
+
+  async ngOnInit() {
+  }
   placeBidOrPurchase(itemid: number, isAuctioned: boolean) {
     const dialog = this.dialogService.open(BidOrPurchaseDialogComponent, {
       header: isAuctioned ? 'Place a Bid' : 'Purchase NFT',
@@ -22,6 +25,7 @@ export class MarketplaceItemDetailsComponent implements OnInit {
         auctionContractAddress: this.track.auction?.contractAddress,
         isAuctioned: isAuctioned,
         price: this.track.auction?.price || this.track.listing?.price,
+        trackId: this.track.id,
       },
       width: '30%',
     });

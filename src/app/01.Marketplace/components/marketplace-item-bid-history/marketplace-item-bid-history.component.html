@@ -1,9 +1,8 @@
-<p-table [value]="bidders">
+<p-table [autoLayout]="true" [value]="bidders">
   <ng-template pTemplate="header">
     <tr>
       <th>Public Address</th>
       <th>Bid</th>
-
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-bidder>
