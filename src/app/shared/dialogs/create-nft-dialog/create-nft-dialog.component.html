@@ -21,13 +21,9 @@
             <p-dropdown [options]="durationTypes" formControlName="duration" placeholder="Select auction duration"
               optionLabel="name" [showClear]="true"></p-dropdown>
           </div>
-          <div class="p-field">
+          <div class="p-field" gdAlignColumns.gt-md>
             <label for="horizontal">Price</label>
-            <p-inputNumber formControlName="price" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal"
-              spinnerMode="horizontal" [step]="0.25" decrementButtonClass="p-button-danger"
-              incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"
-              suffix=" matic">
-            </p-inputNumber>
+            <p-inputNumber formControlName="price" mode="decimal" [minFractionDigits]="2"></p-inputNumber>
           </div>
 
 
