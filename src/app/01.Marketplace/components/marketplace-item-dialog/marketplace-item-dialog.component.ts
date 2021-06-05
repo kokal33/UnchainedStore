@@ -30,6 +30,11 @@ export class MarketplaceItemDialogComponent implements OnInit {
         id: "2", label: 'Bid History', command: (event) => {
           this.activeItem = this.items[1];
         }
+      },
+      {
+        id: "3", label: 'IPFS Metadata', command: (event) => {
+          this.activeItem = this.items[2];
+        }
       }
     ];
     this.activeItem = this.items[0];

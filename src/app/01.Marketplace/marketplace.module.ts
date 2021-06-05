@@ -6,6 +6,7 @@ import { MarketplaceItemDialogComponent } from './components/marketplace-item-di
 import { SharedModule } from '../shared/shared.module';
 import { MarketplaceItemDetailsComponent } from './components/marketplace-item-details/marketplace-item-details.component';
 import { MarketplaceItemBidHistoryComponent } from './components/marketplace-item-bid-history/marketplace-item-bid-history.component';
+import { MarketplaceItemIpfsDetailsComponent } from './components/marketplace-item-ipfs-details/marketplace-item-ipfs-details.component';
 
 const routes: Routes = [
 
@@ -19,6 +20,6 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes), CommonModule, SharedModule,
   ],
   exports: [RouterModule],
-  declarations: [MarketplaceItemDialogComponent, MarketplaceGridComponent, MarketplaceItemDetailsComponent, MarketplaceItemBidHistoryComponent]
+  declarations: [MarketplaceItemDialogComponent, MarketplaceGridComponent, MarketplaceItemDetailsComponent, MarketplaceItemBidHistoryComponent, MarketplaceItemIpfsDetailsComponent]
 })
 export class MarketplaceModule { }

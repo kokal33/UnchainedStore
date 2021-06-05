@@ -8,7 +8,7 @@
       <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
       <app-marketplace-item-details (bidSuccess)="onBidSuccess($event)" [track]="track" *ngIf="activeItem.id == '1'"></app-marketplace-item-details>
       <app-marketplace-item-bid-history [track]="track" *ngIf="activeItem.id == '2'"></app-marketplace-item-bid-history>
-
+      <app-marketplace-item-ipfs-details  *ngIf="activeItem.id == '3'"></app-marketplace-item-ipfs-details>
     </div>
   </div>
 </div>
