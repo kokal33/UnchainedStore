@@ -25,7 +25,7 @@
       </div>
       <ng-template pTemplate="header">
         <img (click)="viewDetails(item.id, item.auctionEnding)" class="img" alt="Card"
-          src="https://i.pinimg.com/originals/67/f5/0e/67f50efd8c31d688171ac1e6538b69fb.jpg">
+          [src]="environment + item.imageLocation">
       </ng-template>
       <div class="p-grid">
         <div class="p-col-12">

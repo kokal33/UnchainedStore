@@ -13,7 +13,7 @@ export class UnchainedTokenService {
 
   async creatorOf(tokenId:number){
     var myContract = new this.web3.eth.Contract(UnchainedContract.abi, environment.contractTestAddress);
-  const creatorOf = await myContract.methods.creatorOf(tokenId).call();
+   return await myContract.methods.creatorOf(tokenId).call();
   }
 
   async approve(from: string, to: string, tokenId:number){
@@ -23,5 +23,10 @@ export class UnchainedTokenService {
     from: from,
     // gas: 200000,
   });
+  }
+
+  async TokenURI(tokenId:number) {
+    var myContract = new this.web3.eth.Contract(UnchainedContract.abi, environment.contractTestAddress);
+    return await myContract.methods.creatorOf(tokenId).call();
   }
 }

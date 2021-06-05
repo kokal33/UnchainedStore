@@ -31,8 +31,8 @@
     </ng-template>
     <ng-template pTemplate="footer">
       <div class="p-grid p-nogutter p-justify-end">
-        <p-button *ngIf="isAuctioned" (click)="bid()" label="Place bid" icon="pi pi-angle-right" iconPos="right"></p-button>
-        <p-button *ngIf="!isAuctioned" (click)="purchase()" label="Purchase" icon="pi pi-angle-right" iconPos="right"></p-button>
+        <p-button *ngIf="isAuctioned" [disabled]="showProgress" (click)="bid()" label="Place bid" icon="pi pi-angle-right" iconPos="right"></p-button>
+        <p-button *ngIf="!isAuctioned"[disabled]="showProgress" (click)="purchase()" label="Purchase" icon="pi pi-angle-right" iconPos="right"></p-button>
       </div>
     </ng-template>
   </p-card>

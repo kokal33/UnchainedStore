@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BidModel, CreateAuctionModel } from 'src/app/06.Models/solidityModels';
+import { BidModel, CreateAuctionModel, EndAuctionModel } from 'src/app/06.Models/solidityModels';
 import Web3 from 'web3';
 const AuctionContract = require('./UnchainedAuction.json');
 import * as RLP from 'rlp'
@@ -14,12 +14,20 @@ export class AuctionContractService {
   web3: Web3 = new Web3(window.ethereum as any);
 
   async createAuction(model: CreateAuctionModel) {
+    // Estimate gas
+    const estimatedGas = await new this.web3.eth.Contract(AuctionContract.abi).deploy({
+      data: AuctionContract.data.bytecode.object,
+      arguments: [this.web3.utils.toWei(model.startPrice.toString(), "ether"), model.tokenId, model.duration, model.creatorsRoyalties]
+    }).estimateGas({
+      from: model.from
+    });
+    // Deploy auction contract
     const auction = await new this.web3.eth.Contract(AuctionContract.abi).deploy({
       data: AuctionContract.data.bytecode.object,
       arguments: [this.web3.utils.toWei(model.startPrice.toString(), "ether"), model.tokenId, model.duration, model.creatorsRoyalties]
     }).send({
       from: model.from,
-      //gas: 1500000,
+      gas: estimatedGas,
     });
     console.log("Existing auction address: ", auction.options.address);
     return auction;
@@ -76,7 +84,7 @@ export class AuctionContractService {
     return highestBid;
   }
 
-  async auctionEnd(model: BidModel) {
+  async auctionEnd(model: EndAuctionModel) {
     var myContract = new this.web3.eth.Contract(
       AuctionContract.abi,
       model.auctionContractAddress

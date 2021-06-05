@@ -26,3 +26,8 @@ export interface BidModel {
   amount: number,
   auctionContractAddress: string
 }
+
+export interface EndAuctionModel {
+  from: string,
+  auctionContractAddress: string
+}
