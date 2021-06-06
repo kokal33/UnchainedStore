@@ -7,18 +7,12 @@
 <p-divider></p-divider>
 
 <div style="margin-bottom: 5%;"></div>
-<div *ngIf="artists.length > 0" class="p-grid side-margins">
+<div style="min-height:500px" *ngIf="artists.length > 0" class="p-grid side-margins">
   <div class="p-col-12 p-md-6 p-lg-4 bottom-margin" *ngFor="let artist of artists">
     <div class="grid-7 element-animation">
-      <!--card-1-->
       <div (click)="navigateToDetails(artist.publicAddress)" class="card color-card">
-
         <img [src]="artist.profilePic" alt="profile-pic" class="profile">
         <h1 class="title">{{artist.name}}</h1>
-        <!-- <p class="job-title"> {{artist.Occupations}}</p> -->
-        <!-- <div class="desc top">
-          <p>{{artist.Genres}}</p>
-        </div> -->
         <button class="btn color-a top">See collections</button>
       </div>
     </div>

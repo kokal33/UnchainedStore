@@ -16,8 +16,10 @@ body {
 body {
   margin: 0;
   background: inherit;
-
   background-color: #12161c !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 body::-webkit-scrollbar {
   display: none;
@@ -53,7 +55,6 @@ body > p-dynamicdialog > div > div {
 
 
 body,
-body .p-component
-{
+body .p-component {
   font-family: "Montserrat", sans-serif;
 }

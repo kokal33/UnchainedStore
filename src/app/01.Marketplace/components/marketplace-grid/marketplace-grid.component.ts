@@ -11,7 +11,6 @@ import { MarketplaceItemDialogComponent } from '../marketplace-item-dialog/marke
   templateUrl: './marketplace-grid.component.html',
   styleUrls: ['./marketplace-grid.component.scss'],
   providers: [DialogService, BackendService, ],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MarketplaceGridComponent implements OnInit {
   @BlockUI() blockUI!: NgBlockUI;
@@ -32,7 +31,6 @@ export class MarketplaceGridComponent implements OnInit {
     this.environment = environment.apiUrl;
     this.blockUI.start("Loading Marketplace...");
     this.marketplaceItems = (await this.backendService.getTracks()).body;
-    this.cdRef.detectChanges();
     this.blockUI.stop();
   }
   viewDetails(id: number, auctionEnding: number) {

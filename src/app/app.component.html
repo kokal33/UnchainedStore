@@ -1,14 +1,13 @@
 <block-ui>
   <!-- Markup here -->
+    <div fxLayout="column" fxFlexFill>
+      <app-responsive-toolbar style="z-index: 1;">
 
-  <div fxLayout="column" fxFlexFill>
-    <app-responsive-toolbar style="z-index: 1;">
+      </app-responsive-toolbar>
+      <router-outlet></router-outlet>
 
-    </app-responsive-toolbar>
-    <router-outlet></router-outlet>
-
-    <app-responsive-footer></app-responsive-footer>
-  </div>
+      <app-responsive-footer></app-responsive-footer>
+    </div>
 </block-ui>
 <p-toast key="global" position="bottom-center"></p-toast>
 

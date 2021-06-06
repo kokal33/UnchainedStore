@@ -44,7 +44,7 @@ export class UserDetailsComponent implements OnInit {
     });
     document.execCommand('copy');
   }
-  viewProfile() {
+  editProfile() {
     const dialogEdit = this.dialogService.open(EditUserDialogComponent, {
       width: "40%",
       header: 'Edit your profile',

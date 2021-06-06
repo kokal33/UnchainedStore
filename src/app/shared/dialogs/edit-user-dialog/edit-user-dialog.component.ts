@@ -64,14 +64,11 @@ export class EditUserDialogComponent implements OnInit {
     if (this.userForm.invalid) {
       this.userForm.markAllAsTouched();
     } else {
-      // Convert form into user model
       const userForm: User = this.userForm.getRawValue();
       const userUpdate = await this.backendService.updateUser(userForm);
       if (userUpdate.status == 200) {
-        //TODO: if not 200 show some message, also on success
         setUserLocal(userForm);
       }
-
       this.ref.close(userForm);
     }
   }
