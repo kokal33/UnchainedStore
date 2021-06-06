@@ -12,6 +12,7 @@ import { BidOrPurchaseDialogComponent } from 'src/app/shared/dialogs/bid-or-purc
   selector: 'app-marketplace-item-details',
   templateUrl: './marketplace-item-details.component.html',
   styleUrls: ['./marketplace-item-details.component.css'],
+  providers: [MessageService, AuctionContractService],
 })
 export class MarketplaceItemDetailsComponent implements OnInit {
   @Input() track!: any;
@@ -54,11 +55,9 @@ user?:User;
     }
     const endAuction = await this.auctionContractService.auctionEnd(endAuctionModel)
     .catch((e) => {
-      console.log(e.message);
       this.messageService.add({
         severity: 'error',
-        summary:
-          'End auction failed, check your wallet for errors',
+        summary: 'End auction failed, check your wallet for errors',
         detail: e.message,
       });
       return undefined;
