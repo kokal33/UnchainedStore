@@ -47,7 +47,7 @@ export class ResponsiveToolbarComponent implements OnInit {
       }
     ];
     // ENVIRONMENT-CHANGE
-    if (this.isProduction)
+    if (!this.user?.verified && this.isProduction)
       this.items = [];
   }
   constructor(private dialog: MatDialog, private dialogService: DialogService,

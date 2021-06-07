@@ -10,7 +10,7 @@
     <!-- TODO: On hover show publicAddress if user has a name, if not show publicAddress instead of name -->
 
     <p-button (click)="openCreateNftModal()" [style]="{'border-color':'#BA68C8'}"
-      *ngIf="isWalletConnected && !isProduction && user?.verified"
+      *ngIf="isWalletConnected && user?.verified"
       styleClass="p-button-outlined p-button-rounded p-mr-2">
       <span class=" p-text-bold">Create NFT</span>
     </p-button>
