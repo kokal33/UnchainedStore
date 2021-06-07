@@ -22,11 +22,12 @@ import { ProviderService } from 'src/app/07.Services/provider.service';
 export class ResponsiveToolbarComponent implements OnInit {
   user: User | undefined;
   items!: MenuItem[];
-  isWalletConnected = false;
   address!: string;
   isProduction!: boolean;
+  isWalletConnected!: boolean;
 
   ngOnInit() {
+    this.isWalletConnected=false;
     this.isProduction = environment.production;
     this.user = getUserLocal();
     if (this.user) {
@@ -111,5 +112,17 @@ export class ResponsiveToolbarComponent implements OnInit {
   logout() {
     clearCache();
     this.isWalletConnected = false;
+    window.location.reload;
   }
 }
+
+window.ethereum.on('accountsChanged', (accounts) => {
+  clearCache();
+  window.location.reload();
+
+});
+
+window.ethereum.on('chainChanged', (chainId) => {
+  clearCache();
+  window.location.reload();
+});

@@ -22,14 +22,16 @@ export class UserDetailsComponent implements OnInit {
   user: User | undefined;
   activeItem!: MenuItem;
   truncateText = truncateMiddle;
+  isLocalUser = false;
 
   async ngOnInit() {
     const publicAddress = this.activatedRoute.snapshot.params.id;
     const userLocal = getUserLocal();
     if (publicAddress == userLocal?.publicAddress) {
       this.user = userLocal;
+      this.isLocalUser = true;
     } else {
-      this.user =   (await this.backendService.getUserById({ publicAddress: publicAddress })).body;
+      this.user = (await this.backendService.getUserById({ publicAddress: publicAddress })).body;
     }
     this.items = [
       { label: 'Collections', routerLink: ['collections'] },

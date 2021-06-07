@@ -45,8 +45,6 @@
       pButton pRipple type="button" label="Purchase" class="p-button-raised p-button-lg"></button>
       <button *ngIf="track?.isAuctioned && track?.auctionEnding  <= 0" (click)="endAuction()" style="width: 60%;"
       pButton pRipple type="button" label="Finalize Auction" class="p-button-raised p-button-lg"></button>
-
   </div>
-
-
 </div>
+<p-toast position="bottom-center"></p-toast>

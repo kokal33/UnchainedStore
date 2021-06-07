@@ -11,7 +11,7 @@ interface RequestArguments {
 }
 
 interface EthereumProvider {
-  on(): any;
+  on(arg0: string, arg1: (accounts: any) => any): any;
   isMetaMask?: boolean;
   enable(): any;
   request(requestArguments: RequestArguments): any;

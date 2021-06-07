@@ -92,6 +92,7 @@ export class BidOrPurchaseDialogComponent implements OnInit {
       });
     if (!markAsSold) return;
     this.showProgress = false;
+    this.dialogRef.close(false);
   }
 
   async bid() {
@@ -134,6 +135,4 @@ export class BidOrPurchaseDialogComponent implements OnInit {
     if (!bidResult) return;
     this.dialogRef.close(true);
   }
-
-
 }
