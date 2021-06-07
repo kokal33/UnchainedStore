@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import {
@@ -21,7 +20,6 @@ import { MarketplaceContractService } from 'src/app/08.Contracts/Marketplace/mar
   providers: [MessageService, BackendService, AuctionContractService],
 })
 export class BidOrPurchaseDialogComponent implements OnInit {
-  @BlockUI() blockUI!: NgBlockUI;
 
   showProgress = false;
   bidForm!: FormGroup;
@@ -57,7 +55,6 @@ export class BidOrPurchaseDialogComponent implements OnInit {
   }
 
   async purchase() {
-    this.blockUI.start();
     const listingId = this.config.data.id;
     this.showProgress = true;
     console.log(this.showProgress);
@@ -95,13 +92,11 @@ export class BidOrPurchaseDialogComponent implements OnInit {
         return undefined;
       });
     if (!markAsSold) return;
-    this.blockUI.stop();
     this.dialogRef.close(false);
   }
 
   async bid() {
     if (this.bidForm.invalid) return;
-    this.blockUI.start();
     this.showProgress = true;
     const bidModel: BidModel = {
       from: this.user?.publicAddress as string,
@@ -140,7 +135,6 @@ export class BidOrPurchaseDialogComponent implements OnInit {
       return undefined;
     });
     if (!bidResult) return;
-    this.blockUI.stop();
     this.dialogRef.close(true);
   }
 }
