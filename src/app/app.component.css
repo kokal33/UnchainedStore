@@ -26,3 +26,12 @@ label {
 a {
   padding: 5px;
 }
+
+.placeholder {
+  display: flex;
+  flex-flow: column;
+  height: calc(100vh - 60px);
+}
+.inner-placeholder {
+  flex: 1;
+}

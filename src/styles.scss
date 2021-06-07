@@ -10,16 +10,15 @@ $custom-accent: mat-palette($mat-amber);
 $custom-theme: mat-light-theme($custom-primary, $custom-accent);
 @include angular-material-theme($custom-theme);
 html,
-body {
+body,
+app-root {
   height: 100%;
 }
 body {
-  margin: 0;
   background: inherit;
   background-color: #12161c !important;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 body::-webkit-scrollbar {
   display: none;
@@ -52,7 +51,6 @@ body > p-dynamicdialog > div > div {
     max-width: 100% !important;
   }
 }
-
 
 body,
 body .p-component {
