@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import {
@@ -17,9 +18,11 @@ import { MarketplaceContractService } from 'src/app/08.Contracts/Marketplace/mar
   selector: 'app-bid-or-purchase-dialog',
   templateUrl: './bid-or-purchase-dialog.component.html',
   styleUrls: ['./bid-or-purchase-dialog.component.css'],
-  providers: [BackendService, AuctionContractService],
+  providers: [MessageService, BackendService, AuctionContractService],
 })
 export class BidOrPurchaseDialogComponent implements OnInit {
+  @BlockUI() blockUI!: NgBlockUI;
+
   showProgress = false;
   bidForm!: FormGroup;
   user!: User | undefined;
@@ -33,7 +36,7 @@ export class BidOrPurchaseDialogComponent implements OnInit {
     private messageService: MessageService,
     private dialogRef: DynamicDialogRef,
     private marketplaceContractService: MarketplaceContractService
-  ) {}
+  ) { }
 
   async ngOnInit() {
     this.bidForm = this.fb.group({
@@ -54,6 +57,7 @@ export class BidOrPurchaseDialogComponent implements OnInit {
   }
 
   async purchase() {
+    this.blockUI.start();
     const listingId = this.config.data.id;
     this.showProgress = true;
     console.log(this.showProgress);
@@ -91,11 +95,13 @@ export class BidOrPurchaseDialogComponent implements OnInit {
         return undefined;
       });
     if (!markAsSold) return;
+    this.blockUI.stop();
     this.dialogRef.close(false);
   }
 
   async bid() {
     if (this.bidForm.invalid) return;
+    this.blockUI.start();
     this.showProgress = true;
     const bidModel: BidModel = {
       from: this.user?.publicAddress as string,
@@ -134,6 +140,7 @@ export class BidOrPurchaseDialogComponent implements OnInit {
       return undefined;
     });
     if (!bidResult) return;
+    this.blockUI.stop();
     this.dialogRef.close(true);
   }
 }

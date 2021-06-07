@@ -1,4 +1,4 @@
-import {  Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SetAsSoldModel, User } from 'src/app/06.Models/backendModels';
@@ -17,12 +17,12 @@ import { BidOrPurchaseDialogComponent } from 'src/app/shared/dialogs/bid-or-purc
 export class MarketplaceItemDetailsComponent implements OnInit {
   @Input() track!: any;
   @Output() bidSuccess = new EventEmitter<boolean>();
-user?:User;
+  user?: User;
   constructor(private messageService: MessageService,
     private dialogService: DialogService,
     private backendService: BackendService,
     private auctionContractService: AuctionContractService,
-    ) { }
+  ) { }
 
   async ngOnInit() {
     this.user = getUserLocal();
@@ -42,6 +42,7 @@ user?:User;
     });
     dialog.onClose.subscribe(success => {
       if (success) {
+        this.messageService.add({ severity: 'success', summary: 'Sucess!', detail: '' });
         this.bidSuccess.emit(success);
       }
     })
@@ -54,17 +55,17 @@ user?:User;
       auctionContractAddress: this.track.auction?.contractAddress,
     }
     const endAuction = await this.auctionContractService.auctionEnd(endAuctionModel)
-    .catch((e) => {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'End auction failed, check your wallet for errors',
-        detail: e.message,
+      .catch((e) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'End auction failed, check your wallet for errors',
+          detail: e.message,
+        });
+        return undefined;
       });
-      return undefined;
-    });
     if (!endAuction) return;
     const highestBidder = await endAuction.events.AuctionEnded.returnValues.winner;
-console.log("SOLD TO THE HIGHEST BIDDER: ", highestBidder);
+    console.log("SOLD TO THE HIGHEST BIDDER: ", highestBidder);
 
     // Mark Track as sold to the highest bidder
     const setAsSoldModel: SetAsSoldModel = {
