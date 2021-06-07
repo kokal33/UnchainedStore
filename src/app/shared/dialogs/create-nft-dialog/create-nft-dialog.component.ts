@@ -234,7 +234,7 @@ export class CreateNftDialogComponent implements OnInit {
       from: this.user?.publicAddress as string,
       startPrice: this.nftForm.get('price')?.value,
       tokenId: this.tokenId,
-      duration: this.nftForm.get('duration')?.value.id * 200,
+      duration: this.nftForm.get('duration')?.value.id * 86400,
       // TODO: Get creator royalties from form
       creatorsRoyalties:10
     };
