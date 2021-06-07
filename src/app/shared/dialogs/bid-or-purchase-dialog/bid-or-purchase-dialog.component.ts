@@ -91,7 +91,6 @@ export class BidOrPurchaseDialogComponent implements OnInit {
         return undefined;
       });
     if (!markAsSold) return;
-    this.showProgress = false;
     this.dialogRef.close(false);
   }
 
@@ -113,6 +112,7 @@ export class BidOrPurchaseDialogComponent implements OnInit {
           summary: 'Auction creation failed!',
           detail: e.message,
         });
+        this.showProgress = false;
         return undefined;
       });
     if (!blockchainBid) return;
@@ -130,6 +130,7 @@ export class BidOrPurchaseDialogComponent implements OnInit {
         summary: 'Auction creation failed!',
         detail: e.message,
       });
+      this.showProgress = false;
       return undefined;
     });
     if (!bidResult) return;
