@@ -251,12 +251,14 @@ export class CreateNftDialogComponent implements OnInit {
       });
     if (!auction) return;
     // Stupid date manipulation in typescript
-    const timestamp = new Date();
-    timestamp.setDate(timestamp.getDate() + this.nftForm.get('duration')?.value.id)
+    const ending = new Date();
+    ending.setDate(ending.getUTCDate() + this.nftForm.get('duration')?.value.id)
+    const started = new Date();
+    started.setDate(started.getUTCDate());
     const postAuctionModel: AuctionModel = {
-      started: new Date(),
+      started: started,
       trackId: this.uploadedTrackId,
-      ending: timestamp,
+      ending: ending,
       price : this.nftForm.get('price')?.value,
       contractAddress: auction.options.address
     }

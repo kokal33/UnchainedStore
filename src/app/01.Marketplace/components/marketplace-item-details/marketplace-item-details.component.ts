@@ -18,10 +18,10 @@ export class MarketplaceItemDetailsComponent implements OnInit {
   @Input() track!: any;
   @Output() bidSuccess = new EventEmitter<boolean>();
 user?:User;
-  constructor(private dialogService: DialogService,
+  constructor(private messageService: MessageService,
+    private dialogService: DialogService,
     private backendService: BackendService,
     private auctionContractService: AuctionContractService,
-    private messageService: MessageService,
     ) { }
 
   async ngOnInit() {

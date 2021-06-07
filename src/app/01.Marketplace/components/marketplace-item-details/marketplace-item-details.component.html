@@ -37,16 +37,14 @@
   </div>
 </div>
 <div style="margin-top: 30px;" class="p-grid">
-  <div style="text-align: center;" class="p-col-12">
+  <div *ngIf="!track?.isSold" style="text-align: center;" class="p-col-12">
 
     <button (click)="placeBidOrPurchase(track.auction.id, track.isAuctioned)" *ngIf="track?.isAuctioned && track?.auctionEnding  > 0" style="width: 60%;"
       pButton pRipple type="button" label="Place a bid" class="p-button-raised p-button-lg"></button>
-    <button (click)="placeBidOrPurchase(track.listing.id,track.isAuctioned)" *ngIf="track?.isListed && track?.auctionEnding  > 0" style="width: 60%;"
+    <button (click)="placeBidOrPurchase(track.listing.id,track.isAuctioned)" *ngIf="track?.isListed" style="width: 60%;"
       pButton pRipple type="button" label="Purchase" class="p-button-raised p-button-lg"></button>
-      <button *ngIf="track?.auctionEnding  <= 0" (click)="endAuction()" style="width: 60%;"
+      <button *ngIf="track?.isAuctioned && track?.auctionEnding  <= 0" (click)="endAuction()" style="width: 60%;"
       pButton pRipple type="button" label="Finalize Auction" class="p-button-raised p-button-lg"></button>
-
   </div>
-
-
 </div>
+<p-toast position="bottom-center"></p-toast>

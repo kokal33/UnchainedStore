@@ -1,6 +1,6 @@
 <div class="p-grid">
   <div class="p-col-12 cover-photo">
-    <div style="float: right;padding: 5px;">
+    <div *ngIf="isLocalUser" style="float: right;padding: 5px;">
       <button label="Edit Profile" pButton pRipple (click)="editProfile()" type="button" icon="pi pi-cog"
         class="p-button-rounded"></button>
     </div>
