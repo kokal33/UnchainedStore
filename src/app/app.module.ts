@@ -14,7 +14,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { GoogleAnalyticsService } from './07.Services/google-analytics.service';
 import { MessageService } from 'primeng/api';
 import { BlockUIModule } from 'ng-block-ui';
-import { CdTimerModule } from 'angular-cd-timer';
 
 
 @NgModule({

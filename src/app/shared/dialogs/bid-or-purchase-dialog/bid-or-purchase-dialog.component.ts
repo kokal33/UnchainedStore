@@ -17,9 +17,10 @@ import { MarketplaceContractService } from 'src/app/08.Contracts/Marketplace/mar
   selector: 'app-bid-or-purchase-dialog',
   templateUrl: './bid-or-purchase-dialog.component.html',
   styleUrls: ['./bid-or-purchase-dialog.component.css'],
-  providers: [BackendService, AuctionContractService],
+  providers: [MessageService, BackendService, AuctionContractService],
 })
 export class BidOrPurchaseDialogComponent implements OnInit {
+
   showProgress = false;
   bidForm!: FormGroup;
   user!: User | undefined;
@@ -33,7 +34,7 @@ export class BidOrPurchaseDialogComponent implements OnInit {
     private messageService: MessageService,
     private dialogRef: DynamicDialogRef,
     private marketplaceContractService: MarketplaceContractService
-  ) {}
+  ) { }
 
   async ngOnInit() {
     this.bidForm = this.fb.group({

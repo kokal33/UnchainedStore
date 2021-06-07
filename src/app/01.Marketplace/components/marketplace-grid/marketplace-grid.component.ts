@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
-import { CountdownComponent } from 'ngx-countdown';
 import { DialogService } from 'primeng/dynamicdialog';
 import { BackendService } from 'src/app/07.Services/backendService';
 import { environment } from 'src/environments/environment';
