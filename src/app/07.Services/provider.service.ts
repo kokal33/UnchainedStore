@@ -11,6 +11,7 @@ interface RequestArguments {
 }
 
 interface EthereumProvider {
+  on(): any;
   isMetaMask?: boolean;
   enable(): any;
   request(requestArguments: RequestArguments): any;
@@ -111,7 +112,6 @@ export class ProviderService {
         detail: 'Please connect to the Matic Chain',
         life: 5000,
       });
-
       return false;
     }
     return true;

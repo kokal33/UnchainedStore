@@ -18,7 +18,7 @@ export class MarketplaceContractService {
       MarketplaceContract.abi,
       environment.marketplaceTestAddress);
 
-    const product = await myContract.methods
+      const product = await myContract.methods
       .createProduct(
         model.name,
         this.web3.utils.toWei(model.price.toString(), "ether"),
