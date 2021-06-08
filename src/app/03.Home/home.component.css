@@ -130,21 +130,25 @@ a:hover {
   .welcome-text {
     font-size: 4rem;
   }
-  .youtube-vid{
-    width:350px  !important;
+  .youtube-vid {
+    width: 350px !important;
     height: 300px !important;
   }
   h2 {
-font-size: 1rem;
+    font-size: 1rem;
   }
 
   .guide-text {
     font-size: 3rem;
     padding-top: 15px;
   }
-  :host ::ng-deep  .p-button.p-button-lg {
+  :host ::ng-deep .p-button.p-button-lg {
     width: 150px !important;
     height: 70px;
+  }
+
+  .sponsor-img {
+    width: 200px !important;
   }
 }
 :host ::ng-deep .p-button-label {
@@ -166,7 +170,17 @@ font-size: 1rem;
 .right-padding {
   margin-right: 10px;
 }
-.youtube-vid{
-  width:900px ;
+.youtube-vid {
+  width: 900px;
   height: 500px;
+}
+.sponsor-img {
+  z-index: 1;
+  width: 450px;
+}
+.sponsor-text {
+  z-index: 1;
+  color: white;
+  padding-top: 30px;
+  padding-right: 20px;
 }

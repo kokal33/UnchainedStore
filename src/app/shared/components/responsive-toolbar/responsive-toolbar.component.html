@@ -1,8 +1,10 @@
 <p-menubar (click)="onClickMenuItem($event)" [model]="items">
   <!-- TODO: All buttons should be the same size, bigger music and artists buttons -->
   <ng-template pTemplate="start">
+
     <img [routerLink]="['home']" routerLinkActive="router-link-active" src="../../../../assets/images/logo.png"
       height="50" class="p-mr-2">
+
   </ng-template>
 
   <ng-template pTemplate="end">

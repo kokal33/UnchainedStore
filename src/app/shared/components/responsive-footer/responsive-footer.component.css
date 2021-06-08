@@ -5,6 +5,11 @@
   width: 40px;
   height: 40px;
 }
+.img-fixed-size2 {
+  width: 100px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
 
 a {
   color: white;
