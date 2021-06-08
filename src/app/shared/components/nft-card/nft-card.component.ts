@@ -1,7 +1,5 @@
-import { NumberSymbol } from '@angular/common';
-import { AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {  Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Track } from 'ngx-audio-player';
 import { DialogService } from 'primeng/dynamicdialog';
 import { User } from 'src/app/06.Models/backendModels';
 import { getUserLocal } from 'src/app/07.Services/authService';
