@@ -9,10 +9,8 @@
 
   <ng-template pTemplate="end">
 
-    <!-- TODO: On hover show publicAddress if user has a name, if not show publicAddress instead of name -->
-
     <p-button (click)="openCreateNftModal()" [style]="{'border-color':'#BA68C8'}"
-      *ngIf="isWalletConnected && !isProduction && user?.verified"
+      *ngIf="isWalletConnected && user?.verified"
       styleClass="p-button-outlined p-button-rounded p-mr-2">
       <span class=" p-text-bold">Create NFT</span>
     </p-button>
@@ -47,7 +45,7 @@
 </p-messages>
 <p-overlayPanel #op>
   <ng-template pTemplate>
-    <button *ngIf="!isProduction" (click)="viewProfile(); op.hide()" pButton pRipple type="button" label="View Profile"
+    <button (click)="viewProfile(); op.hide()" pButton pRipple type="button" label="View Profile"
       icon="pi pi-fw pi-user" class="p-button-secondary p-button-text"></button>
     <button (click)="logout(); op.hide()" pButton pRipple type="button" label="Disconnect" icon="pi pi-fw pi-power-off"
       class="p-button-secondary p-button-text"></button>

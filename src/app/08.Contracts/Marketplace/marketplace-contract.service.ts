@@ -39,11 +39,17 @@ export class MarketplaceContractService {
       environment.marketplaceTestAddress
     );
     const priceInWei = this.web3.utils.toWei(model.price.toString(), "ether");
-    console.log('Price in Wei: ', priceInWei);
+
+    const estimatedGas = await myContract.methods.purchaseProduct(model.productId)
+    .estimateGas({
+      from: model.from,
+      value: priceInWei
+    });
     const product = await myContract.methods.purchaseProduct(model.productId)
       .send({
         from: model.from,
-        value: priceInWei
+        value: priceInWei,
+        gas: estimatedGas
       });
       console.log('PRODUCT PURCHASED: ', product);
       return product;

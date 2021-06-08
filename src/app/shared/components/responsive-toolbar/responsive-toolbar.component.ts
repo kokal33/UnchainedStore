@@ -47,7 +47,7 @@ export class ResponsiveToolbarComponent implements OnInit {
       }
     ];
     // ENVIRONMENT-CHANGE
-    if (this.isProduction)
+    if (!this.user?.verified && this.isProduction)
       this.items = [];
   }
   constructor(private dialog: MatDialog, private dialogService: DialogService,
@@ -116,13 +116,14 @@ export class ResponsiveToolbarComponent implements OnInit {
   }
 }
 
+if (window.ethereum){
 window.ethereum.on('accountsChanged', (accounts) => {
   clearCache();
   window.location.reload();
-
 });
 
 window.ethereum.on('chainChanged', (chainId) => {
   clearCache();
   window.location.reload();
 });
+}

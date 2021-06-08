@@ -14,8 +14,12 @@
         <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
           <p-divider></p-divider>
         </div>
-        <h3>{{track?.auction?.bids[track?.auction?.bids.length - 1]?.amount || track?.listing?.price || track?.auction?.price}} MATIC</h3>
-
+        <!-- Show bidded amount if there are any bids -->
+        <h3 *ngIf="track?.auction?.bids[track?.auction?.bids.length - 1]?.amount !== null">
+          {{track?.auction?.bids[track?.auction?.bids.length - 1]?.amount || track?.listing?.price}} MATIC
+        </h3>
+        <!-- If no bids just show NO BIDS -->
+        <h3 *ngIf="track?.auction?.bids[track?.auction?.bids.length - 1]?.amount === null">NO BIDS</h3>
       </div>
     </div>
     <div *ngIf="track?.auction" class="p-col-2">

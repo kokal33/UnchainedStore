@@ -12,3 +12,8 @@ export function truncateMiddle (fullStr: string, strLen:number) {
          separator +
          fullStr.substr(fullStr.length - backChars);
 };
+
+export function GetJsonRpcError(e: any) {
+  var jsonRPC = e.message.split("Internal JSON-RPC error.\n").pop();
+  return JSON.parse(jsonRPC);
+}
