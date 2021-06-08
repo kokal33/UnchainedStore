@@ -60,6 +60,9 @@ export class BackendService {
   async setTrackAsSold(model: SetAsSoldModel): Promise<HttpResponse<any>> {
     return await this.http.post(this.base + "/tracks/setTrackAsSold", model, options).toPromise();
   }
+  async SetNoBidsFinishedAuction(model: IdModel): Promise<HttpResponse<any>> {
+    return await this.http.post(this.base + "/tracks/SetNoBidsFinishedAuction", model, options).toPromise();
+  }
 }
 
 

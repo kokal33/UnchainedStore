@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
+import { GetJsonRpcError } from 'src/app/04.Helpers/stringHelper';
 import { SetAsSoldModel, User } from 'src/app/06.Models/backendModels';
 import { EndAuctionModel } from 'src/app/06.Models/solidityModels';
 import { getUserLocal } from 'src/app/07.Services/authService';
@@ -56,11 +57,16 @@ export class MarketplaceItemDetailsComponent implements OnInit {
     }
     const endAuction = await this.auctionContractService.auctionEnd(endAuctionModel)
       .catch((e) => {
+        var rpcError = GetJsonRpcError(e);
         this.messageService.add({
           severity: 'error',
           summary: 'End auction failed, check your wallet for errors',
-          detail: e.message,
+          detail: rpcError.message,
         });
+        if (rpcError.message==="execution reverted: No bids for this auction"){
+          this.backendService.SetNoBidsFinishedAuction({id: this.track.id});
+          window.location.reload();
+      }
         return undefined;
       });
     if (!endAuction) return;
