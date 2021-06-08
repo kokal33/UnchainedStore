@@ -116,13 +116,14 @@ export class ResponsiveToolbarComponent implements OnInit {
   }
 }
 
+if (window.ethereum){
 window.ethereum.on('accountsChanged', (accounts) => {
   clearCache();
   window.location.reload();
-
 });
 
 window.ethereum.on('chainChanged', (chainId) => {
   clearCache();
   window.location.reload();
 });
+}

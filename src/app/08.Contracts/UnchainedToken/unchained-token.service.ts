@@ -18,10 +18,13 @@ export class UnchainedTokenService {
 
   async approve(from: string, to: string, tokenId:number){
     var myContract = new this.web3.eth.Contract(UnchainedContract.abi, environment.contractTestAddress);
+    const estimatedGas = await myContract.methods.approve(to, tokenId)
+    .estimateGas({ from: from });
+ console.log(estimatedGas);
   return await myContract.methods.approve(to, tokenId)
   .send({
     from: from,
-    // gas: 200000,
+     gas: estimatedGas,
   });
   }
 

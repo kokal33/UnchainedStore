@@ -33,6 +33,9 @@ export class BackendService {
   async getMyCollection(model: any): Promise<HttpResponse<any>> {
     return await this.http.post(this.base + "/tracks/getMyCollection", model, options).toPromise();
   }
+  async getMyCreated(model: any): Promise<HttpResponse<any>> {
+    return await this.http.post(this.base + "/tracks/getMyCreated", model, options).toPromise();
+  }
   async getTrackById(model: IdModel): Promise<HttpResponse<any>> {
     return await this.http.post(this.base + "/tracks/getTrack", model, options).toPromise();
   }
