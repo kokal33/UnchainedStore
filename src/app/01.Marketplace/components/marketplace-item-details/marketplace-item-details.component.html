@@ -17,7 +17,7 @@
           {{track?.auction?.bids[track?.auction?.bids.length - 1]?.amount || track?.listing?.price}} MATIC
         </h3>
         <!-- If no bids just show NO BIDS -->
-        <h3 *ngIf="track?.auction?.bids[track?.auction?.bids.length - 1]?.amount === null && !track?.listing">NO BIDS
+        <h3 *ngIf="track?.auction?.bids[track?.auction?.bids.length - 1]?.amount === null ">NO BIDS
         </h3>
       </div>
     </div>
