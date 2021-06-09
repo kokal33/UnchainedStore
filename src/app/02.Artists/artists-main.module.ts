@@ -7,6 +7,8 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { NftCardComponent } from '../shared/components/nft-card/nft-card.component';
 import { MarketplaceItemDetailsComponent } from '../01.Marketplace/components/marketplace-item-details/marketplace-item-details.component';
 import { MarketplaceItemBidHistoryComponent } from '../01.Marketplace/components/marketplace-item-bid-history/marketplace-item-bid-history.component';
+import { CollectionsComponent } from './components/collections/collections.component';
+import { CreatedComponent } from './components/created/created.component';
 
 const routes: Routes = [
 
@@ -25,7 +27,7 @@ const routes: Routes = [
     },
     {
       path: 'collections',
-      component: NftCardComponent,
+      component: CollectionsComponent,
       children: [
         {
           path: 'nft-details/:id',
@@ -39,7 +41,7 @@ const routes: Routes = [
     },
     {
       path: 'created',
-      component: NftCardComponent,
+      component: CreatedComponent,
       children: [
         {
           path: 'nft-details/:id',
@@ -56,7 +58,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ArtistGridComponent, UserDetailsComponent],
+  declarations: [ArtistGridComponent, UserDetailsComponent, CollectionsComponent, CreatedComponent],
   imports: [RouterModule.forChild(routes), CommonModule, SharedModule
   ],
   exports: [RouterModule],

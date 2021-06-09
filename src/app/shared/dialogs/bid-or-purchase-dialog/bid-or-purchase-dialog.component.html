@@ -1,42 +1,45 @@
 <form [formGroup]="bidForm">
 
-<div class="stepsdemo-content">
-  <p-card [style]="{'padding':'40px'}">
-    <ng-template pTemplate="title">
-      <div *ngIf="isAuctioned && showProgress">Bidding in progress...</div>
-      <div *ngIf="!isAuctioned && showProgress">Purchase in progress...</div>
-    </ng-template>
-    <ng-template pTemplate="subtitle">
-      <!-- <svg *ngIf="mintFilesSuccess" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+  <div class="stepsdemo-content">
+    <p-card [style]="{'padding':'40px'}">
+      <ng-template pTemplate="title">
+        <div *ngIf="isAuctioned && showProgress">Bidding in progress...</div>
+        <div *ngIf="!isAuctioned && showProgress">Purchase in progress...</div>
+      </ng-template>
+      <ng-template pTemplate="subtitle">
+        <svg *ngIf="bidSuccess" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
           <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
           <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-        </svg> -->
-      <div *ngIf="showProgress" style="text-align: center;">
-        <p-progressSpinner  [style]="{width: '30px', height: '30px'}"></p-progressSpinner>
-      </div>
-    </ng-template>
-    <ng-template pTemplate="content">
-      <div class="p-fluid">
-        <div *ngIf="isAuctioned" class="p-field">
-          <h3>Highest bid: {{highestBid}}</h3>
+        </svg>
+        <div *ngIf="showProgress && !bidSuccess" style="text-align: center;">
+          <p-progressSpinner [style]="{width: '30px', height: '30px'}"></p-progressSpinner>
         </div>
-        <div class="p-field">
-          <label for="horizontal">Price</label>
-          <p-inputNumber formControlName="placedBid" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal"
-            [step]="0.25" decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
-            incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" suffix=" matic">
-          </p-inputNumber>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="p-fluid">
+          <div *ngIf="isAuctioned" class="p-field">
+            <h1 class="highest-bid">Highest bid: {{highestBid ? highestBid + ' ' + 'MATIC' : "No Bids"}}</h1>
+          </div>
+          <div class="p-field">
+            <label for="minmaxfraction">Price (MATIC)</label>
+            <p-inputNumber formControlName="placedBid" inputId="minmaxfraction" mode="decimal" [minFractionDigits]="2"
+              [maxFractionDigits]="4">
+            </p-inputNumber>
+            <mat-error *ngIf="bidForm.get('placedBid')?.invalid && bidForm.get('placedBid')?.touched">
+              Invalid bid</mat-error>
+          </div>
         </div>
-      </div>
-    </ng-template>
-    <ng-template pTemplate="footer">
-      <div class="p-grid p-nogutter p-justify-end">
-        <p-button *ngIf="isAuctioned" [disabled]="showProgress || bidForm.invalid" (click)="bid()" label="Place bid" icon="pi pi-angle-right" iconPos="right"></p-button>
-        <p-button *ngIf="!isAuctioned"[disabled]="showProgress || bidForm.invalid" (click)="purchase()" label="Purchase" icon="pi pi-angle-right" iconPos="right"></p-button>
-      </div>
-    </ng-template>
-  </p-card>
-</div>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <div class="p-grid p-nogutter p-justify-end">
+          <p-button *ngIf="isAuctioned" [disabled]="showProgress || bidForm.invalid" (click)="bid()" label="Place bid"
+            icon="pi pi-angle-right" iconPos="right"></p-button>
+          <p-button *ngIf="!isAuctioned" [disabled]="showProgress || bidForm.invalid" (click)="purchase()"
+            label="Purchase" icon="pi pi-angle-right" iconPos="right"></p-button>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
 </form>
 
 <p-toast position="bottom-center"></p-toast>

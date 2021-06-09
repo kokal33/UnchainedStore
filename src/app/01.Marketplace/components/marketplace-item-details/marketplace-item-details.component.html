@@ -3,8 +3,6 @@
   <h4>{{track?.description}}</h4>
 </p-fieldset>
 
-
-
 <div style="margin-top:30px" class="card">
   <div class="p-grid">
     <div class="p-col-5 p-d-flex p-ai-center p-jc-center">
@@ -15,11 +13,12 @@
           <p-divider></p-divider>
         </div>
         <!-- Show bidded amount if there are any bids -->
-        <h3 *ngIf="track?.auction?.bids[track?.auction?.bids.length - 1]?.amount !== null">
+        <h3 *ngIf="track?.auction?.bids[track?.auction?.bids.length - 1]?.amount !== null || track?.listing">
           {{track?.auction?.bids[track?.auction?.bids.length - 1]?.amount || track?.listing?.price}} MATIC
         </h3>
         <!-- If no bids just show NO BIDS -->
-        <h3 *ngIf="track?.auction?.bids[track?.auction?.bids.length - 1]?.amount === null">NO BIDS</h3>
+        <h3 *ngIf="track?.auction?.bids[track?.auction?.bids.length - 1]?.amount === null && !track?.listing">NO BIDS
+        </h3>
       </div>
     </div>
     <div *ngIf="track?.auction" class="p-col-2">
@@ -29,8 +28,8 @@
 
     <div *ngIf="track?.auctionEnding" class="p-col-5 p-d-flex p-ai-center p-jc-center">
       <div style="text-align: center;" class="box">
-        <h3 style="color: #c950aa" *ngIf="track?.auctionEnding > 0" >Ending in</h3>
-        <h3 style="color: #c950aa" *ngIf="track?.auctionEnding  <= 0" >Finished</h3>
+        <h3 style="color: #c950aa" *ngIf="track?.auctionEnding > 0">Ending in</h3>
+        <h3 style="color: #c950aa" *ngIf="track?.auctionEnding  <= 0">Finished</h3>
         <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
           <p-divider></p-divider>
         </div>
@@ -43,12 +42,13 @@
 <div style="margin-top: 30px;" class="p-grid">
   <div *ngIf="!track?.isSold" style="text-align: center;" class="p-col-12">
 
-    <button (click)="placeBidOrPurchase(track.auction.id, track.isAuctioned)" *ngIf="track?.isAuctioned && track?.auctionEnding  > 0" style="width: 60%;"
-      pButton pRipple type="button" label="Place a bid" class="p-button-raised p-button-lg"></button>
+    <button (click)="placeBidOrPurchase(track.auction.id, track.isAuctioned)"
+      *ngIf="track?.isAuctioned && track?.auctionEnding  > 0" style="width: 60%;" pButton pRipple type="button"
+      label="Place a bid" class="p-button-raised p-button-lg"></button>
     <button (click)="placeBidOrPurchase(track.listing.id,track.isAuctioned)" *ngIf="track?.isListed" style="width: 60%;"
       pButton pRipple type="button" label="Purchase" class="p-button-raised p-button-lg"></button>
-      <button *ngIf="track?.isAuctioned && track?.auctionEnding  <= 0" (click)="endAuction()" style="width: 60%;"
-      pButton pRipple type="button" label="Finalize Auction" class="p-button-raised p-button-lg"></button>
+    <button *ngIf="track?.isAuctioned && track?.auctionEnding  <= 0" (click)="endAuction()" style="width: 60%;" pButton
+      pRipple type="button" label="Finalize Auction" class="p-button-raised p-button-lg"></button>
   </div>
 </div>
 <p-toast position="bottom-center"></p-toast>
