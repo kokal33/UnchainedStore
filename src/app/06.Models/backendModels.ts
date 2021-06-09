@@ -10,6 +10,7 @@ export interface MintModel {
 export interface User {
   publicAddress: string,
   name: string,
+  email: string,
   signature: string,
   bio: string,
   profilePic: string,

@@ -43,6 +43,7 @@ export class EditUserDialogComponent implements OnInit {
       bio: ["", Validators.required],
       isArtist: [false],
       name: ["", Validators.required],
+      email: ["", Validators.required],
       instagram: [""],
       twitter: [""],
       facebook: [""],

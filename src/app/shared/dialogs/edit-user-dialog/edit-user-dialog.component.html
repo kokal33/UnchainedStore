@@ -59,6 +59,12 @@
             <mat-error *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
               {{getValidationMessage(userForm,'name')}}</mat-error>
           </div>
+          <div class="p-field p-col-12 p-md-12">
+            <label for="email">Email</label>
+            <input formControlName="email" id="email" type="text" pInputText>
+            <mat-error *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+              {{getValidationMessage(userForm,'email')}}</mat-error>
+          </div>
 
           <div class="p-field p-col-12 p-md-12">
             <label for="firstname">Bio</label>
