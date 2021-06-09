@@ -5,8 +5,10 @@
 
       <div class="p-grid">
         <div class="p-col-6">
-          <div style="text-align: start;padding-left: 20px;" class="box">
-            <h3>{{item.ownerOfName}}</h3>
+          <div style="text-align: start;padding-left: 20px; display: flex;" class="box">
+
+            <img style="width: 20px;height: 20px;border-radius: 50%;margin: 3px;" [src]="item.ownerOfProfilePic">
+            <h3 style="white-space: nowrap;">{{item.ownerOfName}}</h3>
           </div>
         </div>
         <!-- <div class="p-col-6">
