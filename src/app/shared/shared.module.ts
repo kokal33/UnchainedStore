@@ -19,6 +19,6 @@ import { BidOrPurchaseDialogComponent } from './dialogs/bid-or-purchase-dialog/b
 @NgModule({
   declarations: [ResponsiveToolbarComponent, WalletDialogComponent, SubscribeDialogComponent, EditUserDialogComponent, NftCardComponent, ResponsiveFooterComponent, CreateNftDialogComponent, BidOrPurchaseDialogComponent],
   imports: [FlexLayoutModule, MaterialModule, ReactiveFormsModule, FormsModule, CommonModule, RouterModule, NgxAudioPlayerModule],
-  exports: [FlexLayoutModule, MaterialModule, ReactiveFormsModule, FormsModule, ResponsiveToolbarComponent,ResponsiveFooterComponent]
+  exports: [FlexLayoutModule, MaterialModule, ReactiveFormsModule, FormsModule, ResponsiveToolbarComponent,ResponsiveFooterComponent,NftCardComponent]
 })
 export class SharedModule { }

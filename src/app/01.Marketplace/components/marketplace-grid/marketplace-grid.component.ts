@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { DialogService } from 'primeng/dynamicdialog';
 import { BackendService } from 'src/app/07.Services/backendService';
@@ -9,14 +9,14 @@ import { MarketplaceItemDialogComponent } from '../marketplace-item-dialog/marke
   selector: 'app-marketplace-grid',
   templateUrl: './marketplace-grid.component.html',
   styleUrls: ['./marketplace-grid.component.scss'],
-  providers: [DialogService, BackendService, ],
+  providers: [DialogService, BackendService,],
 })
 export class MarketplaceGridComponent implements OnInit {
   @BlockUI() blockUI!: NgBlockUI;
   seconds!: number;
   marketplaceItems: any[] = [];
   environment!: any;
-  constructor(private dialogService: DialogService, private backendService: BackendService, private cdRef : ChangeDetectorRef) { }
+  constructor(private dialogService: DialogService, private backendService: BackendService) { }
   msaapDisplayTitle = false;
   msaapDisplayPlayList = false;
   msaapPageSizeOptions = [2, 4, 6];
@@ -35,8 +35,10 @@ export class MarketplaceGridComponent implements OnInit {
   viewDetails(id: number, auctionEnding: number) {
     const dialog = this.dialogService.open(MarketplaceItemDialogComponent, {
       header: '',
-      data: { id: id,
-      auctionEnding: auctionEnding},
+      data: {
+        id: id,
+        auctionEnding: auctionEnding
+      },
     });
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { MenuItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { truncateMiddle } from 'src/app/04.Helpers/stringHelper';
@@ -12,9 +13,10 @@ import { EditUserDialogComponent } from 'src/app/shared/dialogs/edit-user-dialog
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
   styleUrls: ['./user-details.component.scss'],
-  providers: [DialogService,BackendService]
+  providers: [DialogService, BackendService]
 })
 export class UserDetailsComponent implements OnInit {
+  @BlockUI() blockUI!: NgBlockUI;
 
   constructor(public dialogService: DialogService, private activatedRoute: ActivatedRoute, private backendService: BackendService) { }
 
@@ -25,6 +27,7 @@ export class UserDetailsComponent implements OnInit {
   isLocalUser = false;
 
   async ngOnInit() {
+    this.blockUI.start();
     const publicAddress = this.activatedRoute.snapshot.params.id;
     const userLocal = getUserLocal();
     if (publicAddress == userLocal?.publicAddress) {
@@ -38,6 +41,8 @@ export class UserDetailsComponent implements OnInit {
       { label: 'Created', routerLink: ['created'] },
     ];
     this.activeItem = this.items[0];
+    this.blockUI.stop();
+
   }
   copyToClipboard(item: any) {
     document.addEventListener('copy', (e: ClipboardEvent) => {

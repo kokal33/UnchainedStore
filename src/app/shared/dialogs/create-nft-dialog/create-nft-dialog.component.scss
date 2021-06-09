@@ -3,43 +3,14 @@
   padding: 0px 0px 0px 0px;
 }
 
-@media (min-width: 1000px) {
-  .grid-7 {
-    padding: 40px;
-  }
-  .searchbar-size {
-    width: 150px;
-  }
-}
-
-@media (max-width: 550px) {
-  .searchbar-size {
-    width: 250px !important;
-  }
-  .img {
-    padding: 20px 20px 0px 20px;
-  }
-}
-
 :host ::ng-deep .nft-card .p-card {
   border-radius: 20px 20px 20px 20px;
   background: #0d1014;
 }
-// :host ::ng-deep .ngx-col {
-//   display: none;
-// }
+
 :host ::ng-deep .ngx-d-flex {
   color: #523494 !important;
 }
-
-:host ::ng-deep .ngx-p-1 {
-}
-
-// :host::ng-deep .ngx-p-1 {
-//   @media (max-width: 550px) {
-//     zoom: 0.8;
-//   }
-// }
 
 :host ::ng-deep .footer-divider .p-divider-solid.p-divider-horizontal:before {
   border-color: #523494;
@@ -77,17 +48,11 @@ h2 {
   color: white;
   font-weight: bold;
 }
-h2 {
-  margin: 0;
-}
 
 p {
   font-size: 1.4rem;
 }
 
-.searchbar-size {
-  width: 500px;
-}
 .header-img {
   position: absolute;
   margin-left: auto;
@@ -128,11 +93,9 @@ p {
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  // display: block;
   stroke-width: 2;
   stroke: #fff;
   stroke-miterlimit: 10;
-  // margin: 10% auto;
   box-shadow: inset 0px 0px 0px #7ac142;
   animation: fill 0.4s ease-in-out 0.4s forwards,
     scale 0.3s ease-in-out 0.9s both;
@@ -183,8 +146,7 @@ p {
 }
 
 .img-overlay:before {
-  content: ' ';
+  content: " ";
   display: block;
-  /* adjust 'height' to position overlay content vertically */
   height: 50%;
 }

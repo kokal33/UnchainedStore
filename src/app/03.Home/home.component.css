@@ -1,9 +1,3 @@
-.content {
-  padding: 16px;
-  height: 100%;
-  background-color: #12161c;
-  position: fixed;
-}
 .header-img {
   background-image: url(../../assets/images/bg1.jpg);
   position: absolute;
@@ -39,7 +33,6 @@
 .welcome-text {
   color: #fff !important;
   font-weight: 700 !important;
-  /* margin-bottom: 25% !important; */
   font-size: 4.5rem;
   line-height: 1.2;
   z-index: 1;
@@ -65,19 +58,6 @@
   margin-top: 5%;
   margin-bottom: 50px;
 }
-.explore-music-button {
-  border-color: #c02afe;
-  position: relative;
-  color: #fff;
-  border-style: solid;
-  border-radius: 10px;
-  font-size: large;
-  border-width: 1px;
-  margin: 10px;
-  width: 15%;
-  height: 60px;
-  min-width: 160px;
-}
 
 h2 {
   z-index: 1;
@@ -101,11 +81,6 @@ span {
   padding-top: 40px;
   font-weight: bold;
 }
-
-/* .pull-right-paragraph
-{
-  margin-left: 60px;
-} */
 
 a {
   background: linear-gradient(

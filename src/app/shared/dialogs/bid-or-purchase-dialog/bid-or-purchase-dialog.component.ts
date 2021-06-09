@@ -24,8 +24,9 @@ export class BidOrPurchaseDialogComponent implements OnInit {
   showProgress = false;
   bidForm!: FormGroup;
   user!: User | undefined;
+  bidSuccess = false;
   isAuctioned!: boolean;
-  highestBid: string = 'Checking blockchain...';
+  highestBid!: number;
   constructor(
     private fb: FormBuilder,
     private backendService: BackendService,
@@ -48,10 +49,20 @@ export class BidOrPurchaseDialogComponent implements OnInit {
     }
     // This must be last because form data does not like when someone awaits before it executes
     //NEW RULE await onInit goes last
-    if (this.isAuctioned)
-      this.highestBid = await this.auctionContractService.getHighestBid(
+    if (this.isAuctioned) {
+      this.highestBid = Number(await this.auctionContractService.getHighestBid(
         this.config.data.auctionContractAddress
-      );
+      ));
+      if (this.highestBid) {
+        this.bidForm.get('placedBid')?.setValidators(Validators.min(((10 / 100) * this.highestBid) + this.highestBid));
+        this.bidForm.get('placedBid')?.setValue((10 / 100) * this.highestBid + this.highestBid);
+      } else {
+        this.bidForm.get('placedBid')?.setValidators(Validators.min(((10 / 100) * this.config.data.price) + this.config.data.price));
+
+        this.bidForm.get('placedBid')?.setValue(((10 / 100) * this.config.data.price) + this.config.data.price);
+
+      }
+    }
   }
 
   async purchase() {
@@ -135,6 +146,7 @@ export class BidOrPurchaseDialogComponent implements OnInit {
       return undefined;
     });
     if (!bidResult) return;
+    this.bidSuccess = true;
     this.dialogRef.close(true);
   }
 }

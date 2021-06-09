@@ -1,7 +1,5 @@
-import { NumberSymbol } from '@angular/common';
-import { AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { Track } from 'ngx-audio-player';
 import { DialogService } from 'primeng/dynamicdialog';
 import { User } from 'src/app/06.Models/backendModels';
 import { getUserLocal } from 'src/app/07.Services/authService';
@@ -16,14 +14,23 @@ import { MarketplaceItemDialogComponent } from '../../../01.Marketplace/componen
   providers: [DialogService],
 })
 export class NftCardComponent implements OnInit {
-
+  @Input() isCollection!: boolean;
   myCollection: any[] = [];
   user: User | undefined;
-  seconds!:number;
+  seconds!: number;
   environment!: any;
 
-  constructor(private dialogService: DialogService, private router: Router, private backendService: BackendService) { }
+  constructor(private dialogService: DialogService, private router: Router, private backendService: BackendService) {
+    this.user = getUserLocal();
+  }
+  async ngOnChanges(changes: SimpleChanges) {
+    if (changes.isCollection.currentValue) {
+      this.myCollection = (await this.backendService.getMyCollection({ publicAddress: this.user?.publicAddress })).body;
+    } else {
+      this.myCollection = (await this.backendService.getMyCreated({ publicAddress: this.user?.publicAddress })).body;
 
+    }
+  }
   msaapDisplayTitle = false;
   msaapDisplayPlayList = false;
   msaapPageSizeOptions = [2, 4, 6];
@@ -35,8 +42,7 @@ export class NftCardComponent implements OnInit {
 
   async ngOnInit() {
     this.environment = environment.apiUrl;
-    this.user = getUserLocal()
-    this.myCollection = (await this.backendService.getMyCollection({publicAddress: this.user?.publicAddress})).body;
+
   }
 
   viewDetails(id: number, auctionEnding: number) {
