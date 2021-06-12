@@ -11,6 +11,19 @@
 :host ::ng-deep .ngx-d-flex {
   color: #523494 !important;
 }
+:host ::ng-deep.mat-accent .mat-slider-track-fill,
+.mat-accent .mat-slider-thumb,
+.mat-accent .mat-slider-thumb-label {
+  background-color: #a34ec1 !important;
+}
+:host::ng-deep mat-card {
+  background-color: inherit;
+  border-style: solid;
+  border-width: 1px;
+}
+:host ::ng-deep.mat-slider-thumb {
+  background-color: #a34ec1 !important;
+}
 
 :host ::ng-deep .footer-divider .p-divider-solid.p-divider-horizontal:before {
   border-color: #523494;
