@@ -29,7 +29,7 @@
   </ng-template>
 
 </p-menubar>
-<p-messages *ngIf="!isProduction" severity="error">
+<!-- <p-messages *ngIf="!isProduction" severity="error">
   <ng-template pTemplate>
     <i class="pi pi-exclamation-triangle"></i>
     <img class="p-ml-2" src="../../../../assets/images/UnchaunedLogo.png" width="32" />
@@ -41,8 +41,7 @@
     <i class="pi pi-exclamation-triangle"></i>
 
   </ng-template>
-
-</p-messages>
+</p-messages> -->
 <p-overlayPanel #op>
   <ng-template pTemplate>
     <button (click)="viewProfile(); op.hide()" pButton pRipple type="button" label="View Profile"
