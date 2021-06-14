@@ -137,7 +137,10 @@
               </div>
               <ng-template pTemplate="header">
                 <div class="img-wrapper">
-                  <img class="img-responsive" *ngIf="uploadedFiles.length > 0" [src]="nftForm.get('coverPhoto')?.value">
+                  <img style="width: 400px;
+                  border-radius: 20px;
+                  height: 250px;
+              " class="img-responsive" *ngIf="uploadedFiles.length > 0" [src]="nftForm.get('coverPhoto')?.value">
                   <div class="img-overlay">
                     <p-fileUpload #form1 chooseIcon="pi pi-upload" [auto]="true" *ngIf="uploadedFiles.length > 0"
                       mode="basic" styleClass="header-img" [style]="{
