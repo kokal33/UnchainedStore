@@ -61,8 +61,14 @@
           <a *ngIf="user?.linkedIn" [href]="'https://linkedin.com/in/'+user?.linkedIn" target="_blank">
             <img class="img-social" src="../../../../assets/social/linkedIn.svg">
           </a>
-          <a *ngIf="user?.beatport" [href]="'https://beatport.com/'+user?.beatport" target="_blank">
+          <a *ngIf="user?.beatport" [href]="'https://beatport.com/artist/'+user?.beatport" target="_blank">
             <img class="img-social" src="../../../../assets/social/beatport.svg">
+          </a>
+          <a *ngIf="user?.soundCloud" [href]="'https://soundcloud.com/'+user?.soundCloud" target="_blank">
+            <img class="img-social" src="../../../../assets/social/soundcloud.svg">
+          </a>
+          <a *ngIf="user?.bandCamp" [href]="'https://'+user?.bandCamp + '.bandcamp.com'" target="_blank">
+            <img class="img-social" src="../../../../assets/social/bandcamp.svg">
           </a>
         </div>
       </p-card>
