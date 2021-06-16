@@ -47,6 +47,10 @@ export class EditUserDialogComponent implements OnInit {
       instagram: [""],
       twitter: [""],
       facebook: [""],
+      linkedIn: [""],
+      bandCamp: [""],
+      soundCloud: [""],
+      beatport: [""],
       profilePic: [null, Validators.required]
     })
     this.user = getUserLocal();

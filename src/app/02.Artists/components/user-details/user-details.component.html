@@ -58,6 +58,12 @@
           <a *ngIf="user?.twitter" [href]="'https://twitter.com/'+user?.twitter" target="_blank">
             <img class="img-social" src="../../../../assets/social/twitter.svg">
           </a>
+          <a *ngIf="user?.linkedIn" [href]="'https://linkedin.com/in/'+user?.linkedIn" target="_blank">
+            <img class="img-social" src="../../../../assets/social/linkedIn.svg">
+          </a>
+          <a *ngIf="user?.beatport" [href]="'https://beatport.com/'+user?.beatport" target="_blank">
+            <img class="img-social" src="../../../../assets/social/beatport.svg">
+          </a>
         </div>
       </p-card>
     </div>
