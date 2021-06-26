@@ -42,8 +42,12 @@
   margin-top: 120px;
 }
 .about-us-text {
-  width: 800px !important;
+  color: #c7c29a;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  z-index: 1;
   text-align: center;
+  margin-top: 50px;
 }
 .guide-text {
   color: #fff !important;
@@ -52,11 +56,21 @@
   font-size: 4.5rem;
   line-height: 1.2;
   z-index: 1;
-  margin-left: 20%;
-  margin-right: 20%;
   text-align: center;
-  margin-top: 5%;
+  padding-top: 20px;
   margin-bottom: 50px;
+}
+
+.sub-title {
+  color: #ba68c8;
+  font-weight: bold;
+}
+
+.small-text {
+  text-align: center;
+  padding: 1.5rem !important;
+  padding-left: 10% !important;
+  padding-right: 10% !important;
 }
 
 h2 {
@@ -71,8 +85,9 @@ h2 {
 label {
   z-index: 1;
   width: 500px;
-  color: grey;
+  color: rgb(201, 201, 201);
   text-align: center;
+  font-size: 1rem;
 }
 span {
   color: white;
@@ -83,23 +98,15 @@ span {
 }
 
 a {
-  background: linear-gradient(
-    90deg,
-    hsla(293, 93%, 47%, 0.9) 0%,
-    hsla(304, 100%, 78%, 0.9) 50%
-  );
+  color: white;
+  text-decoration-line: underline;
   font-size: 1rem;
   font-weight: bold;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -moz-text-fill-color: transparent;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
 }
 a:hover {
   cursor: pointer;
 }
+
 
 @media (max-width: 550px) {
   .welcome-text {

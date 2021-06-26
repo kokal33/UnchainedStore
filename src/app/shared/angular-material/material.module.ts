@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {ConfirmPopupModule} from 'primeng/confirmpopup';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
@@ -22,12 +22,10 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { FieldsetModule } from 'primeng/fieldset';
 import { InputSwitchModule } from 'primeng/inputswitch';
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
-import { TableModule } from 'primeng/table';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ToastModule } from 'primeng/toast';
 import { TabViewModule } from 'primeng/tabview';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
-import { DataViewModule } from 'primeng/dataview';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ChipModule } from 'primeng/chip';
 import { StepsModule } from 'primeng/steps';
@@ -43,8 +41,6 @@ const mat = [
   ToastModule,
   StepsModule,
   TooltipModule,
-  TableModule,
-  DataViewModule,
   TabViewModule,
   NgxAudioPlayerModule,
   InputTextModule,

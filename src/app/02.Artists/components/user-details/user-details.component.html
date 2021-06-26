@@ -9,31 +9,6 @@
     </p-avatar>
   </div>
 </div>
-<!--
-<div class="p-grid">
-  <div class="p-col-12 p-md-12 p-lg-3">
-    <div style="padding-top: 0;" class="box box-stretched">
-      <p-card [style]="{'border-radius':'20px','background-color':'rgb(12 11 11)'}">
-
-        <h1 style="padding-top: 15%;">Bio</h1>
-        <p>{{user?.bio}}
-        </p>
-      </p-card>
-    </div>
-  </div>
-  <div style="text-align: center;" class="p-col-12 p-md-12 p-lg-9">
-    <div>
-      <p-card [style]="{'border-radius':'20px','background-color':'rgb(12 11 11)'}"
-        [header]="user?.name || 'Your Name'">
-        <div class="footer-divider">
-          <p-divider></p-divider>
-        </div>
-        <h2>@{{user?.name || 'YourName'}}</h2>
-      </p-card>
-    </div>
-  </div>
-</div> -->
-
 <div style=" margin-bottom: 15%;" class="p-grid nested-grid">
   <div class="p-col-12 p-md-12 p-lg-3">
     <div style="padding-top: 0;" class="box box-stretched">
@@ -89,15 +64,15 @@
     <div class="p-grid">
       <div class="p-col-12">
         <!-- <div style="text-align: center;" class="p-col-12 p-md-12 p-lg-9"> -->
-          <div style="text-align: center;">
-            <p-card [style]="{'border-radius':'20px','background-color':'rgb(12 11 11)'}"
-              [header]="user?.name || 'Your Name'">
-              <div class="footer-divider">
-                <p-divider></p-divider>
-              </div>
-              <h2>@{{user?.name || 'YourName'}}</h2>
-            </p-card>
-          </div>
+        <div style="text-align: center;">
+          <p-card [style]="{'border-radius':'20px','background-color':'rgb(12 11 11)'}"
+            [header]="user?.name || 'Your Name'">
+            <div class="footer-divider">
+              <p-divider></p-divider>
+            </div>
+            <h2>@{{user?.name || 'YourName'}}</h2>
+          </p-card>
+        </div>
         <!-- </div> -->
         <div style="padding-top: 0 !important;" class="box">
           <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
@@ -105,7 +80,11 @@
       </div>
       <div class="p-col-12">
         <div class="box">
-          <router-outlet></router-outlet>
+          <app-nft-card *ngIf="activeItem?.id == '1'" [isCollection]="true" [address]="userDetailsAddress">
+          </app-nft-card>
+          <app-nft-card *ngIf="activeItem?.id == '2'" [isCollection]="false" [address]="userDetailsAddress">
+          </app-nft-card>
+
         </div>
       </div>
     </div>

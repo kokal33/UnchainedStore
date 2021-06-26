@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { User } from 'src/app/06.Models/backendModels';
 import { getUserLocal } from 'src/app/07.Services/authService';
@@ -15,19 +14,21 @@ import { MarketplaceItemDialogComponent } from '../../../01.Marketplace/componen
 })
 export class NftCardComponent implements OnInit {
   @Input() isCollection!: boolean;
+  @Input() address!: string;
+
   myCollection: any[] = [];
   user: User | undefined;
   seconds!: number;
   environment!: any;
 
-  constructor(private dialogService: DialogService, private router: Router, private backendService: BackendService) {
+  constructor(private dialogService: DialogService, private backendService: BackendService) {
     this.user = getUserLocal();
   }
   async ngOnChanges(changes: SimpleChanges) {
-    if (changes.isCollection.currentValue) {
-      this.myCollection = (await this.backendService.getMyCollection({ publicAddress: this.user?.publicAddress })).body;
+    if (changes.isCollection.currentValue && changes.address.currentValue) {
+      this.myCollection = (await this.backendService.getMyCollection({ publicAddress: changes.address.currentValue })).body;
     } else {
-      this.myCollection = (await this.backendService.getMyCreated({ publicAddress: this.user?.publicAddress })).body;
+      this.myCollection = (await this.backendService.getMyCreated({ publicAddress: changes.address.currentValue })).body;
 
     }
   }

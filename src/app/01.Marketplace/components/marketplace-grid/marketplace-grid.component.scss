@@ -53,6 +53,7 @@
 :host ::ng-deep .p-card {
   border-radius: 20px 20px 20px 20px;
   background: #0d1014;
+  box-shadow: 0 5px 6px -3px rgb(0 0 0), 0 9px 12px 1px rgb(0 0 0 / 59%), 0 3px 16px 2px rgb(0 0 0 / 34%);
 }
 :host ::ng-deep .ngx-col {
   display: none;

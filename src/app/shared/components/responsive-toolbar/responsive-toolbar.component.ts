@@ -25,9 +25,10 @@ export class ResponsiveToolbarComponent implements OnInit {
   address!: string;
   isProduction!: boolean;
   isWalletConnected!: boolean;
+  displayResponsive = false;
 
   ngOnInit() {
-    this.isWalletConnected=false;
+    this.isWalletConnected = false;
     this.isProduction = environment.production;
     this.user = getUserLocal();
     if (this.user) {
@@ -46,6 +47,7 @@ export class ResponsiveToolbarComponent implements OnInit {
         routerLink: 'artists'
       }
     ];
+
     // ENVIRONMENT-CHANGE
     if (!this.user?.verified && this.isProduction)
       this.items = [];
@@ -55,8 +57,7 @@ export class ResponsiveToolbarComponent implements OnInit {
     private googleService: GoogleAnalyticsService, private messageService: MessageService,
     private providerService: ProviderService, private activatedRoute: ActivatedRoute) { }
 
-  onClickMenuItem(event: any) {
-  }
+
 
   openCreateNftModal() {
     const dialogRef = this.dialogService.open(CreateNftDialogComponent, {
@@ -91,39 +92,43 @@ export class ResponsiveToolbarComponent implements OnInit {
       try {
         const result = await this.backendService.login(walletConnect);
         setUserLocal(result.body as User);
-        console.log("Login successful");
         this.isWalletConnected = true;
-        this.address = truncateMiddle(walletConnect.publicAddress, 12) + " Connected";
+        this.address = truncateMiddle(walletConnect.publicAddress, 12);
         this
           .googleService
           .eventEmitter("wallet", "UserConnectedWallet", "Wallet", this.address);
         window.location.reload();
+
       }
       catch (err) {
         console.log("Login unsuccessful: ", err)
         return;
       }
     });
+
   };
 
+
+
   viewProfile() {
-    this.router.navigate(['/user-details', this.user?.publicAddress], { relativeTo: this.activatedRoute });
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+      this.router.navigate(['/user-details', this.user?.publicAddress]));
   }
   logout() {
     clearCache();
     this.isWalletConnected = false;
-    window.location.reload;
+    window.location.reload();
   }
 }
 
-if (window.ethereum){
-window.ethereum.on('accountsChanged', (accounts) => {
-  clearCache();
-  window.location.reload();
-});
+if (window.ethereum) {
+  window.ethereum.on('accountsChanged', (accounts) => {
+    clearCache();
+    window.location.reload();
+  });
 
-window.ethereum.on('chainChanged', (chainId) => {
-  clearCache();
-  window.location.reload();
-});
+  window.ethereum.on('chainChanged', (chainId) => {
+    clearCache();
+    window.location.reload();
+  });
 }

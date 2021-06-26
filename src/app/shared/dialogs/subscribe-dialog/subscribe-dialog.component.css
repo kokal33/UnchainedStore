@@ -1,0 +1,15 @@
+.typeform-responsive {
+  width: 700px;
+  height: 750px;
+
+}
+
+
+@media (max-width: 550px) {
+  .typeform-responsive {
+    width: 300px;
+    height: 700px;
+
+  }
+
+}

@@ -1,166 +1,226 @@
 <div class="header-img"></div>
 
-
-
 <!-- TITLE -->
-<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="50px">
-  <h1 class="welcome-text">The Music NFT Platform that cares for the artist
-  </h1>
-
-</div>
-<div fxLayout="row" fxLayoutAlign="center">
-  <h1 class="sponsor-text">Powered by</h1> <img class="sponsor-img"
-    src="../../../../assets/images/polygon-logowhite.svg">
-
-</div>
-
-
 <!-- ABOUT US -->
-<div fxLayout="row" fxLayoutAlign="center center">
-  <h2 class="about-us-text">Buy and sell unique, unreleased music records, rare samples
-    and sounds.
-  </h2>
-</div>
 
+<div class="p-grid">
+  <div style="z-index: 1;" class="p-col-12">
+    <h1 class="welcome-text">The Music NFT Platform that cares for the artist
+    </h1>
+    <h1 class="about-us-text">Buy and sell unique, unreleased music records, rare samples
+      and sounds.
+    </h1>
+  </div>
 
-<div style="margin-top:40px" class="p-grid">
+  <div style="z-index: 1; text-align: center;" class="p-col-12">
+    <h1 class="sponsor-text">Powered by</h1> <img class="sponsor-img"
+      src="../../../../assets/images/polygon-logowhite.svg">
+  </div>
+  <div class="p-col-12" style="height: 100px;"></div>
+
   <div style="text-align: end; padding-right: 20px;" class="p-col-6">
-    <button (click)="doTheThingWithTheTypeForm()" pButton pRipple type="button" label="Music"
-      class="p-button-outlined p-button-lg"></button>
+    <button style="border-radius: 30px;" (click)="doTheThingWithTheTypeForm()" pButton pRipple type="button"
+      label="Music" class="p-button-outlined p-button-lg"></button>
   </div>
   <div style="padding-left: 20px;" class="p-col-6">
-    <button (click)="doTheThingWithTheTypeForm()" pButton pRipple type="button" label="Artists"
-      class="p-button-outlined p-button-lg"></button>
+    <button style="border-radius: 30px;" (click)="doTheThingWithTheTypeForm()" pButton pRipple type="button"
+      label="Artists" class="p-button-outlined p-button-lg"></button>
   </div>
 </div>
 
 <!-- YOUTUBE VIDEO -->
-<div fxLayout="row" fxLayoutAlign="center" style="position: relative; padding-top: 150px;">
+<!-- <div fxLayout="row" fxLayoutAlign="center" style="position: relative; padding-top: 150px;">
   <iframe class="youtube-vid" [src]='safeURL' frameborder="0" allowfullscreen></iframe>
-</div>
-
+</div> -->
 
 <!-- WE CARE FOR THE ARTIST START -->
-<div fxLayout="row" fxLayoutAlign="center">
-  <h1 fx class="guide-text">We care for the Artist</h1>
+<div style="height: 200px;"></div>
+<div style="background-color: #181d25; border-radius: 30px; margin: 20px;" class="p-grid">
+
+  <div style="z-index: 1;" class="p-col-12">
+    <h1 class="guide-text">We care for the Artist</h1>
+  </div>
+  <div style="z-index: 1; text-align: center;" class="p-col-6">
+    <h1 class="sub-title">Get closer with your community</h1>
+    <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
+      <p-divider></p-divider>
+    </div>
+    <div class="small-text">
+      <label>Music you wouldn't release usually shows fans who you are from different angles and
+        helps
+        you connect to your fan base even more. Moreover, there's always the added bonus of adding a personal
+        touch to your music collectible's metadata, such as your signature, a personalized message or something
+        uniquely yours.</label>
+    </div>
+  </div>
+  <div style="z-index: 1; text-align: center;" class="p-col-6">
+    <h1 class="sub-title">A new revenue stream for you</h1>
+    <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
+      <p-divider></p-divider>
+    </div>
+    <div class="small-text">
+      <label>NFTs offer a new opportunity for you to publish and sell your music peer to peer,
+        without
+        a middleman.
+        Selling music directly to your fans thus becomes a significant new revenue stream for you.
+        Bye, bye greedy agencies & labels. </label>
+    </div>
+  </div>
+  <div style="z-index: 1; text-align: center;" class="p-col-6">
+    <h1 class="sub-title">More control over your own music</h1>
+    <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
+      <p-divider></p-divider>
+    </div>
+    <div class="small-text">
+      <label>The control over your music is in your hands. Easily mint and publish your music
+        collectibles, decide on
+        royalties,
+        track your sales and current ownership and more.</label>
+    </div>
+  </div>
+  <div style="z-index: 1; text-align: center;" class="p-col-6">
+    <h1 class="sub-title">Quality & simplicity first</h1>
+    <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
+      <p-divider></p-divider>
+    </div>
+    <div class="small-text">
+      <label>Music quality is our priority. We support only the best of formats (WAV, FLAC, IAFF,
+        etc.)
+        and all musical contributors are thoroughly checked and personally verified by our dedicated crew.
+        You can simply <a (click)="doTheThingWithTheTypeForm()">APPLY HERE</a> to become an artist on Unchained Music.
+      </label>
+    </div>
+  </div>
+
 </div>
 
-<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <h2>Get closer with your community</h2>
-  <h2>A new revenue stream for you</h2>
-</div>
-
-<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <label class="left-padding">Music you wouldn't release usually shows fans who you are from different angles and helps
-    you connect to your fan base even more. Moreover, there's always the added bonus of adding a personal
-    touch to your music collectible's metadata, such as your signature, a personalized message or something
-    uniquely yours.</label>
-  <label class="right-padding">NFTs offer a new opportunity for you to publish and sell your music peer to peer, without
-    a middleman.
-    Selling music directly to your fans thus becomes a significant new revenue stream for you.
-    Bye, bye greedy agencies & labels. </label>
-</div>
-
-
-<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <h2>More control over your own music</h2>
-  <h2>Quality & simplicity first</h2>
-</div>
-
-<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <label class="left-padding">The control over your music is in your hands. Easily mint and publish your music
-    collectibles, decide on
-    royalties,
-    track your sales and current ownership and more.
-  </label>
-  <label class="right-padding">Music quality is our priority. We support only the best of formats (WAV, FLAC, IAFF,
-    etc.)
-    and all musical contributors are thoroughly checked and personally verified by our dedicated crew.
-    You can simply <a (click)="doTheThingWithTheTypeForm()">APPLY HERE</a> to become an artist on Unchained Music.
-  </label>
-</div>
-<div style="margin-top: 20px;" class="p-mt-6">
-  <p-divider></p-divider>
-</div>
 <!-- WE CARE FOR THE ARTIST END -->
 
 <!-- COLLECT MUSIC LIKE NEVER BEFORE START -->
-<div fxLayout="row" fxLayoutAlign="center">
-  <h1 fx class="guide-text">Collect music like never before</h1>
+<div style="height: 50px;"></div>
+
+<div style="background-color: #181d25; border-radius: 30px; margin: 20px;" class="p-grid">
+
+  <div style="z-index: 1;" class="p-col-12">
+    <h1 class="guide-text">Collect music like never before</h1>
+  </div>
+  <div style="z-index: 1; text-align: center;" class="p-col-6">
+    <h1 class="sub-title">A bridge from physical to digital</h1>
+    <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
+      <p-divider></p-divider>
+    </div>
+    <div class="small-text">
+      <label>Before blockchain & NFTs, you could only collect music in physical formats, such as
+        cassettes, CDs and vinyls.
+        We have built a bridge from physical to digital, allowing you to buy and own true music digital
+        collectibles.</label>
+    </div>
+  </div>
+  <div style="z-index: 1; text-align: center;" class="p-col-6">
+    <h1 class="sub-title">Show love in a unique way</h1>
+    <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
+      <p-divider></p-divider>
+    </div>
+
+    <div class="small-text">
+      <label>Upon purchase, you can write a personalized message to your favourite musician. Tell them
+        why you love them and
+        how
+        they changed your life. </label>
+    </div>
+  </div>
+  <div style="z-index: 1; text-align: center;" class="p-col-6">
+    <h1 class="sub-title">Supreme security</h1>
+    <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
+      <p-divider></p-divider>
+    </div>
+    <div class="small-text">
+      <label>Access your files in the most secure manner possible. We understand that if you buy a
+        record,
+        you want it to be safe with you. After purchase, your files are 100% secure and only accessible by you.</label>
+    </div>
+  </div>
+  <div style="z-index: 1; text-align: center;" class="p-col-6">
+    <h1 class="sub-title">Smooth and Straightforward</h1>
+    <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
+      <p-divider></p-divider>
+    </div>
+    <div class="small-text">
+      <label>We made purchasing a music NFT through Unchained Music a smooth & straightforward
+        process.
+        Collecting the tunes you love has never been easier. Check out our <a target="_blank"
+          href="https://www.notion.so/Help-Center-1f0ae87e70ae4f6a919aba3b0829efd6">HOW TO BUY A MUSIC NFT GUIDE</a> for
+        help.
+      </label>
+    </div>
+  </div>
+
 </div>
 
-<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <h2>A bridge from physical to digital</h2>
-  <h2>Show love in a unique way</h2>
-</div>
-
-<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <label class="left-padding">Before blockchain & NFTs, you could only collect music in physical formats, such as
-    cassettes, CDs and vinyls.
-    We have built a bridge from physical to digital, allowing you to buy and own true music digital collectibles.
-  </label>
-  <label class="right-padding">Upon purchase, you can write a personalized message to your favourite musician. Tell them
-    why you love them and
-    how
-    they changed your life.</label>
-</div>
-
-
-<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <h2>Supreme security</h2>
-  <h2>Smooth and Straightforward</h2>
-</div>
-
-<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <label class="left-padding">Access your files in the most secure manner possible. We understand that if you buy a
-    record,
-    you want it to be safe with you. After purchase, your files are 100% secure and only accessible by you.
-  </label>
-  <label class="right-padding">We made purchasing a music NFT through Unchained Music a smooth & straightforward
-    process.
-    Collecting the tunes you love has never been easier. Check out our <a target="_blank"
-      href="https://www.notion.so/Help-Center-1f0ae87e70ae4f6a919aba3b0829efd6">HOW TO BUY A MUSIC NFT GUIDE</a> for
-    help.
-  </label>
-</div>
-<div style="margin-top: 20px;" class="p-mt-6">
-  <p-divider></p-divider>
-</div>
 <!-- COLLECT MUSIC LIKE NEVER BEFORE END -->
 
 <!-- TECHNICAL ADVANTAGES START -->
-<div fxLayout="row" fxLayoutAlign="center">
-  <h1 fx class="guide-text">Technical Advanatages</h1>
-</div>
+<div style="height: 50px;"></div>
 
-<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <h2>Cheap Transactions</h2>
-  <h2>High Performance</h2>
-</div>
+<div style="background-color: #181d25; border-radius: 30px; margin: 20px;" class="p-grid">
 
-<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <label class="left-padding">The biggest obstacle in the current Ethereum blockchain based solutions are the ridiculous
-    fees around
-    transactions.
-    In our effort to save your money, the decision to mount the Polygon chain has lowered our overall fees up to 100x. </label>
-  <label class="right-padding">Our platform is built with a focus on optimization, using next to none third-party
-    integrations and code.
-    The Polygon project is one of the more recent attempts at blockchain interoperability and scaling,
-    and is designed to address some of the perceived limitations of interoperability projects such as Polkadot and Cosmos.</label>
+  <div style="z-index: 1;" class="p-col-12">
+    <h1 class="guide-text">Technical Advanatages</h1>
+  </div>
+  <div style="z-index: 1; text-align: center;" class="p-col-6">
+    <h1 class="sub-title">Cheap Transactions</h1>
+    <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
+      <p-divider></p-divider>
+    </div>
+
+    <div class="small-text">
+      <label>The biggest obstacle in the current Ethereum blockchain based solutions are the ridiculous
+        fees around
+        transactions.
+        In our effort to save your money, the decision to mount the Polygon chain has lowered our overall fees up to
+        100x.</label>
+    </div>
+  </div>
+  <div style="z-index: 1; text-align: center;" class="p-col-6">
+    <h1 class="sub-title">High Performance</h1>
+    <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
+      <p-divider></p-divider>
+    </div>
+
+    <div class="small-text">
+
+      <label>Our platform is built with a focus on optimization, using next to none third-party
+        integrations and code.
+        The Polygon project is one of the more recent attempts at blockchain interoperability and scaling,
+        and is designed to address some of the perceived limitations of interoperability projects such as Polkadot and
+        Cosmos. </label>
+    </div>
+  </div>
+  <div style="z-index: 1; text-align: center;" class="p-col-6">
+    <h1 class="sub-title">Secure file storage, built for music</h1>
+    <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
+      <p-divider></p-divider>
+    </div>
+
+    <div class="small-text">
+      <label>Aside from having data on the blockchain, our server application uses caching methods
+        which speed-up the process of minting NFTs, while securely storing the data on IPFS.</label>
+    </div>
+  </div>
+  <div style="z-index: 1; text-align: center;" class="p-col-6">
+    <h1 class="sub-title">Simple and easy to use</h1>
+    <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
+      <p-divider></p-divider>
+    </div>
+    <div class="small-text">
+      <label>Minting and selling your music NFTs should be easy. As a musical contributor,
+        you are only a few clicks away from minting and selling your own musical NFT.
+        On the other hand, you're litreally 2 clicks away from buying one.
+      </label>
+    </div>
+  </div>
 </div>
+<div style="height: 50px;"></div>
 
 
-<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <h2>Secure file storage, built for music</h2>
-  <h2>Simple and easy to use</h2>
-</div>
-
-<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
-  <label class="left-padding">Aside from having data on the blockchain, our server application uses caching methods
-    which speed-up the process of minting NFTs, while securely storing the data on IPFS.
-  </label>
-  <label class="right-padding">Minting and selling your music NFTs should be easy. As a musical contributor,
-    you are only a few clicks away from minting and selling your own musical NFT.
-    On the other hand, you're litreally 2 clicks away from buying one. </label>
-</div>
 <!-- TECHNICAL ADVANTAGES END -->

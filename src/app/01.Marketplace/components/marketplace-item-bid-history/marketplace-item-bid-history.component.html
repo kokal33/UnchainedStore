@@ -1,4 +1,4 @@
-<p-table [autoLayout]="true" [value]="bidders">
+<!-- <p-table [autoLayout]="true" [value]="bidders">
   <ng-template pTemplate="header">
     <tr>
       <th>Public Address</th>
@@ -11,4 +11,21 @@
       <td>{{bidder.bid}}MATIC</td>
     </tr>
   </ng-template>
-</p-table>
+</p-table> -->
+
+<div class="p-grid">
+  <div class="p-col-12">
+    <table style="width:100%">
+      <tr >
+        <th>Public Address</th>
+        <th>Bid</th>
+      </tr>
+      <tr  *ngFor="let bidder of bidders">
+        <td>{{bidder.address}}</td>
+        <td>{{bidder.bid}}MATIC</td>
+      </tr>
+
+    </table>
+
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { MenuItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -25,10 +25,12 @@ export class UserDetailsComponent implements OnInit {
   activeItem!: MenuItem;
   truncateText = truncateMiddle;
   isLocalUser = false;
+  userDetailsAddress!: string;
 
   async ngOnInit() {
     this.blockUI.start();
     const publicAddress = this.activatedRoute.snapshot.params.id;
+    this.userDetailsAddress = publicAddress;
     const userLocal = getUserLocal();
     if (publicAddress == userLocal?.publicAddress) {
       this.user = userLocal;
@@ -37,8 +39,17 @@ export class UserDetailsComponent implements OnInit {
       this.user = (await this.backendService.getUserById({ publicAddress: publicAddress })).body;
     }
     this.items = [
-      { label: 'Collections', routerLink: ['collections'] },
-      { label: 'Created', routerLink: ['created'] },
+      {
+        id: '1', label: 'Collections',
+        command: (event) => {
+          this.activeItem = this.items[0];
+        }
+      },
+      {
+        id: '2', label: 'Created', command: (event) => {
+          this.activeItem = this.items[1];
+        }
+      },
     ];
     this.activeItem = this.items[0];
     this.blockUI.stop();

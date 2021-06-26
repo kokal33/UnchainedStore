@@ -20,6 +20,11 @@ export class MarketplaceItemDialogComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.environment = environment.apiUrl;
+    const model: IdModel = {
+      id: this.config.data.id
+    }
+    const result = await this.backendService.getTrackById(model);
+    this.track = result.body;
     this.items = [
       {
         id: "1", label: 'Details', command: (event) => {
@@ -27,7 +32,7 @@ export class MarketplaceItemDialogComponent implements OnInit {
         }
       },
       {
-        id: "2", label: 'Bid History', command: (event) => {
+        id: "2", visible: this.track?.auction?.bids.length > 0, label: 'Bid History', command: (event) => {
           this.activeItem = this.items[1];
         }
       },
@@ -38,11 +43,7 @@ export class MarketplaceItemDialogComponent implements OnInit {
       }
     ];
     this.activeItem = this.items[0];
-    const model: IdModel = {
-      id: this.config.data.id
-    }
-    const result = await this.backendService.getTrackById(model);
-    this.track = result.body;
+
   }
 
   //Event received from bid-or-purchase-dialog Component, through marketplace-item-details
@@ -50,7 +51,7 @@ export class MarketplaceItemDialogComponent implements OnInit {
   // This is so we know if the bid is success and the dialog is closed, we should refresh to get the highest bid
   async onBidSuccess(success: boolean) {
     if (!success) return;
-    const result = await this.backendService.getTrackById({id: this.config.data.id});
+    const result = await this.backendService.getTrackById({ id: this.config.data.id });
     this.track = result.body;
   }
 
