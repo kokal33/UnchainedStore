@@ -104,7 +104,8 @@ export class ProviderService {
   }
 
   private isMaticChain(chainId: number): boolean {
-    if (chainId !== 80001) {
+    if (chainId !== 80001) {  //TESTNET
+//    if (chainId !== 137) {  //MAINNET
       this.messageService.add({
         key: 'global',
         severity: 'error',
