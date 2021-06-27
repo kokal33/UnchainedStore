@@ -1,3 +1,13 @@
 :host::ng-deep .p-fieldset  {
   margin-top: 20px;
+  background: #12161c;
+}
+:host::ng-deep.p-fieldset .p-fieldset-legend{
+  background: #12161c;
+
+}
+
+.p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link {
+  background: #12161c;
+
 }

@@ -1,4 +1,4 @@
-<p-menubar (click)="onClickMenuItem($event)" [model]="items">
+<p-menubar [model]="items">
   <!-- TODO: All buttons should be the same size, bigger music and artists buttons -->
   <ng-template pTemplate="start">
 
@@ -10,9 +10,8 @@
   <ng-template pTemplate="end">
 
     <p-button (click)="openCreateNftModal()" [style]="{'border-color':'#BA68C8'}"
-      *ngIf="isWalletConnected && user?.verified"
-      styleClass="p-button-outlined p-button-rounded p-mr-2">
-      <span class=" p-text-bold">Create NFT</span>
+      *ngIf="isWalletConnected && user?.verified" styleClass="p-button-outlined p-button-rounded p-mr-2">
+      <span>Create NFT</span>
     </p-button>
 
     <button pButton pRipple type="button" *ngIf="!isWalletConnected" (click)="openWalletsModal()" label="Connect wallet"
@@ -23,7 +22,7 @@
     <p-button [style]="{'border-color':'#BA68C8'}" (click)="op.toggle($event)"
       *ngIf="user?.name && user?.profilePic && isWalletConnected" styleClass="p-button-outlined p-button-rounded">
       <img [src]="user?.profilePic" style="width: 1.5rem;border-radius: 50%;" />
-      <span class="p-ml-2 p-text-bold">{{user?.name}}</span>
+      <span class="p-ml-2">{{user?.name}}</span>
     </p-button>
 
   </ng-template>
@@ -42,7 +41,7 @@
 
   </ng-template>
 </p-messages> -->
-<p-overlayPanel #op>
+<p-overlayPanel appendTo="body" #op>
   <ng-template pTemplate>
     <button (click)="viewProfile(); op.hide()" pButton pRipple type="button" label="View Profile"
       icon="pi pi-fw pi-user" class="p-button-secondary p-button-text"></button>
@@ -50,3 +49,4 @@
       class="p-button-secondary p-button-text"></button>
   </ng-template>
 </p-overlayPanel>
+<p-toast></p-toast>

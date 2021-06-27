@@ -173,7 +173,7 @@
                 </div>
                 <div class="p-col-12">
                   <p-fileUpload *ngIf="!uploadedTrack" chooseLabel="Upload track" [auto]="true" mode="basic"
-                    [customUpload]="true" name="demo[]" accept="audio/*" maxFileSize="30000000"
+                    [customUpload]="true" name="demo[]" accept="audio/*" maxFileSize="150000000"
                     (uploadHandler)="onUploadTrack($event)"></p-fileUpload>
                   <ngx-audio-player *ngIf="uploadedTrack" [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle"
                     [autoPlay]="false" muted="muted" [displayPlaylist]="msaapDisplayPlayList"

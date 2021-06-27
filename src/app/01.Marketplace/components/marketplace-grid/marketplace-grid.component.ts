@@ -35,6 +35,7 @@ export class MarketplaceGridComponent implements OnInit {
   viewDetails(id: number, auctionEnding: number) {
     const dialog = this.dialogService.open(MarketplaceItemDialogComponent, {
       header: '',
+      styleClass:'prime-dialog-override',
       data: {
         id: id,
         auctionEnding: auctionEnding

@@ -1,7 +1,7 @@
 <form [formGroup]="bidForm">
 
   <div class="stepsdemo-content">
-    <p-card [style]="{'padding':'40px'}">
+    <p-card [style]="{'padding':'40px','background':'#12161c'}">
       <ng-template pTemplate="title">
         <div *ngIf="isAuctioned && showProgress">Bidding in progress...</div>
         <div *ngIf="!isAuctioned && showProgress">Purchase in progress...</div>

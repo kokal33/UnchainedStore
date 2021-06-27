@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { MaterialModule } from './angular-material/material.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResponsiveToolbarComponent } from './components/responsive-toolbar/responsive-toolbar.component';
 import { CommonModule } from '@angular/common';
@@ -18,7 +17,7 @@ import { BidOrPurchaseDialogComponent } from './dialogs/bid-or-purchase-dialog/b
 
 @NgModule({
   declarations: [ResponsiveToolbarComponent, WalletDialogComponent, SubscribeDialogComponent, EditUserDialogComponent, NftCardComponent, ResponsiveFooterComponent, CreateNftDialogComponent, BidOrPurchaseDialogComponent],
-  imports: [FlexLayoutModule, MaterialModule, ReactiveFormsModule, FormsModule, CommonModule, RouterModule, NgxAudioPlayerModule],
-  exports: [FlexLayoutModule, MaterialModule, ReactiveFormsModule, FormsModule, ResponsiveToolbarComponent,ResponsiveFooterComponent,NftCardComponent]
+  imports: [ MaterialModule, ReactiveFormsModule, FormsModule, CommonModule, RouterModule, NgxAudioPlayerModule],
+  exports: [ MaterialModule, ReactiveFormsModule, FormsModule, ResponsiveToolbarComponent,ResponsiveFooterComponent,NftCardComponent]
 })
 export class SharedModule { }
