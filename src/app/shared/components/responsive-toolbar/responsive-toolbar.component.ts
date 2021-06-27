@@ -72,6 +72,7 @@ export class ResponsiveToolbarComponent implements OnInit {
     const dialogRef = this.dialogService.open(WalletDialogComponent, {
       data: {},
       styleClass: 'wallet-dialog2'
+
     });
     this
       .googleService

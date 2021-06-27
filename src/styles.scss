@@ -52,7 +52,18 @@ body > p-dynamicdialog > div > div {
   }
 }
 
+.p-dialog .p-dialog-header {
+  background: #12161c !important;
+}
+.p-dialog .p-dialog-content {
+  background: #12161c !important;
+}
+
 body,
 body .p-component {
   font-family: "Montserrat", sans-serif;
+}
+.p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link {
+  background: #12161c !important;
+
 }

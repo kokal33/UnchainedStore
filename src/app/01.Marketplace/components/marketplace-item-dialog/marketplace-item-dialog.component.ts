@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { IdModel } from 'src/app/06.Models/idModel';
@@ -9,7 +9,10 @@ import { environment } from 'src/environments/environment';
   selector: 'app-marketplace-item-dialog',
   templateUrl: './marketplace-item-dialog.component.html',
   styleUrls: ['./marketplace-item-dialog.component.scss'],
-  providers: [BackendService]
+
+  providers: [BackendService],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class MarketplaceItemDialogComponent implements OnInit {
   items!: MenuItem[];
