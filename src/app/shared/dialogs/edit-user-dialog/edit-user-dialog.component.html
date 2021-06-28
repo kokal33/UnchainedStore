@@ -2,9 +2,10 @@
 <p-steps [model]="items" [(activeIndex)]="activeIndex" [readonly]="true"></p-steps>
 <form [formGroup]="userForm">
   <div [hidden]="activeIndex != 0" style="text-align: center;" class="stepsdemo-content">
-    <p-card>
+    <p-card [style]="{'background':'#12161c'}">
       <ng-template pTemplate="subtitle">
-        Upload a profile picture so you can be recognized
+        Upload a profile picture so you can be recognized <br>
+        <p style="color: white;">400x400 size preferred</p>
       </ng-template>
       <ng-template pTemplate="content">
         <div class="p-fluid">
@@ -19,7 +20,6 @@
               accept="image/*" maxFileSize="1000000" (uploadHandler)="myUploader($event)" [auto]="true"
               chooseLabel="Browse">
             </p-fileUpload>
-
           </div>
         </div>
       </ng-template>
@@ -34,7 +34,7 @@
     </p-card>
   </div>
   <div [hidden]="activeIndex != 1" style="text-align: center;" class="stepsdemo-content">
-    <p-card>
+    <p-card [style]="{'background':'#12161c'}">
       <ng-template pTemplate="subtitle">
         Help everyone to get to know you better
       </ng-template>
@@ -67,7 +67,7 @@
           </div>
 
           <div class="p-field p-col-12 p-md-12">
-            <label for="firstname">Bio</label>
+            <label for="firstname">Short bio about yourself</label>
             <textarea formControlName="bio" rows="5" cols="30" pInputTextarea></textarea>
             <mat-error *ngIf="userForm.get('bio')?.invalid && userForm.get('bio')?.touched">
               {{getValidationMessage(userForm,'bio')}}</mat-error>
@@ -90,7 +90,7 @@
     </p-card>
   </div>
   <div [hidden]="activeIndex != 2" style="text-align: center;" class="stepsdemo-content">
-    <p-card>
+    <p-card [style]="{'background':'#12161c'}">
       <ng-template pTemplate="subtitle">
         Let everyone know where they can contact you
       </ng-template>

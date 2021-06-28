@@ -8,7 +8,7 @@
     <h1 class="welcome-text">The Music NFT Platform that cares for the artist
     </h1>
     <h1 class="about-us-text">Buy and sell unique, unreleased music records, rare samples
-      and sounds.
+      and sounds as NFT.
     </h1>
   </div>
 
@@ -19,12 +19,12 @@
   <div class="p-col-12" style="height: 100px;"></div>
 
   <div style="text-align: end; padding-right: 20px;" class="p-col-6">
-    <button style="border-radius: 30px;" (click)="doTheThingWithTheTypeForm()" pButton pRipple type="button"
-      label="Music" class="p-button-outlined p-button-lg"></button>
+    <button style="border-radius: 30px;" [routerLink]="['/marketplace']" pButton pRipple type="button" label="Music"
+      class="p-button-outlined p-button-lg"></button>
   </div>
   <div style="padding-left: 20px;" class="p-col-6">
-    <button style="border-radius: 30px;" (click)="doTheThingWithTheTypeForm()" pButton pRipple type="button"
-      label="Artists" class="p-button-outlined p-button-lg"></button>
+    <button style="border-radius: 30px;" [routerLink]="['/artists']" pButton pRipple type="button" label="Artists"
+      class="p-button-outlined p-button-lg"></button>
   </div>
 </div>
 

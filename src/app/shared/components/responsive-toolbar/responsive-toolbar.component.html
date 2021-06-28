@@ -30,18 +30,17 @@
 </p-menubar>
 <!-- <p-messages *ngIf="!isProduction" severity="error">
   <ng-template pTemplate>
-    <i class="pi pi-exclamation-triangle"></i>
     <img class="p-ml-2" src="../../../../assets/images/UnchaunedLogo.png" width="32" />
     <div class="p-mr-2">This site is on TESTNET. It is for testing purposes and all the data will be wiped out.
       All feedback is welcome!
-      On information how to connect to the Polygon(Matic) testchain click
-      <a href="https://docs.matic.network/docs/develop/metamask/testnet/" target="_blank"> <strong>HERE</strong></a>
+      On information how to connect to the Polygon(Matic) TestChain click
+      <a href="https://docs.matic.network/docs/develop/metamask/testnet/" target="_blank"> <strong
+          style="color: white;">HERE</strong></a> <br>
     </div>
-    <i class="pi pi-exclamation-triangle"></i>
 
   </ng-template>
 </p-messages> -->
-<p-overlayPanel appendTo="body" #op>
+<p-overlayPanel [style]="{'background': '#12161c'}" appendTo="body" #op>
   <ng-template pTemplate>
     <button (click)="viewProfile(); op.hide()" pButton pRipple type="button" label="View Profile"
       icon="pi pi-fw pi-user" class="p-button-secondary p-button-text"></button>
