@@ -16,7 +16,7 @@ import { ProviderService } from 'src/app/07.Services/provider.service';
 @Component({
   selector: 'app-responsive-toolbar',
   templateUrl: './responsive-toolbar.component.html',
-  styleUrls: ['./responsive-toolbar.component.css'],
+  styleUrls: ['./responsive-toolbar.component.scss'],
   providers: [BackendService, DialogService]
 })
 export class ResponsiveToolbarComponent implements OnInit {
