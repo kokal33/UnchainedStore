@@ -48,6 +48,9 @@ export class MarketplaceItemDetailsComponent implements OnInit {
       }
     })
   }
+  fixedNumber(price : number){
+  return price.toFixed(2);
+  }
 
   async endAuction() {
     const endAuctionModel: EndAuctionModel = {

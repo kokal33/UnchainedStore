@@ -18,7 +18,9 @@
       <ng-template pTemplate="content">
         <div class="p-fluid">
           <div *ngIf="isAuctioned" class="p-field">
-            <h1 class="highest-bid">Highest bid: {{highestBid ? highestBid + ' ' + 'MATIC' : "No Bids"}}</h1>
+            <h1 *ngIf="highestBid" class="highest-bid">Highest bid: {{fixedNumber(highestBid)}} MATIC</h1>
+            <h1 *ngIf="!highestBid" class="highest-bid">Highest bid: No Bids</h1>
+
           </div>
           <div class="p-field">
             <label for="minmaxfraction">Price (MATIC)</label>
