@@ -72,6 +72,7 @@ export class UserDetailsComponent implements OnInit {
       //use this data to refresh artist details
       if (data) {
         this.user = data;
+        window.location.reload();
       }
     })
   }

@@ -2,7 +2,7 @@
 <form [formGroup]="nftForm">
 
   <div [hidden]="activeIndex != 1" class="stepsdemo-content">
-    <p-card [style]="{'padding':'40px'}">
+    <p-card [style]="{'padding':'40px','background':'#12161c'}">
       <ng-template pTemplate="title">
         Select listing type
       </ng-template>
@@ -39,7 +39,50 @@
   </div>
 
   <div [hidden]="activeIndex != 2" class="stepsdemo-content">
-    <p-card [style]="{'padding':'20px'}">
+    <p-card [style]="{'padding':'40px','background':'#12161c'}">
+      <ng-template pTemplate="title">
+        Charities available
+      </ng-template>
+      <ng-template pTemplate="subtitle">
+        Charity selection is optional
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div style="text-align: center;" class="p-grid">
+          <div class="p-col-4">
+            <img style="height: 100px;width: 100px;" src="https://clipground.com/images/charity-png-7.png"
+              alt="Charity">
+            <p>Name</p>
+          </div>
+          <div class="p-col-4"><img style="height: 100px;width: 100px;"
+              src="https://clipground.com/images/charity-png-7.png" alt="Charity">
+            <p>Name</p>
+          </div>
+          <div class="p-col-4"><img style="height: 100px;width: 100px;"
+              src="https://clipground.com/images/charity-png-7.png" alt="Charity">
+            <p>Name</p>
+          </div>
+          <div class="p-col-12">
+            <p-selectButton [options]="stateOptions" formControlName="charityType" optionLabel="label"
+              optionValue="value">
+            </p-selectButton>
+          </div>
+          <div style="padding: 20px;" class="p-col-12">
+            <h3>Charity percentage {{nftForm.get('charityPercent')?.value}}%</h3>
+            <p-slider formControlName="charityPercent" [min]="0" [max]="5" [step]="1"></p-slider>
+          </div>
+
+        </div>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <div class="p-grid p-nogutter p-justify-end">
+          <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+
+  <div [hidden]="activeIndex != 3" class="stepsdemo-content">
+    <p-card [style]="{'padding':'20px','background':'#12161c'}">
       <ng-template pTemplate="title">
         Follow the steps
       </ng-template>

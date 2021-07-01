@@ -46,7 +46,7 @@
       </div>
       <ng-template pTemplate="footer">
         <div class="p-grid">
-          <div class="p-col-6">
+          <div *ngIf="!item?.isSold" class="p-col-6">
             <div style="text-align: center;" class="box">
               <h3 style="color: #c950aa">Current Bid</h3>
               <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
@@ -58,12 +58,19 @@
           </div>
           <div *ngIf="item?.isAuctioned" class="p-col-6">
             <div style="text-align: center;" class="box">
-              <h3 style="color: #c950aa" *ngIf="item?.auctionEnding > 0" >Ending in</h3>
-              <h3 style="color: #c950aa" *ngIf="item?.auctionEnding < 0" >Finished</h3>
+              <h3 style="color: #c950aa" *ngIf="item?.auctionEnding > 0">Ending in</h3>
+              <h3 style="color: #c950aa" *ngIf="item?.auctionEnding < 0">Finished</h3>
               <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
                 <p-divider></p-divider>
               </div>
               <cd-timer *ngIf="item?.auctionEnding > 0" [startTime]="item.auctionEnding" [countdown]="true"></cd-timer>
+            </div>
+
+          </div>
+          <div *ngIf="item?.isSold" class="p-col-12">
+            <div style="text-align: center;" class="box">
+              <h3 style="color: #c950aa">Owned by</h3>
+              {{item.ownerOfName}}
             </div>
 
           </div>

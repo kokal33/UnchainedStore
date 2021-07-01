@@ -34,13 +34,18 @@ import { CdTimerModule } from 'angular-cd-timer';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LayoutModule } from '@angular/cdk/layout';
+import {SliderModule} from 'primeng/slider';
+import { SelectButtonModule } from 'primeng/selectbutton';
+
 
 
 const mat = [
 
   ToastModule,
   StepsModule,
+  SliderModule,
   TooltipModule,
+  SelectButtonModule,
   TabViewModule,
   NgxAudioPlayerModule,
   InputTextModule,

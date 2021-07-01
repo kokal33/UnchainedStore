@@ -18,6 +18,8 @@ export class MarketplaceItemBidHistoryComponent implements OnInit {
       this.bidders.push({address: element.ownerOfPublicAddress, bid: element.amount})
     });
   }
-
+  fixedNumber(price : number){
+    return price.toFixed(2);
+    }
 
 }

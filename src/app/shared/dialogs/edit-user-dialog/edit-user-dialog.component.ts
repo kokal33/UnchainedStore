@@ -40,7 +40,7 @@ export class EditUserDialogComponent implements OnInit {
     ];
     this.userForm = this.fb.group({
       publicAddress: [""],
-      bio: ["", Validators.required],
+      bio: ["", [Validators.required,Validators.maxLength(500)]],
       isArtist: [false],
       name: ["", Validators.required],
       email: ["", Validators.required],

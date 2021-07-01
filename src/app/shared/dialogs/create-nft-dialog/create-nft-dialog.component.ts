@@ -38,7 +38,7 @@ export class CreateNftDialogComponent implements OnInit {
   nftForm!: FormGroup;
   active = false;
   fileSource = "";
-
+  stateOptions!: any[];
   // Audio player options
   msaapDisplayTitle = false;
   msaapDisplayPlayList = false;
@@ -64,7 +64,10 @@ export class CreateNftDialogComponent implements OnInit {
     public ref: DynamicDialogRef
 
   ) { }
+
+
   ngOnInit(): void {
+    this.stateOptions = [{ label: 'Charity1', value: '1' }, { label: 'Charity2', value: '2' }, { label: 'Charity3', value: '3' }];
     this.types = [
       { id: 1, name: 'Auction', code: 'NY' },
       { id: 2, name: 'Marketplace', code: 'RM' },
@@ -84,6 +87,9 @@ export class CreateNftDialogComponent implements OnInit {
       label: 'Listing',
     },
     {
+      label: 'Charity',
+    },
+    {
       label: 'Summary',
     }]
     this.user = getUserLocal();
@@ -97,6 +103,8 @@ export class CreateNftDialogComponent implements OnInit {
       typeOfListing: [null, Validators.required],
       duration: [null],
       price: [0, [Validators.required, Validators.min(0.1)]],
+      charityType: [null],
+      charityPercent: [0],
     });
 
     this.nftForm.get('typeOfListing')?.valueChanges.subscribe(val => {
@@ -110,6 +118,7 @@ export class CreateNftDialogComponent implements OnInit {
       }
       this.nftForm.controls['duration'].updateValueAndValidity();
     });
+
 
   }
   inplaceToggle() {
@@ -186,7 +195,7 @@ export class CreateNftDialogComponent implements OnInit {
     this.blockUI.stop();
     this.mintFilesSuccess = true;
   }
-  async approve(){
+  async approve() {
     const type = this.nftForm.get('typeOfListing')?.value.id;
     if (type === 1)
       await this.approveAuction();
@@ -210,25 +219,25 @@ export class CreateNftDialogComponent implements OnInit {
     this.blockUI.stop();
     this.approveFilesSuccess = approved;
   }
-// Approve Marketplace
+  // Approve Marketplace
   async approveMarketplace() {
     this.blockUI.start("Your NFT is being approved for listing...")
     const approved = await this.marketplaceService.approveMarketplace(this.user?.publicAddress as string, this.tokenId)
-    .catch(e => {
-      this.blockUI.stop();
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Your NFT was not approved!',
-        detail: e.message,
+      .catch(e => {
+        this.blockUI.stop();
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Your NFT was not approved!',
+          detail: e.message,
+        });
+        return false;
       });
-      return false;
-    });
     if (!approved) return;
     this.blockUI.stop();
     this.approveFilesSuccess = approved;
   }
-// Create Auction
-  async createAuction(){
+  // Create Auction
+  async createAuction() {
     this.blockUI.start("Creating auction for your NFT...")
     const model: CreateAuctionModel = {
       from: this.user?.publicAddress as string,
@@ -236,7 +245,7 @@ export class CreateNftDialogComponent implements OnInit {
       tokenId: this.tokenId,
       duration: this.nftForm.get('duration')?.value.id * 86400,
       // TODO: Get creator royalties from form
-      creatorsRoyalties:10
+      creatorsRoyalties: 10
     };
     const auction = await this.auctionService.createAuction(model)
       .catch(e => {
@@ -259,7 +268,7 @@ export class CreateNftDialogComponent implements OnInit {
       started: started,
       trackId: this.uploadedTrackId,
       ending: ending,
-      price : this.nftForm.get('price')?.value,
+      price: this.nftForm.get('price')?.value,
       contractAddress: auction.options.address
     }
     const auctionPosting = await this.backendService.postAuction(postAuctionModel)
@@ -289,36 +298,36 @@ export class CreateNftDialogComponent implements OnInit {
       ownersRoyalty: 0
     }
     const product = await this.marketplaceService.createProduct(model)
-    .catch(e => {
-      this.blockUI.stop();
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Listing failed!',
-        detail: e.message,
+      .catch(e => {
+        this.blockUI.stop();
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Listing failed!',
+          detail: e.message,
+        });
+        return undefined;
       });
-      return undefined;
-    });
-  if (!product) return;
-  const listingId = product.events.ProductCreated.returnValues.id;
-   const listingModel: ListingModel = {
-    id: listingId,
-    trackId: this.uploadedTrackId,
-    price: this.nftForm.get('price')?.value
-   }
-   const listing = await this.backendService.postListing(listingModel)
-   .catch(e => {
+    if (!product) return;
+    const listingId = product.events.ProductCreated.returnValues.id;
+    const listingModel: ListingModel = {
+      id: listingId,
+      trackId: this.uploadedTrackId,
+      price: this.nftForm.get('price')?.value
+    }
+    const listing = await this.backendService.postListing(listingModel)
+      .catch(e => {
+        this.blockUI.stop();
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Marketplace listing failed!',
+          detail: "The server at unchained did not respond :( please try again or report this to the administrator",
+        });
+        this.createSaleSuccess = false;
+        return undefined;
+      });
+    if (!listing) return;
+    this.createSaleSuccess = true;
     this.blockUI.stop();
-    this.messageService.add({
-      severity: 'error',
-      summary: 'Marketplace listing failed!',
-      detail: "The server at unchained did not respond :( please try again or report this to the administrator",
-    });
-    this.createSaleSuccess = false;
-    return undefined;
-  });
-  if (!listing) return;
-  this.createSaleSuccess = true;
-  this.blockUI.stop();
   }
 
   async uploadFiles() {

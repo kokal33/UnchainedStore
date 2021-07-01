@@ -65,6 +65,9 @@ export class BidOrPurchaseDialogComponent implements OnInit {
     }
   }
 
+  fixedNumber(price : number){
+    return price.toFixed(2);
+    }
   async purchase() {
     const listingId = this.config.data.id;
     this.showProgress = true;

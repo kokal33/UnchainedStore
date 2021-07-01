@@ -16,13 +16,13 @@
 <div class="p-grid">
   <div class="p-col-12">
     <table style="width:100%">
-      <tr >
+      <tr>
         <th>Public Address</th>
         <th>Bid</th>
       </tr>
-      <tr  *ngFor="let bidder of bidders">
+      <tr *ngFor="let bidder of bidders">
         <td>{{bidder.address}}</td>
-        <td>{{bidder.bid}}MATIC</td>
+        <td>{{fixedNumber(bidder.bid)}} MATIC</td>
       </tr>
 
     </table>
