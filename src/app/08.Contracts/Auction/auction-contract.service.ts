@@ -17,14 +17,14 @@ export class AuctionContractService {
     // Estimate gas
     const estimatedGas = await new this.web3.eth.Contract(AuctionContract.abi).deploy({
       data: AuctionContract.data.bytecode.object,
-      arguments: [this.web3.utils.toWei(model.startPrice.toString(), "ether"), model.tokenId, model.duration, model.creatorsRoyalties]
+      arguments: [this.web3.utils.toWei(model.startPrice.toString(), "ether"), model.tokenId, model.duration, model.creatorsRoyalties, model.charityPercent]
     }).estimateGas({
       from: model.from
     });
     // Deploy auction contract
     const auction = await new this.web3.eth.Contract(AuctionContract.abi).deploy({
       data: AuctionContract.data.bytecode.object,
-      arguments: [this.web3.utils.toWei(model.startPrice.toString(), "ether"), model.tokenId, model.duration, model.creatorsRoyalties]
+      arguments: [this.web3.utils.toWei(model.startPrice.toString(), "ether"), model.tokenId, model.duration, model.creatorsRoyalties, model.charityPercent]
     }).send({
       from: model.from,
       gas: estimatedGas,

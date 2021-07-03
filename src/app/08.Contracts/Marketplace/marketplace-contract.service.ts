@@ -18,18 +18,30 @@ export class MarketplaceContractService {
       MarketplaceContract.abi,
       environment.marketplaceTestAddress);
 
+      const estimatedGas = await myContract.methods
+      .createProduct(
+        model.name,
+        this.web3.utils.toWei(model.price.toString(), "ether"),
+        model.tokenId,
+        model.ownersRoyalty,
+        model.charityPercent
+      )
+      .estimateGas({
+        from: model.from
+      });
+
       const product = await myContract.methods
       .createProduct(
         model.name,
         this.web3.utils.toWei(model.price.toString(), "ether"),
         model.tokenId,
-        model.ownersRoyalty
+        model.ownersRoyalty,
+        model.charityPercent
       )
       .send({
         from: model.from,
-        gas: 200000,
+        gas: estimatedGas,
       });
-    console.log('PRODUCT: ', product);
     return product;
   }
 
