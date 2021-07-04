@@ -10,20 +10,50 @@
 
 <p-divider></p-divider> -->
 
-<div style="margin-bottom: 5%;"></div>
-<div style="color: white; text-align: center; margin-left: 10%;margin-right: 10% " class="p-grid">
+
+<div style="padding: 30px;" class="p-grid">
+  <div style="display: flex;" class="p-col-12"><img style="height: 50px;"
+      src="../../../../assets/images/icons8-auction-64.png" alt="">
+    <h2 style="padding:10px">Auction</h2>
+  </div>
+  <div style="display: flex;" class="p-col-12"> <img style="height: 50px;"
+      src="../../../../assets/images/icons8-sell-64.png" alt="">
+    <h2 style="padding:10px">One time purchase</h2>
+  </div>
+
+</div>
+
+
+<div style="margin-bottom: 5%;">
+</div>
+<div style="color: white; text-align: center; margin-left: 8%;margin-right: 8% " class="p-grid">
   <div class="p-col-12 p-md-6 p-lg-4 " *ngFor="let item  of marketplaceItems">
     <div class="grid-7 element-animation">
       <!--card-1-->
-      <p-card  styleClass="p-card-shadow">
+      <p-card styleClass="p-card-shadow">
 
         <div class="p-grid">
           <div class="p-col-6">
-            <div style="text-align: start;padding-left: 20px; display: flex;" class="box">
+            <div style="text-align: start;padding-left: 20px; display: -webkit-box;">
 
-              <img style="width: 20px;height: 20px;border-radius: 50%;margin: 3px;" [src]="item.ownerOfProfilePic">
-              <h3 style="white-space: nowrap;">{{item.ownerOfName}}</h3>
+              <img style="width: 25px;height: 25px;border-radius: 50%;margin: 3px;" [src]="item.ownerOfProfilePic">
+              <h3 style="white-space: nowrap;font-size: 20px;">{{item.ownerOfName}}</h3>
+
             </div>
+
+
+          </div>
+          <div class="p-col-6">
+            <div style="text-align: end;padding-right: 20px;">
+
+              <img *ngIf="!item.auctionEnding" style="height: 50px;" src="../../../../assets/images/icons8-sell-64.png"
+                alt="">
+              <img *ngIf="item.auctionEnding" style="height: 50px;"
+                src="../../../../assets/images/icons8-auction-64.png" alt="">
+
+            </div>
+
+
           </div>
 
         </div>
@@ -36,7 +66,8 @@
 
         </div>
         <ng-template pTemplate="header">
-          <img (click)="viewDetails(item.id, item?.auctionEnding)" class="img" alt="Card" [src]="environment + item.imageLocation">
+          <img (click)="viewDetails(item.id, item?.auctionEnding)" class="img" alt="Card"
+            [src]="environment + item.imageLocation">
         </ng-template>
         <div class="p-grid">
           <div class="p-col-12">
@@ -68,12 +99,13 @@
 
             <div *ngIf="item?.auctionEnding" class="p-col-6">
               <div style="text-align: center;" class="box">
-                <h3 style="color: #c950aa" *ngIf="item?.auctionEnding > 0" >Ending in</h3>
-                <h3 style="color: #c950aa" *ngIf="item?.auctionEnding < 0" >Finished</h3>
+                <h3 style="color: #c950aa" *ngIf="item?.auctionEnding > 0">Ending in</h3>
+                <h3 style="color: #c950aa" *ngIf="item?.auctionEnding < 0">Finished</h3>
                 <div style="padding-left: 20%;padding-right: 20%;" class="footer-divider">
                   <p-divider></p-divider>
                 </div>
-                <cd-timer *ngIf="item?.auctionEnding > 0" [startTime]="item.auctionEnding" [countdown]="true"></cd-timer>
+                <cd-timer *ngIf="item?.auctionEnding > 0" [startTime]="item.auctionEnding" [countdown]="true">
+                </cd-timer>
               </div>
             </div>
 
