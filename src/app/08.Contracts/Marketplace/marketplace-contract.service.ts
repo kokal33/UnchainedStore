@@ -23,7 +23,6 @@ export class MarketplaceContractService {
         model.name,
         this.web3.utils.toWei(model.price.toString(), "ether"),
         model.tokenId,
-        model.ownersRoyalty,
         model.charityPercent
       )
       .estimateGas({
@@ -35,7 +34,6 @@ export class MarketplaceContractService {
         model.name,
         this.web3.utils.toWei(model.price.toString(), "ether"),
         model.tokenId,
-        model.ownersRoyalty,
         model.charityPercent
       )
       .send({

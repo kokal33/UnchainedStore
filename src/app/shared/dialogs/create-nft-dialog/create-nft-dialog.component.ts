@@ -244,8 +244,7 @@ export class CreateNftDialogComponent implements OnInit {
       startPrice: this.nftForm.get('price')?.value,
       tokenId: this.tokenId,
       duration: this.nftForm.get('duration')?.value.id * 86400,
-      // TODO: Get creator royalties from form
-      creatorsRoyalties: 0,
+      // TODO: Get charity from form
       charityPercent: 0
     };
     const auction = await this.auctionService.createAuction(model)
@@ -296,7 +295,6 @@ export class CreateNftDialogComponent implements OnInit {
       name: this.nftForm.get('title')?.value,
       price: this.nftForm.get('price')?.value,
       tokenId: this.tokenId,
-      ownersRoyalty: 0,
       charityPercent: 0
     }
     const product = await this.marketplaceService.createProduct(model)
