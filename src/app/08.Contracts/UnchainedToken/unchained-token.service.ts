@@ -20,7 +20,6 @@ export class UnchainedTokenService {
     var myContract = new this.web3.eth.Contract(UnchainedContract.abi, environment.contractTestAddress);
     const estimatedGas = await myContract.methods.approve(to, tokenId)
     .estimateGas({ from: from });
- console.log(estimatedGas);
   return await myContract.methods.approve(to, tokenId)
   .send({
     from: from,

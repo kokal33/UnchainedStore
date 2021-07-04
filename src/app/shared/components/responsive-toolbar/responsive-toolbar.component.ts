@@ -47,10 +47,6 @@ export class ResponsiveToolbarComponent implements OnInit {
         routerLink: 'artists'
       }
     ];
-
-    // ENVIRONMENT-CHANGE
-    if (!this.user?.verified && this.isProduction)
-      this.items = [];
   }
   constructor(private dialog: MatDialog, private dialogService: DialogService,
     private backendService: BackendService, private router: Router,

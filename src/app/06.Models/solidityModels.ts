@@ -3,16 +3,17 @@ export interface CreateProductModel {
   name: string;
   price: number;
   tokenId: number;
-  ownersRoyalty: number;
+  // In percent
+  charityPercent: number
 }
 
-export interface CreateAuctionModel{
+export interface CreateAuctionModel {
   from: string,
   startPrice: number,
   tokenId: number,
   duration: number,
   // In percent
-  creatorsRoyalties: number,
+  charityPercent: number
 }
 
 export interface PurchaseModel {
