@@ -14,12 +14,9 @@ export class MarketplaceItemBidHistoryComponent implements OnInit {
   ngOnInit(): void {
     this.bidders = [];
 
-    this.track?.auction?.bids.forEach((element:any) => {
-      this.bidders.push({address: element.ownerOfPublicAddress, bid: element.amount})
+    this.track?.auction?.bids.forEach((element: any) => {
+      this.bidders.push({ address: element.ownerOfPublicAddress, bid: element.amount })
     });
   }
-  fixedNumber(price : number){
-    return price.toFixed(2);
-    }
 
 }

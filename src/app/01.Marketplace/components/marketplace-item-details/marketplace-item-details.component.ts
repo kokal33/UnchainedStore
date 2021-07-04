@@ -48,9 +48,7 @@ export class MarketplaceItemDetailsComponent implements OnInit {
       }
     })
   }
-  fixedNumber(price : number){
-  return price.toFixed(2);
-  }
+
 
   async endAuction() {
     const endAuctionModel: EndAuctionModel = {
@@ -66,10 +64,10 @@ export class MarketplaceItemDetailsComponent implements OnInit {
           summary: 'End auction failed, check your wallet for errors',
           detail: rpcError.message,
         });
-        if (rpcError.message==="execution reverted: No bids for this auction"){
-          this.backendService.SetNoBidsFinishedAuction({id: this.track.id});
+        if (rpcError.message === "execution reverted: No bids for this auction") {
+          this.backendService.SetNoBidsFinishedAuction({ id: this.track.id });
           window.location.reload();
-      }
+        }
         return undefined;
       });
     if (!endAuction) return;
