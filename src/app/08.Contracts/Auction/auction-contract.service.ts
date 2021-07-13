@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BidModel, CreateAuctionModel, EndAuctionModel } from 'src/app/06.Models/solidityModels';
 import Web3 from 'web3';
 const AuctionContract = require('./UnchainedAuction.json');
+import { Biconomy } from "@biconomy/mexa";
 import * as RLP from 'rlp'
 import { UnchainedTokenService } from '../UnchainedToken/unchained-token.service';
 
