@@ -352,5 +352,4 @@ export class CreateNftDialogComponent implements OnInit {
   closeDialog() {
     this.ref.close();
   }
-
 }

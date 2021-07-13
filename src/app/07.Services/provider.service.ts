@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { environment } from 'src/environments/environment';
 import {
   prepareSignBinance,
   prepareSignMetamask,
@@ -104,8 +105,8 @@ export class ProviderService {
   }
 
   private isMaticChain(chainId: number): boolean {
-    if (chainId !== 80001) {  //TESTNET
-//    if (chainId !== 137) {  //MAINNET
+    const maticChain = environment.production ? 137: 80001;
+    if (chainId !== maticChain) {
       this.messageService.add({
         key: 'global',
         severity: 'error',
