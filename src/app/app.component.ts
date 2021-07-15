@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { getBiconomy } from './07.Services/web3Service';
 
 declare var gtag: Function;
 
@@ -21,6 +22,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.primengConfig.ripple = true;
+    const biconomy = getBiconomy();
+    biconomy.onEvent(biconomy.READY, () => {
+      console.log("Biconomy initialized");
+    }).onEvent(biconomy.ERROR, (error, message) => {
+      console.log("Error init Biconomy: ", message);
+    });
   }
   ngAfterViewInit(): void {
     // subscribe to router events and send page views to Google Analytics

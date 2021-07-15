@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BidModel, CreateAuctionModel, EndAuctionModel } from 'src/app/06.Models/solidityModels';
-import Web3 from 'web3';
 const AuctionContract = require('./UnchainedAuction.json');
-import { Biconomy } from "@biconomy/mexa";
 import * as RLP from 'rlp'
 import { UnchainedTokenService } from '../UnchainedToken/unchained-token.service';
+import { getWeb3 } from 'src/app/07.Services/web3Service';
+import Web3 from 'web3';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import { UnchainedTokenService } from '../UnchainedToken/unchained-token.service
 export class AuctionContractService {
 
   constructor(private unchainedTokenService: UnchainedTokenService) { }
-  web3: Web3 = new Web3(window.ethereum as any);
+  web3: Web3 = getWeb3();
 
   async createAuction(model: CreateAuctionModel) {
     // Estimate gas

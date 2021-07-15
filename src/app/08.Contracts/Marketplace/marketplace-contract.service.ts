@@ -4,6 +4,7 @@ import Web3 from 'web3';
 const MarketplaceContract = require('./Marketplace.json');
 import {environment} from "../../../environments/environment";
 import { UnchainedTokenService } from '../UnchainedToken/unchained-token.service';
+import { getWeb3 } from 'src/app/07.Services/web3Service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ import { UnchainedTokenService } from '../UnchainedToken/unchained-token.service
 export class MarketplaceContractService {
 
   constructor(private unchainedTokenService: UnchainedTokenService) {}
-  web3: Web3 = new Web3(window.ethereum as any);
+  web3: Web3 = getWeb3();
 
   async createProduct(model:CreateProductModel) {
     var myContract = new this.web3.eth.Contract(

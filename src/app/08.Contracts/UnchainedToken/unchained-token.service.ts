@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { getWeb3 } from 'src/app/07.Services/web3Service';
 import { environment } from 'src/environments/environment';
 import Web3 from 'web3';
 const UnchainedContract  = require("./UnchainedToken.json");
@@ -9,7 +10,7 @@ const UnchainedContract  = require("./UnchainedToken.json");
 export class UnchainedTokenService {
 
   constructor() { }
-  web3: Web3 = new Web3(window.ethereum as any);
+  web3: Web3 = getWeb3();
 
   async creatorOf(tokenId:number){
     var myContract = new this.web3.eth.Contract(UnchainedContract.abi, environment.contractTestAddress);
